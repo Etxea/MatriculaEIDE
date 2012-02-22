@@ -27,20 +27,6 @@
     </head>
     <body class="{% block body_class %}{% endblock %}" id="{% block body_id %}{% endblock %}">
 
-        {% block topbar_base %}
-            <div class="topbar">
-                <div class="fill">
-                    <div class="container">
-                        {% block topbar %}
-                            <h3><a href="{% url home %}">{{ SITE_NAME }}</a></h3>
-                            {% block nav %}{% endblock %}
-                            {% block account_bar %}{% include "_account_bar.html" %}{% endblock %}
-                        {% endblock %}
-                    </div>
-                </div>
-            </div>
-        {% endblock %}
-
         {% block body_base %}
             <div class="container">
                 {% include "_messages.html" %}
