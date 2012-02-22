@@ -126,13 +126,13 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "django.core.context_processors.media",
     "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
-    
+
     "staticfiles.context_processors.static",
-    
+
     "pinax.core.context_processors.pinax_settings",
-    
+
     "pinax.apps.account.context_processors.account",
-    
+
     "notification.context_processors.notification",
     "announcements.context_processors.site_wide_announcements",
 ]
@@ -146,12 +146,12 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.humanize",
-    
+
     "pinax.templatetags",
-    
+
     # theme
     "pinax_theme_bootstrap",
-    
+
     # external
     "notification", # must be first
     "staticfiles",
@@ -165,14 +165,17 @@ INSTALLED_APPS = [
     "pagination",
     "idios",
     "metron",
-    
+    "south",
+
     # Pinax
     "pinax.apps.account",
     "pinax.apps.signup_codes",
-    
+
     # project
     "about",
     "profiles",
+    "matricula",
+
 ]
 
 FIXTURE_DIRS = [

@@ -1,0 +1,13 @@
+{% extends "site_base.html"%}
+
+{% load i18n %}
+
+{% block body %}
+
+<h1>La matricula de {{ matricula.id }}</h1>
+<ul>
+<li>{{ matricula.name }}</li>
+<li>{{ matricula.surname }}</li>
+</ul>
+
+{% endblock %}

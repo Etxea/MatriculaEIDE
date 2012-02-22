@@ -1,0 +1,25 @@
+{% extends "site_base.html"%}
+
+{% load i18n %}
+
+{% block body %}
+
+        <table>
+            <thead>
+                <tr>
+                <td>Id</td>
+                <td>Nombre</td>
+                <td>Apellido</td>
+                </tr>
+            </thead>
+            <tbody>
+            {% for matricula in object_list %}
+            <tr>
+            <td> <a href="{% url matricula_detalle matricula.id %}">{{ matricula.id }}</a> </td>
+            <td>{{ matricula.name }}</td>
+            <td>{{ matricula.surname }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}

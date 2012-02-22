@@ -1,0 +1,30 @@
+{% extends "site_base.html"%}
+
+{% load i18n %}
+
+
+{% block body %}
+
+<!-- required plugins -->
+<script type="text/javascript" src="{{ STATIC_URL }}js//date.js"></script>
+<!--[if IE]><script type="text/javascript" src="scripts/jquery.bgiframe.js"></script><![endif]-->
+
+<!-- jquery.datePicker.js -->
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.datePicker.js"></script>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/datePicker.css">
+
+<script>
+$(function()
+{
+    console.log("Creandi el date picker");
+    $('input[name="fecha_nacimiento"]').datePicker();
+
+});
+</script>
+    <h1>{% trans "Matriculate en EIDE" %}</h1>
+
+    <form action="{% url matricula_nueva %}" method="post">{% csrf_token %}
+      {{ form.as_p }}
+      <input class="submit btn-form" type="submit" value="Enviar" />
+    </form>
+{% endblock %}
