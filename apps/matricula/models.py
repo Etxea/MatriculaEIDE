@@ -19,3 +19,5 @@ class Matricula(models.Model):
     num_dni = models.CharField(max_length=9)
     estado_civil = models.CharField(max_length=100)
     telefono = models.CharField(max_length=12)
+    def get_absolute_url(self):
+        return "detalle/%s"%self.id
