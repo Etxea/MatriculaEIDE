@@ -21,3 +21,5 @@ class Matricula(models.Model):
     telefono = models.CharField(max_length=12)
     def get_absolute_url(self):
         return "detalle/%s"%self.id
+    def __unicode__(self):
+        return "%s-%s"%(self.id,self.num_dni)

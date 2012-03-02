@@ -11,13 +11,18 @@
 
 <!-- jquery.datePicker.js -->
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.datePicker.js"></script>
+<!--<script type="text/javascript" src="{{ STATIC_URL }}js/datepicker.js"></script>-->
+
 <link rel="stylesheet" href="{{ STATIC_URL }}css/datePicker.css">
 
 <script>
 $(function()
 {
-    console.log("Creandi el date picker");
-    $('input[name="fecha_nacimiento"]').datePicker();
+    console.log("Creando el date picker");
+    Date.firstDayOfWeek = 1;
+    Date.format = "yyyy/mm/dd";
+    $('input[name="fecha_nacimiento"]').datePicker({startDate:'01/01/1940'});
+    console.log("Date picker UP");
 
 });
 </script>
