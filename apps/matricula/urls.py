@@ -14,20 +14,6 @@ matricula_info = {
     'post_save_redirect': '/matricula/gracias',
 }
 
-matricula_list_info = {
-    'queryset' :   Matricula.objects.all(),
-    "template_name": 'matricula/lista.html',
-    'allow_empty': True,
-}
-matricula_detail_info = {
-    "queryset" : Matricula.objects.all(),
-    "template_name": 'matricula/detalle.html',
-    "template_object_name" : "matricula",
-}
-
-info_dict = {
-    'queryset': Matricula.objects.all(),
-}
 urlpatterns = patterns('matricula/',
 
     url(r'detalle/(?P<pk>\d+)$',
@@ -40,7 +26,7 @@ urlpatterns = patterns('matricula/',
         CreateView.as_view(
             model=Matricula,
             template_name='matricula/matricula_form.html'), name="matricula_nueva"),
-    url(r'lista$',list_detail.object_list, matricula_list_info, name="matricula_lista"),
+    url(r'lista$',login_required(ListView.as_view(model=Matricula,template_name='matricula/lista.html')), name="matricula_lista"),
     url(r'gracias$', direct_to_template, {'template': 'matricula/gracias.html' },name="matricula_gracias"),
     url(r'/?$', direct_to_template, {'template': 'matricula/index.html' },name="matricula"),
 )
