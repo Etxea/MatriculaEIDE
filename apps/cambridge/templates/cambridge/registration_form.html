@@ -1,0 +1,8 @@
+{% extends "cambridge/form.html"%}
+
+{% load i18n %}
+
+
+{% block cambridge_form_action %}
+    <form action="{% url cambridge_nueva %}" method="post">{% csrf_token %}
+{% endblock %}

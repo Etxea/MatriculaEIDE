@@ -174,7 +174,7 @@ INSTALLED_APPS = [
     # project
     "about",
     "profiles",
-    "matricula",
+    "cambridge",
 
 ]
 

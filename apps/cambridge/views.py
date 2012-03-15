@@ -20,18 +20,18 @@ logger = logging.getLogger(__name__)
 
 
 def ver(request, pk, password):
-	matricula = get_object_or_404(Matricula, id=pk, password=password)
+	cambridge = get_object_or_404(Matricula, id=pk, password=password)
 	
 
 @login_required
-def imprimir_matricula(request, pk):
+def imprimir_cambridge(request, pk):
 	logger.debug("Vamos a imprimir")
-	matricula = Matricula.objects.get(id=pk)
-	payload = {'matricula': matricula}
-	file_data = render_to_string('matricula/imprimir.pdf', payload, RequestContext(request))
+	cambridge = Matricula.objects.get(id=pk)
+	payload = {'cambridge': cambridge}
+	file_data = render_to_string('cambridge/imprimir.pdf', payload, RequestContext(request))
 	myfile = StringIO.StringIO()
 	pisa.CreatePDF(file_data, myfile)
 	myfile.seek(0)
 	response =  HttpResponse(myfile, mimetype='application/pdf')
-	response['Content-Disposition'] = 'attachment; filename=matricula-%s.pdf'%matricula.id
+	response['Content-Disposition'] = 'attachment; filename=cambridge-%s.pdf'%cambridge.id
 	return response

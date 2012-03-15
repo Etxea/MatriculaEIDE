@@ -27,24 +27,24 @@ from forms import *
 from models import Registration
 
 
-urlpatterns = patterns('matricula/',
+urlpatterns = patterns('cambridge/',
 
     url(r'detalle/(?P<pk>\d+)$',
         login_required(UpdateView.as_view(
             model=Registration,
-            template_name='matricula/matricula_edit.html')), name="matricula_detalle"),
+            template_name='cambridge/registration_edit.html')), name="cambridge_detalle"),
 
-    url(r'imprimir/(?P<pk>\d+)$', imprimir_matricula, name="matricula_imprimir"),
+    url(r'imprimir/(?P<pk>\d+)$', imprimir_cambridge, name="cambridge_imprimir"),
     url(r'nueva$',
         CreateView.as_view(
             model=Registration,
-            template_name='matricula/matricula_form.html'), name="matricula_nueva"),
+            template_name='cambridge/registration_form.html'), name="cambridge_nueva"),
 	url(r'nueva/cb/$',
         CreateView.as_view(
             model=ComputerBasedRegistration,
-            template_name='matricula/matricula_form_computer.html'), name="matricula_nueva_computer"),
+            template_name='cambridge/registration_form_computer.html'), name="cambridge_nueva_computer"),
 
-    url(r'lista$',login_required(ListView.as_view(model=Registration,template_name='matricula/lista.html')), name="matricula_lista"),
-    url(r'gracias$', direct_to_template, {'template': 'matricula/gracias.html' },name="matricula_gracias"),
-    url(r'/?$', direct_to_template, {'template': 'matricula/index.html' },name="matricula"),
+    url(r'lista$',login_required(ListView.as_view(model=Registration,template_name='cambridge/lista.html')), name="cambridge_lista"),
+    url(r'gracias$', direct_to_template, {'template': 'cambridge/gracias.html' },name="cambridge_gracias"),
+    url(r'/?$', direct_to_template, {'template': 'cambridge/index.html' },name="cambridge"),
 )

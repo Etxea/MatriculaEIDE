@@ -29,7 +29,7 @@ class LevelAdmin(admin.ModelAdmin):
 class ExamAdmin(admin.ModelAdmin):
 	pass
 
-admin.site.register(Registration, RegistrationAdmin)
+#admin.site.register(Registration, RegistrationAdmin)
 admin.site.register(Level, LevelAdmin)
 admin.site.register(Exam, ExamAdmin)
 

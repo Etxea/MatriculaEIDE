@@ -16,7 +16,7 @@ urlpatterns = patterns("",
     #    "template": "homepage.html",
     #}, name="home"),
     url(r"^$", redirect_to, {
-        "url": "/matricula",
+        "url": "/cambridge",
     }, name="home"),
     url(r"^admin/invite_user/$", "pinax.apps.signup_codes.views.admin_invite_user", name="admin_invite_user"),
     url(r"^admin/", include(admin.site.urls)),
@@ -26,7 +26,7 @@ urlpatterns = patterns("",
     url(r"^profiles/", include("idios.urls")),
     url(r"^notices/", include("notification.urls")),
     url(r"^announcements/", include("announcements.urls")),
-    url(r"^matricula/", include("matricula.urls")),
+    url(r"^cambridge/", include("cambridge.urls")),
 )
 
 

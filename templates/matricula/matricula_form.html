@@ -1,8 +1,0 @@
-{% extends "matricula/form.html"%}
-
-{% load i18n %}
-
-
-{% block matricula_form_action %}
-    <form action="{% url matricula_nueva %}" method="post">{% csrf_token %}
-{% endblock %}

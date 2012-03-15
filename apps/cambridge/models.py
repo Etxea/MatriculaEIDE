@@ -42,23 +42,28 @@ class Level(models.Model):
 	def __unicode__(self):
 		return "%s-%se"%(self.name,self.price)
 	
-class Exam(models.Model):
+class BaseExam(models.Model):
 	level = models.ForeignKey(Level)
 	exam_date =  models.DateField()
 	registration_date =  models.DateField()
 	registration_open = models.BooleanField()
 #	exam_type = models.DecimalField(max_digits=1, decimal_places=0,choices=EXAM_TYPE)
-
 	def __unicode__(self):
 		return "%s-%s"%(self.exam_date,self.level)
+	class Meta:
+		abstract = True
+
+class Exam(BaseExam):
+	pass
 	
-class SchoolExam(Exam):
+class SchoolExam(BaseExam):
 	pass
 
-class ComputerBasedExam(Exam):
+class ComputerBasedExam(BaseExam):
 	pass
 
-class Registration(models.Model):
+#Asbtract model to inherit from him
+class BaseRegistration(models.Model):
 	password = models.CharField(max_length=6,blank=True,editable=False)
 	name = models.CharField(max_length=50)
 	surname = models.CharField(max_length=100)
@@ -72,7 +77,7 @@ class Registration(models.Model):
 	email = models.EmailField(blank=True)
 	eide_alumn = models.BooleanField()
 	centre_name = models.CharField(max_length=100, blank=True)
-	exam = models.ForeignKey(Exam,limit_choices_to = {'registration_date__gte': datetime.now, 'registration_open': True})
+	
 	registration_date = models.DateField(auto_now_add=True)
 	accept_conditions = models.BooleanField()
 	def get_absolute_url(self):
@@ -83,9 +88,16 @@ class Registration(models.Model):
 		#We generate a random password
 		self.password = ''.join([choice(letters) for i in xrange(6)])
 		super(Registration, self).save(*args, **kwargs)
+	class Meta:
+		abstract = True
 
-class SchoolRegistration(Registration):
-	schoolexam = models.ForeignKey(SchoolExam)
+class Registration(BaseRegistration):
+	exam = models.ForeignKey(Exam,limit_choices_to = {'registration_date__gte': datetime.now, 'registration_open': True})
 
-class ComputerBasedRegistration(Registration):
-	cpbasedexam = models.ForeignKey(ComputerBasedExam)
+
+class SchoolRegistration(BaseRegistration):
+	exam = models.ForeignKey(SchoolExam,limit_choices_to = {'registration_date__gte': datetime.now, 'registration_open': True})
+	
+class ComputerBasedRegistration(BaseRegistration):
+	exam = models.ForeignKey(ComputerBasedExam,limit_choices_to = {'registration_date__gte': datetime.now, 'registration_open': True})
+	
