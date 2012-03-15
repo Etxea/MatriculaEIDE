@@ -4,10 +4,9 @@
 
 {% block body %}
 
-
-    <h1>Matricularse en EIDE</h1>
-    <p>Matricularse en EIDE es sencillo, tan solo rellena el siguiente formulario</p>
-    <a href="{% url matricula_nueva %}">Matricularse</a>
-
+    <h1>Bienvenido al sistema de matricula online de EIDE</h1>
+    <p>Matricularse en EIDE para realizar un examen de Cambridge es sencillo, tan solo elija su tipo de examen...</p>
+    <a href="{% url matricula_nueva %}">Matricularse para un examen normal</a>
+	<a href="{% url matricula_nueva_computer %}">Matricularse para un examen Computer Based</a>
 
 {% endblock %}

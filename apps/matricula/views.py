@@ -3,8 +3,8 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.template.loader import render_to_string
 from django.template import RequestContext
 
-from reportlab.pdfgen import canvas
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 
 import StringIO
 import ho.pisa as pisa
@@ -17,6 +17,11 @@ import logging
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
+
+
+def ver(request, pk, password):
+	matricula = get_object_or_404(Matricula, id=pk, password=password)
+	
 
 @login_required
 def imprimir_matricula(request, pk):

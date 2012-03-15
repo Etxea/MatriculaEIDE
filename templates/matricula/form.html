@@ -1,0 +1,37 @@
+
+{% extends "site_base.html"%}
+
+{% load i18n %}
+
+
+{% block body %}
+
+<!-- required plugins -->
+<script type="text/javascript" src="{{ STATIC_URL }}js//date.js"></script>
+<!--[if IE]><script type="text/javascript" src="scripts/jquery.bgiframe.js"></script><![endif]-->
+
+<!-- jquery.datePicker.js -->
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.datePicker.js"></script>
+<!--<script type="text/javascript" src="{{ STATIC_URL }}js/datepicker.js"></script>-->
+
+<link rel="stylesheet" href="{{ STATIC_URL }}css/datePicker.css">
+
+<script>
+$(function()
+{
+    console.log("Creando el date picker");
+    Date.firstDayOfWeek = 1;
+    Date.format = "yyyy/mm/dd";
+    $('input[name="fecha_nacimiento"]').datePicker({startDate:'01/01/1940'});
+    console.log("Date picker UP");
+
+});
+</script>
+    <h1>{% trans "Matriculate en EIDE" %}</h1>
+
+   
+    {% block matricula_form_action %}{% endblock %}
+      {{ form.as_p }}
+      <input class="submit btn-form" type="submit" value="Enviar" />
+    </form>
+{% endblock %}
