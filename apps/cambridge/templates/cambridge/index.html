@@ -6,7 +6,14 @@
 
     <h1>Bienvenido al sistema de matricula online de EIDE</h1>
     <p>Matricularse en EIDE para realizar un examen de Cambridge es sencillo, tan solo elija su tipo de examen...</p>
-    <a href="{% url cambridge_nueva %}">Matricularse para un examen normal</a>
-	<a href="{% url cambridge_nueva_computer %}">Matricularse para un examen Computer Based</a>
-
+    <ul>
+		<li>
+			<a class="btn primary large" href="{% url cambridge_nueva %}">
+				Matricularse para un examen normal</a>
+		</li>
+		<li>
+			<a class="btn primary large" href="{% url cambridge_nueva_computer %}">
+				Matricularse para un examen Computer Based</a>
+		</li>
+	</ul>
 {% endblock %}

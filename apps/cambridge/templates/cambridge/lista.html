@@ -15,10 +15,10 @@
     <tbody>
     {% for matricula in object_list %}
     <tr>
-    <td> <a href="{% url matricula_detalle matricula.id %}">{{ matricula.id }}</a> </td>
+    <td> <a href="{% url cambridge_edit matricula.id %}">{{ matricula.id }}</a> </td>
     <td>{{ matricula.name }}</td>
     <td>{{ matricula.surname }}</td>
-    <td><a href="{% url matricula_imprimir matricula.id %}"><i class="icon-print">_</i><i class="icon-search"></i></a></td>
+    <td><a href="{% url cambridge_imprimir matricula.id %}"><i class="icon-print">_</i><i class="icon-search"></i></a></td>
     </tr>
     {% endfor %}
     </tbody>

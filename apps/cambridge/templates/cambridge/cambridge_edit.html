@@ -16,14 +16,14 @@
 <script>
 $(function()
 {
-    console.log("Creandi el date picker");
+    console.log("Creando el date picker");
     $('input[name="fecha_nacimiento"]').datePicker();
 
 });
 </script>
     <h1>{% trans "Matricula: " %}{{matricula.id}}</h1>
 
-    <form action="{% url matricula_nueva %}" method="post">{% csrf_token %}
+    <form action="{% url matricula_edit %}" method="post">{% csrf_token %}
       {{ form.as_p }}
       <input class="submit btn-form" type="submit" value="Guardar" />
       <a class="submit btn-form" href="{% url matricula_imprimir matricula.id %}">Imprimir</a>

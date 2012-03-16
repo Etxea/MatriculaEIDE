@@ -48,19 +48,22 @@ class BaseExam(models.Model):
 	registration_date =  models.DateField()
 	registration_open = models.BooleanField()
 #	exam_type = models.DecimalField(max_digits=1, decimal_places=0,choices=EXAM_TYPE)
-	def __unicode__(self):
-		return "%s-%s"%(self.exam_date,self.level)
 	class Meta:
 		abstract = True
 
 class Exam(BaseExam):
-	pass
+	def __unicode__(self):
+		return "Exam %s %s"%(self.exam_date,self.level)
 	
 class SchoolExam(BaseExam):
-	pass
+	def __unicode__(self):
+		return "School Exam %s %s"%(self.exam_date,self.level)
+
 
 class ComputerBasedExam(BaseExam):
-	pass
+	def __unicode__(self):
+		return "Computer Exam %s %s"%(self.exam_date,self.level)
+	
 
 #Asbtract model to inherit from him
 class BaseRegistration(models.Model):
@@ -87,7 +90,8 @@ class BaseRegistration(models.Model):
 	def save(self, *args, **kwargs):
 		#We generate a random password
 		self.password = ''.join([choice(letters) for i in xrange(6)])
-		super(Registration, self).save(*args, **kwargs)
+		super(BaseRegistration, self).save(*args, **kwargs)
+		
 	class Meta:
 		abstract = True
 
