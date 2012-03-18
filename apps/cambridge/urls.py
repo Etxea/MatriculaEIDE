@@ -28,25 +28,29 @@ from models import Registration
 
 
 urlpatterns = patterns('cambridge/',
-	url(r'^cb/list/$',login_required(ListView.as_view(model=ComputerBasedRegistration,template_name='cambridge/lista.html')), name="cambridge_lista"),
-    url(r'^list/$',login_required(ListView.as_view(model=Registration,template_name='cambridge/lista.html')), name="cambridge_lista"),
-    url(r'^edit/(?P<pk>\d+)$',
+	url(r'^cb/list/$',login_required(
+		ListView.as_view(model=ComputerBasedRegistration,template_name='cambridge/lista.html')
+		), name="cambridge_cb_list"),
+    url(r'^list/$',login_required(
+		ListView.as_view(model=Registration,template_name='cambridge/lista.html')
+		), name="cambridge_list"),
+    url(r'^edit/(?P<pk>\d+)/$',
         login_required(UpdateView.as_view(
             model=Registration,
             template_name='cambridge/registration_edit.html')), name="cambridge_edit"),
-
-    url(r'^print/(?P<pk>\d+)$', imprimir_cambridge, name="cambridge_imprimir"),
-    url(r'^cb/print/(?P<pk>\d+)$', imprimir_cambridge_cb, name="cambridge_imprimir_cb"),
-    url(r'^new$',
+	url(r'^view/(?P<pk>\d+)/$', ver, name="cambridge_view"),
+    url(r'^print/(?P<pk>\d+)/$', imprimir_cambridge, name="cambridge_imprimir"),
+    url(r'^cb/print/(?P<pk>\d+)/$', imprimir_cambridge_cb, name="cambridge_imprimir_cb"),
+    url(r'^new/$',
         CreateView.as_view(
             model=Registration,
             template_name='cambridge/registration_form.html'), name="cambridge_nueva"),
-	url(r'^cb/new$',
+	url(r'^cb/new/$',
         CreateView.as_view(
             model=ComputerBasedRegistration,
             template_name='cambridge/registration_form_computer.html'), name="cambridge_nueva_computer"),
 
     
-    url(r'gracias$', direct_to_template, {'template': 'cambridge/gracias.html' },name="cambridge_gracias"),
+    url(r'thanks/$', direct_to_template, {'template': 'cambridge/gracias.html' },name="cambridge_gracias"),
     url(r'^/?$', direct_to_template, {'template': 'cambridge/index.html' },name="cambridge"),
 )

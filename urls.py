@@ -14,10 +14,10 @@ handler500 = "pinax.views.server_error"
 urlpatterns = patterns("",
     url(r"^index$", direct_to_template, {
         "template": "homepage.html",
+    }, name="index"),
+    url(r"^$", redirect_to, {
+        "url": "/index",
     }, name="home"),
-    #url(r"^$", redirect_to, {
-    #    "url": "/cambridge",
-    #}, name="home"),
     url(r"^admin/invite_user/$", "pinax.apps.signup_codes.views.admin_invite_user", name="admin_invite_user"),
     url(r"^admin/", include(admin.site.urls)),
     url(r"^about/", include("about.urls")),

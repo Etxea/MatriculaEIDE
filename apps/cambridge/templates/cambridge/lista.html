@@ -18,7 +18,13 @@
     <td> <a href="{% url cambridge_edit matricula.id %}">{{ matricula.id }}</a> </td>
     <td>{{ matricula.name }}</td>
     <td>{{ matricula.surname }}</td>
-    <td><a href="{% url cambridge_imprimir matricula.id %}"><i class="icon-print">_</i><i class="icon-search"></i></a></td>
+    <td>
+		<a class="btn btn-primary" href="{% url cambridge_imprimir matricula.id %}">
+		<i class="icon-user icon-white"></i>
+		{% trans "Print" %}
+		</a>
+		<span class="add-on">
+	</td>
     </tr>
     {% endfor %}
     </tbody>

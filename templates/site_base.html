@@ -4,12 +4,28 @@
 {% load i18n %}
 
 {% block nav %}
+	<ul class="nav">{% spaceless %}
+	<li class="dropdown" id="tab_cambridge">
+		{% if user.is_authenticated %}
+		<a class="dropdown-toggle" data-toggle="dropdown" href="{% url cambridge %}">{% trans "Cambridge" %}</a>
+		<ul class="dropdown-menu">
+			<li><a href="{% url cambridge_list %}">{% trans "Normal Registrations List" %}</a></li>
+			<li><a href="{% url cambridge_cb_list %}">{% trans "Computer Based Registrations List" %}</a></li>
+		</ul>
+		{% else %}
+		<a href="{% url cambridge %}">{% trans "Cambridge" %}</a>
+		{% endif %}
+	</li>
+	
+    
     {% if user.is_authenticated %}
-        <ul>{% spaceless %}
+        <!--
             <li id="tab_profile"><a href="{% url profile_detail user.username %}">{% trans "Profile" %}</a></li>
             <li id="tab_notices"><a href="{% url notification_notices %}">{% trans "Notices" %}{% if notice_unseen_count %} ({{ notice_unseen_count }}){% endif %}</a></li>
-        {% endspaceless %}</ul>
+        -->
     {% endif %}
+    {% endspaceless %}
+	</ul>
 {% endblock %}
 
 {% block footer %}
