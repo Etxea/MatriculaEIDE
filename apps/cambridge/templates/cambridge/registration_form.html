@@ -2,6 +2,9 @@
 
 {% load i18n %}
 
+{% block cambridge_form_action %}
+    <h1>{% trans "Register for Cambridge Exam" %}</h1>
+{% endblock %}
 
 {% block cambridge_form_action %}
     <form action="{% url cambridge_nueva %}" method="post">{% csrf_token %}
