@@ -19,6 +19,8 @@
 
 from django.db import models
 from django.contrib.localflavor import generic
+from django.contrib.localflavor.es.forms import *
+
 
 from random import choice
 from string import letters
@@ -82,6 +84,7 @@ class BaseRegistration(models.Model):
 	centre_name = models.CharField(max_length=100, blank=True)
 	
 	registration_date = models.DateField(auto_now_add=True)
+	paid = models.BooleanField(default=False)
 	accept_conditions = models.BooleanField()
 	def get_absolute_url(self):
 		return "view/%s"%self.id

@@ -1,5 +1,7 @@
 {% extends "site_base.html"%}
 
+{% load adminmedia %}
+
 {% load i18n %}
 
 
@@ -21,12 +23,12 @@ $(function()
 
 });
 </script>
-    <h1>{% trans "Matricula: " %}{{matricula.id}}</h1>
+    <h1>{% trans "Matricula de " %}{{object.dni}}</h1>
 
-    <form action="{% url matricula_edit %}" method="post">{% csrf_token %}
+	<form action="{% url cambridge_edit object.id %}" method="post">{% csrf_token %}
       {{ form.as_p }}
-      <input class="submit btn-form" type="submit" value="Guardar" />
-      <a class="submit btn-form" href="{% url matricula_imprimir matricula.id %}">Imprimir</a>
-      <a class="submit btn-form" href="{% url matricula_lista %}">Cancelar</a>
+	<input class="submit btn-form" type="submit" value="Guardar" />
+	<a class="btn" href="{% url cambridge_imprimir object.id %}">Imprimir</a>
+	<a class="btn" href="{% url cambridge_list %}">Cancelar</a>
     </form>
 {% endblock %}

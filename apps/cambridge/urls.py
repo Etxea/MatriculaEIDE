@@ -37,14 +37,17 @@ urlpatterns = patterns('cambridge/',
     url(r'^edit/(?P<pk>\d+)/$',
         login_required(UpdateView.as_view(
             model=Registration,
-            template_name='cambridge/registration_edit.html')), name="cambridge_edit"),
+            template_name='cambridge/cambridge_edit.html')), name="cambridge_edit"),
 	url(r'^view/(?P<pk>\d+)/$', ver, name="cambridge_view"),
     url(r'^print/(?P<pk>\d+)/$', imprimir_cambridge, name="cambridge_imprimir"),
     url(r'^cb/print/(?P<pk>\d+)/$', imprimir_cambridge_cb, name="cambridge_imprimir_cb"),
     url(r'^new/$',
         CreateView.as_view(
             model=Registration,
+            form_class = RegistrationForm,
+            success_url = 'cambridge_gracias',
             template_name='cambridge/registration_form.html'), name="cambridge_nueva"),
+            
 	url(r'^cb/new/$',
         CreateView.as_view(
             model=ComputerBasedRegistration,

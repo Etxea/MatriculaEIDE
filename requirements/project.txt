@@ -8,3 +8,4 @@
 reportlab
 html5lib
 pisa
+django_xhtml2pdf
