@@ -17,7 +17,7 @@
     <tbody>
     {% for matricula in object_list %}
     <tr>
-    <td> <a href="{% url cambridge_edit object.id %}">{{ object.dni }}</a> </td>
+    <td> <a href="{% url cambridge_edit matricula.id %}">{{ matricula.dni }}</a> </td>
     <td>{{ matricula.exam }}</td>
     <td>{{ matricula.paid }}</td>
     <td>{{ matricula.name }}</td>

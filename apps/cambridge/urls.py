@@ -29,31 +29,73 @@ from models import Registration
 
 urlpatterns = patterns('cambridge/',
 	url(r'^cb/list/$',login_required(
-		ListView.as_view(model=ComputerBasedRegistration,template_name='cambridge/lista.html')
-		), name="cambridge_cb_list"),
+		ListView.as_view(model=ComputerBasedRegistration,template_name='cambridge/lista.html')), 
+		name="cambridge_cb_list"),
+	url(r'^cb/edit/(?P<pk>\d+)/$',
+        login_required(UpdateView.as_view(
+            model=ComputerBasedRegistration,
+            success_url = '/cambridge/list',
+            template_name='cambridge/cambridge_cb_edit.html')), 
+            name="cambridge_cb_edit"),
+	url(r'^cb/print/(?P<pk>\d+)/$', imprimir_cambridge_cb, name="cambridge_imprimir_cb"),
+	url(r'^cb/view/(?P<pk>\d+)/$', ver, name="cambridge_cb_view"),
+	url(r'^cb/new/$',
+        CreateView.as_view(
+            model=ComputerBasedRegistration,
+            success_url = '/cambridge/thanks',
+            form_class = ComputerBasedRegistrationForm,
+            template_name='cambridge/registration_form_computer.html'), name="cambridge_nueva_computer"),
+
+	
     url(r'^list/$',login_required(
 		ListView.as_view(model=Registration,template_name='cambridge/lista.html')
 		), name="cambridge_list"),
     url(r'^edit/(?P<pk>\d+)/$',
         login_required(UpdateView.as_view(
             model=Registration,
+            success_url = '/cambridge/list',
             template_name='cambridge/cambridge_edit.html')), name="cambridge_edit"),
 	url(r'^view/(?P<pk>\d+)/$', ver, name="cambridge_view"),
     url(r'^print/(?P<pk>\d+)/$', imprimir_cambridge, name="cambridge_imprimir"),
-    url(r'^cb/print/(?P<pk>\d+)/$', imprimir_cambridge_cb, name="cambridge_imprimir_cb"),
+    
     url(r'^new/$',
         CreateView.as_view(
             model=Registration,
             form_class = RegistrationForm,
-            success_url = 'cambridge_gracias',
+            success_url = '/cambridge/thanks',
             template_name='cambridge/registration_form.html'), name="cambridge_nueva"),
             
-	url(r'^cb/new/$',
-        CreateView.as_view(
-            model=ComputerBasedRegistration,
-            template_name='cambridge/registration_form_computer.html'), name="cambridge_nueva_computer"),
 
     
     url(r'thanks/$', direct_to_template, {'template': 'cambridge/gracias.html' },name="cambridge_gracias"),
+    ##For the exams
+    url(r'^exam/list/$',login_required(
+		ListView.as_view(model=Exam,template_name='cambridge/exam_list.html')
+		), name="cambridge_exam_list"),
+    url(r'^exam/new/$', login_required(
+        CreateView.as_view(
+            model=Exam,
+            success_url = '/cambridge/exam/list',
+            template_name='cambridge/exam_form.html')), name="cambridge_exam_new"),
+	url(r'^exam/edit/(?P<pk>\d+)/$',
+        login_required(UpdateView.as_view(
+            model=Exam,
+            success_url = '/cambridge/exam/list',
+            template_name='cambridge/exam_edit.html')), name="cambridge_exam_edit"),
+        
+    url(r'^cb/exam/list/$',login_required(
+		ListView.as_view(model=ComputerBasedExam,template_name='cambridge/cb_exam_list.html')
+		), name="cambridge_cb_exam_list"),
+    url(r'^cb/exam/new/$',
+        CreateView.as_view(
+            model=ComputerBasedExam,
+            success_url = '/cambridge/cb/exam/list',
+            template_name='cambridge/cb_exam_form.html'), name="cambridge_cb_exam_new"),        
+	url(r'^cb/exam/edit/(?P<pk>\d+)/$',
+        login_required(UpdateView.as_view(
+            model=ComputerBasedExam,
+            success_url = '/cambridge/cb/exam/list',
+            template_name='cambridge/cb_exam_edit.html')), name="cambridge_cb_exam_edit"),
+    
     url(r'^/?$', direct_to_template, {'template': 'cambridge/index.html' },name="cambridge"),
 )

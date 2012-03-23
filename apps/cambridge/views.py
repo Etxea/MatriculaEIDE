@@ -55,3 +55,4 @@ def imprimir_cambridge_cb(request, pk):
 	logger.debug("Vamos a imprimir una matricula normal Computer based")
 	registration = ComputerBasedRegistration.objects.get(id=pk)
 	return imprimir(registration)
+

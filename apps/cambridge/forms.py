@@ -28,11 +28,18 @@ from django.contrib.admin import widgets
 class RegistrationForm(ModelForm):
 	class Meta:
 		model = Registration
-		exclude = ('paid',)
-		widgets = {'born_date': widgets.AdminDateWidget(),
-				
-					#'postal_code': ESPhoneNumberField(),
-					}
+		exclude = ('paid')
+		
+
+class ComputerBasedRegistrationForm(ModelForm):
+	class Meta:
+		model = ComputerBasedRegistration
+		exclude = ('paid')
+		
+#		widgets = {'born_date': widgets.AdminDateWidget(),
+#				
+#					#'postal_code': ESPhoneNumberField(),
+#					}
 #					'dni': ESIdentityCardNumberField,
 #					'telephone': ESPhoneNumberField,
 #					}

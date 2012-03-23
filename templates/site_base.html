@@ -10,7 +10,9 @@
 		<a class="dropdown-toggle" data-toggle="dropdown" href="{% url cambridge %}">{% trans "Cambridge" %}</a>
 		<ul class="dropdown-menu">
 			<li><a href="{% url cambridge_list %}">{% trans "Normal Registrations List" %}</a></li>
+			<li><a href="{% url cambridge_exam_list %}">{% trans "Normal Exams List" %}</a></li>
 			<li><a href="{% url cambridge_cb_list %}">{% trans "Computer Based Registrations List" %}</a></li>
+			<li><a href="{% url cambridge_cb_exam_list %}">{% trans "Computer Based Exam List" %}</a></li>
 		</ul>
 		{% else %}
 		<a href="{% url cambridge %}">{% trans "Cambridge" %}</a>
