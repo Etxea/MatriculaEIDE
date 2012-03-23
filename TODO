@@ -1,0 +1,9 @@
+- Mirar como hacer el envio de mails (pinax tiene algo)
+- anadir a las matrículas el control de pagado
+  - al activar el pago envio de email con la confirmación
+- envio de mails de confirmación de alta:
+  - confirmación de alta
+  - aviso de como pagar y confirmación del ingreso
+  - aviso de nueva alta 
+- Poner datepicker en los campos de fechas
+- Poner control de campos
