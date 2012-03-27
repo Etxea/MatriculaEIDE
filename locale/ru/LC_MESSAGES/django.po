@@ -7,123 +7,128 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-28 23:55+0200\n"
+"POT-Creation-Date: 2012-03-26 08:33-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+#: apps/cambridge/templates/cambridge/cambridge_edit.html:26
+msgid "Matricula de "
+msgstr ""
+
+#: apps/cambridge/templates/cambridge/cb_exam_edit.html:22
+#: apps/cambridge/templates/cambridge/cb_exam_form.html:22
+msgid "Computer Based Exam "
+msgstr ""
+
+#: apps/cambridge/templates/cambridge/cb_exam_form.html:26
+msgid "Submit"
+msgstr ""
+
+#: apps/cambridge/templates/cambridge/cb_exam_list.html:6
+msgid "Cambridge Computer Based Exam List"
+msgstr ""
+
+#: apps/cambridge/templates/cambridge/cb_exam_list.html:29
+#: apps/cambridge/templates/cambridge/exam_list.html:30
+msgid "New"
+msgstr ""
+
+#: apps/cambridge/templates/cambridge/exam_edit.html:22
+msgid "Exam "
+msgstr ""
+
+#: apps/cambridge/templates/cambridge/exam_list.html:6
+msgid "Cambridge Exam List"
+msgstr ""
+
+#: apps/cambridge/templates/cambridge/lista.html:28
+msgid "Print"
+msgstr ""
+
+#: apps/cambridge/templates/cambridge/registration_form.html:6
+msgid "Register for Cambridge Exam"
+msgstr ""
+
+#: apps/cambridge/templates/cambridge/registration_form_computer.html:6
+msgid "Register for Cambridge Computer Based Exam"
+msgstr ""
+
+#: apps/profiles/models.py:8
+msgid "name"
+msgstr ""
+
+#: apps/profiles/models.py:9
+#, fuzzy
+msgid "about"
+msgstr "О нас"
+
+#: apps/profiles/models.py:10
+msgid "location"
+msgstr ""
+
+#: apps/profiles/models.py:11
+msgid "website"
+msgstr ""
+
+#: templates/_footer.html:3
+#, fuzzy
+msgid "&copy; 2012 &lt;etxea.net&gt;"
+msgstr "&copy; 2010 &lt;ваша компания&gt;"
 
 #: templates/homepage.html:6
 msgid "Welcome"
 msgstr "Добро пожаловать"
 
 #: templates/homepage.html:12
-msgid "Welcome to Pinax"
-msgstr "Добро пожаловать в Pinax"
+msgid "Welcome to EIDE Online Registration"
+msgstr ""
 
-#: templates/homepage.html:15
+#: templates/homepage.html:14
 msgid ""
 "\n"
-"        <b>Pinax</b> is a <a href=\"http://djangoproject.com/\">Django</a>\n"
-"        project intended to provide a starting point for websites. By\n"
-"        integrating numerous reusable Django apps to take care of the\n"
-"        things that many sites have in common, it lets you focus on what\n"
-"        makes your site different.\n"
+"        Wellcome to the Online Registration System of EIDE School. From \n"
+"        here yo can register to some of our courses or examns.\n"
 "        "
 msgstr ""
-"\n"
-"        <b>Pinax</b> это <a href=\"http://djangoproject.com/\">Django</a>\n"
-"        проект,  призванный предоставить базу для созданя веб-сайтов. "
-"Интегрируя\n"
-"        некоторое количество переиспользуемых Django приложений, чтобы "
-"позаботится об\n"
-"        общих для многих сайтов вещах, он позволяет вам сосредоточиться\n"
-"        на вещях, делающих ваш сайт особенным.\n"
-"        "
 
-#: templates/homepage.html:25
-msgid ""
-"\n"
-"        For more information about Pinax, see\n"
-"        <a href=\"http://pinaxproject.com/\">http://pinaxproject.com/</a>.\n"
-"        "
+#: templates/homepage.html:19
+msgid "Go to the registration for Cambridge Exams"
 msgstr ""
-"\n"
-"        За дополнительной информацией о Pinax обращайтесь на\n"
-"        <a href=\"http://pinaxproject.com/\">http://pinaxproject.com/</a>.\n"
-"        "
 
-#: templates/homepage.html:31
-msgid "About this project"
-msgstr "Об этом проекте"
-
-#: templates/homepage.html:34
-msgid ""
-"\n"
-"        This project comes with the bare minimum set of applications and\n"
-"        templates to get you started. It includes no extra tabs, only the\n"
-"        profile and notices tabs are included by default. From here you can\n"
-"        add any extra functionality and applications that you would like.\n"
-"        "
+#: templates/site_base.html:10 templates/site_base.html.py:18
+msgid "Cambridge"
 msgstr ""
-"\n"
-"        Этот проект включает в себя самый минимальный набор приложений и\n"
-"        шаблонов, чтобы начать. Он не включает в себя дополнительных "
-"вкладок, включены только\n"
-"        вкладкипо умолчанию - профиль и уведомления. Теперь вы можете\n"
-"        добавлять дополнительный функционал и прилжения.\n"
-"        "
 
-#: templates/homepage.html:45
-#, python-format
-msgid "Wondering <a href=\"%(what_next_url)s\">What Next</a>?"
-msgstr "Думаете <a href=\"%(what_next_url)s\">что делать дальше</a>?"
-
-#: templates/homepage.html:50
-#, python-format
-msgid ""
-"You can <a href=\"%(signup_url)s\">Sign up</a> and <a href=\"%(login_url)s"
-"\">Log in</a> to try out the site."
+#: templates/site_base.html:12
+msgid "Normal Registrations List"
 msgstr ""
-"Вы можете <a href=\"%(signup_url)s\">Зарегистрироваться</a> и <a href=\"%"
-"(login_url)s\">Войти</a>, чтобы посмотреть сайт."
 
-#: templates/homepage.html:52
-#, python-format
-msgid "You can <a href=\"%(login_url)s\">Log in</a> to try out the site."
-msgstr "Вы можете <a href=\"%(login_url)s\">Войти</a>, чтобы посмотреть сайт."
+#: templates/site_base.html:13
+msgid "Normal Exams List"
+msgstr ""
 
-#: templates/site_base.html:20
+#: templates/site_base.html:14
+msgid "Computer Based Registrations List"
+msgstr ""
+
+#: templates/site_base.html:15
+msgid "Computer Based Exam List"
+msgstr ""
+
+#: templates/site_base.html:25
 msgid "Profile"
 msgstr "Профиль"
 
-#: templates/site_base.html:21
+#: templates/site_base.html:26
 msgid "Notices"
 msgstr "Уведомления"
-
-#: templates/site_base.html:28
-msgid "&copy; 2010 &lt;your company here&gt;"
-msgstr "&copy; 2010 &lt;ваша компания&gt;"
-
-#: templates/site_base.html:29
-msgid "About"
-msgstr "О нас"
-
-#: templates/site_base.html:30
-msgid "Terms of Service"
-msgstr "Условия предоставления услуг"
-
-#: templates/site_base.html:31
-msgid "Privacy Policy"
-msgstr "Политика конфиденциальности"
-
-#: templates/site_base.html:32
-msgid "DMCA Notice"
-msgstr "DMCA уведомление"
 
 #: templates/about/what_next.html:6 templates/about/what_next.html.py:9
 msgid "What Next?"
@@ -132,8 +137,8 @@ msgstr "Что дальше?"
 #: templates/about/what_next.html:35
 #, python-format
 msgid ""
-"Start by <a href=\"%(signup_url)s\">signing up</a> and <a href=\"%(login_url)"
-"s\">logging in</a>."
+"Start by <a href=\"%(signup_url)s\">signing up</a> and <a href="
+"\"%(login_url)s\">logging in</a>."
 msgstr ""
 "Начнте с <a href=\"%(signup_url)s\">регистрации</a> и <a href=\"%(login_url)s"
 "\">входа</a>."
@@ -142,6 +147,104 @@ msgstr ""
 #, python-format
 msgid "Start by <a href=\"%(login_url)s\">logging in</a>."
 msgstr "Начните со <a href=\"%(login_url)s\">входа</a>."
+
+#: templates/profiles/_profile_info.html:3
+msgid "Name"
+msgstr ""
+
+#: templates/profiles/_profile_info.html:4
+msgid "About"
+msgstr "О нас"
+
+#: templates/profiles/_profile_info.html:5
+msgid "Location"
+msgstr ""
+
+#: templates/profiles/_profile_info.html:6
+msgid "Website"
+msgstr ""
+
+#~ msgid "Welcome to Pinax"
+#~ msgstr "Добро пожаловать в Pinax"
+
+#~ msgid ""
+#~ "\n"
+#~ "        <b>Pinax</b> is a <a href=\"http://djangoproject.com/\">Django</"
+#~ "a>\n"
+#~ "        project intended to provide a starting point for websites. By\n"
+#~ "        integrating numerous reusable Django apps to take care of the\n"
+#~ "        things that many sites have in common, it lets you focus on what\n"
+#~ "        makes your site different.\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "        <b>Pinax</b> это <a href=\"http://djangoproject.com/\">Django</"
+#~ "a>\n"
+#~ "        проект,  призванный предоставить базу для созданя веб-сайтов. "
+#~ "Интегрируя\n"
+#~ "        некоторое количество переиспользуемых Django приложений, чтобы "
+#~ "позаботится об\n"
+#~ "        общих для многих сайтов вещах, он позволяет вам сосредоточиться\n"
+#~ "        на вещях, делающих ваш сайт особенным.\n"
+#~ "        "
+
+#~ msgid ""
+#~ "\n"
+#~ "        For more information about Pinax, see\n"
+#~ "        <a href=\"http://pinaxproject.com/\">http://pinaxproject.com/</"
+#~ "a>.\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "        За дополнительной информацией о Pinax обращайтесь на\n"
+#~ "        <a href=\"http://pinaxproject.com/\">http://pinaxproject.com/</"
+#~ "a>.\n"
+#~ "        "
+
+#~ msgid "About this project"
+#~ msgstr "Об этом проекте"
+
+#~ msgid ""
+#~ "\n"
+#~ "        This project comes with the bare minimum set of applications and\n"
+#~ "        templates to get you started. It includes no extra tabs, only "
+#~ "the\n"
+#~ "        profile and notices tabs are included by default. From here you "
+#~ "can\n"
+#~ "        add any extra functionality and applications that you would "
+#~ "like.\n"
+#~ "        "
+#~ msgstr ""
+#~ "\n"
+#~ "        Этот проект включает в себя самый минимальный набор приложений и\n"
+#~ "        шаблонов, чтобы начать. Он не включает в себя дополнительных "
+#~ "вкладок, включены только\n"
+#~ "        вкладкипо умолчанию - профиль и уведомления. Теперь вы можете\n"
+#~ "        добавлять дополнительный функционал и прилжения.\n"
+#~ "        "
+
+#~ msgid "Wondering <a href=\"%(what_next_url)s\">What Next</a>?"
+#~ msgstr "Думаете <a href=\"%(what_next_url)s\">что делать дальше</a>?"
+
+#~ msgid ""
+#~ "You can <a href=\"%(signup_url)s\">Sign up</a> and <a href=\"%(login_url)s"
+#~ "\">Log in</a> to try out the site."
+#~ msgstr ""
+#~ "Вы можете <a href=\"%(signup_url)s\">Зарегистрироваться</a> и <a href="
+#~ "\"%(login_url)s\">Войти</a>, чтобы посмотреть сайт."
+
+#~ msgid "You can <a href=\"%(login_url)s\">Log in</a> to try out the site."
+#~ msgstr ""
+#~ "Вы можете <a href=\"%(login_url)s\">Войти</a>, чтобы посмотреть сайт."
+
+#~ msgid "Terms of Service"
+#~ msgstr "Условия предоставления услуг"
+
+#~ msgid "Privacy Policy"
+#~ msgstr "Политика конфиденциальности"
+
+#~ msgid "DMCA Notice"
+#~ msgstr "DMCA уведомление"
 
 #~ msgid "Account"
 #~ msgstr "Аккаунт"
