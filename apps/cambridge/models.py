@@ -25,11 +25,20 @@ from django.contrib.localflavor.es.forms import *
 from random import choice
 from string import letters
 from datetime import datetime
+
+from django.conf import settings
+
+# favour django-mailer but fall back to django.core.mail
+if "mailer" in settings.INSTALLED_APPS:
+    from mailer import send_mail, mail_admins
+else:
+    from django.core.mail import send_mail, mail_admins
+
 # Create your models here.
 
 SEXO = (
-    (1, 'Hombre'),
-    (2, 'Mujer'),
+    (1, 'Male'),
+    (2, 'Female'),
 )
 
 EXAM_TYPE = (
@@ -86,13 +95,35 @@ class BaseRegistration(models.Model):
 	registration_date = models.DateField(auto_now_add=True)
 	paid = models.BooleanField(default=False)
 	accept_conditions = models.BooleanField()
-	def get_absolute_url(self):
-		return "view/%s"%self.id
+	def send_confirmation_email(self):
+		subject = "De momento solo un mail de prueba"
+		message_body = "Se ha registrado para el examen %s de cambridge blablabla y lalalal y lelele"%self.exam
+		send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
+		subject = "Hay una nueva matricula para cambridge"
+		message_body = """Se ha dado de alta una nueva matricula para el examen %s. Entre 
+			en http://matrocilas.eide.es/cambridge/ para revisarla si quiere"""%self.exam
+		mail_admins(subject, message_body)
+	def send_paiment_confirmation_email(self):
+		subject = "Confirmación de la recepción del pago para el examen %s"%self.exam
+		message_body = "Se ha registrado para el examen %s de cambridge blablabla y lalalal y lelele"%self.exam
+		send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
+		subject = "Hay una nueva matricula para cambridge"
+		message_body = """Se ha dado de alta una nueva matricula para el examen %s. Entre 
+			en http://matrocilas.eide.es/cambridge/ para revisarla si quiere"""%self.exam
+		mail_admins(subject, message_body)
 	def __unicode__(self):
 		return "%s-%s"%(self.registration_date,self.dni)
 	def save(self, *args, **kwargs):
-		#We generate a random password
-		self.password = ''.join([choice(letters) for i in xrange(6)])
+		##We generate a random password
+		if self.id is not None:
+			if self.paid:
+				self.send_paiment_confirmation_email()
+		
+		else:
+			#We set de password, not used roght now
+			self.password = ''.join([choice(letters) for i in xrange(6)])
+			#We send a confirmation mail to te registrant and a advise mail to the admins
+			self.send_confirmation_email()
 		super(BaseRegistration, self).save(*args, **kwargs)
 		
 	class Meta:
