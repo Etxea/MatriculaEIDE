@@ -21,7 +21,7 @@ $(function()
 </script>
     <h1>{% trans "Exam " %}{{object}}</h1>
 
-	<form action="{% url cambridge_exam_edit object.id %}" method="post">{% csrf_token %}
+	<form action="{% url cambridge_exam_new %}" method="post">{% csrf_token %}
       {{ form.as_p }}
 	<input class="submit btn-form" type="submit" value="Guardar" />
 	<a class="btn" href="{% url cambridge_exam_list %}">Cancelar</a>
