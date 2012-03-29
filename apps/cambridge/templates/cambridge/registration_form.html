@@ -2,8 +2,16 @@
 
 {% load i18n %}
 
+
 {% block cambridge_form_header %}
     <h1>{% trans "Register for Cambridge Exam" %}</h1>
+
+  <script>
+  $(document).ready(function() {
+	  $("#id_birth_date").datepicker({format: "yyyy-mm-dd"});
+  });
+  </script>
+
 {% endblock %}
 
 {% block cambridge_form_action %}

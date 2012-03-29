@@ -3,6 +3,12 @@
 {% load metron_tags %}
 {% load i18n %}
 
+{% block extra_head %}
+<link rel="stylesheet" href="{{ STATIC_URL }}datepicker/css/datepicker.css">
+<script src="{{ STATIC_URL }}datepicker/js/bootstrap-datepicker.js"></script>
+
+{% endblock %}
+
 {% block nav %}
 	<ul class="nav">{% spaceless %}
 	<li class="dropdown" id="tab_cambridge">
