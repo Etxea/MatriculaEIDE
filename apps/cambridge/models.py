@@ -85,7 +85,7 @@ class BaseRegistration(models.Model):
 	location = models.CharField(max_length=100)
 	postal_code = models.DecimalField(max_digits=6, decimal_places=0)
 	sex = models.DecimalField(max_digits=1, decimal_places=0,choices=SEXO)
-	born_date = models.DateField()
+	birth_date = models.DateField()
 	dni = models.CharField(max_length=9)
 	telephone = models.CharField(max_length=12)
 	email = models.EmailField(blank=True)
