@@ -16,11 +16,9 @@
 #  MA 02110-1301, USA.
 #  
 
-
 from django.db import models
 from django.contrib.localflavor import generic
 from django.contrib.localflavor.es.forms import *
-
 
 from random import choice
 from string import letters
@@ -34,6 +32,7 @@ if "mailer" in settings.INSTALLED_APPS:
 else:
     from django.core.mail import send_mail, mail_admins
 
+from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
 SEXO = (
@@ -85,16 +84,17 @@ class BaseRegistration(models.Model):
 	location = models.CharField(max_length=100)
 	postal_code = models.DecimalField(max_digits=6, decimal_places=0)
 	sex = models.DecimalField(max_digits=1, decimal_places=0,choices=SEXO)
-	birth_date = models.DateField()
+	birth_date = models.DateField(_('Birth Date'))
 	dni = models.CharField(max_length=9)
 	telephone = models.CharField(max_length=12)
 	email = models.EmailField(blank=True)
-	eide_alumn = models.BooleanField()
+	eide_alumn = models.BooleanField(_('EIDE Alumn'), help_text=_('Check if you are an alumn of EIDE'))
 	centre_name = models.CharField(max_length=100, blank=True)
 	
 	registration_date = models.DateField(auto_now_add=True)
 	paid = models.BooleanField(default=False)
-	accept_conditions = models.BooleanField()
+	accept_conditions = models.BooleanField(_('Accept the conditions'), help_text=_('You must accept the conditions to register'))
+
 	def send_confirmation_email(self):
 		subject = "De momento solo un mail de prueba"
 		message_body = "Se ha registrado para el examen %s de cambridge blablabla y lalalal y lelele"%self.exam

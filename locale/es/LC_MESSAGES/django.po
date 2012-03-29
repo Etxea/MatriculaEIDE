@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-29 17:47+0200\n"
+"POT-Creation-Date: 2012-03-29 18:47+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,10 +18,30 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: apps/cambridge/models.py:87
+msgid "Birth Date"
+msgstr "Fecha de Naciemiento"
+
+#: apps/cambridge/models.py:91
+msgid "EIDE Alumn"
+msgstr "Alumno de EIDE"
+
+#: apps/cambridge/models.py:91
+msgid "Check if you are an alumn of EIDE"
+msgstr "Elige esto si eres alumno de EIDE"
+
+#: apps/cambridge/models.py:96
+msgid "Accept the conditions"
+msgstr "¿Aceptas las condiciones?"
+
+#: apps/cambridge/models.py:96
+msgid "You must accept the conditions to register"
+msgstr "Debe aceptar las condiciones para poder matricularse"
+
 #: apps/cambridge/templates/cambridge/cambridge_edit.html:9
-#, fuzzy
+
 msgid "Registration of "
-msgstr "Lista de matriculas normales"
+msgstr "Matrícula de "
 
 #: apps/cambridge/templates/cambridge/cambridge_edit.html:14
 #: apps/cambridge/templates/cambridge/lista.html:14
@@ -60,7 +80,6 @@ msgstr "Lista de examenes Computer Based"
 #: apps/cambridge/templates/cambridge/cb_exam_list.html:10
 #: apps/cambridge/templates/cambridge/exam_list.html:10
 #: apps/cambridge/templates/cambridge/lista.html:10
-
 msgid "Exam"
 msgstr "Examen"
 
@@ -76,13 +95,11 @@ msgstr "Fecha"
 
 #: apps/cambridge/templates/cambridge/cb_exam_list.html:13
 #: apps/cambridge/templates/cambridge/exam_list.html:13
-
 msgid "Registration Date Limit"
 msgstr "Limite de fecha matriculación"
 
 #: apps/cambridge/templates/cambridge/cb_exam_list.html:14
 #: apps/cambridge/templates/cambridge/exam_list.html:14
-
 msgid "Registration Open"
 msgstr "Matrícula abierta"
 
@@ -101,7 +118,6 @@ msgid "Cambridge Exam List"
 msgstr "Lista de examenes"
 
 #: apps/cambridge/templates/cambridge/index.html:5
-
 msgid "Wellcome to EIDE online registration system"
 msgstr "Bienvenido al sistema online de registro de EIDE"
 
@@ -133,7 +149,6 @@ msgid "Name"
 msgstr "Nombre"
 
 #: apps/cambridge/templates/cambridge/lista.html:13
-
 msgid "Surname"
 msgstr "Apellido"
 
@@ -180,7 +195,10 @@ msgid ""
 "        here yo can register to some of our courses or examns.\n"
 "        "
 msgstr ""
-
+"\n"
+"        Bienvenido al sistema de matrícula online de EIDE. Desde From \n"
+"        the podrás matricular en nuestros cursos y examenes.\n"
+"        "
 #: templates/homepage.html:19
 msgid "Go to the registration for Cambridge Exams"
 msgstr "Registrate para un examen de Cambridge"
