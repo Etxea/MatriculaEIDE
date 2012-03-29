@@ -2,28 +2,10 @@
 {% load i18n %}
 
 {% block body %}
-
-<!-- required plugins -->
-<script type="text/javascript" src="{{ STATIC_URL }}js//date.js"></script>
-<!--[if IE]><script type="text/javascript" src="scripts/jquery.bgiframe.js"></script><![endif]-->
-
-<!-- jquery.datePicker.js -->
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.datePicker.js"></script>
-<link rel="stylesheet" href="{{ STATIC_URL }}css/datePicker.css">
-
-<script>
-$(function()
-{
-    console.log("Creando el date picker");
-    $('input[name="fecha_nacimiento"]').datePicker();
-
-});
-</script>
     <h1>{% trans "Computer Based Exam " %}{{object}}</h1>
-
 	<form action="{% url cambridge_cb_exam_new %}" method="post">{% csrf_token %}
       {{ form.as_p }}
 	<input class="submit btn-form" type="submit" value="{% trans 'Submit' %}" />
-	<a class="btn" href="{% url cambridge_cb_exam_list %}">Cancelar</a>
+	<a class="btn" href="{% url cambridge_cb_exam_list %}">{% trans "Cancel" %}</a>
     </form>
 {% endblock %}
