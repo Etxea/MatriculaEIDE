@@ -26,38 +26,18 @@ from django.contrib.localflavor.es.forms import *
 from django.contrib.admin import widgets                                       
 
 class RegistrationForm(ModelForm):
+	telephone = ESPhoneNumberField()
+	dni = ESIdentityCardNumberField()
+	postal_code = ESPostalCodeField()
 	class Meta:
 		model = Registration
 		exclude = ('paid')
 		
 
 class ComputerBasedRegistrationForm(ModelForm):
+	telephone = ESPhoneNumberField()
+	dni = ESIdentityCardNumberField()
+	postal_code = ESPostalCodeField()
 	class Meta:
 		model = ComputerBasedRegistration
 		exclude = ('paid')
-		
-#		widgets = {'born_date': widgets.AdminDateWidget(),
-#				
-#					#'postal_code': ESPhoneNumberField(),
-#					}
-#					'dni': ESIdentityCardNumberField,
-#					'telephone': ESPhoneNumberField,
-#					}
-
-#class RegistrationForm(forms.Form):
-#	name = forms.CharField(max_length=50)
-#	surname = forms.CharField(max_length=100)
-#	address = forms.CharField(max_length=100)
-#	location = forms.CharField(max_length=100)
-#	postal_code = forms.DecimalField()
-	#sex = forms.DecimalField()
-	#born_date = forms.DateField()
-	#dni = forms.CharField()
-	#telephone = ESPhoneNumberField()
-	#email = forms.EmailField()
-	#eide_alumn = forms.BooleanField()
-	#centre_name = forms.CharField()
-	
-	#registration_date = forms.DateField()
-	
-	#accept_conditions = forms.BooleanField()
