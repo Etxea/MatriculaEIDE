@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-26 08:33-0400\n"
+"POT-Creation-Date: 2012-03-29 17:47+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,75 +18,160 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: apps/cambridge/templates/cambridge/cambridge_edit.html:26
-msgid "Matricula de "
-msgstr ""
+#: apps/cambridge/templates/cambridge/cambridge_edit.html:9
+#, fuzzy
+msgid "Registration of "
+msgstr "Lista de matriculas normales"
 
-#: apps/cambridge/templates/cambridge/cb_exam_edit.html:22
-#: apps/cambridge/templates/cambridge/cb_exam_form.html:22
+#: apps/cambridge/templates/cambridge/cambridge_edit.html:14
+#: apps/cambridge/templates/cambridge/lista.html:14
+#: apps/cambridge/templates/cambridge/lista.html:28
+msgid "Print"
+msgstr "Imprimir"
+
+#: apps/cambridge/templates/cambridge/cambridge_edit.html:15
+#: apps/cambridge/templates/cambridge/cb_exam_edit.html:10
+#: apps/cambridge/templates/cambridge/cb_exam_form.html:16
+#: apps/cambridge/templates/cambridge/exam_edit.html:9
+#: apps/cambridge/templates/cambridge/exam_form.html:17
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: apps/cambridge/templates/cambridge/cb_exam_edit.html:5
+#: apps/cambridge/templates/cambridge/cb_exam_form.html:12
 msgid "Computer Based Exam "
-msgstr ""
+msgstr "Examen Computer Based"
 
-#: apps/cambridge/templates/cambridge/cb_exam_form.html:26
+#: apps/cambridge/templates/cambridge/cb_exam_edit.html:9
+#: apps/cambridge/templates/cambridge/exam_edit.html:8
+#: apps/cambridge/templates/cambridge/exam_form.html:16
+msgid "Save"
+msgstr "Guardar"
+
+#: apps/cambridge/templates/cambridge/cb_exam_form.html:15
+#: apps/cambridge/templates/cambridge/form.html:8
 msgid "Submit"
-msgstr ""
+msgstr "Enviar"
 
 #: apps/cambridge/templates/cambridge/cb_exam_list.html:6
 msgid "Cambridge Computer Based Exam List"
-msgstr ""
+msgstr "Lista de examenes Computer Based"
+
+#: apps/cambridge/templates/cambridge/cb_exam_list.html:10
+#: apps/cambridge/templates/cambridge/exam_list.html:10
+#: apps/cambridge/templates/cambridge/lista.html:10
+
+msgid "Exam"
+msgstr "Examen"
+
+#: apps/cambridge/templates/cambridge/cb_exam_list.html:11
+#: apps/cambridge/templates/cambridge/exam_list.html:11
+msgid "Level"
+msgstr "Nivel"
+
+#: apps/cambridge/templates/cambridge/cb_exam_list.html:12
+#: apps/cambridge/templates/cambridge/exam_list.html:12
+msgid "Date"
+msgstr "Fecha"
+
+#: apps/cambridge/templates/cambridge/cb_exam_list.html:13
+#: apps/cambridge/templates/cambridge/exam_list.html:13
+
+msgid "Registration Date Limit"
+msgstr "Limite de fecha matriculación"
+
+#: apps/cambridge/templates/cambridge/cb_exam_list.html:14
+#: apps/cambridge/templates/cambridge/exam_list.html:14
+
+msgid "Registration Open"
+msgstr "Matrícula abierta"
 
 #: apps/cambridge/templates/cambridge/cb_exam_list.html:29
 #: apps/cambridge/templates/cambridge/exam_list.html:30
 msgid "New"
-msgstr ""
+msgstr "Nuevo"
 
-#: apps/cambridge/templates/cambridge/exam_edit.html:22
+#: apps/cambridge/templates/cambridge/exam_edit.html:5
+#: apps/cambridge/templates/cambridge/exam_form.html:12
 msgid "Exam "
-msgstr ""
+msgstr "Examen"
 
 #: apps/cambridge/templates/cambridge/exam_list.html:6
 msgid "Cambridge Exam List"
+msgstr "Lista de examenes"
+
+#: apps/cambridge/templates/cambridge/index.html:5
+
+msgid "Wellcome to EIDE online registration system"
+msgstr "Bienvenido al sistema online de registro de EIDE"
+
+#: apps/cambridge/templates/cambridge/index.html:6
+msgid ""
+"Matricularse en EIDE para realizar un examen de Cambridge es sencillo, tan "
+"solo elija su tipo de examen..."
 msgstr ""
 
-#: apps/cambridge/templates/cambridge/lista.html:28
-msgid "Print"
+#: apps/cambridge/templates/cambridge/index.html:10
+msgid "Matricularse para un examen normal"
 msgstr ""
 
-#: apps/cambridge/templates/cambridge/registration_form.html:6
+#: apps/cambridge/templates/cambridge/index.html:14
+msgid "Matricularse para un examen Computer Based"
+msgstr ""
+
+#: apps/cambridge/templates/cambridge/lista.html:9
+msgid "DNI"
+msgstr "DNI"
+
+#: apps/cambridge/templates/cambridge/lista.html:11
+msgid "Paid"
+msgstr "Pagada"
+
+#: apps/cambridge/templates/cambridge/lista.html:12
+#: templates/profiles/_profile_info.html:3
+msgid "Name"
+msgstr "Nombre"
+
+#: apps/cambridge/templates/cambridge/lista.html:13
+
+msgid "Surname"
+msgstr "Apellido"
+
+#: apps/cambridge/templates/cambridge/registration_form.html:7
 msgid "Register for Cambridge Exam"
-msgstr ""
+msgstr "Apuntate para un examen de Cambridge"
 
 #: apps/cambridge/templates/cambridge/registration_form_computer.html:6
 msgid "Register for Cambridge Computer Based Exam"
-msgstr ""
+msgstr "Apuntate para un examen de Cambridge Computer Based"
 
 #: apps/profiles/models.py:8
 msgid "name"
-msgstr ""
+msgstr "Nombre"
 
 #: apps/profiles/models.py:9
 msgid "about"
-msgstr ""
+msgstr "Acerca de"
 
 #: apps/profiles/models.py:10
 msgid "location"
-msgstr ""
+msgstr "Ciudad"
 
 #: apps/profiles/models.py:11
 msgid "website"
-msgstr ""
+msgstr "Sitio web"
 
 #: templates/_footer.html:3
-msgid "&copy; 2012 &lt;etxea.net&gt;"
+msgid "&copy; 2012 &lt;<a href='http://etxea.net'>etxea.net</a>&gt;"
 msgstr ""
 
 #: templates/homepage.html:6
 msgid "Welcome"
-msgstr ""
+msgstr "Bienvenido"
 
 #: templates/homepage.html:12
 msgid "Welcome to EIDE Online Registration"
-msgstr ""
+msgstr "Bienvenid al sistema online de registro de EIDE"
 
 #: templates/homepage.html:14
 msgid ""
@@ -98,39 +183,39 @@ msgstr ""
 
 #: templates/homepage.html:19
 msgid "Go to the registration for Cambridge Exams"
-msgstr ""
+msgstr "Registrate para un examen de Cambridge"
 
-#: templates/site_base.html:10 templates/site_base.html.py:18
+#: templates/site_base.html:16 templates/site_base.html.py:24
 msgid "Cambridge"
-msgstr ""
+msgstr "Cambridge"
 
-#: templates/site_base.html:12
+#: templates/site_base.html:18
 msgid "Normal Registrations List"
-msgstr ""
+msgstr "Lista de matriculas normales"
 
-#: templates/site_base.html:13
+#: templates/site_base.html:19
 msgid "Normal Exams List"
-msgstr ""
+msgstr "Lista de examenes"
 
-#: templates/site_base.html:14
+#: templates/site_base.html:20
 msgid "Computer Based Registrations List"
-msgstr ""
+msgstr "Lista de matriculas Computer Based"
 
-#: templates/site_base.html:15
+#: templates/site_base.html:21
 msgid "Computer Based Exam List"
-msgstr ""
+msgstr "Lista de examenes Computer Based"
 
-#: templates/site_base.html:25
+#: templates/site_base.html:31
 msgid "Profile"
-msgstr ""
+msgstr "Perfil"
 
-#: templates/site_base.html:26
+#: templates/site_base.html:32
 msgid "Notices"
-msgstr ""
+msgstr "Noticias"
 
 #: templates/about/what_next.html:6 templates/about/what_next.html.py:9
 msgid "What Next?"
-msgstr ""
+msgstr "¿Y ahora?"
 
 #: templates/about/what_next.html:35
 #, python-format
@@ -144,18 +229,14 @@ msgstr ""
 msgid "Start by <a href=\"%(login_url)s\">logging in</a>."
 msgstr ""
 
-#: templates/profiles/_profile_info.html:3
-msgid "Name"
-msgstr ""
-
 #: templates/profiles/_profile_info.html:4
 msgid "About"
-msgstr ""
+msgstr "Acerca de"
 
 #: templates/profiles/_profile_info.html:5
 msgid "Location"
-msgstr ""
+msgstr "Ciudad"
 
 #: templates/profiles/_profile_info.html:6
 msgid "Website"
-msgstr ""
+msgstr "Sitio Web"
