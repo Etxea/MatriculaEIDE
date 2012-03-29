@@ -2,6 +2,12 @@
 {% load i18n %}
 
 {% block body %}
+  <script>
+  $(document).ready(function() {
+	  $("#id_exam_date").datepicker({format: "yyyy-mm-dd"});
+	  $("#id_registration_date").datepicker({format: "yyyy-mm-dd"});
+  });
+  </script>
 
     <h1>{% trans "Exam " %}{{object}}</h1>
 
