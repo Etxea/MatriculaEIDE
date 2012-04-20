@@ -4,14 +4,17 @@ from django.template.loader import render_to_string
 from django.template import RequestContext
 
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render_to_response
 
 import StringIO
 import ho.pisa as pisa
 
 from django_xhtml2pdf.utils import render_to_pdf_response
+#from utils import  render_to_pdf_response
 
 from models import *
+
+
 
 # import the logging library
 import logging
@@ -27,21 +30,16 @@ def ver(request, pk):
 	myfile = StringIO.StringIO()
 	return HttpResponse( file_data )
 
-def fetch_resources(uri, rel):
-    #path = os.path.join(settings.MEDIA_ROOT, uri.replace(settings.MEDIA_URL, ""))
-    path = settings.MEDIA_ROOT + uri
-    return path	
+
 
 def imprimir(registration,request):
 	payload = {'registration': registration}
-	file_data = render_to_string('cambridge/imprimir.html', payload, RequestContext(request))
-	myfile = StringIO.StringIO()
-	pisa.CreatePDF(file_data, myfile, link_callback=fetch_resources)
-	myfile.seek(0)
-	response =  HttpResponse(myfile, mimetype='application/pdf')
-	response['Content-Disposition'] = 'attachment; filename=cambridge-%s.pdf'%registration.id
-	response2 = render_to_pdf_response('cambridge/imprimir.html', payload, 'cambridge-%s.pdf'%registration.id)
-	return response2
+	response_pdf = render_to_pdf_response('cambridge/matricula_imprimir.html', 
+		payload, pdfname='cambridge-%s.pdf'%registration.id)
+	response_html = render_to_response('cambridge/matricula_imprimir.html', 
+		payload)
+
+	return response_pdf
 
 @login_required
 def imprimir_cambridge(request, pk):
