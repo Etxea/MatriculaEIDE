@@ -22,7 +22,7 @@ from django.contrib.localflavor.es.forms import *
 
 from random import choice
 from string import letters
-from datetime import datetime
+import datetime
 
 from django.conf import settings
 
@@ -36,8 +36,8 @@ from django.utils.translation import gettext_lazy as _
 # Create your models here.
 
 SEXO = (
-    (1, 'Male'),
-    (2, 'Female'),
+    (1, _('Male')),
+    (2, _('Female')),
 )
 
 EXAM_TYPE = (
@@ -54,10 +54,9 @@ class Level(models.Model):
 	
 class BaseExam(models.Model):
 	level = models.ForeignKey(Level)
-	exam_date =  models.DateField()
-	registration_date =  models.DateField()
-	registration_open = models.BooleanField()
-#	exam_type = models.DecimalField(max_digits=1, decimal_places=0,choices=EXAM_TYPE)
+	exam_date =  models.DateField(default=datetime.date.today)
+	registration_start_date =  models.DateField(default=datetime.date.today)
+	
 	class Meta:
 		abstract = True
 
@@ -87,11 +86,11 @@ class BaseRegistration(models.Model):
 	birth_date = models.DateField(_('Birth Date'))
 	dni = models.CharField(max_length=9)
 	telephone = models.CharField(max_length=12)
-	email = models.EmailField(blank=True)
+	email = models.EmailField()
 	eide_alumn = models.BooleanField(_('EIDE Alumn'), help_text=_('Check if you are an alumn of EIDE'))
 	centre_name = models.CharField(max_length=100, blank=True)
 	
-	registration_date = models.DateField(auto_now_add=True)
+	registration_date = models.DateField(default=datetime.date.today, auto_now_add=True)
 	paid = models.BooleanField(default=False)
 	accept_conditions = models.BooleanField(_('Accept the conditions'), help_text=_('You must accept the conditions to register'))
 
@@ -130,12 +129,21 @@ class BaseRegistration(models.Model):
 		abstract = True
 
 class Registration(BaseRegistration):
-	exam = models.ForeignKey(Exam,limit_choices_to = {'registration_date__gte': datetime.now, 'registration_open': True})
+	#asignames los examenes del tipo adecuado y solo mostramos los que están en fecha
+	exam = models.ForeignKey(Exam,\
+		limit_choices_to = {'registration_start_date__lte': datetime.date.today,\
+		'exam_date__gte': datetime.date.today})
 
 
 class SchoolRegistration(BaseRegistration):
-	exam = models.ForeignKey(SchoolExam,limit_choices_to = {'registration_date__gte': datetime.now, 'registration_open': True})
+	#asignames los examenes del tipo adecuado y solo mostramos los que están en fecha
+	exam = models.ForeignKey(SchoolExam,\
+		limit_choices_to = {'registration_start_date__lte': datetime.date.today,\
+		'exam_date__gte': datetime.date.today})
 	
 class ComputerBasedRegistration(BaseRegistration):
-	exam = models.ForeignKey(ComputerBasedExam,limit_choices_to = {'registration_date__gte': datetime.now, 'registration_open': True})
+	#asignames los examenes del tipo adecuado y solo mostramos los que están en fecha
+	exam = models.ForeignKey(ComputerBasedExam,\
+		limit_choices_to = {'registration_start_date__lte': datetime.date.today, \
+		'exam_date__gte': datetime.date.today})
 	
