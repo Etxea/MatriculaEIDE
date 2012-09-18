@@ -1,10 +1,15 @@
 {% extends "site_base.html"%}
 {% load i18n %}
 {% block body %}
+
     {% block cambridge_form_header %}{% endblock %}
-   
+
     {% block cambridge_form_action %}{% endblock %}
+      
       {{ form.as_p }}
+
+      {{ form.name }}
+      
       <input class="submit btn-form" type="submit" value="{% trans 'Submit' %}" />
 
 <div>
@@ -24,39 +29,43 @@ reserva el derecho de no admitir a candidatos que lleguen tarde.</p>
 <p>Los candidatos deben traer un DNI o pasaporte que atestigüe su identidad en cada examen (escrito y oral).</p>
 
 <h2>2. CANCELACIONES</h2>
-Solo se admitirán cancelaciones de matrículas hasta el último día de matrícula. El candidato recibirá la devolución de la
+<p>Solo se admitirán cancelaciones de matrículas hasta el último día de matrícula. El candidato recibirá la devolución de la
 tasa de examen descontándose la cantidad de 35 € en concepto de gastos de administración. Pasada esta fecha sólo
 se admitirán cancelaciones por causas médicas en cuyo caso el candidato deberá rellenar un formulario solicitando
 dicha cancelación y adjuntar un CERTIFICADO MÉDICO OFICIAL. En este caso también se procederá a realizar una
 devolución de la tasa de examen menos 35 € por gastos administrativos. No se admitirán certificados médicos pasados
 15 días de la fecha del examen escrito. No se admitirá ningún cambio o cancelación por otros motivos que no sean
 médicos después del último día de matrícula.
-
+</p>
 <h2>3. CANDIDATOS CON NECESIDADES ESPECIALES</h2>
-En caso de que un candidato padezca alguna deficiencia/minusvalía (déficit auditivo, problemas de habla, etc.) y ésta le
+<p>En caso de que un candidato padezca alguna deficiencia/minusvalía (déficit auditivo, problemas de habla, etc.) y ésta le
 impida realizar los exámenes en igualdad de condiciones que el resto de candidatos, le informamos que deberá
 presentar un certificado médico oficial de su discapacidad/minusvalía en el momento de matricularse. Ese certificado
 será enviado a la Universidad de Cambridge ESOL Examinations para que decida las condiciones en las que ese
 candidato debe realizar los exámenes. EIDE no podrá realizar ninguna gestión para la modificación de los exámenes de
 los candidatos que no informen de su discapacidad con la suficiente antelación (es decir, durante la matriculación).
-
+</p>
 <h2>4. REVISIÓN DE RESULTADOS</h2>
-Si algún candidato no está conforme con su resultado, podrá solicitar una revisión. La revisión de resultados se debe
+<p>Si algún candidato no está conforme con su resultado, podrá solicitar una revisión. La revisión de resultados se debe
 solicitar en la Secretaría de EIDE siendo necesario seguir el procedimiento establecido por la Universidad de
 Cambridge.
-1. Primera revisión: Revisión clerical de la suma de los puntos: 25,00 €
-2. Segunda revisión: Corrección de los exámenes escritos exceptuando el examen oral: 110,00 €. Este importe
+</p>
+<ul>
+<li>1. Primera revisión: Revisión clerical de la suma de los puntos: 25,00 €</li>
+<li>2. Segunda revisión: Corrección de los exámenes escritos exceptuando el examen oral: 110,00 €. Este importe
 deberá abonarse en EIDE en el momento de hacer la solicitud de la revisión del examen. (Para solicitar esta revisión es
 imprescindible haber solicitado primero la revisión de la suma de los puntos). Una vez que el candidato reciba el
-resultado de la primera revisión podrá solicitar la segunda.
+resultado de la primera revisión podrá solicitar la segunda.<li>
+</ul>
+<p>
 Los candidatos no podrán revisar sus exámenes físicamente ya que éstos permanecen bajo propiedad intelectual de la
 Universidad de Cambridge. Cambridge ESOL Examinations NO facilita ningún informe detallado de cada una de las
 partes en las que consiste el examen y nunca dará más información en la competencia de un candidato de la que
 aparece en el “Statement of Results”.
-
+</p>
 <h2>5. LOS CERTIFICADOS</h2>
-Los certificados podrán retirarse de la Secretaría de EIDE aproximadamente 2 meses después de la fecha del examen.
-
+<p>Los certificados podrán retirarse de la Secretaría de EIDE aproximadamente 2 meses después de la fecha del examen.
+</p>
 <h2>6. PROTECCIÓN DE DATOS</h2>
 <p>En cumplimiento con los establecido en la Ley Orgánica 15/99 de Protección de Datos de Carácter Personal, los datos
 de carácter personal que nos facilite serán utilizados en la forma y con las limitaciones y derechos que recoge la Ley y

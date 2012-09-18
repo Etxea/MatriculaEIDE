@@ -1,0 +1,26 @@
+{% load i18n %}
+
+<table class="table">
+    <thead>
+        <tr>
+        <td>{% trans "Level" %}</td>
+        <td>{% trans "Date" %}</td>
+        <td>{% trans "Registration Start Date" %}</td>
+        <td>{% trans "Price" %}</td>
+        <td>{%trans "Registrations" %}</td>
+        <td>{%trans "Paid Registrations" %}</td>
+        </tr>
+    </thead>
+    <tbody>
+    {% for exam in object_list %}
+    <tr>
+    <td><a href="{% url cambridge_exam_edit exam.id %}">{{ exam.level }}</a></td>
+    <td>{{ exam.exam_date }}</td>
+    <td>{{ exam.registration_start_date }}</td>
+    <td>{{ exam.level.price }}</td>
+    <td></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+

@@ -4,27 +4,8 @@
 
 {% block body %}
 <h1>{% trans "Cambridge Computer Based Exam List" %}</h1>
-<table>
-    <thead>
-        <tr>
-        <td>{% trans "Exam" %}</td>
-        <td>{% trans "Level" %}</td>
-        <td>{% trans "Date" %}</td>
-        <td>{% trans "Registration Date Limit" %}</td>
-        <td>{% trans "Registration Open" %}</td>
-        </tr>
-    </thead>
-    <tbody>
-    {% for exam in object_list %}
-    <tr>
-    <td> <a href="{% url cambridge_cb_exam_edit exam.id %}">{{ exam }}</a> </td>
-    <td>{{ exam.level }}</td>
-    <td>{{ exam.exam_date }}</td>
-    <td>{{ exam.registration_date }}</td>
-    <td>{{ exam.registration_open }}</td>
-    </tr>
-    {% endfor %}
-    </tbody>
-</table>
+
+{% include "cambridge/_exam_list.html" %}
+
 <a class="btn" href="{% url cambridge_cb_exam_new %}">{% trans "New" %}	</a>
 {% endblock %}
