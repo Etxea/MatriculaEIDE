@@ -28,9 +28,7 @@ from models import Registration
 
 
 urlpatterns = patterns('cambridge/',
-	url(r'^cb/list/$',login_required(
-		ListView.as_view(model=ComputerBasedRegistration,template_name='cambridge/lista.html')), 
-		name="cambridge_cb_list"),
+	url(r'^cb/list/$',login_required(ComputerBasedRegistrationListView.as_view()),name="cambridge_cb_list"),
 	url(r'^cb/edit/(?P<pk>\d+)/$',
         login_required(UpdateView.as_view(
             model=ComputerBasedRegistration,
@@ -47,9 +45,7 @@ urlpatterns = patterns('cambridge/',
             template_name='cambridge/registration_form_computer.html'), name="cambridge_nueva_computer"),
 
 	
-    url(r'^list/$',login_required(
-		ListView.as_view(model=Registration,template_name='cambridge/lista.html')
-		), name="cambridge_list"),
+    url(r'^list/$',login_required(RegistrationListView.as_view()), name="cambridge_list"),
     url(r'^edit/(?P<pk>\d+)/$',
         login_required(UpdateView.as_view(
             model=Registration,

@@ -29,11 +29,12 @@ class LevelAdmin(admin.ModelAdmin):
 class ExamAdmin(admin.ModelAdmin):
 	pass
 
-#admin.site.register(Registration, RegistrationAdmin)
+admin.site.register(Registration, RegistrationAdmin)
 admin.site.register(Level, LevelAdmin)
 admin.site.register(Exam, ExamAdmin)
 
 admin.site.register(SchoolRegistration, RegistrationAdmin)
 admin.site.register(SchoolExam, ExamAdmin)
+
 admin.site.register(ComputerBasedRegistration, RegistrationAdmin)
 admin.site.register(ComputerBasedExam, ExamAdmin)
