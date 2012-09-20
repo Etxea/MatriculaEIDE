@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: v01\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-20 15:20+0200\n"
-"PO-Revision-Date: 2012-09-20 15:26+0200\n"
+"PO-Revision-Date: 2012-09-20 15:29+0200\n"
 "Last-Translator: Jon Latorre <moebius@etxea.net>\n"
 "Language-Team: Español; Castellano <>\n"
 "Language: \n"
@@ -227,7 +227,7 @@ msgstr "Registrate para un examen de Cambridge"
 
 #: templates/site_base.html:16
 msgid "Cambridge Registrations"
-msgstr "Matriculas Computer Based"
+msgstr "Matriculas Cambridge"
 
 #: templates/site_base.html:21
 msgid "Normal Exams List"
