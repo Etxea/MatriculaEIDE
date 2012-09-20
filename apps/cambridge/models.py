@@ -57,15 +57,24 @@ class BaseExam(models.Model):
 	exam_date =  models.DateField(default=datetime.date.today)
 	registration_start_date =  models.DateField(default=datetime.date.today)
 	
-	def paid_registrations(self):
-		return self.registration_set.filter(paid=True).count()
-	
 	class Meta:
 		abstract = True
 
 class Exam(BaseExam):
+	def registrations(self):
+		try:
+			return self.registration_set.count()
+		except:
+			return 0
+	
+	def paid_registrations(self):
+		try:
+			return self.registration_set.filter(paid=True).count()
+		except:
+			return 0
+	
 	def __unicode__(self):
-		return "Exam %s %s"%(self.exam_date,self.level)
+		return "%s %s %s"%(_('Exam'),self.exam_date,self.level)
 	
 class SchoolExam(BaseExam):
 	def __unicode__(self):
@@ -73,8 +82,20 @@ class SchoolExam(BaseExam):
 
 
 class ComputerBasedExam(BaseExam):
+	def registrations(self):
+		try:
+			return self.computerbasedregistration_set.count()
+		except:
+			return 0
+	
+	def paid_registrations(self):
+		try:
+			return self.computerbasedregistration_set.filter(paid=True).count()
+		except:
+			return 0
+	
 	def __unicode__(self):
-		return "Computer Exam %s %s"%(self.exam_date,self.level)
+		return "%s %s %s"%(_('Computer Based Exam'),self.exam_date,self.level)
 	
 
 #Asbtract model to inherit from him
