@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-18 11:30+0200\n"
+"POT-Creation-Date: 2012-09-20 15:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,23 +27,31 @@ msgstr ""
 msgid "Female"
 msgstr ""
 
-#: apps/cambridge/models.py:86
+#: apps/cambridge/models.py:77
+msgid "Exam"
+msgstr ""
+
+#: apps/cambridge/models.py:98
+msgid "Computer Based Exam"
+msgstr ""
+
+#: apps/cambridge/models.py:110
 msgid "Birth Date"
 msgstr ""
 
-#: apps/cambridge/models.py:90
+#: apps/cambridge/models.py:114
 msgid "EIDE Alumn"
 msgstr ""
 
-#: apps/cambridge/models.py:90
+#: apps/cambridge/models.py:114
 msgid "Check if you are an alumn of EIDE"
 msgstr ""
 
-#: apps/cambridge/models.py:95
+#: apps/cambridge/models.py:119
 msgid "Accept the conditions"
 msgstr ""
 
-#: apps/cambridge/models.py:95
+#: apps/cambridge/models.py:119
 msgid "You must accept the conditions to register"
 msgstr ""
 
@@ -102,7 +110,7 @@ msgid "Save"
 msgstr ""
 
 #: apps/cambridge/templates/cambridge/cb_exam_form.html:15
-#: apps/cambridge/templates/cambridge/form.html:13
+#: apps/cambridge/templates/cambridge/form.html:42
 msgid "Submit"
 msgstr ""
 
