@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-20 15:20+0200\n"
+"POT-Creation-Date: 2012-09-24 15:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,6 +26,14 @@ msgstr ""
 msgid "Female"
 msgstr ""
 
+#: apps/cambridge/models.py:44
+msgid "Paper Based"
+msgstr ""
+
+#: apps/cambridge/models.py:45
+msgid "Computer Based"
+msgstr ""
+
 #: apps/cambridge/models.py:77
 msgid "Exam"
 msgstr ""
@@ -34,8 +42,44 @@ msgstr ""
 msgid "Computer Based Exam"
 msgstr ""
 
+#: apps/cambridge/models.py:104
+#: apps/cambridge/templates/cambridge/lista.html:12
+#: templates/profiles/_profile_info.html:3
+msgid "Name"
+msgstr ""
+
+#: apps/cambridge/models.py:105
+#: apps/cambridge/templates/cambridge/lista.html:11
+msgid "Surname"
+msgstr ""
+
+#: apps/cambridge/models.py:106
+#, fuzzy
+msgid "Address"
+msgstr "IP விலாசம்"
+
+#: apps/cambridge/models.py:107 templates/profiles/_profile_info.html:5
+msgid "Location"
+msgstr ""
+
+#: apps/cambridge/models.py:108
+msgid "Postal Code"
+msgstr ""
+
+#: apps/cambridge/models.py:109
+msgid "Sex"
+msgstr ""
+
 #: apps/cambridge/models.py:110
 msgid "Birth Date"
+msgstr ""
+
+#: apps/cambridge/models.py:112
+msgid "Telephone"
+msgstr ""
+
+#: apps/cambridge/models.py:113
+msgid "e-mail"
 msgstr ""
 
 #: apps/cambridge/models.py:114
@@ -44,6 +88,15 @@ msgstr ""
 
 #: apps/cambridge/models.py:114
 msgid "Check if you are an alumn of EIDE"
+msgstr ""
+
+#: apps/cambridge/models.py:115
+msgid "Centre Name"
+msgstr ""
+
+#: apps/cambridge/models.py:118
+#: apps/cambridge/templates/cambridge/lista.html:14
+msgid "Paid"
 msgstr ""
 
 #: apps/cambridge/models.py:119
@@ -135,17 +188,17 @@ msgstr ""
 msgid "Wellcome to EIDE online registration system"
 msgstr ""
 
-#: apps/cambridge/templates/cambridge/index.html:6
+#: apps/cambridge/templates/cambridge/index.html:7
 msgid ""
 "Matricularse en EIDE para realizar un examen de Cambridge es sencillo, tan "
 "solo elija su tipo de examen..."
 msgstr ""
 
-#: apps/cambridge/templates/cambridge/index.html:10
-msgid "Matricularse para un examen normal"
+#: apps/cambridge/templates/cambridge/index.html:13
+msgid "Matricularse para un examen en papel"
 msgstr ""
 
-#: apps/cambridge/templates/cambridge/index.html:14
+#: apps/cambridge/templates/cambridge/index.html:18
 msgid "Matricularse para un examen Computer Based"
 msgstr ""
 
@@ -153,21 +206,8 @@ msgstr ""
 msgid "Exam Date"
 msgstr ""
 
-#: apps/cambridge/templates/cambridge/lista.html:11
-msgid "Surname"
-msgstr ""
-
-#: apps/cambridge/templates/cambridge/lista.html:12
-#: templates/profiles/_profile_info.html:3
-msgid "Name"
-msgstr ""
-
 #: apps/cambridge/templates/cambridge/lista.html:13
 msgid "DNI"
-msgstr ""
-
-#: apps/cambridge/templates/cambridge/lista.html:14
-msgid "Paid"
 msgstr ""
 
 #: apps/cambridge/templates/cambridge/registration_form.html:7
@@ -195,7 +235,7 @@ msgid "website"
 msgstr ""
 
 #: templates/_footer.html:3
-msgid "&copy; 2012 &lt;your company here&gt;"
+msgid "&copy; 2012 &lt;<a href='etxea.net'>etxea.net</a>&gt;"
 msgstr ""
 
 #: templates/homepage.html:4
@@ -266,10 +306,6 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: templates/profiles/_profile_info.html:5
-msgid "Location"
-msgstr ""
-
 #: templates/profiles/_profile_info.html:6
 msgid "Website"
 msgstr ""
@@ -315,9 +351,6 @@ msgstr ""
 
 #~ msgid "is public"
 #~ msgstr "பொதுவானது"
-
-#~ msgid "IP address"
-#~ msgstr "IP விலாசம்"
 
 #~ msgid "is removed"
 #~ msgstr "நீக்கபட்டது"
