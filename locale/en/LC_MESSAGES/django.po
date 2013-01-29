@@ -8,11 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-<<<<<<< HEAD
-"POT-Creation-Date: 2013-01-28 18:17+0100\n"
-=======
-"POT-Creation-Date: 2012-09-24 15:03+0200\n"
->>>>>>> 4e41d30077d43da300907b46604ed3eac4ab0397
+"POT-Creation-Date: 2013-01-29 15:37+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,8 +25,6 @@ msgstr ""
 msgid "Female"
 msgstr ""
 
-<<<<<<< HEAD
-=======
 #: apps/cambridge/models.py:44
 msgid "Paper Based"
 msgstr ""
@@ -39,7 +33,6 @@ msgstr ""
 msgid "Computer Based"
 msgstr ""
 
->>>>>>> 4e41d30077d43da300907b46604ed3eac4ab0397
 #: apps/cambridge/models.py:77
 msgid "Exam"
 msgstr ""
@@ -48,8 +41,10 @@ msgstr ""
 msgid "Computer Based Exam"
 msgstr ""
 
-<<<<<<< HEAD
-=======
+#: apps/cambridge/models.py:103
+msgid "Password"
+msgstr ""
+
 #: apps/cambridge/models.py:104
 #: apps/cambridge/templates/cambridge/lista.html:12
 #: templates/profiles/_profile_info.html:3
@@ -77,22 +72,14 @@ msgstr ""
 msgid "Sex"
 msgstr ""
 
->>>>>>> 4e41d30077d43da300907b46604ed3eac4ab0397
 #: apps/cambridge/models.py:110
 msgid "Birth Date"
 msgstr ""
 
-<<<<<<< HEAD
-=======
 #: apps/cambridge/models.py:112
 msgid "Telephone"
 msgstr ""
 
-#: apps/cambridge/models.py:113
-msgid "e-mail"
-msgstr ""
-
->>>>>>> 4e41d30077d43da300907b46604ed3eac4ab0397
 #: apps/cambridge/models.py:114
 msgid "EIDE Alumn"
 msgstr ""
@@ -101,8 +88,6 @@ msgstr ""
 msgid "Check if you are an alumn of EIDE"
 msgstr ""
 
-<<<<<<< HEAD
-=======
 #: apps/cambridge/models.py:115
 msgid "Centre Name"
 msgstr ""
@@ -112,7 +97,6 @@ msgstr ""
 msgid "Paid"
 msgstr ""
 
->>>>>>> 4e41d30077d43da300907b46604ed3eac4ab0397
 #: apps/cambridge/models.py:119
 msgid "Accept the conditions"
 msgstr ""
@@ -176,7 +160,7 @@ msgid "Save"
 msgstr ""
 
 #: apps/cambridge/templates/cambridge/cb_exam_form.html:15
-#: apps/cambridge/templates/cambridge/form.html:42
+#: apps/cambridge/templates/cambridge/form.html:49
 msgid "Submit"
 msgstr ""
 
@@ -198,7 +182,7 @@ msgstr ""
 msgid "Cambridge Exam List"
 msgstr ""
 
-#: apps/cambridge/templates/cambridge/index.html:5
+#: apps/cambridge/templates/cambridge/index.html:6
 msgid "Wellcome to EIDE online registration system"
 msgstr ""
 
@@ -208,12 +192,12 @@ msgid ""
 "solo elija su tipo de examen..."
 msgstr ""
 
-#: apps/cambridge/templates/cambridge/index.html:13
-msgid "Matricularse para un examen en papel"
+#: apps/cambridge/templates/cambridge/index.html:14
+msgid "matriculate para un Paper Based Exam"
 msgstr ""
 
-#: apps/cambridge/templates/cambridge/index.html:18
-msgid "Matricularse para un examen Computer Based"
+#: apps/cambridge/templates/cambridge/index.html:19
+msgid "matriculate para un Computer Based Exam"
 msgstr ""
 
 #: apps/cambridge/templates/cambridge/lista.html:10
@@ -249,11 +233,7 @@ msgid "website"
 msgstr ""
 
 #: templates/_footer.html:3
-<<<<<<< HEAD
 msgid "&copy; 2012 &lt;EIDE&gt;"
-=======
-msgid "&copy; 2012 &lt;<a href='etxea.net'>etxea.net</a>&gt;"
->>>>>>> 4e41d30077d43da300907b46604ed3eac4ab0397
 msgstr ""
 
 #: templates/homepage.html:4

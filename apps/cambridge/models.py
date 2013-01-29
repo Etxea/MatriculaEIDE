@@ -41,8 +41,8 @@ SEXO = (
 )
 
 EXAM_TYPE = (
-    (1, 'Normal'),
-    (2, 'Computer Based'),
+    (1, _('Paper Based')),
+    (2, _('Computer Based')),
 )
 
 
@@ -100,22 +100,22 @@ class ComputerBasedExam(BaseExam):
 
 #Asbtract model to inherit from him
 class BaseRegistration(models.Model):
-	password = models.CharField(max_length=6,blank=True,editable=False)
-	name = models.CharField(max_length=50)
-	surname = models.CharField(max_length=100)
-	address = models.CharField(max_length=100)
-	location = models.CharField(max_length=100)
-	postal_code = models.DecimalField(max_digits=6, decimal_places=0)
-	sex = models.DecimalField(max_digits=1, decimal_places=0,choices=SEXO)
+	password = models.CharField(_('Password'),max_length=6,blank=True,editable=False)
+	name = models.CharField(_('Name'),max_length=50)
+	surname = models.CharField(_('Surname'),max_length=100)
+	address = models.CharField(_('Address'),max_length=100)
+	location = models.CharField(_('Location'),max_length=100)
+	postal_code = models.DecimalField(_('Postal Code'),max_digits=6, decimal_places=0)
+	sex = models.DecimalField(_('Sex'),max_digits=1, decimal_places=0,choices=SEXO)
 	birth_date = models.DateField(_('Birth Date'))
 	dni = models.CharField(max_length=9)
-	telephone = models.CharField(max_length=12)
+	telephone = models.CharField(_('Telephone'),max_length=12)
 	email = models.EmailField()
 	eide_alumn = models.BooleanField(_('EIDE Alumn'), help_text=_('Check if you are an alumn of EIDE'))
-	centre_name = models.CharField(max_length=100, blank=True)
+	centre_name = models.CharField(_('Centre Name'),max_length=100, blank=True)
 	
 	registration_date = models.DateField(default=datetime.date.today, auto_now_add=True)
-	paid = models.BooleanField(default=False)
+	paid = models.BooleanField(_('Paid'),default=False)
 	accept_conditions = models.BooleanField(_('Accept the conditions'), help_text=_('You must accept the conditions to register'))
 
 	def send_confirmation_email(self):
