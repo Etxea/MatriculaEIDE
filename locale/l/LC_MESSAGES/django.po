@@ -8,20 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-<<<<<<< HEAD
-"POT-Creation-Date: 2013-01-28 18:17+0100\n"
-=======
 "POT-Creation-Date: 2012-09-24 15:03+0200\n"
->>>>>>> 4e41d30077d43da300907b46604ed3eac4ab0397
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
-"Plural-Forms:  nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%"
-"100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: apps/cambridge/models.py:39
 msgid "Male"
@@ -31,8 +25,6 @@ msgstr ""
 msgid "Female"
 msgstr ""
 
-<<<<<<< HEAD
-=======
 #: apps/cambridge/models.py:44
 msgid "Paper Based"
 msgstr ""
@@ -41,7 +33,6 @@ msgstr ""
 msgid "Computer Based"
 msgstr ""
 
->>>>>>> 4e41d30077d43da300907b46604ed3eac4ab0397
 #: apps/cambridge/models.py:77
 msgid "Exam"
 msgstr ""
@@ -50,8 +41,6 @@ msgstr ""
 msgid "Computer Based Exam"
 msgstr ""
 
-<<<<<<< HEAD
-=======
 #: apps/cambridge/models.py:104
 #: apps/cambridge/templates/cambridge/lista.html:12
 #: templates/profiles/_profile_info.html:3
@@ -79,13 +68,10 @@ msgstr ""
 msgid "Sex"
 msgstr ""
 
->>>>>>> 4e41d30077d43da300907b46604ed3eac4ab0397
 #: apps/cambridge/models.py:110
 msgid "Birth Date"
 msgstr ""
 
-<<<<<<< HEAD
-=======
 #: apps/cambridge/models.py:112
 msgid "Telephone"
 msgstr ""
@@ -94,7 +80,6 @@ msgstr ""
 msgid "e-mail"
 msgstr ""
 
->>>>>>> 4e41d30077d43da300907b46604ed3eac4ab0397
 #: apps/cambridge/models.py:114
 msgid "EIDE Alumn"
 msgstr ""
@@ -103,8 +88,6 @@ msgstr ""
 msgid "Check if you are an alumn of EIDE"
 msgstr ""
 
-<<<<<<< HEAD
-=======
 #: apps/cambridge/models.py:115
 msgid "Centre Name"
 msgstr ""
@@ -114,7 +97,6 @@ msgstr ""
 msgid "Paid"
 msgstr ""
 
->>>>>>> 4e41d30077d43da300907b46604ed3eac4ab0397
 #: apps/cambridge/models.py:119
 msgid "Accept the conditions"
 msgstr ""
@@ -251,11 +233,7 @@ msgid "website"
 msgstr ""
 
 #: templates/_footer.html:3
-<<<<<<< HEAD
-msgid "&copy; 2012 &lt;EIDE&gt;"
-=======
 msgid "&copy; 2012 &lt;<a href='etxea.net'>etxea.net</a>&gt;"
->>>>>>> 4e41d30077d43da300907b46604ed3eac4ab0397
 msgstr ""
 
 #: templates/homepage.html:4
@@ -274,21 +252,8 @@ msgid ""
 "        "
 msgstr ""
 
-#: templates/homepage.html:17
-msgid "Cambridge Exams"
-msgstr ""
-
-#: templates/homepage.html:19 templates/homepage.html.py:24
-#: templates/homepage.html:29
+#: templates/homepage.html:14
 msgid "Go to the registration for Cambridge Exams"
-msgstr ""
-
-#: templates/homepage.html:22
-msgid "Spanish Courses"
-msgstr ""
-
-#: templates/homepage.html:27
-msgid "Intensive Courses"
 msgstr ""
 
 #: templates/site_base.html:16
@@ -326,8 +291,8 @@ msgstr ""
 #: templates/about/what_next.html:35
 #, python-format
 msgid ""
-"Start by <a href=\"%(signup_url)s\">signing up</a> and <a href=\"%(login_url)"
-"s\">logging in</a>."
+"Start by <a href=\"%(signup_url)s\">signing up</a> and <a href="
+"\"%(login_url)s\">logging in</a>."
 msgstr ""
 
 #: templates/about/what_next.html:37

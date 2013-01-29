@@ -7,7 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
+<<<<<<< HEAD
 "POT-Creation-Date: 2013-01-28 18:17+0100\n"
+=======
+"POT-Creation-Date: 2012-09-24 15:03+0200\n"
+>>>>>>> 4e41d30077d43da300907b46604ed3eac4ab0397
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,6 +29,17 @@ msgstr ""
 msgid "Female"
 msgstr ""
 
+<<<<<<< HEAD
+=======
+#: apps/cambridge/models.py:44
+msgid "Paper Based"
+msgstr ""
+
+#: apps/cambridge/models.py:45
+msgid "Computer Based"
+msgstr ""
+
+>>>>>>> 4e41d30077d43da300907b46604ed3eac4ab0397
 #: apps/cambridge/models.py:77
 msgid "Exam"
 msgstr ""
@@ -33,10 +48,52 @@ msgstr ""
 msgid "Computer Based Exam"
 msgstr ""
 
+<<<<<<< HEAD
+=======
+#: apps/cambridge/models.py:104
+#: apps/cambridge/templates/cambridge/lista.html:12
+#: templates/profiles/_profile_info.html:3
+msgid "Name"
+msgstr ""
+
+#: apps/cambridge/models.py:105
+#: apps/cambridge/templates/cambridge/lista.html:11
+msgid "Surname"
+msgstr ""
+
+#: apps/cambridge/models.py:106
+#, fuzzy
+msgid "Address"
+msgstr "Addresses email"
+
+#: apps/cambridge/models.py:107 templates/profiles/_profile_info.html:5
+msgid "Location"
+msgstr ""
+
+#: apps/cambridge/models.py:108
+msgid "Postal Code"
+msgstr ""
+
+#: apps/cambridge/models.py:109
+msgid "Sex"
+msgstr ""
+
+>>>>>>> 4e41d30077d43da300907b46604ed3eac4ab0397
 #: apps/cambridge/models.py:110
 msgid "Birth Date"
 msgstr ""
 
+<<<<<<< HEAD
+=======
+#: apps/cambridge/models.py:112
+msgid "Telephone"
+msgstr ""
+
+#: apps/cambridge/models.py:113
+msgid "e-mail"
+msgstr ""
+
+>>>>>>> 4e41d30077d43da300907b46604ed3eac4ab0397
 #: apps/cambridge/models.py:114
 msgid "EIDE Alumn"
 msgstr ""
@@ -45,6 +102,18 @@ msgstr ""
 msgid "Check if you are an alumn of EIDE"
 msgstr ""
 
+<<<<<<< HEAD
+=======
+#: apps/cambridge/models.py:115
+msgid "Centre Name"
+msgstr ""
+
+#: apps/cambridge/models.py:118
+#: apps/cambridge/templates/cambridge/lista.html:14
+msgid "Paid"
+msgstr ""
+
+>>>>>>> 4e41d30077d43da300907b46604ed3eac4ab0397
 #: apps/cambridge/models.py:119
 msgid "Accept the conditions"
 msgstr ""
@@ -134,17 +203,17 @@ msgstr ""
 msgid "Wellcome to EIDE online registration system"
 msgstr ""
 
-#: apps/cambridge/templates/cambridge/index.html:6
+#: apps/cambridge/templates/cambridge/index.html:7
 msgid ""
 "Matricularse en EIDE para realizar un examen de Cambridge es sencillo, tan "
 "solo elija su tipo de examen..."
 msgstr ""
 
-#: apps/cambridge/templates/cambridge/index.html:10
-msgid "Matricularse para un examen normal"
+#: apps/cambridge/templates/cambridge/index.html:13
+msgid "Matricularse para un examen en papel"
 msgstr ""
 
-#: apps/cambridge/templates/cambridge/index.html:14
+#: apps/cambridge/templates/cambridge/index.html:18
 msgid "Matricularse para un examen Computer Based"
 msgstr ""
 
@@ -152,21 +221,8 @@ msgstr ""
 msgid "Exam Date"
 msgstr ""
 
-#: apps/cambridge/templates/cambridge/lista.html:11
-msgid "Surname"
-msgstr ""
-
-#: apps/cambridge/templates/cambridge/lista.html:12
-#: templates/profiles/_profile_info.html:3
-msgid "Name"
-msgstr ""
-
 #: apps/cambridge/templates/cambridge/lista.html:13
 msgid "DNI"
-msgstr ""
-
-#: apps/cambridge/templates/cambridge/lista.html:14
-msgid "Paid"
 msgstr ""
 
 #: apps/cambridge/templates/cambridge/registration_form.html:7
@@ -195,8 +251,14 @@ msgid "website"
 msgstr ""
 
 #: templates/_footer.html:3
+<<<<<<< HEAD
 msgid "&copy; 2012 &lt;EIDE&gt;"
 msgstr ""
+=======
+#, fuzzy
+msgid "&copy; 2012 &lt;<a href='etxea.net'>etxea.net</a>&gt;"
+msgstr "&copy; 2010 &lt;votre raison sociale ici&gt;"
+>>>>>>> 4e41d30077d43da300907b46604ed3eac4ab0397
 
 #: templates/homepage.html:4
 msgid "Welcome to EIDE's Online Registration System"
@@ -281,17 +343,9 @@ msgstr "Commencez par <a href=\"%(login_url)s\">vous authentifier</a>"
 msgid "About"
 msgstr "A propos"
 
-#: templates/profiles/_profile_info.html:5
-msgid "Location"
-msgstr ""
-
 #: templates/profiles/_profile_info.html:6
 msgid "Website"
 msgstr ""
-
-#, fuzzy
-#~ msgid "&copy; 2012 &lt;<a href='http://etxea.net'>etxea.net</a>&gt;"
-#~ msgstr "&copy; 2010 &lt;votre raison sociale ici&gt;"
 
 #~ msgid "Welcome"
 #~ msgstr "Bienvenue"
@@ -343,9 +397,6 @@ msgstr ""
 
 #~ msgid "Sign up"
 #~ msgstr "Inscription"
-
-#~ msgid "E-Mail Addresses"
-#~ msgstr "Addresses email"
 
 #~ msgid "OpenID Associations"
 #~ msgstr "Associations OpenID"

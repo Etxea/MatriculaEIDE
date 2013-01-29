@@ -167,7 +167,7 @@ INSTALLED_APPS = [
     "idios",
     "metron",
     "south",
-
+    "bootstrapform",
     # Pinax
     "pinax.apps.account",
     "pinax.apps.signup_codes",
