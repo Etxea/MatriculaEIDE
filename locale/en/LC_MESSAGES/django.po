@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-31 12:30+0100\n"
+"POT-Creation-Date: 2013-01-31 18:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 
 #: apps/cambridge/models.py:39
 msgid "Male"
@@ -38,6 +38,7 @@ msgid "Exam"
 msgstr ""
 
 #: apps/cambridge/models.py:98
+#: apps/cambridge/templates/cambridge/index.html:21
 msgid "Computer Based Exam"
 msgstr ""
 
@@ -74,6 +75,10 @@ msgstr ""
 
 #: apps/cambridge/models.py:110
 msgid "Birth Date"
+msgstr ""
+
+#: apps/cambridge/models.py:111
+msgid "Introduce el DNI completo con la letra sin espacios ni guiones"
 msgstr ""
 
 #: apps/cambridge/models.py:112
@@ -162,7 +167,7 @@ msgid "Save"
 msgstr ""
 
 #: apps/cambridge/templates/cambridge/cb_exam_form.html:15
-#: apps/cambridge/templates/cambridge/form.html:49
+#: apps/cambridge/templates/cambridge/form.html:73
 msgid "Submit"
 msgstr ""
 
@@ -184,22 +189,35 @@ msgstr ""
 msgid "Cambridge Exam List"
 msgstr ""
 
-#: apps/cambridge/templates/cambridge/index.html:6
-msgid "Wellcome to EIDE online registration system"
+#: apps/cambridge/templates/cambridge/form.html:68
+msgid "Matrícula"
+msgstr ""
+
+#: apps/cambridge/templates/cambridge/form.html:71
+msgid ""
+"<b>Atención!.</b> Si no aceptas las condiciones generales y las condiciones "
+"de la toma de foto no podrás enviar la matrícula."
 msgstr ""
 
 #: apps/cambridge/templates/cambridge/index.html:7
+msgid "Sistema de matrícula Online para exámenes Cambridge"
+msgstr ""
+
+#: apps/cambridge/templates/cambridge/index.html:9
 msgid ""
 "Matricularse en EIDE para realizar un examen de Cambridge es sencillo, tan "
-"solo elija su tipo de examen..."
+"solo elije su tipo de examen..."
 msgstr ""
 
 #: apps/cambridge/templates/cambridge/index.html:14
-msgid "matriculate para un Paper Based Exam"
+#: apps/cambridge/templates/cambridge/index.html:19
+msgid ""
+"... si quieres realizar el examen en papel, matrículate para un Paper Based "
+"Exam:"
 msgstr ""
 
-#: apps/cambridge/templates/cambridge/index.html:19
-msgid "matriculate para un Computer Based Exam"
+#: apps/cambridge/templates/cambridge/index.html:16
+msgid "Paper Based Exam"
 msgstr ""
 
 #: apps/cambridge/templates/cambridge/lista.html:10
@@ -210,12 +228,12 @@ msgstr ""
 msgid "DNI"
 msgstr ""
 
-#: apps/cambridge/templates/cambridge/registration_form.html:7
-msgid "Register for Cambridge Exam"
+#: apps/cambridge/templates/cambridge/registration_form.html:6
+msgid "Matricúlate pata un Cambridge Paper Based Exam"
 msgstr ""
 
 #: apps/cambridge/templates/cambridge/registration_form_computer.html:6
-msgid "Register for Cambridge Computer Based Exam"
+msgid "Matricúlate pata un Cambridge Computer Based Exam"
 msgstr ""
 
 #: apps/profiles/models.py:8
@@ -239,18 +257,19 @@ msgid "&copy; 2012 &lt;EIDE&gt;"
 msgstr ""
 
 #: templates/homepage.html:4
-msgid "Welcome to EIDE's Online Registration System"
+msgid "Sistema Online de matrícula en EIDE"
 msgstr ""
 
 #: templates/homepage.html:7
-msgid "Welcome to EIDE Online Registration"
+msgid "Bienvenido al sistema Online de matrícula en EIDE"
 msgstr ""
 
-#: templates/homepage.html:9
+#: templates/homepage.html:10
 msgid ""
 "\n"
-"        Wellcome to the Online Registration System of EIDE School. From \n"
-"        here yo can register to some of our courses or examns.\n"
+"        Bienvenido al sistema Online de matrícula en EIDE. Desde aquí podrás "
+"matricularte en los exámenes de Cambridge y próximamente podrás matricularte "
+"en nuestros cursos intensivos y cursos de español para extranjeros.\n"
 "        "
 msgstr ""
 
@@ -258,21 +277,30 @@ msgstr ""
 msgid "Cambridge Exams"
 msgstr ""
 
-#: templates/homepage.html:19 templates/homepage.html.py:24
-#: templates/homepage.html:29
+#: templates/homepage.html:18
+msgid ""
+"Aquí te puedes matricular para los Examenes de Cambridge, tanto en papel "
+"(Paper Based Test) como en ordenador (Computer BAsed test)."
+msgstr ""
+
+#: templates/homepage.html:19
 msgid "Go to the registration for Cambridge Exams"
 msgstr ""
 
 #: templates/homepage.html:22
-msgid "Spanish Courses"
+msgid "Cursos de Español"
+msgstr ""
+
+#: templates/homepage.html:23 templates/homepage.html.py:28
+msgid "Próximamente...."
 msgstr ""
 
 #: templates/homepage.html:27
-msgid "Intensive Courses"
+msgid "Cursos Intensivos"
 msgstr ""
 
 #: templates/site_base.html:16
-msgid "Cambridge Registrations"
+msgid "Matrículas Cambridge"
 msgstr ""
 
 #: templates/site_base.html:21
@@ -306,8 +334,8 @@ msgstr ""
 #: templates/about/what_next.html:35
 #, python-format
 msgid ""
-"Start by <a href=\"%(signup_url)s\">signing up</a> and <a href=\"%(login_url)"
-"s\">logging in</a>."
+"Start by <a href=\"%(signup_url)s\">signing up</a> and <a href="
+"\"%(login_url)s\">logging in</a>."
 msgstr ""
 
 #: templates/about/what_next.html:37
