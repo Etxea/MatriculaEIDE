@@ -4,23 +4,28 @@
 
 {% block body %}
     <script>
-        $(document).ready(function() {
-            //Deshabilitamos el envio hasta que acepten las condiciones
-            $("#send_form").prop('disabled', true);
-            $("#id_centre_name").prop('disabled', false);
-            
-            //Control de la aceptación de las condiciones:
-            $("#id_accept_conditions").change(function() {
+	function comprobar_aceptacion() {
                 console.log("Han hecho click en el check de las condiciones");
                 if ($("#id_accept_conditions").is(":checked")) {
                     console.log("Dice que las acepta");
                     $("#send_form").prop('disabled', false);
+		    console.log("Ocultamos el aviso");
+		    $("#aviso_condiciones").hide();
                 }
                 else {
+		    //Deshabilitamos el envio hasta que acepten las condiciones
                     console.log("Dice que NO las acepta");
                     $("#send_form").prop('disabled', true);
+		    console.log("Mostramos el aviso");
+		    $("#aviso_condiciones").show();
                 }
-            });
+            }
+        $(document).ready(function() {
+            //Comprobamos si se puede enviar
+	    comprobar_aceptacion();
+            $("#id_centre_name").prop('disabled', false);
+            //Control de la aceptación de las condiciones:
+            $("#id_accept_conditions").change(comprobar_aceptacion);
             //Control del Centre Name 
             $("#id_eide_alumn").change(function() {
                 console.log("Han hecho click en el check de alumno de eide");
@@ -38,16 +43,35 @@
 
 {% block cambridge_form_header %}{% endblock %}
 <div class="row">
-	<div class="span8">
-		{% include "cambridge/legal.html" %}
-	</div> 
-	<div class="span4">
-	    {% block cambridge_form_action %}{% endblock %}
-      
-	    {{ form|as_bootstrap }}
-      
-	    <input id="send_form" class="submit btn-form" type="submit" value="{% trans 'Submit' %}" />
-	</div> 
+    <div class="span12">
+	{% include "cambridge/legal.html" %}
+	<div>
+	    ¿Aceptas las condiciones? <input type="checkbox" id="id_accept_conditions_farsa" name="accept_conditions_farsa">
+        </div>
+    </div> 
+</div>
+<hr />
+<div class="row">
+    <div class="span12">
+	{% include "cambridge/legal_foto.html" %}
+	<div>
+	    ¿Aceptas las condiciones para la toma de la foto?
+	    <input type="checkbox" id="id_accept_photo_conditions" name="accept_photo_conditions">
+        </div>
+    </div> 
+</div>
+<hr />
+
+<div class="row">
+    <div class="span12">
+	{% block cambridge_form_action %}{% endblock %}
+	<h2>{% trans "Matrícula" %}</h2>
+	{{ form|as_bootstrap }}
+    <div class="well" id="aviso_condiciones">
+	{% trans "<b>Atención!.</b> Si no acetpas las condiciones generales y las condiciones de la toma de foto no podrás enviar la matrícula." %}
+    </div>
+	<button id="send_form" class="submit btn-form pull-right" type="submit" value="{% trans 'Submit' %}" >Enviar</button>
+    </div> 
 </div> 
 
 {% endblock %}

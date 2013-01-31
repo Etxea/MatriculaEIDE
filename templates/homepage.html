@@ -1,32 +1,31 @@
 {% extends "site_base.html" %}
 {% load i18n %}
 {% load ifsetting_tag %}
-{% block head_title %}{% trans "Welcome to EIDE's Online Registration System" %}{% endblock %}
+{% block head_title %}{% trans "Sistema Online de matrícula en EIDE" %}{% endblock %}
 {% block body %}
 <div class="hero-unit">
-    <h1>{% trans "Welcome to EIDE Online Registration" %}</h1>
+    <h1>{% trans "Bienvenido al sistema Online de matrícula en EIDE" %}</h1>
+    <br />
     <p>
         {% blocktrans %}
-        Wellcome to the Online Registration System of EIDE School. From 
-        here yo can register to some of our courses or examns.
+        Bienvenido al sistema Online de matrícula en EIDE. Desde aquí podrás matricularte en los exámenes de Cambridge y próximamente podrás matricularte en nuestros cursos intensivos y cursos de español para extranjeros.
         {% endblocktrans %}
     </p>
 </div>
 <div class="row">
  <div class="span5">
    <h2>{% trans "Cambridge Exams" %}</h2>
-   <p> Aquí te puedes matricular para los examenees de Cambridge, tanto en papel (Paper Based Test) como en ordenador (Computer BAsed test).</p>
+   <p> {% trans "Aquí te puedes matricular para los Examenes de Cambridge, tanto en papel (Paper Based Test) como en ordenador (Computer BAsed test)." %}</p>
     <a class="btn primary large" href="{% url cambridge %}">{% trans "Go to the registration for Cambridge Exams" %}</a>
  </div>
  <div class="span5">
-   <h2>{% trans "Spanish Courses" %}</h2>
-   <p> Aquí te puedes matricular para los examenees de Cambridge, tanto en papel (Paper Based Test) como en ordenador (Computer BAsed test).</p>
-    <a class="btn primary large" href="{% url cambridge %}">{% trans "Go to the registration for Cambridge Exams" %}</a>
+   <h2>{% trans "Cursos de Español" %}</h2>
+   <p> {% trans "Próximamente...." %}</p>
+    
  </div>
  <div class="span5">
-   <h2>{% trans "Intensive Courses" %}</h2>
-   <p> Aquí te puedes matricular para los examenees de Cambridge, tanto en papel (Paper Based Test) como en ordenador (Computer BAsed test).</p>
-    <a class="btn primary large" href="{% url cambridge %}">{% trans "Go to the registration for Cambridge Exams" %}</a>
+   <h2>{% trans "Cursos Intensivos" %}</h2>
+   <p> {% trans "Próximamente...." %}</p>
  </div>
 </div>
 {% endblock %}

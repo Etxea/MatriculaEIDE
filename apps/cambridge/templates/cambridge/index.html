@@ -1,22 +1,24 @@
 {% extends "site_base.html"%}
 {% load i18n %}
 {% block body %}
+
+<div class="hero-unit">
+
+    <h1>{% trans "Sistema de matrícula Online para exámenes Cambridge" %}</h1>
+    <br />
+    <p>{% trans "Matricularse en EIDE para realizar un examen de Cambridge es sencillo, tan solo elije su tipo de examen..." %}</p>
+</div>
+
 <div class="row">
-<div class="span12">
-    <h1>{% trans "Wellcome to EIDE online registration system" %}</h1>
-    <p>{% trans "Matricularse en EIDE para realizar un examen de Cambridge es sencillo, tan solo elija su tipo de examen..." %}</p>
-</div>
-</div>
-    <div class="row">
-	<div class="span6">
-	    <p>Si quieres realizar el examen en papel...</p> 
-		<a class="btn primary large" href="{% url cambridge_nueva %}">
-					{% trans "matriculate para un Paper Based Exam" %}</a>
-	</div>
-	<div class="span6">
-		<p>Si quieres realizar el examen en el ordenador</p>
-			<a class="btn primary large" href="{% url cambridge_nueva_computer %}">
-					{% trans "matriculate para un Computer Based Exam" %}</a>
-	</div>
+    <div class="span4 offset2">
+	<p> {% trans "... si quieres realizar el examen en papel, matrículate para un Paper Based Exam:" %} </p> 
+	    <a class="btn primary large" href="{% url cambridge_nueva %}">
+	    {% trans "Paper Based Exam" %}</a>
     </div>
+    <div class="span4 offset2">
+	<p>{% trans "... si quieres realizar el examen en papel, matrículate para un Paper Based Exam:" %}</p>
+	    <a class="btn primary large" href="{% url cambridge_nueva_computer %}">
+		{% trans "Computer Based Exam" %}</a>
+    </div>
+</div>
 {% endblock %}

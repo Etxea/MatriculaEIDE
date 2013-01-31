@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -27,12 +26,10 @@ msgid "Female"
 msgstr "Mujer"
 
 #: apps/cambridge/models.py:44
-#, fuzzy
 msgid "Paper Based"
-msgstr "Examen Computer Based"
+msgstr "Examen Paper Based"
 
 #: apps/cambridge/models.py:45
-#, fuzzy
 msgid "Computer Based"
 msgstr "Examen Computer Based"
 
@@ -41,7 +38,6 @@ msgid "Exam"
 msgstr "Examen"
 
 #: apps/cambridge/models.py:98
-#, fuzzy
 msgid "Computer Based Exam"
 msgstr "Examen Computer Based"
 
@@ -121,23 +117,20 @@ msgid "Date"
 msgstr "Fecha"
 
 #: apps/cambridge/templates/cambridge/_exam_list.html:8
-#, fuzzy
 msgid "Registration Start Date"
-msgstr "Limite de fecha matriculación"
+msgstr "Fecha de inicio de la matriculación"
 
 #: apps/cambridge/templates/cambridge/_exam_list.html:9
 msgid "Price"
 msgstr "Precio"
 
 #: apps/cambridge/templates/cambridge/_exam_list.html:10
-#, fuzzy
 msgid "Registrations"
-msgstr "Matrícula de "
+msgstr "Matrículas de "
 
 #: apps/cambridge/templates/cambridge/_exam_list.html:11
-#, fuzzy
 msgid "Paid Registrations"
-msgstr "Lista de matriculas Computer Based"
+msgstr "Matriculas pagadas"
 
 #: apps/cambridge/templates/cambridge/cambridge_edit.html:6
 msgid "Registration of "
@@ -193,7 +186,7 @@ msgstr "Lista de examenes"
 
 #: apps/cambridge/templates/cambridge/index.html:6
 msgid "Wellcome to EIDE online registration system"
-msgstr "Bienvenido al sistema online de matricula en EIDE"
+msgstr "Bienvenido al sistema online de matriculas en EIDE"
 
 #: apps/cambridge/templates/cambridge/index.html:7
 msgid ""
@@ -202,12 +195,12 @@ msgid ""
 msgstr ""
 
 #: apps/cambridge/templates/cambridge/index.html:14
-msgid "matriculate para un Paper Based Exam"
-msgstr ""
+msgid "Matricúlate para un Paper Based Exam"
+msgstr "Matricúlate para un Paper Based Exam"
 
 #: apps/cambridge/templates/cambridge/index.html:19
-msgid "matriculate para un Computer Based Exam"
-msgstr ""
+msgid "Matricúlate para un Computer Based Exam"
+msgstr "Matricúlate para un Computer Based Exam"
 
 #: apps/cambridge/templates/cambridge/lista.html:10
 msgid "Exam Date"
@@ -219,11 +212,11 @@ msgstr "DNI"
 
 #: apps/cambridge/templates/cambridge/registration_form.html:7
 msgid "Register for Cambridge Exam"
-msgstr "Matriculate para un examen de Cambridge Paper Based"
+msgstr "Matricúlate para un examen de Cambridge Paper Based"
 
 #: apps/cambridge/templates/cambridge/registration_form_computer.html:6
 msgid "Register for Cambridge Computer Based Exam"
-msgstr "Matriculate para un examen de Cambridge Computer Based"
+msgstr "Matricúlate para un examen de Cambridge Computer Based"
 
 #: apps/profiles/models.py:8
 msgid "name"
@@ -248,11 +241,11 @@ msgstr ""
 #: templates/homepage.html:4
 #, fuzzy
 msgid "Welcome to EIDE's Online Registration System"
-msgstr "Bienvenido al sistema online de registro de EIDE"
+msgstr "Bienvenido al sistema online de matriculas de EIDE"
 
 #: templates/homepage.html:7
 msgid "Welcome to EIDE Online Registration"
-msgstr "Bienvenido al sistema online de registro de EIDE"
+msgstr "Bienvenido al sistema online de matriculas de EIDE"
 
 #: templates/homepage.html:9
 msgid ""
@@ -262,19 +255,18 @@ msgid ""
 "        "
 msgstr ""
 "\n"
-"        Bienvenido al sistema de matrícula online de EIDE. Desdedonde \n"
-"        te podrás matricular en nuestros cursos y examenes.\n"
+"        Bienvenido al sistema de matrícula online de EIDE. Desde donde \n"
+"        podrás matricularte en nuestros cursos y examenes.\n"
 "        "
 
 #: templates/homepage.html:17
-#, fuzzy
 msgid "Cambridge Exams"
-msgstr "Lista de examenes"
+msgstr "Examenes Cambridge"
 
 #: templates/homepage.html:19 templates/homepage.html.py:24
 #: templates/homepage.html:29
 msgid "Go to the registration for Cambridge Exams"
-msgstr "Matriculate para un examen de Cambridge"
+msgstr "Matricúlate para un examen de Cambridge"
 
 #: templates/homepage.html:22
 msgid "Spanish Courses"
@@ -285,9 +277,8 @@ msgid "Intensive Courses"
 msgstr "Cursos intensivos"
 
 #: templates/site_base.html:16
-#, fuzzy
 msgid "Cambridge Registrations"
-msgstr "Lista de matriculas Computer Based"
+msgstr "Matrículas Cambridge"
 
 #: templates/site_base.html:21
 msgid "Normal Exams List"
@@ -336,23 +327,3 @@ msgstr "Acerca de"
 #: templates/profiles/_profile_info.html:6
 msgid "Website"
 msgstr "Sitio Web"
-
-#~ msgid "Check if you are an alumn of EIDE"
-#~ msgstr "Elige esto si eres alumno de EIDE"
-
-#, fuzzy
-#~ msgid "Registration End Date"
-#~ msgstr "Limite de fecha matriculación"
-
-#, fuzzy
-#~ msgid "Exam Level"
-#~ msgstr "Nivel"
-
-#~ msgid "Welcome"
-#~ msgstr "Bienvenido"
-
-#~ msgid "Cambridge"
-#~ msgstr "Cambridge"
-
-#~ msgid "Registration Open"
-#~ msgstr "Matrícula abierta"

@@ -108,7 +108,7 @@ class BaseRegistration(models.Model):
 	postal_code = models.DecimalField(_('Postal Code'),max_digits=6, decimal_places=0)
 	sex = models.DecimalField(_('Sex'),max_digits=1, decimal_places=0,choices=SEXO)
 	birth_date = models.DateField(_('Birth Date'))
-	dni = models.CharField(max_length=9)
+	dni = models.CharField(max_length=9,help_text=_('Introduce el DNI completo con la letra sin espacios ni guiones'))
 	telephone = models.CharField(_('Telephone'),max_length=12)
 	email = models.EmailField()
 	eide_alumn = models.BooleanField(_('EIDE Alumn'), help_text=_('Check this if you are an alumn of EIDE. If not please fill in your centre name'))

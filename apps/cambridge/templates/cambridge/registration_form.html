@@ -2,19 +2,10 @@
 
 {% load i18n %}
 
-
 {% block cambridge_form_header %}
-    <h1>{% trans "Register for Cambridge Exam" %}</h1>
-
-  <script>
-  $(document).ready(function() {
-	  $("#id_birth_date").datepicker({format: "yyyy-mm-dd"});
-  });
-  </script>
-
+    <h1>{% trans "Matricúlate pata un Cambridge Paper Based Exam" %}</h1>
 {% endblock %}
 
 {% block cambridge_form_action %}
-<br />
     <form action="{% url cambridge_nueva %}" method="post" class="form-horizontal" >{% csrf_token %}
 {% endblock %}
