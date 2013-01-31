@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-29 15:37+0100\n"
+"POT-Creation-Date: 2013-01-31 12:30+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,7 +85,9 @@ msgid "EIDE Alumn"
 msgstr ""
 
 #: apps/cambridge/models.py:114
-msgid "Check if you are an alumn of EIDE"
+msgid ""
+"Check this if you are an alumn of EIDE. If not please fill in your centre "
+"name"
 msgstr ""
 
 #: apps/cambridge/models.py:115

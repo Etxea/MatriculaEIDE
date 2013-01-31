@@ -38,18 +38,16 @@
 
 {% block cambridge_form_header %}{% endblock %}
 <div class="row">
-<div class="span7">
-{% include "cambridge/legal.html" %}
-</div> 
-<div class="span5">
-    {% block cambridge_form_action %}{% endblock %}
+	<div class="span8">
+		{% include "cambridge/legal.html" %}
+	</div> 
+	<div class="span4">
+	    {% block cambridge_form_action %}{% endblock %}
       
-    {{ form|as_bootstrap }}
+	    {{ form|as_bootstrap }}
       
-    <input id="send_form" class="submit btn-form" type="submit" value="{% trans 'Submit' %}" />
-</div> 
+	    <input id="send_form" class="submit btn-form" type="submit" value="{% trans 'Submit' %}" />
+	</div> 
 </div> 
 
-
- 
 {% endblock %}

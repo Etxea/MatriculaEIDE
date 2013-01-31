@@ -111,7 +111,7 @@ class BaseRegistration(models.Model):
 	dni = models.CharField(max_length=9)
 	telephone = models.CharField(_('Telephone'),max_length=12)
 	email = models.EmailField()
-	eide_alumn = models.BooleanField(_('EIDE Alumn'), help_text=_('Check if you are an alumn of EIDE'))
+	eide_alumn = models.BooleanField(_('EIDE Alumn'), help_text=_('Check this if you are an alumn of EIDE. If not please fill in your centre name'))
 	centre_name = models.CharField(_('Centre Name'),max_length=100, blank=True)
 	
 	registration_date = models.DateField(default=datetime.date.today, auto_now_add=True)

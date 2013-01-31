@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-29 15:37+0100\n"
+"POT-Creation-Date: 2013-01-31 12:30+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: apps/cambridge/models.py:39
 msgid "Male"
-msgstr ""
+msgstr "Hombre"
 
 #: apps/cambridge/models.py:40
 msgid "Female"
-msgstr ""
+msgstr "Mujer"
 
 #: apps/cambridge/models.py:44
 #, fuzzy
@@ -47,7 +47,7 @@ msgstr "Examen Computer Based"
 
 #: apps/cambridge/models.py:103
 msgid "Password"
-msgstr ""
+msgstr "Contraseña"
 
 #: apps/cambridge/models.py:104
 #: apps/cambridge/templates/cambridge/lista.html:12
@@ -62,7 +62,7 @@ msgstr "Apellido"
 
 #: apps/cambridge/models.py:106
 msgid "Address"
-msgstr ""
+msgstr "Dirección"
 
 #: apps/cambridge/models.py:107 templates/profiles/_profile_info.html:5
 msgid "Location"
@@ -70,11 +70,11 @@ msgstr "Ciudad"
 
 #: apps/cambridge/models.py:108
 msgid "Postal Code"
-msgstr ""
+msgstr "Código Postal"
 
 #: apps/cambridge/models.py:109
 msgid "Sex"
-msgstr ""
+msgstr "Sexo"
 
 #: apps/cambridge/models.py:110
 msgid "Birth Date"
@@ -82,19 +82,21 @@ msgstr "Fecha de Nacimiento"
 
 #: apps/cambridge/models.py:112
 msgid "Telephone"
-msgstr ""
+msgstr "Teléfono"
 
 #: apps/cambridge/models.py:114
 msgid "EIDE Alumn"
 msgstr "Alumno de EIDE"
 
 #: apps/cambridge/models.py:114
-msgid "Check if you are an alumn of EIDE"
-msgstr "Elige esto si eres alumno de EIDE"
+msgid ""
+"Check this if you are an alumn of EIDE. If not please fill in your centre "
+"name"
+msgstr "Haz click en esta casilla si eres alumno de EIDE. Sino rellena por favor el nombre del centro en el que estudias."
 
 #: apps/cambridge/models.py:115
 msgid "Centre Name"
-msgstr ""
+msgstr "Nombre del centro donde estudias"
 
 #: apps/cambridge/models.py:118
 #: apps/cambridge/templates/cambridge/lista.html:14
@@ -217,11 +219,11 @@ msgstr "DNI"
 
 #: apps/cambridge/templates/cambridge/registration_form.html:7
 msgid "Register for Cambridge Exam"
-msgstr "Apuntate para un examen de Cambridge"
+msgstr "Matriculate para un examen de Cambridge Paper Based"
 
 #: apps/cambridge/templates/cambridge/registration_form_computer.html:6
 msgid "Register for Cambridge Computer Based Exam"
-msgstr "Apuntate para un examen de Cambridge Computer Based"
+msgstr "Matriculate para un examen de Cambridge Computer Based"
 
 #: apps/profiles/models.py:8
 msgid "name"
@@ -272,15 +274,15 @@ msgstr "Lista de examenes"
 #: templates/homepage.html:19 templates/homepage.html.py:24
 #: templates/homepage.html:29
 msgid "Go to the registration for Cambridge Exams"
-msgstr "Registrate para un examen de Cambridge"
+msgstr "Matriculate para un examen de Cambridge"
 
 #: templates/homepage.html:22
 msgid "Spanish Courses"
-msgstr ""
+msgstr "Cursos de español"
 
 #: templates/homepage.html:27
 msgid "Intensive Courses"
-msgstr ""
+msgstr "Cursos intensivos"
 
 #: templates/site_base.html:16
 #, fuzzy
@@ -289,7 +291,7 @@ msgstr "Lista de matriculas Computer Based"
 
 #: templates/site_base.html:21
 msgid "Normal Exams List"
-msgstr "Lista de examenes"
+msgstr "Lista de examenes Paper Based"
 
 #: templates/site_base.html:22
 msgid "Computer Based Exam List"
@@ -297,7 +299,7 @@ msgstr "Lista de examenes Computer Based"
 
 #: templates/site_base.html:24
 msgid "Normal Registrations List"
-msgstr "Lista de matriculas normales"
+msgstr "Lista de matriculas Paper Based"
 
 #: templates/site_base.html:25
 msgid "Computer Based Registrations List"
@@ -334,6 +336,9 @@ msgstr "Acerca de"
 #: templates/profiles/_profile_info.html:6
 msgid "Website"
 msgstr "Sitio Web"
+
+#~ msgid "Check if you are an alumn of EIDE"
+#~ msgstr "Elige esto si eres alumno de EIDE"
 
 #, fuzzy
 #~ msgid "Registration End Date"
