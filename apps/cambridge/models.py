@@ -117,6 +117,10 @@ class BaseRegistration(models.Model):
 	registration_date = models.DateField(default=datetime.date.today, auto_now_add=True)
 	paid = models.BooleanField(_('Paid'),default=False)
 	accept_conditions = models.BooleanField(_('Accept the conditions'), help_text=_('You must accept the conditions to register'))
+	accept_photo_conditions = models.BooleanField(_('Aceptar las conficiones de la foto.'), help_text=_('Debes aceptar las condiciones de la la toma de foto para poder matricularte.'),default=False,blank=True)
+	minor = models.BooleanField(_('El candidato es menor de edad y yo soy su tutor legal.'),default=False,blank=True)
+	tutor_name = models.CharField(_('Nombre de tutor.'),max_length=50,blank=True)
+	tutor_surname = models.CharField(_('Apellido(s) del tutor.'),max_length=100,blank=True)
 
 	def send_confirmation_email(self):
 		subject = "De momento solo un mail de prueba"

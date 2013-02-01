@@ -29,15 +29,21 @@ class RegistrationForm(ModelForm):
 	telephone = ESPhoneNumberField()
 	dni = ESIdentityCardNumberField()
 	postal_code = ESPostalCodeField()
+	
+ 
 	class Meta:
 		model = Registration
 		exclude = ('paid')
+		fields = ['accept_conditions','accept_photo_conditions','exam','minor','tutor_name','tutor_surname','name','surname','address','location','postal_code','sex','birth_date','dni','telephone','email','eide_alumn','centre_name']
 		
 
 class ComputerBasedRegistrationForm(ModelForm):
 	telephone = ESPhoneNumberField()
 	dni = ESIdentityCardNumberField()
 	postal_code = ESPostalCodeField()
+#	def __init__(self, *args, **kw):
+#        super(ModelForm, self).__init__(*args, **kw)
+#		self.fields.keyOrder = ['exam','minor','tutor_name','tutor_surname']
 	class Meta:
 		model = ComputerBasedRegistration
 		exclude = ('paid')
