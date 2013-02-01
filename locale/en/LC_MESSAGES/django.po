@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-31 18:20+0100\n"
+"POT-Creation-Date: 2013-02-01 17:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -112,6 +112,27 @@ msgstr ""
 msgid "You must accept the conditions to register"
 msgstr ""
 
+#: apps/cambridge/models.py:120
+msgid "Aceptar las conficiones de la foto."
+msgstr ""
+
+#: apps/cambridge/models.py:120
+msgid ""
+"Debes aceptar las condiciones de la la toma de foto para poder matricularte."
+msgstr ""
+
+#: apps/cambridge/models.py:121
+msgid "El candidato es menor de edad y yo soy su tutor legal."
+msgstr ""
+
+#: apps/cambridge/models.py:122
+msgid "Nombre de tutor."
+msgstr ""
+
+#: apps/cambridge/models.py:123
+msgid "Apellido(s) del tutor."
+msgstr ""
+
 #: apps/cambridge/templates/cambridge/_exam_list.html:6
 #: apps/cambridge/templates/cambridge/lista.html:9
 msgid "Level"
@@ -167,7 +188,7 @@ msgid "Save"
 msgstr ""
 
 #: apps/cambridge/templates/cambridge/cb_exam_form.html:15
-#: apps/cambridge/templates/cambridge/form.html:73
+#: apps/cambridge/templates/cambridge/form.html:97
 msgid "Submit"
 msgstr ""
 
@@ -189,14 +210,15 @@ msgstr ""
 msgid "Cambridge Exam List"
 msgstr ""
 
-#: apps/cambridge/templates/cambridge/form.html:68
+#: apps/cambridge/templates/cambridge/form.html:91
 msgid "Matrícula"
 msgstr ""
 
-#: apps/cambridge/templates/cambridge/form.html:71
+#: apps/cambridge/templates/cambridge/form.html:95
 msgid ""
-"<b>Atención!.</b> Si no aceptas las condiciones generales y las condiciones "
-"de la toma de foto no podrás enviar la matrícula."
+"<b>Atención!.</b> Todavía no has aceptado las condiciones. Si no aceptas las "
+"condiciones generales y las condiciones de la toma de foto no podrás enviar "
+"la matrícula."
 msgstr ""
 
 #: apps/cambridge/templates/cambridge/index.html:7
@@ -229,11 +251,11 @@ msgid "DNI"
 msgstr ""
 
 #: apps/cambridge/templates/cambridge/registration_form.html:6
-msgid "Matricúlate pata un Cambridge Paper Based Exam"
+msgid "Matricúlate para un Cambridge Paper Based Exam"
 msgstr ""
 
 #: apps/cambridge/templates/cambridge/registration_form_computer.html:6
-msgid "Matricúlate pata un Cambridge Computer Based Exam"
+msgid "Matricúlate para un Cambridge Computer Based Exam"
 msgstr ""
 
 #: apps/profiles/models.py:8

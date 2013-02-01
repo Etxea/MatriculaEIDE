@@ -24,11 +24,12 @@ from django.forms.models import inlineformset_factory
 from django.forms.extras.widgets import SelectDateWidget
 from django.contrib.localflavor.es.forms import *
 from django.contrib.admin import widgets                                       
+from django.utils.translation import gettext_lazy as _
 
 class RegistrationForm(ModelForm):
-	telephone = ESPhoneNumberField()
+	telephone = ESPhoneNumberField(label=_("Teléfono"))
 	dni = ESIdentityCardNumberField()
-	postal_code = ESPostalCodeField()
+	postal_code = ESPostalCodeField(label=_("Código Postal"))
 	
  
 	class Meta:
