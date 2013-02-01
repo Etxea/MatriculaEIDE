@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load bootstrap_tags %}
 
+
 {% block body %}
     <script>
 	function comprobar_aceptacion() {
@@ -37,6 +38,8 @@
                 }
             }
         $(document).ready(function() {
+	    $("#normativa_general").hide();
+	    $("#normativa_foto").hide();
             //Comprobamos si se puede enviar
 	    comprobar_aceptacion();
 	    comprobar_menor();
