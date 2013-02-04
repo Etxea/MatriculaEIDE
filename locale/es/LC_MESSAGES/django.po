@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-01 17:41+0100\n"
+"POT-Creation-Date: 2013-02-04 10:26+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps/cambridge/forms.py:30
+msgid "Teléfono"
+msgstr ""
+
+#: apps/cambridge/forms.py:32
+msgid "Código Postal"
+msgstr ""
 
 #: apps/cambridge/models.py:39
 msgid "Male"
@@ -94,7 +102,7 @@ msgid ""
 "Check this if you are an alumn of EIDE. If not please fill in your centre "
 "name"
 msgstr ""
-"Haz click en esta casilla si eres alumno de EIDE. Sino rellena por favor el "
+"Haz click en esta casilla si eres alumno de EIDE. Si no rellena por favor el "
 "nombre del centro en el que estudias."
 
 #: apps/cambridge/models.py:115
@@ -124,7 +132,7 @@ msgid ""
 msgstr ""
 
 #: apps/cambridge/models.py:121
-msgid "El candidato es menor de edad y yo soy su tutor legal."
+msgid "El candidato es menor de edad y yo soy su padre/madre o tutor legal."
 msgstr ""
 
 #: apps/cambridge/models.py:122
@@ -190,7 +198,7 @@ msgid "Save"
 msgstr "Guardar"
 
 #: apps/cambridge/templates/cambridge/cb_exam_form.html:15
-#: apps/cambridge/templates/cambridge/form.html:97
+#: apps/cambridge/templates/cambridge/form.html:103
 msgid "Submit"
 msgstr "Enviar"
 
@@ -212,11 +220,11 @@ msgstr "Examen"
 msgid "Cambridge Exam List"
 msgstr "Lista de examenes"
 
-#: apps/cambridge/templates/cambridge/form.html:91
+#: apps/cambridge/templates/cambridge/form.html:70
 msgid "Matrícula"
 msgstr ""
 
-#: apps/cambridge/templates/cambridge/form.html:95
+#: apps/cambridge/templates/cambridge/form.html:101
 msgid ""
 "<b>Atención!.</b> Todavía no has aceptado las condiciones. Si no aceptas las "
 "condiciones generales y las condiciones de la toma de foto no podrás enviar "

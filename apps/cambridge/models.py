@@ -118,7 +118,7 @@ class BaseRegistration(models.Model):
 	paid = models.BooleanField(_('Paid'),default=False)
 	accept_conditions = models.BooleanField(_('Accept the conditions'), help_text=_('You must accept the conditions to register'))
 	accept_photo_conditions = models.BooleanField(_('Aceptar las conficiones de la foto.'), help_text=_('Debes aceptar las condiciones de la la toma de foto para poder matricularte.'),default=False,blank=True)
-	minor = models.BooleanField(_('El candidato es menor de edad y yo soy su tutor legal.'),default=False,blank=True)
+	minor = models.BooleanField(_('El candidato es menor de edad y yo soy su padre/madre o tutor legal.'),default=False,blank=True)
 	tutor_name = models.CharField(_('Nombre de tutor.'),max_length=50,blank=True)
 	tutor_surname = models.CharField(_('Apellido(s) del tutor.'),max_length=100,blank=True)
 
@@ -144,8 +144,7 @@ class BaseRegistration(models.Model):
 		##We generate a random password
 		if self.id is not None:
 			if self.paid:
-				self.send_paiment_confirmation_email()
-		
+				self.send_paiment_confirmation_email()		
 		else:
 			#We set de password, not used roght now
 			self.password = ''.join([choice(letters) for i in xrange(6)])
