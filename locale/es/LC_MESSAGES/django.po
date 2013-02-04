@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-04 10:26+0100\n"
+"POT-Creation-Date: 2013-02-04 10:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -136,11 +136,11 @@ msgid "El candidato es menor de edad y yo soy su padre/madre o tutor legal."
 msgstr ""
 
 #: apps/cambridge/models.py:122
-msgid "Nombre de tutor."
+msgid "Nombre de padre/madre o tutor."
 msgstr ""
 
 #: apps/cambridge/models.py:123
-msgid "Apellido(s) del tutor."
+msgid "Apellido(s) del padre/madre o tutor."
 msgstr ""
 
 #: apps/cambridge/templates/cambridge/_exam_list.html:6
