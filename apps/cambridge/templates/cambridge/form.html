@@ -66,37 +66,40 @@
 {% block cambridge_form_header %}{% endblock %}
 <div class="row">
     <div class="span12">
+	{% block cambridge_form_action %}{% endblock %}
+	<h2>{% trans "Matrícula" %}</h2>
+	{{ form|as_bootstrap }}
+    </div> 
+</div>
+
+
+<div class="row">
+    <div class="span12">
 	{% include "cambridge/legal.html" %}
-	<!--
 	<div>
 	    ¿Aceptas las condiciones? <input type="checkbox" id="id_accept_conditions_farsa" name="accept_conditions_farsa">
         </div>
-	-->
+	
     </div> 
 </div>
 <hr />
 <div class="row">
     <div class="span12">
 	{% include "cambridge/legal_foto.html" %}
-<!--
+
 	<div>
 	    ¿Aceptas las condiciones para la toma de la foto?
 	    <input type="checkbox" id="id_accept_photo_conditions" name="accept_photo_conditions">
         </div>
-	-->
     </div> 
 </div>
 <hr />
 
 <div class="row">
-    <div class="span12">
-	{% block cambridge_form_action %}{% endblock %}
-	<h2>{% trans "Matrícula" %}</h2>
-	{{ form|as_bootstrap }}
-    
-    <div class="well" id="aviso_condiciones">
-	{% trans "<b>Atención!.</b> Todavía no has aceptado las condiciones. Si no aceptas las condiciones generales y las condiciones de la toma de foto no podrás enviar la matrícula." %}
-    </div>
+    <div class="span12">    
+	<div class="well" id="aviso_condiciones">
+	    {% trans "<b>Atención!.</b> Todavía no has aceptado las condiciones. Si no aceptas las condiciones generales y las condiciones de la toma de foto no podrás enviar la matrícula." %}
+	</div>
 	<input id="send_form" class="btn btn-primary pull-right" type="submit" value="{% trans 'Submit' %}" />
     </div> 
 </div> 

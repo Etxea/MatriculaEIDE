@@ -35,7 +35,7 @@ class RegistrationForm(ModelForm):
 	class Meta:
 		model = Registration
 		exclude = ('paid')
-		fields = ['accept_conditions','accept_photo_conditions','exam','minor','tutor_name','tutor_surname','name','surname','address','location','postal_code','sex','birth_date','dni','telephone','email','eide_alumn','centre_name']
+		fields = ['exam','minor','tutor_name','tutor_surname','name','surname','address','location','postal_code','sex','birth_date','dni','telephone','email','eide_alumn','centre_name']
 		
 
 class ComputerBasedRegistrationForm(ModelForm):
@@ -48,3 +48,4 @@ class ComputerBasedRegistrationForm(ModelForm):
 	class Meta:
 		model = ComputerBasedRegistration
 		exclude = ('paid')
+		fields = ['exam','minor','tutor_name','tutor_surname','name','surname','address','location','postal_code','sex','birth_date','dni','telephone','email','eide_alumn','centre_name']
