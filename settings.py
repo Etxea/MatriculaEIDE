@@ -176,6 +176,7 @@ INSTALLED_APPS = [
     "about",
     "profiles",
     "cambridge",
+    "pagosonline",
 
 ]
 

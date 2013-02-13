@@ -5,8 +5,10 @@
 
 # Put project-specific requirements here.
 # See http://pip-installer.org/requirement-format.html for more information.
+south
 reportlab
 html5lib
+xhtml2pdf
 pisa
 django_xhtml2pdf
 django-bootstrap-form
