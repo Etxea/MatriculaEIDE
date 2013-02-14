@@ -30,8 +30,6 @@ class RegistrationForm(ModelForm):
 	telephone = ESPhoneNumberField(label=_("Teléfono"))
 	dni = ESIdentityCardNumberField()
 	postal_code = ESPostalCodeField(label=_("Código Postal"))
-	
- 
 	class Meta:
 		model = Registration
 		exclude = ('paid')
@@ -47,5 +45,6 @@ class ComputerBasedRegistrationForm(ModelForm):
 #		self.fields.keyOrder = ['exam','minor','tutor_name','tutor_surname']
 	class Meta:
 		model = ComputerBasedRegistration
+		
 		exclude = ('paid')
 		fields = ['exam','minor','tutor_name','tutor_surname','name','surname','address','location','postal_code','sex','birth_date','dni','telephone','email','eide_alumn','centre_name']

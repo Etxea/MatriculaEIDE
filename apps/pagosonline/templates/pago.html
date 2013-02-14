@@ -1,6 +1,7 @@
-<HTML>
-<HEAD>
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+{% extends "site_base.html"%}
+{% load i18n %}
+{% block body %}
+    <TITLE>P&aacute;gina de pago</TITLE>
     <script>
     /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 /*  SHA-1 implementation in JavaScript | (c) Chris Veness 2002-2010 | www.movable-type.co.uk      */
@@ -181,12 +182,9 @@ Utf8.decode = function(strUtf) {
 }
     </script>
     <script>
-    $(document).ready(function () {
-        $("#firma").val("FARSA");
-        
-        $('#importe').keyup(function(event) {
+    function genera_firma() {
             clave = "V5UTWRM9";
-            $("#num_operacion").val("FARSA"+event.timeStamp);
+            //$("#num_operacion").val("FARSA"+event.timeStamp);
             merchant = $("#merchant").val();
             acquire = $("#acquire").val();
             terminal =$("#terminal").val();
@@ -201,31 +199,43 @@ Utf8.decode = function(strUtf) {
             console.log(texto);
             firma = Sha1.hash(texto);
             console.log(firma);
-            $("#firma").val(firma);
-        });
+            return firma;
+        }
+        
+    $(document).ready(function () {
+        //FIXME esto irá a la vista!
+        $("#firma").val(genera_firma());
+        $('#importe').val("{{amount}}"*100);
     });
 </script>
-<TITLE>P&aacute;gina de pago</TITLE>
-</HEAD>
-<BODY>
-<FORM ACTION="http://tpv.ceca.es:8000/cgi-bin/tpv" METHOD="POST" ENCTYPE="application/x-
-www-form-urlencoded">
+
+    <h1>Realizar pago Online</h1>
+
+<div id="normativa_pago" class="well well-small" style="text-align: justify; text-justify: newspape" > 
+Vamos aproceder al pago de la matricula a través de tarjeta de crédito. Lo operación tendrá el identificardor 
+<b>{{reference}}-{{order_id}}</b> y un importe de <b>{{amount}}</b>.
+
+</div> 
+<p class="well well-big"> Cuando hago click en "Pasar a pagar" será redirigido a la pasarela de pago de nuestra entidad bancaraia. En ningun momento EIDE tendrá acceso a sus datos 
+bancarios.
+</p>
+
+<FORM ACTION="http://tpv.ceca.es:8000/cgi-bin/tpv" METHOD="POST" ENCTYPE="application/x-www-form-urlencoded">
 <INPUT id="merchant" NAME="MerchantID" TYPE=hidden VALUE="059183582">
 <INPUT id="acquire" NAME="AcquirerBIN" TYPE=hidden VALUE="0000554016">
 <INPUT id="terminal" NAME="TerminalID" TYPE=hidden VALUE="00000003">
 <INPUT id="url_ok" NAME="URL_OK" TYPE=hidden VALUE="http://localhost:8000/pagos/ok/">
 <INPUT id="url_nok" NAME="URL_NOK" TYPE=hidden VALUE="http://localhost:8000/pagos/ko/">
-FIRMA:<INPUT id="firma" NAME="Firma" readonly VALUE=""><br />
+<INPUT id="firma" NAME="Firma" readonly TYPE=hidden VALUE=""><br />
 <INPUT NAME="Cifrado" TYPE=hidden VALUE="SHA1">
-Num.<INPUT id="num_operacion" NAME="Num_operacion" READONLY VALUE="farsa0001"><br />
-<label>Importe</label><INPUT id="importe" NAME="Importe" TYPE= VALUE="10000"><br />
+<INPUT id="num_operacion" NAME="Num_operacion" TYPE=hidden VALUE="{{reference}}-{{order_id}}"><br />
+<INPUT id="importe" NAME="Importe" READONLY TYPE=hidden VALUE=0><br />
 <INPUT id="tipo_moneda" NAME="TipoMoneda" TYPE=hidden VALUE=978>
 <INPUT id="exponente" NAME="Exponente" TYPE=hidden VALUE=2>
 <INPUT NAME="Pago_soportado" TYPE=hidden VALUE=SSL>
 <INPUT NAME="" TYPE=hidden VALUE="1">
 <CENTER>
-<INPUT TYPE="submit" VALUE="Comprar">
-</CENTER>
+<INPUT TYPE="submit" VALUE="Pasar a pagar">
+
 </FORM>
-</BODY>
-</HTML>
+{% endblock %}

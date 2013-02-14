@@ -1,4 +1,3 @@
-
 [indentation]
 indent_width=4
 indent_type=0
@@ -17,14 +16,18 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=5
-FILE_NAME_0=259;HTML;0;16;0;1;0;/home/patataman/djproyects/proyectos/MatriculaEIDE/apps/cambridge/templates/cambridge/form.html;0;4
-FILE_NAME_1=5396;Python;0;16;0;1;0;/home/patataman/djproyects/proyectos/MatriculaEIDE/settings.py;0;4
-FILE_NAME_2=85;HTML;0;16;0;1;0;/home/patataman/djproyects/proyectos/MatriculaEIDE/apps/cambridge/templates/cambridge/legal.html;0;4
-FILE_NAME_3=179;HTML;0;16;0;1;0;/home/patataman/djproyects/proyectos/MatriculaEIDE/apps/cambridge/templates/cambridge/registration_form.html;0;4
-FILE_NAME_4=175;HTML;0;16;0;1;0;/home/patataman/djproyects/proyectos/MatriculaEIDE/apps/cambridge/templates/cambridge/registration_form_computer.html;0;4
-FILE_NAME_5=1300;HTML;0;16;2;1;0;/home/patataman/djproyects/proyectos/MatriculaEIDE/templates/site_base.html;0;4
-FILE_NAME_6=0;HTML;0;16;0;1;0;/home/patataman/djproyects/proyectos/MatriculaEIDE/templates/_footer.html;0;4
+current_page=1
+FILE_NAME_0=5545;Python;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fsettings.py;0;4
+FILE_NAME_1=1317;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fforms.py;0;4
+FILE_NAME_2=2551;Python;0;16;2;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Furls.py;0;4
+FILE_NAME_3=3261;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fviews.py;0;4
+FILE_NAME_4=0;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fmodels.py;0;4
 
 [VTE]
 last_dir=/home/patataman/djproyects/proyectos/MatriculaEIDE
+
+[file_prefs]
+final_new_line=true
+ensure_convert_new_lines=false
+strip_trailing_spaces=false
+replace_tabs=false

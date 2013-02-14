@@ -17,14 +17,12 @@
 #  
 
 from django.contrib.auth.decorators import login_required, permission_required
-
 from django.template.loader import render_to_string
 from django.template import RequestContext
-
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response
-
 from django.views.generic import DetailView, ListView, CreateView, UpdateView
+from django.views.generic.edit import ModelFormMixin
 
 import StringIO
 import ho.pisa as pisa
@@ -33,7 +31,7 @@ from django_xhtml2pdf.utils import render_to_pdf_response
 #from utils import  render_to_pdf_response
 
 from models import *
-
+from forms import *
 
 
 # import the logging library
@@ -80,6 +78,35 @@ class ComputerBasedRegistrationListView(ListView):
 	#Limitamos a las matrocilas de examenes posteriores al día de hoy
 	queryset=ComputerBasedRegistration.objects.filter(exam__exam_date__gt=datetime.date.today())
 
+class ComputerBasedRegistrationCreateView(CreateView, ModelFormMixin):
+	model = ComputerBasedRegistration
+	form_class = ComputerBasedRegistrationForm
+	template_name='cambridge/registration_form_computer.html'
+	def get_success_url(self):
+		#Comprobamos si el pago es por txartela:
+		if True:
+			return '/pagos/cambridgecb/%s/%s/'%(self.object.id,self.object.exam.level.price)
+		else:
+			## FIXME usar un reverse o lazy_reverse
+			return '/cambridge/thanks/'
+
+class ComputerBasedRegistrationUpdateView(UpdateView):
+	model=ComputerBasedRegistration,
+	success_url = '/cambridge/list',
+	template_name='cambridge/cambridge_cb_edit.html'
+	
+class PaperBasedRegistrationCreateView(CreateView):
+	model = Registration
+	form_class = RegistrationForm
+	template_name='cambridge/registration_form.html'
+	def get_success_url(self):
+		#Comprobamos si el pago es por txartela:
+		if True:
+			return '/pagos/cambridgepb/%s/%s/'%(self.object.id,self.object.exam.level.price)
+		else:
+			## FIXME usar un reverse o lazy_reverse
+			return '/cambridge/thanks/'
+	
 class RegistrationListView(ListView):
 	#model=ComputerBasedRegistration
 	template_name='cambridge/lista.html'
