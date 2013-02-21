@@ -37,35 +37,29 @@ def confirm_payment(request):
     log.debug("Recivimos una confirmación de pago")
     log.debug(request.POST)
     try:
-	    reference = request.POST["Referencia"]
-		#log.debug( reference)
-	    registration, registration_id = reference.split('-')
-	    registration_type, registration_subtype = registration.split('.')
-	    log.debug( "tenemos una matricula de %s del tipo %s con el id %s"%(registration_type, registration_subtype, registration_id))
-	    r = None
+        reference = request.POST["Referencia"]
+        #log.debug( reference)
+        registration, registration_id = reference.split('-')
+        registration_type, registration_subtype = registration.split('.')
+        log.debug( "tenemos una matricula de %s del tipo %s con el id %s"%(registration_type, registration_subtype, registration_id))
+        r = None
         #Buscamos la matricula 
-	    if registration_type=="cambridge":
-	        if registration_subtype=="pb":
-	            try:
-	                r = Registration.objects.get(id=registration_id)
-	            except:
-	                log.debug( "No encontramos la matricula :(")
-	                pass
-	        elif registration_subtype=="cb":
-	            try:
-	                r = ComputerBasedRegistration.objects.get(id=registration_id)  
-                except:
-			        log.debug( "No encontramos la matricula :(")
-				    pass
-	        else:
-		        log.debug( "No sabemos que matricula de cambridge!" )
-	    else:
-	        log.debug( "No sabemos que matricula es!" )
-	    if r:
-	        log.debug( "Tenemos la matricula")
-			    log.debug(r)
-				r.set_as_paid()
-			return direct_to_template(request,template="pago_confirmar.html")
+        if registration_type=="cambridge":
+            if registration_subtype=="pb":
+                print "Hola"
+                r = Registration.objects.get(id=registration_id)
+            elif registration_subtype=="cb":
+                r = ComputerBasedRegistration.objects.get(id=registration_id)
+            else:
+                log.debug( "No sabemos que matricula de cambridge!" )
+        #Comprobamos si tenemos una matricula
+        if r:
+            log.debug( "Tenemos la matricula")
+            log.debug(r)
+            r.set_as_paid()
+            return direct_to_template(request,template="pago_confirmar.html")
+        else:
+            return direct_to_template(request,template="pago_noconfirmar.html")
     except:
-        return direct_to_template(request,template="pago_confirmar.html")
+        return direct_to_template(request,template="pago_noconfirmar.html")
     
