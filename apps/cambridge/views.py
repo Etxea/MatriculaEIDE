@@ -85,7 +85,7 @@ class ComputerBasedRegistrationCreateView(CreateView, ModelFormMixin):
 	def get_success_url(self):
 		#Comprobamos si el pago es por txartela:
 		if True:
-			return '/pagos/cambridgecb/%s/%s/'%(self.object.id,self.object.exam.level.price)
+			return self.object.generate_payment_url()
 		else:
 			## FIXME usar un reverse o lazy_reverse
 			return '/cambridge/thanks/'
@@ -102,7 +102,7 @@ class PaperBasedRegistrationCreateView(CreateView):
 	def get_success_url(self):
 		#Comprobamos si el pago es por txartela:
 		if True:
-			return '/pagos/cambridgepb/%s/%s/'%(self.object.id,self.object.exam.level.price)
+			return self.object.generate_payment_url()
 		else:
 			## FIXME usar un reverse o lazy_reverse
 			return '/cambridge/thanks/'

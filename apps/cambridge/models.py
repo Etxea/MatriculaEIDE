@@ -138,6 +138,11 @@ class BaseRegistration(models.Model):
 		message_body = """Se ha dado de alta una nueva matricula para el examen %s. Entre 
 			en http://matrocilas.eide.es/cambridge/ para revisarla si quiere"""%self.exam
 		mail_admins(subject, message_body)
+	def set_as_paid(self):
+		self.paid = True
+		self.save()
+		self.send_paiment_confirmation_email()
+		
 	def __unicode__(self):
 		return "%s-%s"%(self.registration_date,self.dni)
 	def save(self, *args, **kwargs):
@@ -160,6 +165,8 @@ class Registration(BaseRegistration):
 	exam = models.ForeignKey(Exam,\
 		limit_choices_to = {'registration_start_date__lte': datetime.date.today,\
 		'exam_date__gte': datetime.date.today})
+	def generate_payment_url(self):
+		return '/pagos/cambridge/pb/%s/%s/'%(self.id,self.exam.level.price)
 
 
 class SchoolRegistration(BaseRegistration):
@@ -167,6 +174,8 @@ class SchoolRegistration(BaseRegistration):
 	exam = models.ForeignKey(SchoolExam,\
 		limit_choices_to = {'registration_start_date__lte': datetime.date.today,\
 		'exam_date__gte': datetime.date.today})
+	def generate_payment_url(self):
+		return '/pagos/cambridge/cb/%s/%s/'%(self.id,self.exam.level.price)
 	
 class ComputerBasedRegistration(BaseRegistration):
 	#asignames los examenes del tipo adecuado y solo mostramos los que están en fecha
