@@ -16,6 +16,7 @@
 #  MA 02110-1301, USA.
 #
 from django.views.generic.simple import direct_to_template
+from django.contrib.csrf.middleware import csrf_exempt
 from models import *
 from cambridge.models import ComputerBasedRegistration,Registration
 
@@ -31,7 +32,7 @@ def make_payment(request, reference,sub_reference, order_id,amount):
             ##El precio hay que multiplicarlo por 100 para cuadrar los 2 decimales que nos exige la pasarela
             "amount": amount})
 
-#def confirm_payment(request, reference):
+@csrf_exempt
 def confirm_payment(request):
     ## FIXME habría que poner algun filtro a la confirmación del pago.
     log.debug("Recibimos una confirmación de pago")
