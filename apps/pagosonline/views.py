@@ -34,7 +34,7 @@ def make_payment(request, reference,sub_reference, order_id,amount):
 #def confirm_payment(request, reference):
 def confirm_payment(request):
     ## FIXME habría que poner algun filtro a la confirmación del pago.
-    log.debug("Recivimos una confirmación de pago")
+    log.debug("Recibimos una confirmación de pago")
     log.debug(request.POST)
     try:
         reference = request.POST["Referencia"]

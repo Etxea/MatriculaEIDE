@@ -1,8 +1,9 @@
-<HTML>
-<HEAD>
-<TITLE>P&aacute;gina de pago</TITLE>
-</HEAD>
-<BODY>
-    Algo a ido mal
-</BODY>
-</HTML>
+{% extends "site_base.html"%}
+{% load i18n %}
+{% load bootstrap_tags %}
+
+{% block body %}
+<div class="well">
+Lo sentimos mucho pero no hemos podido confirmar el pago a través de trajeta bancaría.
+</div>
+{% endblock%}
