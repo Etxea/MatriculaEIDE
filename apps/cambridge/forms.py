@@ -34,7 +34,25 @@ class RegistrationForm(ModelForm):
 		model = Registration
 		exclude = ('paid')
 		fields = ['exam','minor','tutor_name','tutor_surname','name','surname','address','location','postal_code','sex','birth_date','dni','telephone','email','eide_alumn','centre_name']
-		
+	def __init__(self, *args, **kwargs):
+		super(ModelForm, self).__init__(*args, **kwargs)
+		self.fields['birth_date'].widget.format = '%d-%m-%Y'
+
+		# at the same time, set the input format on the date field like you want it:
+		self.fields['birth_date'].input_formats = ['%d-%m-%Y']	
+
+class RegistrationEditForm(ModelForm):
+	telephone = ESPhoneNumberField(label=_("Teléfono"))
+	dni = ESIdentityCardNumberField()
+	postal_code = ESPostalCodeField(label=_("Código Postal"))
+	class Meta:
+		model = Registration
+	def __init__(self, *args, **kwargs):
+		super(ModelForm, self).__init__(*args, **kwargs)
+		self.fields['birth_date'].widget.format = '%d-%m-%Y'
+
+		# at the same time, set the input format on the date field like you want it:
+		self.fields['birth_date'].input_formats = ['%d-%m-%Y']
 
 class ComputerBasedRegistrationForm(ModelForm):
 	telephone = ESPhoneNumberField()
@@ -48,3 +66,9 @@ class ComputerBasedRegistrationForm(ModelForm):
 		
 		exclude = ('paid')
 		fields = ['exam','minor','tutor_name','tutor_surname','name','surname','address','location','postal_code','sex','birth_date','dni','telephone','email','eide_alumn','centre_name']
+	def __init__(self, *args, **kwargs):
+		super(ModelForm, self).__init__(*args, **kwargs)
+		self.fields['birth_date'].widget.format = '%d-%m-%Y'
+
+		# at the same time, set the input format on the date field like you want it:
+		self.fields['birth_date'].input_formats = ['%d-%m-%Y']	

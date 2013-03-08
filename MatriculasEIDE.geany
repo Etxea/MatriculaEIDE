@@ -16,15 +16,9 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=7
-FILE_NAME_0=5545;Python;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fsettings.py;0;4
-FILE_NAME_1=1164;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fforms.py;0;4
-FILE_NAME_2=2442;Python;0;16;2;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Furls.py;0;4
-FILE_NAME_3=3794;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fviews.py;0;4
-FILE_NAME_4=0;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fmodels.py;0;4
-FILE_NAME_5=222;Python;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fpagosonline%2Furls.py;0;4
-FILE_NAME_6=526;Python;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fpagosonline%2Fviews.py;0;4
-FILE_NAME_7=8226;HTML;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fpagosonline%2Ftemplates%2Fpago.html;0;4
+current_page=1
+FILE_NAME_0=11615;Python;0;16;0;1;0;%2Fhome%2Fpatataman%2Fgestionacademia%2Fgestionacademia%2Fmodels%2Falumno_model.py;0;4
+FILE_NAME_1=51816;CSS;0;16;0;1;0;%2Ftmp%2Ffz3temp-1%2Fstyle.css;0;4
 
 [VTE]
 last_dir=/home/patataman/djproyects/proyectos/MatriculaEIDE
