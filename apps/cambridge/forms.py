@@ -26,6 +26,17 @@ from django.contrib.localflavor.es.forms import *
 from django.contrib.admin import widgets                                       
 from django.utils.translation import gettext_lazy as _
 
+class PaperExamForm(ModelForm):
+	class Meta:
+		model = Exam
+	def __init__(self, *args, **kwargs):
+		super(ModelForm, self).__init__(*args, **kwargs)
+		self.fields['exam_date'].widget.format = '%d-%m-%Y'
+		self.fields['registration_start_date'].widget.format = '%d-%m-%Y'
+		# at the same time, set the input format on the date field like you want it:
+		self.fields['exam_date'].input_formats = ['%d-%m-%Y']	
+		self.fields['registration_start_date'].input_formats = ['%d-%m-%Y']	
+		
 class RegistrationForm(ModelForm):
 	telephone = ESPhoneNumberField(label=_("Teléfono"))
 	dni = ESIdentityCardNumberField()

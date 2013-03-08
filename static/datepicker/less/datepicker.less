@@ -37,15 +37,6 @@
 	>div {
 		display: none;
 	}
-	&.days div.datepicker-days {
-		display: block;
-	}
-	&.months div.datepicker-months {
-		display: block;
-	}
-	&.years div.datepicker-years {
-		display: block;
-	}
 	table{
 		width: 100%;
 		margin: 0;
@@ -62,13 +53,16 @@
 			background: @grayLighter;
 			cursor: pointer;
 		}
+		&.day.disabled {
+			color: @grayLighter;
+		}
 		&.old,
 		&.new {
 			color: @grayLight;
 		}
 		&.active,
 		&.active:hover {
-			.buttonBackground(@primaryButtonBackground, spin(@primaryButtonBackground, 20));
+			.buttonBackground(@btnPrimaryBackground, spin(@btnPrimaryBackground, 20));
 			color: #fff;
 			text-shadow: 0 -1px 0 rgba(0,0,0,.25);
 		}
@@ -85,7 +79,7 @@
 				background: @grayLighter;
 			}
 			&.active {
-				.buttonBackground(@primaryButtonBackground, spin(@primaryButtonBackground, 20));
+				.buttonBackground(@btnPrimaryBackground, spin(@btnPrimaryBackground, 20));
 				color: #fff;
 				text-shadow: 0 -1px 0 rgba(0,0,0,.25);
 			}
@@ -95,8 +89,14 @@
 		}
 	}
 	
-	th.switch {
-		width: 145px;
+	th {
+		&.switch {
+			width: 145px;
+		}
+		&.next,
+		&.prev {
+			font-size: @baseFontSize * 1.5;
+		}
 	}
 	
 	thead tr:first-child th {

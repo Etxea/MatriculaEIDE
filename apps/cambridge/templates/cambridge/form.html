@@ -38,6 +38,8 @@
                 }
             }
         $(document).ready(function() {
+	    $("#id_birth_date").datepicker({format: "dd-mm-yyyy",weekStart: 1});
+
 	    $("#normativa_general").hide();
 	    $("#normativa_foto").hide();
             //Comprobamos si se puede enviar

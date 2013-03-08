@@ -63,6 +63,7 @@ urlpatterns = patterns('cambridge/',
     url(r'^exam/new/$', login_required(
         CreateView.as_view(
             model=Exam,
+            form_class = PaperExamForm,
             success_url = '/cambridge/exam/list',
             template_name='cambridge/exam_form.html')), name="cambridge_exam_new"),
     url(r'^exam/edit/(?P<pk>\d+)/$',
