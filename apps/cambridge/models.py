@@ -19,6 +19,7 @@
 from django.db import models
 from django.contrib.localflavor import generic
 from django.contrib.localflavor.es.forms import *
+from django.core.mail import EmailMultiAlternatives
 
 from random import choice
 from string import letters
@@ -123,20 +124,192 @@ class BaseRegistration(models.Model):
 	tutor_surname = models.CharField(_('Apellido(s) del padre/madre o tutor.'),max_length=100,blank=True)
 
 	def send_confirmation_email(self):
-		subject = "De momento solo un mail de prueba"
-		message_body = "Se ha registrado para el examen %s de cambridge blablabla y lalalal y lelele"%self.exam
-		send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
+		##Para el alumno
+		subject = "Te has matriculado para un examen Cambridge en EIDE"
+		message_body = """CONFIRMACIÓN DE MATRÍCULA
+Se ha matriculado para el examen %s en la fecha %s. En unos días, se le enviará el COE (Confirmation of Entry) 
+con las fechas y horas del examen escrito y oral a la dirección de e-mail que ha proporcionado el candidato en la 
+hoja de matrícula. Si dos semanas antes de la fecha del examen el candidato no ha recibido el COE, es su responsabilidad 
+el ponerse en contacto con EIDE y solicitar el COE. EIDE no se responsabiliza del extravío o no recepción del mismo y no 
+asume ninguna responsabilidad por cualquier problema derivado del desconocimiento de la fecha, horario y lugar del examen 
+y se reserva el derecho de no admitir a candidatos que lleguen tarde.
+
+Es responsabilidad del candidato llegar al lugar del examen con 15 minutos de antelación. Los candidatos deben traer un 
+DNI o pasaporte que atestigüe su identidad en cada examen (escrito y oral).
+
+Le recordamos las condiciones generales que ha aceptado del examen para el que acaba de matricularse."""%(self.exam,self.exam.exam_date)
+		html_content="""<html><body>
+		<h2>CONFIRMACIÓN DE MATRÍCULA</h2>
+<p>Se ha matriculado para el examen <b> %s </b> en la fecha <b> %s </b>. En unos días, se le enviará el COE (Confirmation of Entry) 
+con las fechas y horas del examen escrito y oral a la dirección de e-mail que ha proporcionado el candidato en la 
+hoja de matrícula. Si dos semanas antes de la fecha del examen el candidato no ha recibido el COE, es su responsabilidad 
+el ponerse en contacto con EIDE y solicitar el COE. EIDE no se responsabiliza del extravío o no recepción del mismo y no 
+asume ninguna responsabilidad por cualquier problema derivado del desconocimiento de la fecha, horario y lugar del examen 
+y se reserva el derecho de no admitir a candidatos que lleguen tarde.</p>
+
+<p>Es responsabilidad del candidato llegar al lugar del examen con 15 minutos de antelación. Los candidatos deben traer un 
+DNI o pasaporte que atestigüe su identidad en cada examen (escrito y oral).</p>
+
+<p>Le recordamos las condiciones generales que ha aceptado del examen para el que acaba de matricularse.</p>
+		
+		<P ALIGN=CENTER STYLE="background: #c0c0c0"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><B>1.NORMATIVA
+		GENERAL</B></FONT></FONT></P>
+		<P ALIGN=JUSTIFY><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt">Para
+		llevar a cabo una sesión de examen debe haber al menos un mínimo de
+		4 candidatos por nivel.</FONT></FONT></P>
+		<P ALIGN=JUSTIFY><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt">La
+		tasa de inscripción es válida sólo para la convocatoria en la que
+		se ha inscrito&nbsp; y no es transferible a otro examen o a
+		convocatorias posteriores. Dichas tasas <B>NO</B> se devuelven al
+		candidato en caso de que éste no se presente a parte o a ninguno de
+		los exámenes. </FONT></FONT>
+		</P>
+		<P ALIGN=JUSTIFY><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN STYLE="background: #ffff00">Se
+		enviará el </SPAN></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt"><B><SPAN STYLE="background: #ffff00">COE
+		(</SPAN></B></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt"><I><B><SPAN STYLE="background: #ffff00">Confirmation
+		of Entry</SPAN></B></I></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt"><B><SPAN STYLE="background: #ffff00">)</SPAN></B></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN STYLE="background: #ffff00">
+		con la </SPAN></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt"><B><SPAN STYLE="background: #ffff00">fecha
+		y hora del examen escrito y oral </SPAN></B></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN STYLE="background: #ffff00">a
+		la dirección de e-mail que ha proporcionado el candidato en la hoja
+		de matrícula. Si dos semanas antes de la fecha del examen el
+		candidato no ha recibido el COE, es </SPAN></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt"><B><SPAN STYLE="background: #ffff00">su
+		responsabilidad</SPAN></B></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN STYLE="background: #ffff00">
+		el ponerse en contacto con </SPAN></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt"><I><B><SPAN STYLE="background: #ffff00">EIDE</SPAN></B></I></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt"><SPAN STYLE="background: #ffff00">
+		y solicitar el COE.</SPAN></FONT></FONT> <FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt"><I><B>EIDE</B></I></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt">
+		no se responsabiliza del extravío o no recepción del mismo y no
+		asume ninguna responsabilidad por cualquier problema derivado del
+		desconocimiento de la fecha, horario y lugar del examen y se reserva
+		el derecho de no admitir a candidatos que lleguen tarde.</FONT></FONT></P>
+		<P ALIGN=JUSTIFY><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt">Es
+		responsabilidad del candidato llegar al lugar del examen con <B>15
+		minutos de antelación</B>. Los candidatos deben traer un <B>DNI o
+		pasaporte</B> que atestigüe su identidad en cada examen (escrito y
+		oral).</FONT></FONT></P>
+		<P ALIGN=JUSTIFY>&nbsp;</P>
+		<P ALIGN=CENTER STYLE="background: #c0c0c0"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><B>2.
+		CANCELACIONES</B></FONT></FONT></P>
+		<P ALIGN=JUSTIFY><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt">Solo
+		se admitirán cancelaciones de matrículas hasta la fecha tope de
+		matrícula indicada en el reverso. El candidato recibirá la
+		devolución de la tasa de examen descontándose la cantidad de 35 €
+		en concepto de gastos de administración. Pasada esta fecha sólo se
+		admitirán cancelaciones por causas médicas en cuyo caso el
+		candidato deberá rellenar un formulario solicitando dicha
+		cancelación y adjuntar un CERTIFICADO MÉDICO OFICIAL. En este caso
+		también se procederá a realizar una devolución de la tasa de
+		examen menos 35 € por gastos administrativos. No se admitirán
+		certificados médicos pasados 15 días de la fecha del examen
+		escrito. No se admitirá ningún&nbsp; cambio o cancelación por
+		otros motivos que no sean médicos después del último día de
+		matrícula.</FONT></FONT></P>
+		<P ALIGN=JUSTIFY>&nbsp;</P>
+		<P ALIGN=CENTER STYLE="background: #c0c0c0"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><B>3.
+		CANDIDATOS CON NECESIDADES ESPECIALES</B></FONT></FONT></P>
+		<P ALIGN=JUSTIFY><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt">En
+		caso de que un candidato padezca alguna deficiencia/minusvalía
+		(déficit auditivo, problemas de habla, etc.) y ésta le impida
+		realizar los exámenes en igualdad de condiciones que el resto de
+		candidatos, le informamos que deberá presentar un certificado médico
+		oficial de su discapacidad/minusvalía <U><B>en el momento de
+		matricularse</B></U>. Ese certificado será enviado a la Universidad
+		de Cambridge ESOL Examinations para que decida las condiciones en las
+		que ese candidato debe realizar los exámenes. <I><B>EIDE </B></I>no
+		podrá realizar ninguna gestión para la modificación de los
+		exámenes de los candidatos que no informen de su discapacidad con la
+		suficiente antelación (es decir, durante la matriculación).</FONT></FONT></P>
+		<P ALIGN=JUSTIFY>&nbsp;</P>
+		<P ALIGN=CENTER STYLE="background: #c0c0c0"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><B>4.
+		REVISIÓN DE RESULTADOS</B></FONT></FONT></P>
+		<P ALIGN=JUSTIFY><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt">Si
+		algún candidato no está conforme con su resultado, podrá solicitar
+		una revisión. La revisión de resultados se debe solicitar en la
+		Secretaría de <I><B>EIDE</B></I> siendo necesario seguir el
+		procedimiento establecido por la Universidad de Cambridge.</FONT></FONT></P>
+		<P ALIGN=JUSTIFY STYLE="margin-left: 0.64cm"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt"><B>1.</B></FONT></FONT><SPAN STYLE="font-variant: normal"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt"><B>&nbsp;&nbsp;&nbsp;&nbsp;
+		</B></FONT></FONT></SPAN><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt"><B>Primera
+		revisión:</B></FONT></FONT> <FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt">Revisión
+		clerical de la suma de los puntos: </FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt"><B>25,00
+		€</B></FONT></FONT></P>
+		<P ALIGN=JUSTIFY><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt">2.</FONT></FONT><SPAN STYLE="font-variant: normal"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt">&nbsp;&nbsp;&nbsp;&nbsp;
+		</FONT></FONT></SPAN><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt"><B>Segunda
+		revisión:</B></FONT></FONT> <FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt">Corrección
+		de los exámenes escritos exceptuando el examen oral: </FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt"><B>110,00
+		€.</B></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt">
+		Este importe deberá abonarse en </FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt"><I><B>EIDE</B></I></FONT></FONT><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt">
+		en el momento de hacer la solicitud de la revisión del examen. (Para
+		solicitar esta revisión es imprescindible haber solicitado primero
+		la revisión de la suma de los puntos). Una vez que el candidato
+		reciba el resultado de la primera revisión podrá solicitar la
+		segunda.</FONT></FONT></P>
+		<P ALIGN=JUSTIFY><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt">Los
+		candidatos no podrán revisar sus exámenes físicamente ya que éstos
+		permanecen bajo propiedad intelectual de la Universidad de Cambridge<I>.
+		Cambridge ESOL Examinations </I>&nbsp;<B>NO</B> facilita ningún
+		informe detallado de cada una de las partes en las que consiste el
+		examen y nunca dará más información en la competencia de un
+		candidato de la que aparece en el “Statement of Results”.</FONT></FONT></P>
+		<P ALIGN=JUSTIFY>&nbsp;</P>
+		<P ALIGN=CENTER STYLE="background: #c0c0c0"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><B>5.
+		LOS CERTIFICADOS</B></FONT></FONT></P>
+		<P><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt">Los
+		certificados podrán retirarse de la Secretaría de EIDE
+		aproximadamente 2 meses después de la fecha del examen.</FONT></FONT></P>
+		<P ALIGN=JUSTIFY>&nbsp;</P>
+		<P ALIGN=CENTER STYLE="background: #c0c0c0"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><B>6.
+		PROTECCIÓN DE DATOS</B></FONT></FONT></P>
+		<P ALIGN=JUSTIFY><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt">En
+		cumplimiento con los establecido en la Ley Orgánica 15/99 de
+		Protección de Datos de Carácter Personal, los datos de carácter
+		personal que nos facilite serán utilizados en la forma y con las
+		limitaciones y derechos que recoge la Ley y pasarán a formar parte
+		de un fichero propiedad de <I><B>EIDE</B></I>. Estos datos son
+		necesarios para la gestión de los exámenes de inglés por parte de
+		University <I>of Cambridge ESOL Examinations</I> y son transferidos a
+		la Universidad de Cambridge con el único fin de la prestación de
+		dicho servicio. Al facilitarnos sus datos personales consiente el
+		tratamiento informatizado o no de los mismos por <I><B>EIDE</B></I>
+		para los fines anteriormente citados. </FONT></FONT>
+		</P>
+		<P ALIGN=JUSTIFY>&nbsp;</P>
+		<P ALIGN=CENTER STYLE="background: #c0c0c0"><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 11pt"><B>7.
+		AUTORIZACIÓN FOTO</B></FONT></FONT></P>
+		<P ALIGN=JUSTIFY><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt">Todos
+		aquellos candidatos matriculados en los exámenes PET, FCE, CAE y CPE
+		serán fotografiados el día del examen oral o del examen escrito,
+		para aumentar la seguridad del examen y permitir a instituciones como
+		universidades, organizaciones profesionales y autoridades de
+		inmigración confirmar los resultados de los candidatos de forma
+		fácil y segura. Ninguna persona u organización podrá acceder a la
+		fotografía de ningún candidato sin su autorización.</FONT></FONT></P>
+		<P ALIGN=JUSTIFY><FONT FACE="Arial, sans-serif"><FONT SIZE=2 STYLE="font-size: 9pt">Junto
+		con la matrícula del examen, los candidatos deberán firmar una
+		autorización, indicando su nombre y fecha. Si el candidato es menor
+		de edad, la autorización deberá ser firmada por su madre, padre o
+		tutor.</FONT></FONT></P>
+		<P><FONT COLOR="#1f497d">&nbsp;</FONT></P>
+		<P STYLE="margin-bottom: 0cm"><BR>
+		</P>
+		</body></html>
+		"""%(self.exam,self.exam.exam_date)
+		##send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
+		msg = EmailMultiAlternatives(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
+		msg.attach_alternative(html_content, "text/html")
+		##msg.content_subtype = "html"
+		msg.send()
+		### Para los admins
 		subject = "Hay una nueva matricula para cambridge"
-		message_body = """Se ha dado de alta una nueva matricula para el examen %s. Entre 
-			en http://matrocilas.eide.es/cambridge/ para revisarla si quiere"""%self.exam
+		message_body = """Se ha dado de alta una nueva matricula para el examen %s. Los datos son: DNI: %s \n Nombre: %s \n Apellidos: %s
+		"""%(self.exam,self.dni,self.name,self.surname)
 		mail_admins(subject, message_body)
 	def send_paiment_confirmation_email(self):
-		subject = "Confirmación de la recepción del pago para el examen %s"%self.exam
-		message_body = "Se ha registrado para el examen %s de cambridge blablabla y lalalal y lelele"%self.exam
+		subject = "Confirmación del pago para un examen Cambridge en EIDE"
+		message_body = "Se ha confirmado el pago para el examen %s de cambridge."%self.exam
 		send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
-		subject = "Hay una nueva matricula para cambridge"
-		message_body = """Se ha dado de alta una nueva matricula para el examen %s. Entre 
-			en http://matrocilas.eide.es/cambridge/ para revisarla si quiere"""%self.exam
+		subject = "Se ha confirmado el pago."
+		message_body = """Se acabo de confirmar el pago de un matricula para examen %s. \n 
+		Los datos son:\n
+		DNI: %s \n Nombre: %s \n Apellidos: %s
+		"""%(self.exam,self.dni,self.name,self.surname)
 		mail_admins(subject, message_body)
 	def set_as_paid(self):
 		self.paid = True
@@ -166,7 +339,7 @@ class Registration(BaseRegistration):
 		limit_choices_to = {'registration_start_date__lte': datetime.date.today,\
 		'exam_date__gte': datetime.date.today})
 	def generate_payment_url(self):
-		return '/pagos/cambridge/pb/%s/%s/'%(self.id,self.exam.level.price)
+		return '/pagos/cambridge/pb/%s/%.2f/'%(self.id,self.exam.level.price)
 
 
 class SchoolRegistration(BaseRegistration):
@@ -175,11 +348,13 @@ class SchoolRegistration(BaseRegistration):
 		limit_choices_to = {'registration_start_date__lte': datetime.date.today,\
 		'exam_date__gte': datetime.date.today})
 	def generate_payment_url(self):
-		return '/pagos/cambridge/cb/%s/%s/'%(self.id,self.exam.level.price)
+		return '/pagos/cambridge/sc/%s/%.2f/'%(self.id,self.exam.level.price)
 	
 class ComputerBasedRegistration(BaseRegistration):
 	#asignames los examenes del tipo adecuado y solo mostramos los que están en fecha
 	exam = models.ForeignKey(ComputerBasedExam,\
 		limit_choices_to = {'registration_start_date__lte': datetime.date.today, \
 		'exam_date__gte': datetime.date.today})
+	def generate_payment_url(self):
+		return '/pagos/cambridge/cb/%s/%.2f/'%(self.id,self.exam.level.price)
 	
