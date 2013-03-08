@@ -38,8 +38,9 @@ def confirm_payment(request):
     log.debug("Recibimos una confirmación de pago")
     log.debug(request.POST)
     try:
-        reference = request.POST["Referencia"]
-        #log.debug( reference)
+        #Leemos el bumero de operación donde tenemo s la referencia a la matricula
+        reference = request.POST["Num_operacion"]
+        log.debug("tenemos la referencia: %s"%reference)
         registration, registration_id = reference.split('-')
         registration_type, registration_subtype = registration.split('.')
         log.debug( "tenemos una matricula de %s del tipo %s con el id %s"%(registration_type, registration_subtype, registration_id))
@@ -62,5 +63,6 @@ def confirm_payment(request):
         else:
             return direct_to_template(request,template="pago_noconfirmar.html")
     except:
+        log.debug("No hemos sido capaces de validar el pago de la matricula")
         return direct_to_template(request,template="pago_noconfirmar.html")
     
