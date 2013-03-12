@@ -109,7 +109,7 @@ class BaseRegistration(models.Model):
 	postal_code = models.DecimalField(_('Postal Code'),max_digits=6, decimal_places=0)
 	sex = models.DecimalField(_('Sex'),max_digits=1, decimal_places=0,choices=SEXO)
 	birth_date = models.DateField(_('Birth Date'),help_text=_('Formato: DD-MM-AAAA(dia-mes-año)'))
-	dni = models.CharField(max_length=9,help_text=_('Introduce el DNI completo con la letra sin espacios ni guiones'))
+	dni = models.CharField(max_length=9,blank=True,help_text=_('Introduce el DNI completo con la letra sin espacios ni guiones'))
 	telephone = models.CharField(_('Telephone'),max_length=12)
 	email = models.EmailField()
 	eide_alumn = models.BooleanField(_('EIDE Alumn'), help_text=_('Check this if you are an alumn of EIDE. If not please fill in your centre name'))
@@ -126,18 +126,31 @@ class BaseRegistration(models.Model):
 	def send_confirmation_email(self):
 		##Para el alumno
 		subject = "Te has matriculado para un examen Cambridge en EIDE"
-		message_body = """CONFIRMACIÓN DE MATRÍCULA
-Se ha matriculado para el examen %s en la fecha %s. En unos días, se le enviará el COE (Confirmation of Entry) 
-con las fechas y horas del examen escrito y oral a la dirección de e-mail que ha proporcionado el candidato en la 
-hoja de matrícula. Si dos semanas antes de la fecha del examen el candidato no ha recibido el COE, es su responsabilidad 
-el ponerse en contacto con EIDE y solicitar el COE. EIDE no se responsabiliza del extravío o no recepción del mismo y no 
-asume ninguna responsabilidad por cualquier problema derivado del desconocimiento de la fecha, horario y lugar del examen 
-y se reserva el derecho de no admitir a candidatos que lleguen tarde.
+		message_body = """Acaba de realizar una solicitud de matrícula para el examen %s el día %s. En unas horas le enviaremos una confirmación de matrícula. Si en el plazo de 2 días hábiles no ha recibido la confirmación de matrícula, por favor, póngase en contacto con nosotros:
 
-Es responsabilidad del candidato llegar al lugar del examen con 15 minutos de antelación. Los candidatos deben traer un 
-DNI o pasaporte que atestigüe su identidad en cada examen (escrito y oral).
 
-Le recordamos las condiciones generales que ha aceptado del examen para el que acaba de matricularse."""%(self.exam,self.exam.exam_date)
+Teléfono: 94 493 70 05
+
+Mail: eide@eide.es
+
+
+
+Atentamente,
+
+ 
+Escuelas EIDE
+www.eide.es
+Genaro Oraá 6
+48980 Santurtzi
+Tel: 94 493 70 05
+Fax:  94 461 57 23"""%(self.exam,self.exam.exam_date)
+		
+		### Para los admins
+		subject = "Hay una nueva matricula (sin pagar) para cambridge"
+		message_body = """Se ha dado de alta una nueva matricula para el examen %s. Los datos son: DNI: %s \n Nombre: %s \n Apellidos: %s
+		"""%(self.exam,self.dni,self.name,self.surname)
+		mail_admins(subject, message_body)
+	def send_paiment_confirmation_email(self):
 		html_content="""<html><body>
 		<h2>CONFIRMACIÓN DE MATRÍCULA</h2>
 <p>Se ha matriculado para el examen <b> %s </b> en la fecha <b> %s </b>. En unos días, se le enviará el COE (Confirmation of Entry) 
@@ -296,15 +309,7 @@ DNI o pasaporte que atestigüe su identidad en cada examen (escrito y oral).</p>
 		msg.attach_alternative(html_content, "text/html")
 		##msg.content_subtype = "html"
 		msg.send()
-		### Para los admins
-		subject = "Hay una nueva matricula para cambridge"
-		message_body = """Se ha dado de alta una nueva matricula para el examen %s. Los datos son: DNI: %s \n Nombre: %s \n Apellidos: %s
-		"""%(self.exam,self.dni,self.name,self.surname)
-		mail_admins(subject, message_body)
-	def send_paiment_confirmation_email(self):
-		subject = "Confirmación del pago para un examen Cambridge en EIDE"
-		message_body = "Se ha confirmado el pago para el examen %s de cambridge."%self.exam
-		send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
+		
 		subject = "Se ha confirmado el pago."
 		message_body = """Se acabo de confirmar el pago de un matricula para examen %s. \n 
 		Los datos son:\n

@@ -16,9 +16,12 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=1
+current_page=4
 FILE_NAME_0=11615;Python;0;16;0;1;0;%2Fhome%2Fpatataman%2Fgestionacademia%2Fgestionacademia%2Fmodels%2Falumno_model.py;0;4
-FILE_NAME_1=51816;CSS;0;16;0;1;0;%2Ftmp%2Ffz3temp-1%2Fstyle.css;0;4
+FILE_NAME_1=2976;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fforms.py;0;4
+FILE_NAME_2=5900;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fmodels.py;0;4
+FILE_NAME_3=11319;HTML;0;16;1;1;0;%2Fhome%2Fpatataman%2FTrabajo%2FAutonomo%2Fclientes%2FEIDE%2Fmatriculas%2Fnormativa.html;0;4
+FILE_NAME_4=0;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fviews.py;0;4
 
 [VTE]
 last_dir=/home/patataman/djproyects/proyectos/MatriculaEIDE
