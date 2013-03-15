@@ -47,7 +47,7 @@ def confirm_payment(request):
         if registration_type=="cambridge":
             log.debug("Es cambridge")
             r = Registration.objects.get(id=registration_id)
-        else
+        else:
             log.debug( "No sabemos que tipo de matricula es!" )
         #Comprobamos si tenemos una matricula
         if r:

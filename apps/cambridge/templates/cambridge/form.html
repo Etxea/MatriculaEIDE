@@ -12,6 +12,11 @@
 		    console.log("No es obligatoria la foto porque es un examen KET"); 
 		    $("#legal_foto").hide();
 		}
+		else if (examen.match('schools')){
+		    console.log("No es obligatoria la foto porque es un examen for schools"); 
+		    $("#legal_foto").hide();
+		
+		}
 		else {
 		    console.log("Si es obligatoria la foto"); 
 		    $("#legal_foto").show();

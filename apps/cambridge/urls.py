@@ -58,5 +58,5 @@ urlpatterns = patterns('cambridge/',
             model=Exam,
             success_url = '/cambridge/exam/list',
             template_name='cambridge/exam_edit.html')), name="cambridge_exam_edit"),
-    url(r'^/?$', direct_to_template, {'template': 'cambridge/index.html' },name="cambridge"),
+    url(r'^/?$', IndexExamList.as_view(),name="cambridge"),
 )

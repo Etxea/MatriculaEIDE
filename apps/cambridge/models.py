@@ -44,7 +44,7 @@ SEXO = (
 EXAM_TYPE = (
     (1, _('Paper Based')),
     (2, _('Computer Based')),
-    (2, _('For schools')),
+    (3, _('For schools')),
 )
 
 

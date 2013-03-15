@@ -12,12 +12,27 @@
 <div class="row">
     <div class="span4 offset2">
 	<p> {% trans "... si quieres realizar el examen en papel, matrículate para un Paper Based Exam:" %} </p> 
+	<ul>
+	{% for exam in examenes_pb %}
+		   <li>{{ exam }}</li>
+	{% endfor %}
+	</ul>
     </div>
     <div class="span4 ">
 	<p>{% trans "... si quieres realizar el examen en un ordenador, matrículate para un Computer Based Exam:" %}</p>
+	<ul>
+	{% for exam in examenes_cb %}
+		   <li>{{ exam }}</li>
+	{% endfor %}
+	</ul>
     </div>
     <div class="span4 ">
 	<p>{% trans "... si quieres realizar el examen en papel, matrículate para un iFor Schools:" %}</p>
+	<ul>
+	{% for exam in examenes_fs %}
+		   <li>{{ exam }}</li>
+	{% endfor %}
+	</ul>
     </div>
 </div>
 <br />
@@ -27,4 +42,5 @@
 	    {% trans "Matricúlate" %}</a>
     </div>
 </div>
+
 {% endblock %}

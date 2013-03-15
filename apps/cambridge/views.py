@@ -21,7 +21,7 @@ from django.template.loader import render_to_string
 from django.template import RequestContext
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response
-from django.views.generic import DetailView, ListView, CreateView, UpdateView
+from django.views.generic import DetailView, ListView, CreateView, UpdateView, View
 from django.views.generic.edit import ModelFormMixin
 
 import StringIO
@@ -84,3 +84,14 @@ class RegistrationListView(ListView):
 	template_name='cambridge/lista.html'
 	#Limitamos a las matrocilas de examenes posteriores al día de hoy
 	queryset=Registration.objects.filter(exam__exam_date__gt=datetime.date.today())
+class IndexExamList(ListView):
+	model=Exam
+	def get_context_data(self, **kwargs):
+            context = super(IndexExamList, self).get_context_data(**kwargs)
+            context.update({'examenes_pb' : Exam.objects.filter(exam_date__gt=datetime.date.today()).filter(exam_type=1),
+	         'examenes_cb' : Exam.objects.filter(exam_date__gt=datetime.date.today()).filter(exam_type=2),
+	         'examenes_fs' : Exam.objects.filter(exam_date__gt=datetime.date.today()).filter(exam_type=3)})
+            return context
+             
+        #return render_to_response('cambridge/index.html',{'examenes_pb': examenes_pb, 'examenes_cb': examenes_cb,'examenes_fs': examenes_fs})
+        template_name='cambridge/index.html'
