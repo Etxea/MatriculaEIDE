@@ -26,6 +26,7 @@ from django.views.generic.edit import ModelFormMixin
 
 import StringIO
 import ho.pisa as pisa
+from excel_response import ExcelResponse
 
 from django_xhtml2pdf.utils import render_to_pdf_response
 #from utils import  render_to_pdf_response
@@ -79,11 +80,16 @@ class RegistrationCreateView(CreateView):
 			## FIXME usar un reverse o lazy_reverse
 			return '/cambridge/thanks/'
 	
+def RegistrationExcelView(request):
+    objs = Registration.objects.all()
+    return ExcelResponse(objs)
+
 class RegistrationListView(ListView):
 	#model=ComputerBasedRegistration
 	template_name='cambridge/lista.html'
 	#Limitamos a las matrocilas de examenes posteriores al día de hoy
 	queryset=Registration.objects.filter(exam__exam_date__gt=datetime.date.today())
+
 class IndexExamList(ListView):
 	model=Exam
 	def get_context_data(self, **kwargs):

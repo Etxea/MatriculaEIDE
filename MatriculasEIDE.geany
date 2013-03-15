@@ -16,16 +16,13 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=8
-FILE_NAME_0=1857;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fforms.py;0;4
-FILE_NAME_1=18965;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fmodels.py;0;4
-FILE_NAME_2=2592;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fviews.py;0;4
-FILE_NAME_3=1718;Python;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Furls.py;0;4
-FILE_NAME_4=323;HTML;0;16;2;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Ftemplates%2Fcambridge%2Fregistration_edit.html;0;4
-FILE_NAME_5=50;HTML;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Ftemplates%2Fcambridge%2F_exam_form.html;0;4
-FILE_NAME_6=205;HTML;0;16;2;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Ftemplates%2Fcambridge%2Fcb_registration_edit.html;0;4
-FILE_NAME_7=15;Python;0;16;0;1;0;%2Fhome%2Fpatataman%2FTrabajo%2FAutonomo%2Fclientes%2Fkernet%2Fnuevo_mail_borneo%2Fspamer.py;0;4
-FILE_NAME_8=202;Python;0;16;0;1;0;%2Fhome%2Fpatataman%2FTrabajo%2FAutonomo%2Fclientes%2Fkernet%2Fnuevo_mail_borneo%2Fspamer_fuera_dentro.py;0;4
+current_page=1
+FILE_NAME_0=1361;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fforms.py;0;4
+FILE_NAME_1=5317;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fmodels.py;0;4
+FILE_NAME_2=1689;Python;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Furls.py;0;4
+FILE_NAME_3=3467;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fviews.py;0;4
+FILE_NAME_4=1628;HTML;0;16;2;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Ftemplates%2Fcambridge%2Findex.html;0;4
+FILE_NAME_5=769;HTML;0;16;2;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Ftemplates%2Fsite_base.html;0;4
 
 [VTE]
 last_dir=/home/patataman/djproyects/proyectos/MatriculaEIDE

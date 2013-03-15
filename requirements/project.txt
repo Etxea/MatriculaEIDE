@@ -12,3 +12,7 @@ xhtml2pdf
 pisa
 django_xhtml2pdf
 django-bootstrap-form
+#para exportar a excel
+xlwt
+django-excel-response 
+

@@ -123,9 +123,14 @@ Tel: 94 493 70 05
 Fax:  94 461 57 23"""%(self.exam,self.exam.exam_date)
 		
 		### Para los admins
-		subject = "Hay una nueva matricula (sin pagar) para cambridge"
-		message_body = """Se ha dado de alta una nueva matricula para el examen %s. Los datos son: ID: %s \n Nombre: %s \n Apellidos: %s
-		"""%(self.exam,self.id,self.name,self.surname)
+		subject = "Hay una nueva matricula (sin pagar) para cambridge %s"%self.exam
+		message_body = """Se ha dado de alta una nueva matricula para el examen %s. 
+Los datos son del alumno son: 
+	Nombre: %s
+	Apellidos: %s
+	Telefono: %s
+	e-mail: %s
+"""%(self.exam,self.name,self.surname,self.telephone,self.email)
 		mail_admins(subject, message_body)
 	def send_paiment_confirmation_email(self):
 		subject = "Se ha confirmado el pago de la matricula para el examen %s"%self.exam
