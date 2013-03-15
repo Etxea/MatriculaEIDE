@@ -37,9 +37,9 @@ urlpatterns = patterns('cambridge/',
             template_name='cambridge/registration_edit.html')), name="cambridge_edit"),
     url(r'^view/(?P<pk>\d+)/$', ver, name="cambridge_view"),
     url(r'^print/(?P<pk>\d+)/$', imprimir_cambridge, name="cambridge_imprimir"),
-    
+    url(r'^new/(?P<pk>\d+)/$',RegistrationCreateView.as_view()),
     url(r'^new/$',RegistrationCreateView.as_view(), name="cambridge_nueva"),
-            
+    
 
     ## Genericas
     url(r'thanks/$', direct_to_template, {'template': 'cambridge/gracias.html' },name="cambridge_gracias"),

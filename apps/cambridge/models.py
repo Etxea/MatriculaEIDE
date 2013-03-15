@@ -44,7 +44,8 @@ SEXO = (
 EXAM_TYPE = (
     (1, _('Paper Based')),
     (2, _('Computer Based')),
-    (3, _('For schools')),
+    (3, _('For schools Paper Based')),
+    (4, _('For schools Computer Based')),
 )
 
 
@@ -56,10 +57,10 @@ class Level(models.Model):
 	
 
 class Exam(models.Model):
-	exam_type =  models.DecimalField(_('Exam Type'),max_digits=1, decimal_places=0,choices=EXAM_TYPE)
+	exam_type =  models.DecimalField(_('Tipo Examen'),max_digits=1, decimal_places=0,choices=EXAM_TYPE)
 	level = models.ForeignKey(Level)
 	exam_date =  models.DateField(default=datetime.date.today)
-	registration_start_date =  models.DateField(default=datetime.date.today)
+	registration_end_date =  models.DateField(_('Fecha fin de la matriculación'),default=datetime.date.today)
 	def registrations(self):
 		try:
 			return self.registration_set.count()
@@ -77,8 +78,7 @@ class Exam(models.Model):
 	
 #Asbtract model to inherit from him
 class Registration(models.Model):
-	exam = models.ForeignKey(Exam,limit_choices_to = {'registration_start_date__lte': datetime.date.today,\
-		'exam_date__gte': datetime.date.today})
+	exam = models.ForeignKey(Exam,limit_choices_to = {'registration_end_date__gte': datetime.date.today})
 	password = models.CharField(_('Password'),max_length=6,blank=True,editable=False)
 	name = models.CharField(_('Name'),max_length=50)
 	surname = models.CharField(_('Surname'),max_length=100)
@@ -91,10 +91,7 @@ class Registration(models.Model):
 	telephone = models.CharField(_('Telephone'),max_length=12)
 	email = models.EmailField()
 	eide_alumn = models.BooleanField(_('EIDE Alumn'), help_text=_('Check this if you are an alumn of EIDE. If not please fill in your centre name'))
-	centre_name = models.CharField(_('Centre Name'),max_length=100, blank=True)
-	#asignames los examenes del tipo adecuado y solo mostramos los que están en fecha
-	
-		
+	centre_name = models.CharField(_('Centre Name'),max_length=100, blank=True)	
 	registration_date = models.DateField(default=datetime.date.today, auto_now_add=True)
 	paid = models.BooleanField(_('Paid'),default=False)
 	accept_conditions = models.BooleanField(_('Accept the conditions'), help_text=_('You must accept the conditions to register'))

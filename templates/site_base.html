@@ -18,9 +18,12 @@
 	    </a>
 	    {% if user.is_authenticated %}
 	    <ul class="dropdown-menu">
-		<li><a href="{% url cambridge_exam_list %}">{% trans "Exams List" %}</a></li>
+		<li><a href="{% url cambridge_exam_list %}">{% trans "Lista de examenes" %}</a></li>
+		<li><a href="{% url cambridge_exam_new %}">{% trans "Nuevo examene" %}</a></li>
 		<li class="divider"></li>
-		<li><a href="{% url cambridge_list %}">{% trans "Registrations List" %}</a></li>
+		<li><a href="{% url cambridge_list %}">{% trans "Lista Matrículas" %}</a></li>
+		<li class="divider"></li>
+		<li><a href="/admin/cambridge/level/">{% trans "Gestionar niveles" %}</a></li>
 		
 	    </ul>
 	    {% endif %}

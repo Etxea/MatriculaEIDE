@@ -4,43 +4,45 @@
 
 <div class="hero-unit">
 
-    <h1>{% trans "Sistema de matrícula Online para exámenes Cambridge" %}</h1>
+    <h1>{% trans "Matrícula para Exámenes Cambridge English" %}</h1>
     <br />
     <p>{% trans "Matricularse en EIDE para realizar un examen de Cambridge es sencillo, tan solo elije su tipo de examen..." %}</p>
+    <p><a class="btn primary large" href="{% url cambridge_nueva %}">
+	    {% trans "Matricúlate" %}</a></p>
 </div>
 
 <div class="row">
-    <div class="span4 offset2">
-	<p> {% trans "... si quieres realizar el examen en papel, matrículate para un Paper Based Exam:" %} </p> 
+    <div class="span3">
+	<p> {% trans "... si quieres realizar el examen en papel, matrículate para un Paper Based Exam. </p><p>Tenemos las siguientes convocatorias:" %} </p> 
 	<ul>
 	{% for exam in examenes_pb %}
-		   <li>{{ exam }}</li>
+		   <li>{{ exam.level }} - {{ exam.exam_date }}</li>
 	{% endfor %}
 	</ul>
     </div>
-    <div class="span4 ">
-	<p>{% trans "... si quieres realizar el examen en un ordenador, matrículate para un Computer Based Exam:" %}</p>
+    <div class="span3 ">
+	<p>{% trans "... si quieres realizar el examen en un ordenador, matrículate para un Computer Based Exam. </p><p>Tenemos las siguientes convocatorias:" %}</p>
 	<ul>
 	{% for exam in examenes_cb %}
-		   <li>{{ exam }}</li>
+		   <li>{{ exam.level }} - {{ exam.exam_date }}</li>
 	{% endfor %}
 	</ul>
     </div>
-    <div class="span4 ">
-	<p>{% trans "... si quieres realizar el examen en papel, matrículate para un iFor Schools:" %}</p>
+    <div class="span3 ">
+	<p>{% trans "... si quieres realizar el examen en papel y eres menor matrículate para un For Schools. </p><p>Tenemos las siguientes convocatorias:" %}</p>
 	<ul>
-	{% for exam in examenes_fs %}
-		   <li>{{ exam }}</li>
+	{% for exam in examenes_fs_pb %}
+		   <li>{{ exam.level }} - {{ exam.exam_date }}</li>
+	{% endfor %}
+	</ul>
+    </div>
+    <div class="span3 ">
+	<p>{% trans "... si quieres realizar el examen en ordenador y eres menor matrículate para un For Schools.</p><p>Tenemos las siguientes convocatorias:" %}</p>
+	<ul>
+	{% for exam in examenes_fs_cb %}
+		   <li>{{ exam.level }} - {{ exam.exam_date }}</li>
 	{% endfor %}
 	</ul>
     </div>
 </div>
-<br />
-<div class="row">
-    <div class="span4 offset6">
-	    <a class="btn primary large" href="{% url cambridge_nueva %}">
-	    {% trans "Matricúlate" %}</a>
-    </div>
-</div>
-
 {% endblock %}
