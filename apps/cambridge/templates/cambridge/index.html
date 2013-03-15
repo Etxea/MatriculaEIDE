@@ -12,13 +12,19 @@
 <div class="row">
     <div class="span4 offset2">
 	<p> {% trans "... si quieres realizar el examen en papel, matrículate para un Paper Based Exam:" %} </p> 
-	    <a class="btn primary large" href="{% url cambridge_nueva %}">
-	    {% trans "Paper Based Exam" %}</a>
     </div>
-    <div class="span4 offset2">
-	<p>{% trans "... si quieres realizar el examen en papel, matrículate para un Paper Based Exam:" %}</p>
-	    <a class="btn primary large" href="{% url cambridge_nueva_computer %}">
-		{% trans "Computer Based Exam" %}</a>
+    <div class="span4 ">
+	<p>{% trans "... si quieres realizar el examen en un ordenador, matrículate para un Computer Based Exam:" %}</p>
+    </div>
+    <div class="span4 ">
+	<p>{% trans "... si quieres realizar el examen en papel, matrículate para un iFor Schools:" %}</p>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="span4 offset6">
+	    <a class="btn primary large" href="{% url cambridge_nueva %}">
+	    {% trans "Matricúlate" %}</a>
     </div>
 </div>
 {% endblock %}

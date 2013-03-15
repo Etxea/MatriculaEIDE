@@ -44,6 +44,7 @@ SEXO = (
 EXAM_TYPE = (
     (1, _('Paper Based')),
     (2, _('Computer Based')),
+    (2, _('For schools')),
 )
 
 
@@ -53,15 +54,12 @@ class Level(models.Model):
 	def __unicode__(self):
 		return "%s-%se"%(self.name,self.price)
 	
-class BaseExam(models.Model):
+
+class Exam(models.Model):
+	exam_type =  models.DecimalField(_('Exam Type'),max_digits=1, decimal_places=0,choices=EXAM_TYPE)
 	level = models.ForeignKey(Level)
 	exam_date =  models.DateField(default=datetime.date.today)
 	registration_start_date =  models.DateField(default=datetime.date.today)
-	
-	class Meta:
-		abstract = True
-
-class Exam(BaseExam):
 	def registrations(self):
 		try:
 			return self.registration_set.count()
@@ -75,32 +73,12 @@ class Exam(BaseExam):
 			return 0
 	
 	def __unicode__(self):
-		return "%s %s %s"%(_('Exam'),self.exam_date.strftime('%d-%m-%Y'),self.level)
+		return "%s %s %s"%(self.get_exam_type_display(),self.exam_date.strftime('%d-%m-%Y'),self.level.name)
 	
-class SchoolExam(BaseExam):
-	def __unicode__(self):
-		return "School Exam %s %s"%(self.exam_date,self.level)
-
-
-class ComputerBasedExam(BaseExam):
-	def registrations(self):
-		try:
-			return self.computerbasedregistration_set.count()
-		except:
-			return 0
-	
-	def paid_registrations(self):
-		try:
-			return self.computerbasedregistration_set.filter(paid=True).count()
-		except:
-			return 0
-	
-	def __unicode__(self):
-		return "%s %s %s"%(_('Computer Based Exam'),self.exam_date,self.level)
-	
-
 #Asbtract model to inherit from him
-class BaseRegistration(models.Model):
+class Registration(models.Model):
+	exam = models.ForeignKey(Exam,limit_choices_to = {'registration_start_date__lte': datetime.date.today,\
+		'exam_date__gte': datetime.date.today})
 	password = models.CharField(_('Password'),max_length=6,blank=True,editable=False)
 	name = models.CharField(_('Name'),max_length=50)
 	surname = models.CharField(_('Surname'),max_length=100)
@@ -109,12 +87,14 @@ class BaseRegistration(models.Model):
 	postal_code = models.DecimalField(_('Postal Code'),max_digits=6, decimal_places=0)
 	sex = models.DecimalField(_('Sex'),max_digits=1, decimal_places=0,choices=SEXO)
 	birth_date = models.DateField(_('Birth Date'),help_text=_('Formato: DD-MM-AAAA(dia-mes-año)'))
-	dni = models.CharField(max_length=9,blank=True,help_text=_('Introduce el DNI completo con la letra sin espacios ni guiones'))
+	#dni = models.CharField(max_length=9,blank=True,help_text=_('Introduce el DNI completo con la letra sin espacios ni guiones'))
 	telephone = models.CharField(_('Telephone'),max_length=12)
 	email = models.EmailField()
 	eide_alumn = models.BooleanField(_('EIDE Alumn'), help_text=_('Check this if you are an alumn of EIDE. If not please fill in your centre name'))
 	centre_name = models.CharField(_('Centre Name'),max_length=100, blank=True)
+	#asignames los examenes del tipo adecuado y solo mostramos los que están en fecha
 	
+		
 	registration_date = models.DateField(default=datetime.date.today, auto_now_add=True)
 	paid = models.BooleanField(_('Paid'),default=False)
 	accept_conditions = models.BooleanField(_('Accept the conditions'), help_text=_('You must accept the conditions to register'))
@@ -147,10 +127,11 @@ Fax:  94 461 57 23"""%(self.exam,self.exam.exam_date)
 		
 		### Para los admins
 		subject = "Hay una nueva matricula (sin pagar) para cambridge"
-		message_body = """Se ha dado de alta una nueva matricula para el examen %s. Los datos son: DNI: %s \n Nombre: %s \n Apellidos: %s
-		"""%(self.exam,self.dni,self.name,self.surname)
+		message_body = """Se ha dado de alta una nueva matricula para el examen %s. Los datos son: ID: %s \n Nombre: %s \n Apellidos: %s
+		"""%(self.exam,self.id,self.name,self.surname)
 		mail_admins(subject, message_body)
 	def send_paiment_confirmation_email(self):
+		subject = "Se ha confirmado el pago de la matricula para el examen %s"%self.exam
 		html_content="""<html><body>
 		<h2>CONFIRMACIÓN DE MATRÍCULA</h2>
 <p>Se ha matriculado para el examen <b> %s </b> en la fecha <b> %s </b>. En unos días, se le enviará el COE (Confirmation of Entry) 
@@ -304,17 +285,18 @@ DNI o pasaporte que atestigüe su identidad en cada examen (escrito y oral).</p>
 		</P>
 		</body></html>
 		"""%(self.exam,self.exam.exam_date)
+		message_body = html_content
 		##send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
 		msg = EmailMultiAlternatives(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
 		msg.attach_alternative(html_content, "text/html")
 		##msg.content_subtype = "html"
 		msg.send()
 		
-		subject = "Se ha confirmado el pago."
+		subject = "Se ha confirmado el pago"
 		message_body = """Se acabo de confirmar el pago de un matricula para examen %s. \n 
-		Los datos son:\n
-		DNI: %s \n Nombre: %s \n Apellidos: %s
-		"""%(self.exam,self.dni,self.name,self.surname)
+Los datos son:\n
+ID: %s \n Nombre: %s \n Apellidos: %s
+"""%(self.exam,id,self.name,self.surname)
 		mail_admins(subject, message_body)
 	def set_as_paid(self):
 		self.paid = True
@@ -322,7 +304,10 @@ DNI o pasaporte que atestigüe su identidad en cada examen (escrito y oral).</p>
 		self.send_paiment_confirmation_email()
 		
 	def __unicode__(self):
-		return "%s-%s"%(self.registration_date,self.dni)
+		return "%s-%s"%(self.id,self.exam)
+	def registration_name(self):
+		#return "%s - %s, %s"%(self.exam,self.surname,self.name)
+		return "%s"%(self.exam)
 	def save(self, *args, **kwargs):
 		##We generate a random password
 		if self.id is not None:
@@ -333,33 +318,9 @@ DNI o pasaporte que atestigüe su identidad en cada examen (escrito y oral).</p>
 			self.password = ''.join([choice(letters) for i in xrange(6)])
 			#We send a confirmation mail to te registrant and a advise mail to the admins
 			self.send_confirmation_email()
-		super(BaseRegistration, self).save(*args, **kwargs)
+		super(Registration, self).save(*args, **kwargs)
 		
-	class Meta:
-		abstract = True
-
-class Registration(BaseRegistration):
-	#asignames los examenes del tipo adecuado y solo mostramos los que están en fecha
-	exam = models.ForeignKey(Exam,\
-		limit_choices_to = {'registration_start_date__lte': datetime.date.today,\
-		'exam_date__gte': datetime.date.today})
-	def generate_payment_url(self):
-		return '/pagos/cambridge/pb/%s/%.2f/'%(self.id,self.exam.level.price)
-
-
-class SchoolRegistration(BaseRegistration):
-	#asignames los examenes del tipo adecuado y solo mostramos los que están en fecha
-	exam = models.ForeignKey(SchoolExam,\
-		limit_choices_to = {'registration_start_date__lte': datetime.date.today,\
-		'exam_date__gte': datetime.date.today})
-	def generate_payment_url(self):
-		return '/pagos/cambridge/sc/%s/%.2f/'%(self.id,self.exam.level.price)
 	
-class ComputerBasedRegistration(BaseRegistration):
-	#asignames los examenes del tipo adecuado y solo mostramos los que están en fecha
-	exam = models.ForeignKey(ComputerBasedExam,\
-		limit_choices_to = {'registration_start_date__lte': datetime.date.today, \
-		'exam_date__gte': datetime.date.today})
-	def generate_payment_url(self):
-		return '/pagos/cambridge/cb/%s/%.2f/'%(self.id,self.exam.level.price)
 	
+	def generate_payment_url(self):
+		return '/pagos/cambridge/%s/'%(self.id)

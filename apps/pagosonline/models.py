@@ -18,6 +18,9 @@
 from django.db import models
 from django.conf import settings
 import hashlib
+#from django.utils.text import slugify
+from django.template.defaultfilters import slugify
+from cambridge.models import Registration
 # Create your models here.
 class payament_info:
     """El objecto donde guardamos la infor para pasarla a la vista"""
@@ -39,11 +42,14 @@ class payament_info:
     order_id = ""
     firma = ""
     
-    def __init__(self, amount,reference, sub_reference, order_id):
+    def __init__(self, reference, order_id):
+        if reference=="cambridge":
+            r = Registration.objects.get(id=order_id)
         #La cantidad la multiplicamos por 100 para tener los 2 decimales en un numero entero
-        self.amount = int(float(amount)*100)
+        self.amount = int(float(r.exam.level.price)*100)
+        self.amount_text = "%s"%(float(r.exam.level.price))
         #generamos el order_i con la referencia, subreferencia y el ID del la matricula para luego saber cual es
-        self.order_id = "%s.%s-%s"%(reference,sub_reference,order_id)
+        self.order_id = "%s-%s-%s"%(reference,order_id,slugify(r.registration_name()))
         #Leemos de los settings
         self.MerchantID = settings.PAYMENT_INFO["MerchantID"]
         self.AcquirerBIN=settings.PAYMENT_INFO["AcquirerBIN"]

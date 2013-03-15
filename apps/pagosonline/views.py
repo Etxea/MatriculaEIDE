@@ -18,19 +18,17 @@
 from django.views.generic.simple import direct_to_template
 from django.contrib.csrf.middleware import csrf_exempt
 from models import *
-from cambridge.models import ComputerBasedRegistration,Registration
+from cambridge.models import Registration
 
 import logging
 log = logging.getLogger("MatriculaEIDE")
 
 
-def make_payment(request, reference,sub_reference, order_id,amount):
+def make_payment(request, reference, order_id):
     """ Recibimos un texto de referencia, el ID de la orden y una cantidad en euros (sin decimales)"""
     return direct_to_template(request,
         template= "pago.html",
-        extra_context={"payament_info": payament_info(amount, reference, sub_reference, order_id),
-            ##El precio hay que multiplicarlo por 100 para cuadrar los 2 decimales que nos exige la pasarela
-            "amount": amount})
+        extra_context={"payament_info": payament_info(reference, order_id)})
 
 @csrf_exempt
 def confirm_payment(request):
@@ -41,19 +39,16 @@ def confirm_payment(request):
         #Leemos el bumero de operación donde tenemo s la referencia a la matricula
         reference = request.POST["Num_operacion"]
         log.debug("tenemos la referencia: %s"%reference)
-        registration, registration_id = reference.split('-')
-        registration_type, registration_subtype = registration.split('.')
-        log.debug( "tenemos una matricula de %s del tipo %s con el id %s"%(registration_type, registration_subtype, registration_id))
+        registration_type, registration_id, registration_name = reference.split('-')
+        log.debug( "tenemos una matricula de %s con el id %s"%(registration_type, registration_id))
         r = None
+        log.debug("Vamos a buscarla")
         #Buscamos la matricula 
         if registration_type=="cambridge":
-            if registration_subtype=="pb":
-                print "Hola"
-                r = Registration.objects.get(id=registration_id)
-            elif registration_subtype=="cb":
-                r = ComputerBasedRegistration.objects.get(id=registration_id)
-            else:
-                log.debug( "No sabemos que matricula de cambridge!" )
+            log.debug("Es cambridge")
+            r = Registration.objects.get(id=registration_id)
+        else
+            log.debug( "No sabemos que tipo de matricula es!" )
         #Comprobamos si tenemos una matricula
         if r:
             log.debug( "Tenemos la matricula")

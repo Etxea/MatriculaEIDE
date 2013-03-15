@@ -6,11 +6,11 @@
 <table class="table">
     <thead>
         <tr>
+            <td>{% trans "Number" %}</td>
             <td>{% trans "Level" %}</td>
             <td>{% trans "Exam Date" %}</td>
             <td>{% trans "Surname" %}</td>
             <td>{% trans "Name" %}</td>
-            <td>{% trans "DNI" %}</td>
             <td>{% trans "Paid" %}</td>
             <td>{% trans "Print" %}</td>
         </tr>
@@ -18,11 +18,12 @@
     <tbody>
         {% for matricula in object_list %}
         <tr>
+            <td> <a href="{% url cambridge_edit matricula.id %}">cambridge.pb-{{ matricula.id }}</a> </td>
             <td>{{ matricula.exam.level.name }}</td>
             <td>{{ matricula.exam.exam_date }}</td>
             <td>{{ matricula.surname }}</td>
             <td>{{ matricula.name }}</td>
-            <td> <a href="{% url cambridge_edit matricula.id %}">{{ matricula.dni }}</a> </td>
+            
             <td>{{ matricula.paid }}</td>
             <td>
                 <a class="btn btn-primary" href="{% url cambridge_imprimir matricula.id %}">

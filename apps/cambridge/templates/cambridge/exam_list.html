@@ -5,7 +5,32 @@
 {% block body %}
 <h1>{% trans "Cambridge Exam List" %}</h1>
 
-{% include "cambridge/_exam_list.html" %}
+<table class="table">
+    <thead>
+        <tr>
+        <td>{% trans "Level" %}</td>
+        <td>{% trans "Type" %}</td>
+        <td>{% trans "Date" %}</td>
+        <td>{% trans "Registration Start Date" %}</td>
+        <td>{% trans "Price" %}</td>
+        <td>{%trans "Registrations" %}</td>
+        <td>{%trans "Paid Registrations" %}</td>
+        </tr>
+    </thead>
+    <tbody>
+    {% for exam in object_list %}
+    <tr>
+    <td><a href="{% url cambridge_exam_edit exam.id %}">{{ exam.level }}</a></td>
+    <td>{{ exam.get_exam_type_display }}</a></td>
+    <td>{{ exam.exam_date }}</td>
+    <td>{{ exam.registration_start_date }}</td>
+    <td>{{ exam.level.price }}</td>
+    <td>{{ exam.registrations }}</td>
+    <td>{{ exam.paid_registrations }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
 
 <a class="btn" href="{% url cambridge_exam_new %}">{% trans "New" %}	</a>
 {% endblock %}

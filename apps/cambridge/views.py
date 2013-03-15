@@ -66,36 +66,8 @@ def imprimir_cambridge(request, pk):
 	return imprimir(registration,request)
 
 
-@login_required
-def imprimir_cambridge_cb(request, pk):
-	logger.debug("Vamos a imprimir una matricula normal Computer based")
-	registration = ComputerBasedRegistration.objects.get(id=pk)
-	return imprimir(registration)
-
-class ComputerBasedRegistrationListView(ListView):
-	#model=ComputerBasedRegistration
-	template_name='cambridge/lista.html'
-	#Limitamos a las matrocilas de examenes posteriores al día de hoy
-	queryset=ComputerBasedRegistration.objects.filter(exam__exam_date__gt=datetime.date.today())
-
-class ComputerBasedRegistrationCreateView(CreateView, ModelFormMixin):
-	model = ComputerBasedRegistration
-	form_class = ComputerBasedRegistrationForm
-	template_name='cambridge/registration_form_computer.html'
-	def get_success_url(self):
-		#Comprobamos si el pago es por txartela:
-		if True:
-			return self.object.generate_payment_url()
-		else:
-			## FIXME usar un reverse o lazy_reverse
-			return '/cambridge/thanks/'
-
-class ComputerBasedRegistrationUpdateView(UpdateView):
-	model=ComputerBasedRegistration,
-	success_url = '/cambridge/list',
-	template_name='cambridge/cambridge_cb_edit.html'
 	
-class PaperBasedRegistrationCreateView(CreateView):
+class RegistrationCreateView(CreateView):
 	model = Registration
 	form_class = RegistrationForm
 	template_name='cambridge/registration_form.html'
