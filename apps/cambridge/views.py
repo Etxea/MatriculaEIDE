@@ -79,7 +79,8 @@ class RegistrationCreateView(CreateView):
 		else:
 			## FIXME usar un reverse o lazy_reverse
 			return '/cambridge/thanks/'
-	
+
+@login_required	
 def RegistrationExcelView(request):
     objs = Registration.objects.all()
     return ExcelResponse(objs)

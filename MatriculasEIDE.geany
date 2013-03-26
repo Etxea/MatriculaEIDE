@@ -16,13 +16,15 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=1
+current_page=7
 FILE_NAME_0=1361;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fforms.py;0;4
 FILE_NAME_1=5317;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fmodels.py;0;4
-FILE_NAME_2=1689;Python;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Furls.py;0;4
-FILE_NAME_3=3467;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fviews.py;0;4
+FILE_NAME_2=1302;Python;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Furls.py;0;4
+FILE_NAME_3=3058;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fviews.py;0;4
 FILE_NAME_4=1628;HTML;0;16;2;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Ftemplates%2Fcambridge%2Findex.html;0;4
-FILE_NAME_5=769;HTML;0;16;2;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Ftemplates%2Fsite_base.html;0;4
+FILE_NAME_5=782;HTML;0;16;2;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Ftemplates%2Fsite_base.html;0;4
+FILE_NAME_6=171;HTML;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Ftemplates%2Fcambridge%2Flista.html;0;4
+FILE_NAME_7=385;None;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Frequirements%2Fproject.txt;0;4
 
 [VTE]
 last_dir=/home/patataman/djproyects/proyectos/MatriculaEIDE
