@@ -17,6 +17,7 @@
             <td>{% trans "Name" %}</td>
             <td>{% trans "Paid" %}</td>
             <td>{% trans "Print" %}</td>
+            <td>{% trans "Delete" %}</td>
         </tr>
     </thead>
     <tbody>
@@ -34,7 +35,12 @@
                 <i class="icon-user icon-white"></i>
                 {% trans "Print" %}
                 </a>
-                <span class="add-on">
+            </td>
+            <td>
+                <a class="btn btn-primary" href="{% url cambridge_delete matricula.id %}">
+                <i class="icon-delete icon-white"></i>
+                {% trans "Delete" %}
+                </a>
             </td>
         </tr>
     {% endfor %}

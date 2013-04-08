@@ -20,7 +20,7 @@ from django.conf.urls.defaults import *
 from django.views.generic import list_detail, create_update
 from django.views.generic.simple import direct_to_template
 from django.contrib.auth.decorators import login_required, permission_required
-from django.views.generic import DetailView, ListView, CreateView, UpdateView
+from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
 
 from views import *
 from forms import *
@@ -36,6 +36,10 @@ urlpatterns = patterns('cambridge/',
             success_url = '/cambridge/list',
             form_class = RegistrationEditForm,
             template_name='cambridge/registration_edit.html')), name="cambridge_edit"),
+    url(r'^delete/(?P<pk>\d+)/$',
+        login_required(DeleteView.as_view(
+            model=Registration,
+            success_url="/cambridge/list/")), name="cambridge_delete"),
     url(r'^view/(?P<pk>\d+)/$', ver, name="cambridge_view"),
     url(r'^print/(?P<pk>\d+)/$', imprimir_cambridge, name="cambridge_imprimir"),
     url(r'^new/(?P<pk>\d+)/$',RegistrationCreateView.as_view()),
@@ -48,6 +52,10 @@ urlpatterns = patterns('cambridge/',
     url(r'^exam/list/$',login_required(
 		ListView.as_view(model=Exam,template_name='cambridge/exam_list.html')
 		), name="cambridge_exam_list"),
+    url(r'^exam/delete/(?P<pk>\d+)/$',
+        login_required(DeleteView.as_view(
+            model=Exam,
+            success_url="/cambridge/exam/list/")), name="cambridge_exam_delete"),
     url(r'^exam/new/$', login_required(
         CreateView.as_view(
             model=Exam,

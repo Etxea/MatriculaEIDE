@@ -15,6 +15,7 @@
         <td>{% trans "Price" %}</td>
         <td>{%trans "Matrículas" %}</td>
         <td>{%trans "Paid Registrations" %}</td>
+        <td>{%trans "Delete" %}</td>
         </tr>
     </thead>
     <tbody>
@@ -27,6 +28,7 @@
     <td>{{ exam.level.price }}</td>
     <td>{{ exam.registrations }}</td>
     <td>{{ exam.paid_registrations }}</td>
+    <td><a href="{% url cambridge_exam_delete exam.id %}">Eliminar</a></td>
     </tr>
     {% endfor %}
     </tbody>
