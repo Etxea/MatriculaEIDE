@@ -30,6 +30,7 @@ from models import *
 urlpatterns = patterns('cambridge/',
     url(r'^list/$',login_required(RegistrationListView.as_view()), name="cambridge_list"),
     url(r'^excel/$',RegistrationExcelView, name="cambridge_excel"),
+    url(r'^pay/(?P<pk>\d+)/$',RegistrationPayment.as_view(),name="cambridge_pay"),
     url(r'^edit/(?P<pk>\d+)/$',
         login_required(UpdateView.as_view(
             model=Registration,

@@ -42,10 +42,10 @@ SEXO = (
 )
 
 EXAM_TYPE = (
-    (1, _('Paper Based')),
-    (2, _('Computer Based')),
-    (3, _('For schools Paper Based')),
-    (4, _('For schools Computer Based')),
+    (1, _('PB')),
+    (2, _('CB')),
+    (3, _('F.S. PB')),
+    (4, _('F.S. CB')),
 )
 
 
@@ -74,7 +74,7 @@ class Exam(models.Model):
 			return 0
 	
 	def __unicode__(self):
-		return "%s %s %s"%(self.get_exam_type_display(),self.exam_date.strftime('%d-%m-%Y'),self.level.name)
+		return "%s %s %s"%(self.level.name,self.get_exam_type_display(),self.exam_date.strftime('%d-%m-%Y'))
 	
 #Asbtract model to inherit from him
 class Registration(models.Model):
@@ -104,7 +104,7 @@ class Registration(models.Model):
 		##Para el alumno
 		subject = "Te has matriculado para un examen Cambridge en EIDE"
 		message_body = """Acaba de realizar una solicitud de matrícula para el examen %s el día %s. En unas horas le enviaremos una confirmación de matrícula. Si en el plazo de 2 días hábiles no ha recibido la confirmación de matrícula, por favor, póngase en contacto con nosotros:
-
+Si no ha realizado el pago puede hacerlo a tarvés de la siguiente dirección: https://matricula-eide.es/pagos/cambridge/%s/
 
 Teléfono: 94 493 70 05
 
@@ -120,7 +120,7 @@ www.eide.es
 Genaro Oraá 6
 48980 Santurtzi
 Tel: 94 493 70 05
-Fax:  94 461 57 23"""%(self.exam,self.exam.exam_date)
+Fax:  94 461 57 23"""%(self.exam,self.exam.exam_date,self.id)
 		
 		### Para los admins
 		subject = "Hay una nueva matricula (sin pagar) para cambridge %s"%self.exam

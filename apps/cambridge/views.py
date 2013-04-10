@@ -66,6 +66,9 @@ def imprimir_cambridge(request, pk):
 	registration = Registration.objects.get(id=pk)
 	return imprimir(registration,request)
 
+class RegistrationPayment(DetailView):
+	model=Registration
+	template_name='cambridge/payment.html'
 
 	
 class RegistrationCreateView(CreateView):
@@ -73,12 +76,13 @@ class RegistrationCreateView(CreateView):
 	form_class = RegistrationForm
 	template_name='cambridge/registration_form.html'
 	def get_success_url(self):
-		#Comprobamos si el pago es por txartela:
-		if True:
-			return self.object.generate_payment_url()
-		else:
-			## FIXME usar un reverse o lazy_reverse
-			return '/cambridge/thanks/'
+		return '/cambridge/pay/%d'%self.object.id
+#		#Comprobamos si el pago es por txartela:
+#		if True:
+#			return self.object.generate_payment_url()
+#		else:
+#			## FIXME usar un reverse o lazy_reverse
+#			return '/cambridge/thanks/'
 
 @login_required	
 def RegistrationExcelView(request):

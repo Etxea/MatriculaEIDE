@@ -1,0 +1,18 @@
+{% extends "site_base.html"%}
+{% load i18n %}
+{% block body %}
+<h1>Pago de la matrícula {{object}}</h1>
+
+<div class="well">La manera de pago más rápida es <a href="{{object.generate_payment_url}}">con tarjeta bancaría </a> . El pago se realizará a través de la pasarela de pago segura del ceca (Conferedarión Española de Caja de Ahorro) que garantiza una <b>total seguridad</b>. </div>
+
+<div class="well">O si lo prefiere puede pagar a través de transferencia bancaría con los siguientes datos:<br />
+<ul>
+    <li>Cuenta Bancaría: <b>2095 0553 50 9108403919</b></li>
+    <li>Concepto: {{object.exam.level}}-{{object.exam.exam_date}} {{object.name}} {{object.surname}}</li>
+    <li>Importe: <b>{{object.exam.level.price}}</b>€</li>
+</ul>
+Tenga en cuenta que pasarán un par de días hasta que podamos confirmar el pago de la matrícula.
+</div>
+
+
+{% endblock %}

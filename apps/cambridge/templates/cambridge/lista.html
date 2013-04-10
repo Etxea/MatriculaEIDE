@@ -29,7 +29,7 @@
             <td>{{ matricula.surname }}</td>
             <td>{{ matricula.name }}</td>
             
-            <td>{{ matricula.paid }}</td>
+            <td>{{ matricula.paid }}<a href="{% url cambridge_pay matricula.id %}">Pagar</a></td>
             <td>
                 <a class="btn btn-primary" href="{% url cambridge_imprimir matricula.id %}">
                 <i class="icon-user icon-white"></i>
