@@ -108,10 +108,25 @@
     </script>
 
 {% block cambridge_form_header %}{% endblock %}
+<div>
+</div>
 <div class="row">
     <div class="span12">
 	{% block cambridge_form_action %}{% endblock %}
 	<h2>{% trans "Matrícula" %}</h2>
+	<p>Los examenes tienen el nombre según el siguiente patrón: <b>NIVEL TIPO FECHA</b>. Los niveles son los siguinetes </p>
+	<ul>
+	<li>FCE: First Certificate</li>
+	<li>CAE: Advanced</li>
+	<li>CPE: Proficiency</li>
+	</ul>
+	<p>y la explicación de los tipos es la siguiente:</p>
+	<ul>
+	<li>CB: Computer Based (Exámenes por ordenador) </li>
+	<li>PB: Paper Based (Exámenes en papel)</li>
+	<li>FS: For Schools</li>
+	</ul>
+	</p>
 	{{ form|as_bootstrap }}
     </div> 
 </div>
