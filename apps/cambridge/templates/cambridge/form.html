@@ -44,9 +44,6 @@
 			acepta = true;
 		    }
 		}
-		    
-			
-			
 		if (acepta) {
 		    console.log("Dice que las acepta");
 		    $("#send_form").prop('disabled', false);
@@ -111,29 +108,21 @@
 <div>
 </div>
 <div class="row">
-    <div class="span12">
+    <div class="span14">
 	{% block cambridge_form_action %}{% endblock %}
-	<h2>{% trans "Matrícula" %}</h2>
-	<p>Los examenes tienen el nombre según el siguiente patrón: <b>NIVEL TIPO FECHA</b>. Los niveles son los siguinetes </p>
+	<p>En el siguiente desplegable, selecciona el nivel, tipo, formato y fecha de examen.</p>
 	<ul>
-	<li>FCE: First Certificate</li>
-	<li>CAE: Advanced</li>
-	<li>CPE: Proficiency</li>
+	    <li>Niveles de Exámenes: <b>KET</b>: A2 – <b>PET</b>: B1– <b>FCE</b>: First Certificate. B2. – <b>CAE</b>: Advanced. C1. – <b>CPE</b>: Proficiency. C2.</li>
+	    <li>Tipo de examen: Ordinario (no llevan ninguna sigla) - <b>FS</b>: For Schools, exámenes para menores de 18</li>
+	    <li>Formato: <b>CB</b>: Computer Based. Exámenes en ordenador – <b>PB</b>: Paper Based. Exámenes ordinarios en papel.</li>
 	</ul>
-	<p>y la explicación de los tipos es la siguiente:</p>
-	<ul>
-	<li>CB: Computer Based (Exámenes por ordenador) </li>
-	<li>PB: Paper Based (Exámenes en papel)</li>
-	<li>FS: For Schools</li>
-	</ul>
-	</p>
 	{{ form|as_bootstrap }}
     </div> 
 </div>
 
 
 <div class="row">
-    <div class="span12">
+    <div class="span14">
 	{% include "cambridge/legal.html" %}
 	<div>
 	    ¿Aceptas las condiciones? <input type="checkbox" id="id_accept_conditions" name="accept_conditions">
@@ -143,7 +132,7 @@
 </div>
 <hr />
 <div id="legal_foto" class="row">
-    <div class="span12">
+    <div class="span14">
 	{% include "cambridge/legal_foto.html" %}
 
 	<div>

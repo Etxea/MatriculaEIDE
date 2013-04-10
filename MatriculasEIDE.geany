@@ -16,16 +16,17 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=8
+current_page=9
 FILE_NAME_0=1355;Python;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Furls.py;0;4
 FILE_NAME_1=757;HTML;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Ftemplates%2Fcambridge%2Flista.html;0;4
 FILE_NAME_2=438;HTML;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Ftemplates%2Fcambridge%2Fregistration_confirm_delete.html;0;4
 FILE_NAME_3=0;HTML;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Ftemplates%2Fcambridge%2Fregistration_form.html;0;4
-FILE_NAME_4=2768;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fviews.py;0;4
+FILE_NAME_4=2616;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fviews.py;0;4
 FILE_NAME_5=0;HTML;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Ftemplates%2Fcambridge%2Fmatricula_imprimir.html;0;4
 FILE_NAME_6=89;HTML;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Ftemplates%2Fcambridge%2Fpayment.html;0;4
 FILE_NAME_7=122;HTML;0;16;2;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Ftemplates%2Fcambridge%2Fregistration_edit.html;0;4
-FILE_NAME_8=2350;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fmodels.py;0;4
+FILE_NAME_8=1463;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fmodels.py;0;4
+FILE_NAME_9=4308;HTML;0;16;2;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Ftemplates%2Fcambridge%2Fform.html;0;4
 
 [VTE]
 last_dir=/home/patataman/djproyects/proyectos/MatriculaEIDE
