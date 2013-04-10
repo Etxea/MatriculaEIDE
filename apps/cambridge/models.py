@@ -72,7 +72,8 @@ class Exam(models.Model):
 			return self.registration_set.filter(paid=True).count()
 		except:
 			return 0
-	
+	def __str__(self):
+		return "%s %s %s"%(self.level.name,self.get_exam_type_display(),self.exam_date.strftime('%d-%m-%Y'))
 	def __unicode__(self):
 		return "%s %s %s"%(self.level.name,self.get_exam_type_display(),self.exam_date.strftime('%d-%m-%Y'))
 	
