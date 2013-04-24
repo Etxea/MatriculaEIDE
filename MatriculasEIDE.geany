@@ -16,9 +16,10 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=0
+current_page=2
 FILE_NAME_0=2899;Python;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcursosespanol%2Fmodels.py;0;4
 FILE_NAME_1=19219;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fmodels.py;0;4
+FILE_NAME_2=99995;CSS;0;16;0;1;0;%2Ftmp%2Ffz3temp-1%2Fstyle.css;0;4
 
 [VTE]
 last_dir=/home/patataman/djproyects/proyectos/MatriculaEIDE
