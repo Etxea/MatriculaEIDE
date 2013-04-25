@@ -104,7 +104,7 @@ class Registration(models.Model):
 	def send_confirmation_email(self):
 		##Para el alumno
 		subject = "Te has matriculado para un examen Cambridge en EIDE"
-		message_body = """Acaba de realizar una solicitud de matrícula para el examen %s el día %s. En unas horas le enviaremos una confirmación de matrícula. Si en el plazo de 2 días hábiles no ha recibido la confirmación de matrícula, por favor, póngase en contacto con nosotros:
+		message_body = u"""Acaba de realizar una solicitud de matrícula para el examen %s el dia %s. En unas horas le enviaremos una confirmación de matrícula. Si en el plazo de 2 días hábiles no ha recibido la confirmación de matrícula, por favor, póngase en contacto con nosotros:
 Si no ha realizado el pago puede hacerlo a tarvés de la siguiente dirección: https://matricula-eide.es/pagos/cambridge/%s/
 
 Teléfono: 94 493 70 05
@@ -125,7 +125,7 @@ Fax:  94 461 57 23"""%(self.exam,self.exam.exam_date,self.id)
 		
 		### Para los admins
 		subject = "Hay una nueva matricula (sin pagar) para cambridge %s"%self.exam
-		message_body = """Se ha dado de alta una nueva matricula para el examen %s. 
+		message_body = u"""Se ha dado de alta una nueva matricula para el examen %s. 
 Los datos son del alumno son: 
 	Nombre: %s
 	Apellidos: %s
@@ -135,7 +135,7 @@ Los datos son del alumno son:
 		mail_admins(subject, message_body)
 	def send_paiment_confirmation_email(self):
 		subject = "Se ha confirmado el pago de la matricula para el examen %s"%self.exam
-		html_content="""<html><body>
+		html_content=u"""<html><body>
 		<h2>CONFIRMACIÓN DE MATRÍCULA</h2>
 <p>Se ha matriculado para el examen <b> %s </b> en la fecha <b> %s </b>. En unos días, se le enviará el COE (Confirmation of Entry) 
 con las fechas y horas del examen escrito y oral a la dirección de e-mail que ha proporcionado el candidato en la 
