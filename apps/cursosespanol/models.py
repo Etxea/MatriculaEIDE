@@ -39,8 +39,18 @@ SEXO = (
     (2, _('Female')),
 )
 
+class Accomodation(models.Model):
+    price_per_week = models.DecimalField(_('Price'),max_digits=4, decimal_places=0, default=0)
+    name = models.CharField(_('Name'),max_length=50)
+
+class Transfer(models.Model):
+    price = models.DecimalField(_('Price'),max_digits=4, decimal_places=0, default=0)
+    name = models.CharField(_('Name'),max_length=50)
+
 class Registration(models.Model):
     weeks = models.DecimalField(_('Number of weeks'),max_digits=3, decimal_places=0)
+    accomodation = models.ForeignKey(Accomodation)
+    transfer = models.ForeignKey(Transfer)
     name = models.CharField(_('Name'),max_length=50)
     surname = models.CharField(_('Surname'),max_length=100)
     address = models.CharField(_('Address'),max_length=100)
@@ -52,6 +62,7 @@ class Registration(models.Model):
     email = models.EmailField()
     registration_date = models.DateField(default=datetime.date.today, auto_now_add=True)
     paid = models.BooleanField(_('Paid'),default=False)
+    price = models.DecimalField(_('Price'),max_digits=4, decimal_places=0, default=0)
     accept_conditions = models.BooleanField(_('Accept the conditions'), help_text=_('You must accept the conditions to register'))
 
     def send_confirmation_email(self):

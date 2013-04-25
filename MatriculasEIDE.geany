@@ -16,10 +16,21 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=2
-FILE_NAME_0=2899;Python;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcursosespanol%2Fmodels.py;0;4
-FILE_NAME_1=19219;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fmodels.py;0;4
-FILE_NAME_2=99995;CSS;0;16;0;1;0;%2Ftmp%2Ffz3temp-1%2Fstyle.css;0;4
+current_page=6
+FILE_NAME_0=1820;Python;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcursosespanol%2Fmodels.py;0;4
+FILE_NAME_1=528;HTML;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcursosespanol%2Ftemplates%2Flegal.html;0;4
+FILE_NAME_2=1860;Python;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcursosespanol%2Furls.py;0;4
+FILE_NAME_3=0;Python;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Furls.py;0;4
+FILE_NAME_4=1376;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcursosespanol%2Fviews.py;0;4
+FILE_NAME_5=623;HTML;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcursosespanol%2Ftemplates%2Fpayment.html;0;4
+FILE_NAME_6=5286;Python;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fmodels.py;0;4
+FILE_NAME_7=0;Python;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcursosespanol%2Fadmin.py;0;4
+FILE_NAME_8=1100;Python;0;16;2;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Fadmin.py;0;4
+FILE_NAME_9=0;Python;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Furls.py;0;4
+FILE_NAME_10=0;HTML;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Ftemplates%2Fcambridge%2Fimprimir.html;0;4
+FILE_NAME_11=4422;HTML;0;16;1;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Ftemplates%2Fcambridge%2Fmatricula_imprimir.html;0;4
+FILE_NAME_12=1092;HTML;0;16;0;1;0;%2Fhome%2Fpatataman%2Fdjproyects%2Fproyectos%2FMatriculaEIDE%2Fapps%2Fcambridge%2Ftemplates%2Fcambridge%2Fpayment.html;0;4
+FILE_NAME_13=101294;CSS;0;16;0;1;0;%2Ftmp%2Ffz3temp-1%2Fstyle.css;0;4
 
 [VTE]
 last_dir=/home/patataman/djproyects/proyectos/MatriculaEIDE

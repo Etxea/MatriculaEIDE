@@ -26,11 +26,11 @@ from forms import *
 
 class RegistrationView(DetailView):
 	model=Registration
-	template_name='espanol/view.html'
+	template_name='view.html'
 
 class RegistrationPayment(DetailView):
 	model=Registration
-	template_name='espanol/payment.html'
+	template_name='payment.html'
 
 	
 class RegistrationCreateView(CreateView):
@@ -38,7 +38,7 @@ class RegistrationCreateView(CreateView):
 	form_class = RegistrationForm
 	template_name='registration_form.html'
 	def get_success_url(self):
-		return '/espanol/pay/%d'%self.object.id
+		return '/espanol/pay/%d/'%self.object.id
 #		#Comprobamos si el pago es por txartela:
 #		if True:
 #			return self.object.generate_payment_url()

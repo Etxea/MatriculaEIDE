@@ -8,24 +8,11 @@
 	/* Funcion que comprueba si el examen es KET y si lo es oculta el texto legal de la foto */
 	function comprobar_aceptacion() {
 		console.log("Han hecho click en el check de las condiciones");
-		//Comprobamos si es obligatoria la foto
-		examen = $('#id_exam').find(":selected").text();
-		if (examen.match('KET')) {
-		    console.log("No es obligatoria la foto porque es un examen KET"); 
-		    no_foto_obligatoria=true;
-		}
-		else {
-		    console.log("Si es obligatoria la foto"); 
-		    no_foto_obligatoria=false;
-		}
                 acepta = false ;
                 if ($("#id_accept_conditions").is(":checked"))
 		{
 		    console.log("Condiciones generales aceptadas");
-		    if ( $("#id_accept_photo_conditions").is(":checked") || no_foto_obligatoria ) 
-		    {
-			acepta = true;
-		    }
+		    acepta = true;
 		}
 		if (acepta) {
 		    console.log("Dice que las acepta");
@@ -53,7 +40,7 @@
 
 <div>
 </div>
-    <form action="{% url cambridge_nueva %}" method="post" class="form-horizontal" >{% csrf_token %}	
+    <form action="{% url espanol_nueva %}" method="post" class="form-horizontal" >{% csrf_token %}	
 <div class="row">
     <div class="span14">
 
