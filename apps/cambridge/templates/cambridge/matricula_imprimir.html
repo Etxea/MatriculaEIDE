@@ -52,7 +52,7 @@
 
 <BR>
 
-<H1 CLASS="western" STYLE="background: #737373"><FONT COLOR="#ffffff"><FONT FACE="Arial, sans-serif"><FONT SIZE=4>CONVOCATORIA {{ registration.exam.exam_date }}</FONT></FONT></FONT></H1>
+<H1 CLASS="western" STYLE="background: #737373"><FONT COLOR="#ffffff"><FONT FACE="Arial, sans-serif"><FONT SIZE=4>CONVOCATORIA {{ registration.exam }}</FONT></FONT></FONT></H1>
 
 <br>
 
@@ -69,11 +69,19 @@
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 200%">
 <FONT FACE="Arial, sans-serif"><FONT SIZE=2><B> CODIGO POSTAL: {{ registration.postal_code }}</B></FONT></FONT></P>
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 150%">
+	
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 200%">
+<FONT FACE="Arial, sans-serif"><FONT SIZE=2><B> EMAIL: {{ registration.email }}</B></FONT></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 150%">
+
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 200%">
+<FONT FACE="Arial, sans-serif"><FONT SIZE=2><B> PAGADA: {{ registration.paid }}</B></FONT></FONT></P>
+<P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 150%">
 
 <FONT FACE="Arial, sans-serif"><FONT SIZE=2><B>TEL&Eacute;FONO(S):</B> {{ registration.telephone }} </FONT></FONT></P>
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 200%">
 <FONT FACE="Arial, sans-serif"><FONT SIZE=2>
-<B>   	F. NACIMIENTO:</B>{{ registration.born_date }}</FONT></FONT></P>
+<B>   	F. NACIMIENTO:</B>{{ registration.birth_date }}</FONT></FONT></P>
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 150%">
 <B><FONT FACE="Arial, sans-serif"><FONT SIZE=2>ALUMNO/A DE EIDE:</B>{{ registration.eide_alumn }}</FONT></FONT></P>
 
