@@ -12,6 +12,9 @@ handler500 = "pinax.views.server_error"
 
 
 urlpatterns = patterns("",
+    url(r"^41F198A7ACB0BA4FDACC67D322E2BBB7.txt",direct_to_template, {
+        "template": "41F198A7ACB0BA4FDACC67D322E2BBB7.txt",
+    }, name="validate"),
     url(r"^index$", direct_to_template, {
         "template": "homepage.html",
     }, name="index"),
