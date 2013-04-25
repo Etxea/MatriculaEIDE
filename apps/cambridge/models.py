@@ -104,25 +104,39 @@ class Registration(models.Model):
 	def send_confirmation_email(self):
 		##Para el alumno
 		subject = "Te has matriculado para un examen Cambridge en EIDE"
-		message_body = u"""Acaba de realizar una solicitud de matrícula para el examen %s el dia %s. En unas horas 
-		le enviaremos una confirmación de matrícula. Si en el plazo de 2 días hábiles no ha recibido la confirmación 
-		de matrícula, por favor, póngase en contacto con nosotros:
+		
+		html_content = u"""<h1>Pago de la matrícula</h1>
 
-Teléfono: 94 493 70 05
+<div class="well">
+    Acaba de realizar una solicitud de matrícula para: <br />
+    %s <br />
+    La matrícula se hará efectiva una vez se haya recibido el pago. El pago puede realizarse de 2 formas:
+</div>
 
-Mail: eide@eide.es
+<div class="well">
+    <p><b>A. ONLINE  CON TARJETA BANCARIA</b>, a través de una <b>pasarela de pago segura</b> de la CECA 
+    (Confederación Española de Cajas de Ahorro), que garantiza <b>total seguridad. </b></p>
+    <p>Una vez efectuado el pago, recibirá un mail de confirmación. Si no recibe dicha comunicación en el plazo de 2 días hábiles, póngase en contacto con nosotros a través del mail o teléfono indicados abajo.</p>
+    <a href="httP://matricula-eide.es/%s">REALIZAR EL PAGO ONLINE CON TARJETA BANCARIA</a>    
+</div>
 
-Si no ha realizado el pago puede hacerlo a tarvés de la siguiente dirección: https://matricula-eide.es/cambridge/pay/%s/
-
-Atentamente,
- 
-Escuelas EIDE
-www.eide.es
-Genaro Oraá 6
-48980 Santurtzi
-Tel: 94 493 70 05
-Fax:  94 461 57 23"""%(self.exam,self.exam.exam_date,self.id)
-		send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
+<div class="well">
+    B. A través de TRANSFERENCIA BANCARIA. Cuando realice la transferencia, debe enviar copia de la misma a <a href:"mailto:eide@eide.es">eide@eide.es</a>.
+Datos de la transferencia:<br />
+<ul>
+    <li>Cuenta Bancaría: <b>2095 0553 50 9108403919</b></li>
+    <li>Concepto: %s-%s %s %s</li>
+    <li>Importe: <b>%s</b>€</li>
+</ul>
+<p>Una vez efectuado el pago, recibirá un mail de confirmación. Si no recibe dicha comunicación en el plazo de 4 días hábiles, póngase en contacto con nosotros a través del mail o teléfono indicados abajo. </p>
+</div>"""%(self.exam,self.generate_payment_url(),self.exam.level,self.exam.exam_date,self.name,self.surname,self.exam.level.price)
+		
+		message_body = html_content
+		##send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
+		msg = EmailMultiAlternatives(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
+		msg.attach_alternative(html_content, "text/html")
+		##msg.content_subtype = "html"
+		msg.send()
 		 
 		### Para los admins
 		subject = "Hay una nueva matricula (sin pagar) para cambridge %s"%self.exam

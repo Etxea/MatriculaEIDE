@@ -3,13 +3,16 @@
 {% block body %}
 <h1>Pago de la matrícula {{object}}</h1>
 
-<div>
+<div class="well">
+    Acaba de realizar una solicitud de matrícula para: <br />
+    {{object.exam}} <br />
     La matrícula se hará efectiva una vez se haya recibido el pago. El pago puede realizarse de 2 formas:
 </div>
 
 <div class="well">
-    <b>A. ONLINE  CON TARJETA BANCARIA</b>, a través de una <b>pasarela de pago segura</b> de la CECA 
-    (Confederación Española de Cajas de Ahorro), que garantiza <b>total seguridad. </b>
+    <p><b>A. ONLINE  CON TARJETA BANCARIA</b>, a través de una <b>pasarela de pago segura</b> de la CECA 
+    (Confederación Española de Cajas de Ahorro), que garantiza <b>total seguridad. </b></p>
+    <p>Una vez efectuado el pago, recibirá un mail de confirmación. Si no recibe dicha comunicación en el plazo de 2 días hábiles, póngase en contacto con nosotros a través del mail o teléfono indicados abajo.</p>
     <a href="{{object.generate_payment_url}}">REALIZAR EL PAGO ONLINE CON TARJETA BANCARIA</a>    
 </div>
 
@@ -21,7 +24,7 @@ Datos de la transferencia:<br />
     <li>Concepto: {{object.exam.level}}-{{object.exam.exam_date}} {{object.name}} {{object.surname}}</li>
     <li>Importe: <b>{{object.exam.level.price}}</b>€</li>
 </ul>
-La transferencia no es inmediata, pueden transcurrir varios días hasta que recibamos el pago.  
+<p>Una vez efectuado el pago, recibirá un mail de confirmación. Si no recibe dicha comunicación en el plazo de 4 días hábiles, póngase en contacto con nosotros a través del mail o teléfono indicados abajo. </p>
 </div>
 
 
