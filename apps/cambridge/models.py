@@ -104,17 +104,17 @@ class Registration(models.Model):
 	def send_confirmation_email(self):
 		##Para el alumno
 		subject = "Te has matriculado para un examen Cambridge en EIDE"
-		message_body = u"""Acaba de realizar una solicitud de matrícula para el examen %s el dia %s. En unas horas le enviaremos una confirmación de matrícula. Si en el plazo de 2 días hábiles no ha recibido la confirmación de matrícula, por favor, póngase en contacto con nosotros:
-Si no ha realizado el pago puede hacerlo a tarvés de la siguiente dirección: https://matricula-eide.es/pagos/cambridge/%s/
+		message_body = u"""Acaba de realizar una solicitud de matrícula para el examen %s el dia %s. En unas horas 
+		le enviaremos una confirmación de matrícula. Si en el plazo de 2 días hábiles no ha recibido la confirmación 
+		de matrícula, por favor, póngase en contacto con nosotros:
 
 Teléfono: 94 493 70 05
 
 Mail: eide@eide.es
 
-
+Si no ha realizado el pago puede hacerlo a tarvés de la siguiente dirección: https://matricula-eide.es/cambridge/pay/%s/
 
 Atentamente,
-
  
 Escuelas EIDE
 www.eide.es
@@ -122,7 +122,8 @@ Genaro Oraá 6
 48980 Santurtzi
 Tel: 94 493 70 05
 Fax:  94 461 57 23"""%(self.exam,self.exam.exam_date,self.id)
-		
+		send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
+		 
 		### Para los admins
 		subject = "Hay una nueva matricula (sin pagar) para cambridge %s"%self.exam
 		message_body = u"""Se ha dado de alta una nueva matricula para el examen %s. 

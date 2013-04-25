@@ -3,15 +3,25 @@
 {% block body %}
 <h1>Pago de la matrícula {{object}}</h1>
 
-<div class="well">La manera de pago más rápida es <a href="{{object.generate_payment_url}}">con tarjeta bancaría </a> . El pago se realizará a través de la pasarela de pago segura del ceca (Conferedarión Española de Caja de Ahorro) que garantiza una <b>total seguridad</b>. </div>
+<div>
+    La matrícula se hará efectiva una vez se haya recibido el pago. El pago puede realizarse de 2 formas:
+</div>
 
-<div class="well">O si lo prefiere puede pagar a través de transferencia bancaría con los siguientes datos:<br />
+<div class="well">
+    <b>A. ONLINE  CON TARJETA BANCARIA</b>, a través de una <b>pasarela de pago segura</b> de la CECA 
+    (Confederación Española de Cajas de Ahorro), que garantiza <b>total seguridad. </b>
+    <a href="{{object.generate_payment_url}}">REALIZAR EL PAGO ONLINE CON TARJETA BANCARIA</a>    
+</div>
+
+<div class="well">
+    B. A través de TRANSFERENCIA BANCARIA. Cuando realice la transferencia, debe enviar copia de la misma a <a href:"mailto:eide@eide.es">eide@eide.es</a>.
+Datos de la transferencia:<br />
 <ul>
     <li>Cuenta Bancaría: <b>2095 0553 50 9108403919</b></li>
     <li>Concepto: {{object.exam.level}}-{{object.exam.exam_date}} {{object.name}} {{object.surname}}</li>
     <li>Importe: <b>{{object.exam.level.price}}</b>€</li>
 </ul>
-Tenga en cuenta que pasarán un par de días hasta que podamos confirmar el pago de la matrícula.
+La transferencia no es inmediata, pueden transcurrir varios días hasta que recibamos el pago.  
 </div>
 
 
