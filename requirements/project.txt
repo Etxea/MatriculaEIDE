@@ -15,4 +15,4 @@ django-bootstrap-form
 #para exportar a excel
 xlwt
 django-excel-response 
-
+django-countries

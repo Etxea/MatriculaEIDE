@@ -316,10 +316,12 @@ DNI o pasaporte que atestigüe su identidad en cada examen (escrito y oral).</p>
 		msg.send()
 		
 		subject = "[cambridge] Se ha confirmado el pago de una matrcicula"
-		message_body = """Se acaba de confirmar el pago de un matricula para examen %s. \n 
+		message_body = u"""Se acaba de confirmar el pago de un matricula para examen %s. \n 
 Los datos son:\n
-ID: %s \n Nombre: %s \n Apellidos: %s
-"""%(self.exam,self.id,self.name,self.surname)
+ID de la mátricula: %s \n 
+Nombre: %s \n Apellidos: %s \n
+Puedes ver más detalles e imprimirla en la siguente url http://matricula-eide.es/cambridge/edit/%s/
+"""%(self.exam,self.id,self.name,self.surname,self.id)
 		mail_admins(subject, message_body)
 	def set_as_paid(self):
 		self.paid = True

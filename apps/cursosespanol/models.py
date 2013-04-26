@@ -22,6 +22,8 @@ from django.contrib.localflavor import generic
 from django.contrib.localflavor.es.forms import *
 from django.core.mail import EmailMultiAlternatives
 
+from django_countries import CountryField
+
 from random import choice
 from string import letters
 import datetime
@@ -47,22 +49,44 @@ class Transfer(models.Model):
     price = models.DecimalField(_('Price'),max_digits=4, decimal_places=0, default=0)
     name = models.CharField(_('Name'),max_length=50)
 
-class Registration(models.Model):
-    weeks = models.DecimalField(_('Number of weeks'),max_digits=3, decimal_places=0)
-    accomodation = models.ForeignKey(Accomodation)
-    transfer = models.ForeignKey(Transfer)
+class Course(models.Model):
+    price = models.DecimalField(_('Price'),max_digits=4, decimal_places=0, default=0)
     name = models.CharField(_('Name'),max_length=50)
-    surname = models.CharField(_('Surname'),max_length=100)
-    address = models.CharField(_('Address'),max_length=100)
-    location = models.CharField(_('Location'),max_length=100)
-    postal_code = models.DecimalField(_('Postal Code'),max_digits=6, decimal_places=0)
+
+
+class Registration(models.Model):
+    firstname = models.CharField(_('First Name'),max_length=120)
+    lastname = models.CharField(_('Last Name'),max_length=120)
     sex = models.DecimalField(_('Sex'),max_digits=1, decimal_places=0,choices=SEXO)
-    birth_date = models.DateField(_('Birth Date'),help_text=_('Formato: DD-MM-AAAA(dia-mes-año)'))
-    telephone = models.CharField(_('Telephone'),max_length=12)
     email = models.EmailField()
+    birth_date = models.DateField(_('Date of Birth'),help_text=_('Formato: DD-MM-AAAA(dia-mes-año)'))
+    nationality = CountryField(_('Nationality'))
+    country = CountryField(_('Coutry of Residence (if different from nationality)'))
+    address = models.CharField(_('Address'),max_length=100)
+    city = models.CharField(_('City'),max_length=100)
+   
+
+    visa = models.BooleanField(_("Will you need student's VISA?"))
+    
+    course = models.ForeignKey(Course)
+    start_date = models.DateField(_('Birth Date'),help_text=_('Formato: DD-MM-AAAA(dia-mes-año)'))
+    weeks = models.DecimalField(_('Number of weeks'),max_digits=3, decimal_places=0)
+    private_hours_week = models.DecimalField(_('Number of private hours per week (only private courses or intensive +5, +10, +20)'),max_digits=3, decimal_places=0)
+    
+    
+    accomodation = models.ForeignKey(Accomodation)
+    arrival_date = models.DateField(_('Arrival Date'),help_text=_('Formato: DD-MM-AAAA(dia-mes-año)'))
+    accomodation_weeks = models.DecimalField(_('Number of weeks'),max_digits=3, decimal_places=0)
+    
+    transfer = models.ForeignKey(Transfer)
+    
+    
+    
+    telephone = models.CharField(_('Telephone'),max_length=12)
+    
     registration_date = models.DateField(default=datetime.date.today, auto_now_add=True)
     paid = models.BooleanField(_('Paid'),default=False)
-    price = models.DecimalField(_('Price'),max_digits=4, decimal_places=0, default=0)
+    price = models.DecimalField(_('Total Price'),max_digits=4, decimal_places=0, default=0)
     accept_conditions = models.BooleanField(_('Accept the conditions'), help_text=_('You must accept the conditions to register'))
 
     def send_confirmation_email(self):
