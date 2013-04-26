@@ -105,24 +105,29 @@ class Registration(models.Model):
 		##Para el alumno
 		subject = "Te has matriculado para un examen Cambridge en EIDE"
 		
-		html_content = u"""<h1>Pago de la matrícula</h1>
+		html_content = u"""
+		
+
 
 <div class="well">
     Acaba de realizar una solicitud de matrícula para: <br />
-    %s <br />
-    La matrícula se hará efectiva una vez se haya recibido el pago. El pago puede realizarse de 2 formas:
+    %s 
+</div>
+<div class="well">
+    <h1>Pago de la matrícula</h1>
+    La matrícula se hará efectiva una vez se haya recibido el pago. El pago puede realizarse de 2 formas: con tarjeta bancaria a través de una plataforma online o por transferencia bancaria.
 </div>
 
 <div class="well">
     <p><b>A. ONLINE  CON TARJETA BANCARIA</b>, a través de una <b>pasarela de pago segura</b> de la CECA 
     (Confederación Española de Cajas de Ahorro), que garantiza <b>total seguridad. </b></p>
     <p>Una vez efectuado el pago, recibirá un mail de confirmación. Si no recibe dicha comunicación en el plazo de 2 días hábiles, póngase en contacto con nosotros a través del mail o teléfono indicados abajo.</p>
-    <a href="httP://matricula-eide.es/%s">REALIZAR EL PAGO ONLINE CON TARJETA BANCARIA</a>    
+    <a href="http://matricula-eide.es/%s">REALIZAR EL PAGO ONLINE CON TARJETA BANCARIA</a>    
 </div>
 
 <div class="well">
-    B. A través de TRANSFERENCIA BANCARIA. Cuando realice la transferencia, debe enviar copia de la misma a <a href:"mailto:eide@eide.es">eide@eide.es</a>.
-Datos de la transferencia:<br />
+    <p><b>B. A través de TRANSFERENCIA BANCARIA.</b> Cuando realice la transferencia, debe enviar copia de la misma a <a href:"mailto:eide@eide.es">eide@eide.es</a>.
+Datos de la transferencia:</p>
 <ul>
     <li>Cuenta Bancaría: <b>2095 0553 50 9108403919</b></li>
     <li>Concepto: %s-%s %s %s</li>
@@ -310,11 +315,11 @@ DNI o pasaporte que atestigüe su identidad en cada examen (escrito y oral).</p>
 		##msg.content_subtype = "html"
 		msg.send()
 		
-		subject = "Se ha confirmado el pago"
-		message_body = """Se acabo de confirmar el pago de un matricula para examen %s. \n 
+		subject = "[cambridge] Se ha confirmado el pago de una matrcicula"
+		message_body = """Se acaba de confirmar el pago de un matricula para examen %s. \n 
 Los datos son:\n
 ID: %s \n Nombre: %s \n Apellidos: %s
-"""%(self.exam,id,self.name,self.surname)
+"""%(self.exam,self.id,self.name,self.surname)
 		mail_admins(subject, message_body)
 	def set_as_paid(self):
 		self.paid = True
