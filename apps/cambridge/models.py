@@ -126,14 +126,29 @@ class Registration(models.Model):
 </div>
 
 <div class="well">
-    <p><b>B. A través de TRANSFERENCIA BANCARIA.</b> Cuando realice la transferencia, debe enviar copia de la misma a <a href:"mailto:eide@eide.es">eide@eide.es</a>.
-Datos de la transferencia:</p>
+    <p><b>B. A través de TRANSFERENCIA BANCARIA O INGRESO.</b></p>
 <ul>
-    <li>Cuenta Bancaría: <b>2095 0553 50 9108403919</b></li>
+    <li>Cuenta Bancaria (Kutxabank – BBK): <b>2095 0553 50 9108403919</b></li>
     <li>Concepto: %s-%s %s %s</li>
     <li>Importe: <b>%s</b>€</li>
 </ul>
-<p>Una vez efectuado el pago, recibirá un mail de confirmación. Si no recibe dicha comunicación en el plazo de 4 días hábiles, póngase en contacto con nosotros a través del mail o teléfono indicados abajo. </p>
+<p>Cuando realice el ingreso es recomendable adjuntar una copia del justificante de transferencia por mail, 
+fax o comunicarnos que ha hecho la transferencia por teléfono. Tenga en cuenta que las transferencias pueden 
+demorarse hasta 3 días y sólo se confirmará la matrícula cuando recibamos el importe en nuestra cuenta bancaria. 
+En caso de que el plazo de matrícula sea muy ajustado, es recomendable optar por ingreso bancario, pago 
+con tarjeta o pago en metálico en EIDE. Una vez recibido el pago, recibirá un mail de confirmación. Si no 
+recibe dicha comunicación en el plazo de 4 días hábiles, póngase en contacto con nosotros a través del mail 
+o teléfono indicados abajo. </p>
+</div>
+
+<div class="well">
+    <h1>DATOS DE CONTACTO</h1>
+    <ul>
+        <li>Mail: <a href="mailto:/eide@eide.es">eide@eide.es</a></li>
+        <li>Tel: 94 493 70 05</li>
+        <li>Fax: 94 461 57 23</li>
+        <li>Dirección: Genaro Oraá 6 - 48980 Santurtzi</li>
+    </ul>
 </div>"""%(self.exam,self.generate_payment_url(),self.exam.level,self.exam.exam_date,self.name,self.surname,self.exam.level.price)
 		
 		message_body = html_content
