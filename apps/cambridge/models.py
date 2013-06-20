@@ -134,7 +134,7 @@ Los datos son del alumno son:
 	Telefono: %s
 	e-mail: %s
 """%(self.exam,self.name,self.surname,self.telephone,self.email)
-		mail_admins(subject, message_body)
+		#mail_admins(subject, message_body)
 	def send_paiment_confirmation_email(self):
 		subject = "Se ha confirmado el pago de la matricula para el examen %s"%self.exam
 		html_content=u"""<html><body>
