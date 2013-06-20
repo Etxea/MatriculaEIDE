@@ -115,7 +115,7 @@ class Registration(models.Model):
 </div>
 <div class="well">
     <h1>Pago de la matrícula</h1>
-    La matrícula se hará efectiva una vez se haya recibido el pago. Puede hacer el pago en la siguiente dirección: <a href="%s">%s</a>
+    La matrícula se hará efectiva una vez se haya recibido el pago. Puede hacer el pago en la siguiente dirección: <a href="http://matricula-eide.es/%s">http://matricula-eide.es/%s</a>
 </div>"""%(self.exam,self.generate_payment_url(),self.generate_payment_url())
 		
 		message_body = html_content
@@ -123,7 +123,7 @@ class Registration(models.Model):
 		msg = EmailMultiAlternatives(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
 		msg.attach_alternative(html_content, "text/html")
 		##msg.content_subtype = "html"
-		msg.send()
+		#msg.send()
 		 
 		### Para los admins
 		subject = "Hay una nueva matricula (sin pagar) para cambridge %s"%self.exam
