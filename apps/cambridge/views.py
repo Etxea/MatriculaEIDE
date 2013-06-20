@@ -92,7 +92,7 @@ def RegistrationExcelView(request):
 class RegistrationListView(ListView):
 	#model=ComputerBasedRegistration
 	template_name='cambridge/lista.html'
-	#Limitamos a las matrocilas de examenes posteriores al día de hoy
+	#Limitamos a las matriculas de examenes posteriores al día de hoy y que estén pagadas
 	queryset=Registration.objects.filter(exam__exam_date__gt=datetime.date.today())
 
 class IndexExamList(ListView):

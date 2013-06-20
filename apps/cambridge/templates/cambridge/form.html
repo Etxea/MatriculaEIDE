@@ -105,11 +105,21 @@
     </script>
 
 {% block cambridge_form_header %}{% endblock %}
-<div>
+
+<div class="alert-message block-message error">
+
+
+<span class="label label-info"> Atención! </span>La única forma de pago aceptada es <b>vía tarjeta de crédito/débito</b>.<br />
+<span class="label label-info"> Atención! </span>Los exámenes serán presenciales y se realizarán en las <a href="http://www.eide.es/esl/EIDE/Donde-esta-EIDE">instalaciones de EIDE</a>.
+
 </div>
+
 <div class="row">
     <div class="span14">
+		
 	{% block cambridge_form_action %}{% endblock %}
+
+
 	<p>En el siguiente desplegable, selecciona el nivel, tipo, formato y fecha de examen.</p>
 	<ul>
 	    <li>Niveles de Exámenes: <b>KET</b>: A2 – <b>PET</b>: B1– <b>FCE</b>: First Certificate. B2. – <b>CAE</b>: Advanced. C1. – <b>CPE</b>: Proficiency. C2.</li>

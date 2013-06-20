@@ -9,8 +9,13 @@ Vamos aproceder al pago de la matrícula a través de tarjeta de crédito. Lo op
 <b>{{payament_info.order_id}}</b> y un importe de <b>{{ payament_info.amount_text }}</b>€.
 
 </div> 
-<p class="well well-big"> Cuando hago click en "Pasar a pagar" será redirigido a la pasarela de pago de nuestra entidad bancaraia. En ningun momento EIDE tendrá acceso a sus datos 
-bancarios.
+<p class="well well-big"> 
+	Utilizamos la plataforma de pago <b>seguro</b> de Kutxabank proporcionada por la CECA (Confederación Española Cajas de Ahorros), un sistema <b>completamente seguro</b>.<br />
+	Cuando pulséis “Realizar Pago”, el sistema os redireccionará al sistema de pago CECA, integrado en Cecabank, donde deberéis facilitar todos los datos necesarios para dicho medio de pago. Este será el único momento en que se os solicitará esa información.
+	<br />
+	EIDE nunca tendrá acceso al a informaciónde vuestra tarjeta, siendo una operación segura con la garantía del CECA.
+	<br />
+	El pago del pedido se produce en tiempo real a través del TPV Virtual una vez se haya comprobado que los datos proporcionados son correctos.
 </p>
 
 <FORM ACTION="{{ payament_info.action_url }}" METHOD="POST" ENCTYPE="application/x-www-form-urlencoded">
@@ -27,7 +32,7 @@ bancarios.
 <INPUT id="exponente" NAME="Exponente" TYPE=hidden VALUE={{ payament_info.exponente }}>
 <INPUT NAME="Pago_soportado" TYPE=hidden VALUE=SSL>
 <CENTER>
-<INPUT TYPE="submit" VALUE="Pasar a pagar">
+<INPUT TYPE="submit" VALUE="Realizar Pago">
 
 </FORM>
 {% endblock %}

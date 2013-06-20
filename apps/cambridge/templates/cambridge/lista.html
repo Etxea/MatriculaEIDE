@@ -10,14 +10,14 @@
 <table class="table">
     <thead>
         <tr>
-            <td>{% trans "Number" %}</td>
+            <td>Identificador</td>
             <td>{% trans "Level" %}</td>
             <td>{% trans "Exam Date" %}</td>
             <td>{% trans "Surname" %}</td>
             <td>{% trans "Name" %}</td>
-            <td>{% trans "Paid" %}</td>
-            <td>{% trans "Print" %}</td>
-            <td>{% trans "Delete" %}</td>
+            <!--<td>{% trans "Paid" %}</td>-->
+            <td> </td>
+            <td></td>
         </tr>
     </thead>
     <tbody>
@@ -29,7 +29,7 @@
             <td>{{ matricula.surname }}</td>
             <td>{{ matricula.name }}</td>
             
-            <td>{{ matricula.paid }}<a href="{% url cambridge_pay matricula.id %}">Pagar</a></td>
+            <!--<td>{{ matricula.paid }}<a href="{% url cambridge_pay matricula.id %}">Pagar</a></td>-->
             <td>
                 <a class="btn btn-primary" href="{% url cambridge_imprimir matricula.id %}">
                 <i class="icon-user icon-white"></i>

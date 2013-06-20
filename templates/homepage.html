@@ -8,22 +8,36 @@
     <br />
     <p>
         {% blocktrans %}
-        Bienvenido al sistema Online de matrícula en EIDE. Desde aquí podrás matricularte en los exámenes de Cambridge y próximamente podrás matricularte en nuestros cursos intensivos y cursos de español para extranjeros.
+        Bienvenido al sistema Online de matrícula en EIDE. Desde aquí podrás matricularte en los exámenes de Cambridge y próximamente 
+        podrás matricularte en nuestros cursos intensivos y cursos de español para extranjeros.
         {% endblocktrans %}
+    <p>
+		Utilizamos la plataforma de pago de la CECA (Confederación Española Cajas de Ahorros), un sistema completamente seguro. 
+		Cuando pulséis “Realizar Pago”, el sistema os redireccionará al <a href="https://be.ceca.es/BEWeb/2000/2000/inicia_identificacion.action">sistema de pago CECA</a>, 
+		integrado en Cecabank, donde deberéis facilitar todos los datos necesarios para dicho medio de pago. Este será el único momento en que se os solicitará esa información.
+	</p>
+	<p>
+		EIDE nunca tendrá acceso al a informaciónde vuestra tarjeta, siendo una operación segura con la garantía del CECA.
+	</p>
+	<p>
+		El pago del pedido se produce en tiempo real a través del TPV Virtual una vez se haya comprobado que los datos proporcionados son correctos.
+	</p>
+
+
     </p>
 </div>
 <div class="row">
- <div class="span5">
+ <div class="span8">
    <h2>{% trans "Cambridge Exams" %}</h2>
    <p> {% trans "Aquí te puedes matricular para los Exámenes de Cambridge, tanto en papel (Paper Based Test) como en ordenador (Computer BAsed test)." %}</p>
     <a class="btn primary large" href="{% url cambridge %}">{% trans "Go to the registration for Cambridge Exams" %}</a>
  </div>
- <div class="span5">
+ <div class="span3">
    <h2>{% trans "Cursos de Español" %}</h2>
    <p> {% trans "Próximamente...." %}</p>
     
  </div>
- <div class="span5">
+ <div class="span3">
    <h2>{% trans "Cursos Intensivos" %}</h2>
    <p> {% trans "Próximamente...." %}</p>
  </div>
