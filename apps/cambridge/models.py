@@ -115,40 +115,8 @@ class Registration(models.Model):
 </div>
 <div class="well">
     <h1>Pago de la matrícula</h1>
-    La matrícula se hará efectiva una vez se haya recibido el pago. El pago puede realizarse de 2 formas: con tarjeta bancaria a través de una plataforma online o por transferencia bancaria.
-</div>
-
-<div class="well">
-    <p><b>A. ONLINE  CON TARJETA BANCARIA</b>, a través de una <b>pasarela de pago segura</b> de la CECA 
-    (Confederación Española de Cajas de Ahorro), que garantiza <b>total seguridad. </b></p>
-    <p>Una vez efectuado el pago, recibirá un mail de confirmación. Si no recibe dicha comunicación en el plazo de 2 días hábiles, póngase en contacto con nosotros a través del mail o teléfono indicados abajo.</p>
-    <a href="http://matricula-eide.es/%s">REALIZAR EL PAGO ONLINE CON TARJETA BANCARIA</a>    
-</div>
-
-<div class="well">
-    <p><b>B. A través de TRANSFERENCIA BANCARIA O INGRESO.</b></p>
-<ul>
-    <li>Cuenta Bancaria (Kutxabank – BBK): <b>2095 0553 50 9108403919</b></li>
-    <li>Concepto: %s-%s %s %s</li>
-    <li>Importe: <b>%s</b>€</li>
-</ul>
-<p>Cuando realice la transferencia debe enviar una copia del justificante de transferencia al mail o fax 
-indicados en los datos de contacto. La matrícula no se hará efectiva hasta que no se reciba la copia del 
-justificante. Una vez recibido el justificante de, se le enviará un mail de confirmación. Si no recibe 
-dicha comunicación en el plazo de 4 días hábiles, póngase en contacto con nosotros a través del mail o 
-teléfono indicados abajo.</p>
- </p>
-</div>
-
-<div class="well">
-    <h1>DATOS DE CONTACTO</h1>
-    <ul>
-        <li>Mail: <a href="mailto:eide@eide.es">eide@eide.es</a></li>
-        <li>Tel: 94 493 70 05</li>
-        <li>Fax: 94 461 57 23</li>
-        <li>Dirección: Genaro Oraá 6 - 48980 Santurtzi</li>
-    </ul>
-</div>"""%(self.exam,self.generate_payment_url(),self.exam.level,self.exam.exam_date,self.name,self.surname,self.exam.level.price)
+    La matrícula se hará efectiva una vez se haya recibido el pago. Puede hacer el pago en la siguiente dirección: <a href="%s">%s</a>
+</div>"""%(self.exam,self.generate_payment_url(),self.generate_payment_url())
 		
 		message_body = html_content
 		##send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
