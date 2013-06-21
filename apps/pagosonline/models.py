@@ -17,11 +17,44 @@
 #
 from django.db import models
 from django.conf import settings
+from django.utils.translation import gettext_lazy as _
 import hashlib
+import datetime
 #from django.utils.text import slugify
 from django.template.defaultfilters import slugify
 from cambridge.models import Registration
-# Create your models here.
+
+
+
+class Pago(models.Model):
+    importe = models.DecimalField(max_digits=6, decimal_places=2)
+    descripcion = models.CharField(_('Descripción de quien es el pago.'),max_length=250,blank=True)
+    fecha_creacion = models.DateField(default=datetime.date.today, auto_now_add=True)
+    fecha_pago = models.DateField(null=True,blank=True)
+    def get_absolute_url(self):
+        return "/pagos/pago/%i/" % self.id
+    def set_as_paid(self):
+        self.fecha_pago = datetime.date.today
+        self.send_paiment_confirmation_email()
+    def send_paiment_confirmation_email(self):
+		subject = "Se ha confirmado su pago  ONLINE en EIDE"
+		html_content=u"""<html><body>
+		<h2>CONFIRMACIÓN DE PAGO ONLINE</h2>
+<p>Se ha confirmado su pago de <b> %s </b> € con la descripcion %s creado en la fecha <b> %s </b> y confirmado en la fecha <b> %s </b> .</p>
+		"""%(self.importe,self.descripcion,self.fecha_creacion,self.fecha_pago)
+		message_body = html_content
+		##send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
+		msg = EmailMultiAlternatives(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
+		msg.attach_alternative(html_content, "text/html")
+		##msg.content_subtype = "html"
+		msg.send()
+		
+		subject = "[PAgosONline] Se ha confirmado un pago manual"
+		message_body = u"""Se acaba de confirmarun pago por %s. \n 
+"""%(self.importe)
+		mail_admins(subject, message_body)
+
+
 class payament_info:
     """El objecto donde guardamos la infor para pasarla a la vista"""
     #Estas variables las leemos de la conf
@@ -45,11 +78,16 @@ class payament_info:
     def __init__(self, reference, order_id):
         if reference=="cambridge":
             r = Registration.objects.get(id=order_id)
-        #La cantidad la multiplicamos por 100 para tener los 2 decimales en un numero entero
-        self.amount = int(float(r.exam.level.price)*100)
-        self.amount_text = "%s"%(float(r.exam.level.price))
-        #generamos el order_i con la referencia, subreferencia y el ID del la matricula para luego saber cual es
-        self.order_id = "%s-%s-%s"%(reference,order_id,slugify(r.registration_name()))
+            #La cantidad la multiplicamos por 100 para tener los 2 decimales en un numero entero
+            self.amount = int(float(r.exam.level.price)*100)
+            self.amount_text = "%s"%(float(r.exam.level.price))
+            #generamos el order_i con la referencia, subreferencia y el ID del la matricula para luego saber cual es
+            self.order_id = "%s-%s-%s"%(reference,order_id,slugify(r.registration_name()))
+        elif reference == "manual":
+            p = Pago.objects.get(id=order_id)
+            self.amount = p.importe*100
+            self.amount_text = "%s €"%p.importe
+            self.order_id = "manual-%s"%order_id
         #Leemos de los settings
         self.MerchantID = settings.PAYMENT_INFO["MerchantID"]
         self.AcquirerBIN=settings.PAYMENT_INFO["AcquirerBIN"]

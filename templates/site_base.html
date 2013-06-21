@@ -29,8 +29,13 @@
 	    {% endif %}
 	</li>
 	{% if user.is_authenticated %}
-	<!-- <li id="tab_profile"><a href="{% url profile_detail user.username %}">{% trans "Profile" %}</a></li>
-	<li id="tab_notices"><a href="{% url notification_notices %}">{% trans "Notices" %}{% if notice_unseen_count %} ({{ notice_unseen_count }}){% endif %}</a></li>        -->
+	<li class="dropdown">
+		<a href="{% url pago_lista %}" class="dropdown-toggle" data-toggle="dropdown" >{% trans "Pagos" %}</a>
+		<ul class="dropdown-menu">
+			<li><a href="{% url pago_lista %}">{% trans "Lista Pagos manuales" %}</a></li>	
+			<li><a href="{% url pago_manual_crear %}">{% trans "Nuevo pago" %}</a></li>	
+		</ul>
+	</li>
 	{% endif %}
     {% endspaceless %}
     </ul>

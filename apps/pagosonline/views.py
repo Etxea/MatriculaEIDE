@@ -17,12 +17,29 @@
 #
 from django.views.generic.simple import direct_to_template
 from django.contrib.csrf.middleware import csrf_exempt
+from django.views.generic import DetailView, ListView, CreateView, UpdateView, View
+
+import datetime
+
 from models import *
+from forms import *
 from cambridge.models import Registration
 
 import logging
 log = logging.getLogger("MatriculaEIDE")
 
+class pagos_lista(ListView):
+    model = Pago
+    template_name="pago_list.html"
+    
+class crear_pago_manual(CreateView):
+    #model = Pago
+    form_class = PagoForm
+    template_name="pago_manual_crear.html"
+    
+def pagar_manual(request,pago_id):
+    reference = "manual"
+    return direct_to_template(request,template = "pago_manual_pagar.html",extra_context={"payament_info": payament_info(reference, pago_id)})
 
 def make_payment(request, reference, order_id):
     """ Recibimos un texto de referencia, el ID de la orden y una cantidad en euros (sin decimales)"""
@@ -49,6 +66,9 @@ def confirm_payment(request):
         if registration_type=="cambridge":
             log.debug("Es cambridge")
             r = Registration.objects.get(id=registration_id)
+        elif registration_type=="manual":
+            log.debug("Vamos a confirmar un pago manual")
+            r = Pago.objects.get(id=registration_id)
         else:
             log.debug( "No sabemos que tipo de matricula es!" )
         #Comprobamos si tenemos una matricula
