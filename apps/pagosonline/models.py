@@ -85,7 +85,7 @@ class payament_info:
             self.order_id = "%s-%s-%s"%(reference,order_id,slugify(r.registration_name()))
         elif reference == "manual":
             p = Pago.objects.get(id=order_id)
-            self.amount = p.importe*100
+            self.amount = int(float(p.importe)*100)
             self.amount_text = "%s €"%p.importe
             self.order_id = "manual-%s"%order_id
         #Leemos de los settings

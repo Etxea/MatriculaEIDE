@@ -61,19 +61,19 @@ def confirm_payment(request):
         registration_id = reference.split('-')[1]
         log.debug( "tenemos una matricula de %s con el id %s"%(registration_type, registration_id))
         r = None
-        log.debug("Vamos a buscarla")
         #Buscamos la matricula 
         if registration_type=="cambridge":
-            log.debug("Es cambridge")
+            log.debug("Es cambridge la buscamos en BBDD")
             r = Registration.objects.get(id=registration_id)
         elif registration_type=="manual":
-            log.debug("Vamos a confirmar un pago manual")
+            log.debug("Vamos a confirmar un pago manual. Lo buscamos en BBDD...")
             r = Pago.objects.get(id=registration_id)
+            log.debug("Hemos encontrado el pago manual %s"%r.id)
         else:
             log.debug( "No sabemos que tipo de matricula es!" )
         #Comprobamos si tenemos una matricula
         if r:
-            log.debug( "Tenemos la matricula")
+            log.debug( "Tenemos la matricula/pagoi, vamos a marcalo como pagado")
             log.debug(r)
             r.set_as_paid()
             return direct_to_template(request,template="pago_confirmar.html")
@@ -81,7 +81,7 @@ def confirm_payment(request):
             return direct_to_template(request,template="pago_noconfirmar.html")
     except:
         exc_type, exc_value, exc_traceback = sys.exc_info()
-        log.debug("No hemos sido capaces de validar el pago de la matricula")
+        log.debug("No hemos sido capaces de validar el pago de la matricula ha fallado el try con la excepcion: %s %s %s"%(exc_type,exc_value,exc_traceback))
         log.debug(exc_type)
         log.debug(exc_value)
         log.debug(exc_traceback)
