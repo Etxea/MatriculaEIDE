@@ -86,14 +86,14 @@ class RegistrationCreateView(CreateView):
 
 @login_required	
 def RegistrationExcelView(request):
-    objs = Registration.objects.all()
+    objs = Registration.objects.filter(paid=True)
     return ExcelResponse(objs)
 
 class RegistrationListView(ListView):
 	#model=ComputerBasedRegistration
 	template_name='cambridge/lista.html'
 	#Limitamos a las matriculas de examenes posteriores al día de hoy y que estén pagadas
-	queryset=Registration.objects.filter(exam__exam_date__gt=datetime.date.today())
+	queryset=Registration.objects.filter(exam__exam_date__gt=datetime.date.today(),paid=True)
 
 class IndexExamList(ListView):
 	model=Exam
