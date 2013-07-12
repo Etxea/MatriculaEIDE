@@ -23,6 +23,7 @@ import datetime
 #from django.utils.text import slugify
 from django.template.defaultfilters import slugify
 from cambridge.models import Registration
+from django.core.mail import send_mail, mail_admins
 
 import logging
 log = logging.getLogger("MatriculaEIDE")
@@ -37,28 +38,21 @@ class Pago(models.Model):
     def get_absolute_url(self):
         return "/pagos/pago/%i/" % self.id
     def set_as_paid(self):
-        log.debug("Vamos a marcar como pagado el pago: %s con la descripcion %s",(self.id,self.descripcion))
+        log.debug("Vamos a marcar como pagado el pago: %s con la descripcion %s"%(self.id,self.descripcion))
         self.fecha_pago = datetime.date.today()
         log.debug("Mandamos un mail de confirmacion")
         self.send_paiment_confirmation_email()
         log.debug("Guardamos...")
         self.save()
+        return True
     def send_paiment_confirmation_email(self):
-		subject = "Se ha confirmado su pago  ONLINE en EIDE"
-		html_content=u"""<html><body>
-		<h2>CONFIRMACIÓN DE PAGO ONLINE</h2>
-<p>Se ha confirmado su pago de <b> %s </b> € con la descripcion %s creado en la fecha <b> %s </b> y confirmado en la fecha <b> %s </b> .</p>
-		"""%(self.importe,self.descripcion,self.fecha_creacion,self.fecha_pago)
-		message_body = html_content
-		##send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
-		msg = EmailMultiAlternatives(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
-		msg.attach_alternative(html_content, "text/html")
-		##msg.content_subtype = "html"
-		msg.send()
-		
-		subject = "[PAgosONline] Se ha confirmado un pago manual"
-		message_body = u"""Se acaba de confirmarun pago por %s. \n 
-"""%(self.importe)
+		subject = "[PagosOnline] Se ha confirmado un pago manual online"
+		message_body = u"""Se acaba de confirmar un pago online creado manualmente. Los datos son: \n
+        \tid: %s. \n 
+        \tfecha creacion: %s. \n 
+        \tdescripcion: %s. \n 
+        \timporte: %s. \n 
+"""%(self.id,self.fecha_creacion,self.descripcion,self.importe)
 		mail_admins(subject, message_body)
 
 
