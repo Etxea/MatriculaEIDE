@@ -24,6 +24,9 @@ import datetime
 from django.template.defaultfilters import slugify
 from cambridge.models import Registration
 
+import logging
+log = logging.getLogger("MatriculaEIDE")
+
 
 
 class Pago(models.Model):
@@ -34,8 +37,12 @@ class Pago(models.Model):
     def get_absolute_url(self):
         return "/pagos/pago/%i/" % self.id
     def set_as_paid(self):
-        self.fecha_pago = datetime.date.today
+        log.debug("Vamos a marcar como pagado el pago: %s con la descripcion %s",(self.id,self.descripcion))
+        self.fecha_pago = datetime.date.today()
+        log.debug("Mandamos un mail de confirmacion")
         self.send_paiment_confirmation_email()
+        log.debug("Guardamos...")
+        self.save()
     def send_paiment_confirmation_email(self):
 		subject = "Se ha confirmado su pago  ONLINE en EIDE"
 		html_content=u"""<html><body>

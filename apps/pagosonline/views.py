@@ -73,9 +73,9 @@ def confirm_payment(request):
             log.debug( "No sabemos que tipo de matricula es!" )
         #Comprobamos si tenemos una matricula
         if r:
-            log.debug( "Tenemos la matricula/pagoi, vamos a marcalo como pagado")
-            log.debug(r)
+            log.debug( "Tenemos la matricula/pago, vamos a marcalo como pagado")
             r.set_as_paid()
+            log.debug( "Mostramos al TPV la pagina de pago OK")
             return direct_to_template(request,template="pago_confirmar.html")
         else:
             return direct_to_template(request,template="pago_noconfirmar.html")
