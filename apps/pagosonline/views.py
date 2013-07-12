@@ -17,7 +17,7 @@
 #
 from django.views.generic.simple import direct_to_template
 from django.contrib.csrf.middleware import csrf_exempt
-from django.views.generic import DetailView, ListView, CreateView, UpdateView, View
+from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView, View
 
 import datetime
 
@@ -36,6 +36,18 @@ class crear_pago_manual(CreateView):
     #model = Pago
     form_class = PagoForm
     template_name="pago_manual_crear.html"
+
+class editar_pago_manual(UpdateView):
+    model = Pago
+    #form_class = PagoForm
+    template_name="pago_manual_editar.html"
+
+class borrar_pago_manual(DeleteView):
+    model = Pago
+    success_url ="/pagos/lista"
+    #form_class = PagoForm
+    template_name="pago_manual_borrar.html"
+    
     
 def pagar_manual(request,pago_id):
     reference = "manual"

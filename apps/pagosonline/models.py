@@ -32,7 +32,7 @@ log = logging.getLogger("MatriculaEIDE")
 
 class Pago(models.Model):
     importe = models.DecimalField(max_digits=6, decimal_places=2)
-    descripcion = models.CharField(_('Descripción de quien es el pago.'),max_length=250,blank=True)
+    descripcion = models.CharField(_('Concepto'),max_length=250,blank=True)
     fecha_creacion = models.DateField(default=datetime.date.today, auto_now_add=True)
     fecha_pago = models.DateField(null=True,blank=True)
     def get_absolute_url(self):
