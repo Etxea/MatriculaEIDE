@@ -2,10 +2,12 @@
 
 {% load metron_tags %}
 {% load i18n %}
+{% load piwik_tags %}
 
 {% block extra_head %}
 <link rel="stylesheet" href="{{ STATIC_URL }}datepicker/css/datepicker.css">
 <script src="{{ STATIC_URL }}datepicker/js/bootstrap-datepicker.js"></script>
+{% tracking_code %}
 {% endblock %}
 
 {% block nav %}

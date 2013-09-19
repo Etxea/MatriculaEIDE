@@ -168,6 +168,7 @@ INSTALLED_APPS = [
     "metron",
     "south",
     "bootstrapform",
+    "piwik",
     # Pinax
     "pinax.apps.account",
     "pinax.apps.signup_codes",
