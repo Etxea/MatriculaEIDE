@@ -41,6 +41,8 @@
                     $("#id_minor").prop('disabled', true);
 		    $("#id_tutor_name").prop('disabled', false);
 		    $("#id_tutor_surname").prop('disabled', false);
+		    $("#send_form").prop('disabled', false);
+		    $("#aviso_condiciones").hide();
                 }
 		else {
                     $("#legal_foto").show();  
@@ -48,6 +50,8 @@
                     $("#id_minor").prop('disabled', false);
 		    $("#id_tutor_name").prop('disabled', true);
 		    $("#id_tutor_surname").prop('disabled', true);
+		    $("#send_form").prop('disabled', true);
+		    $("#aviso_condiciones").show();
                 }
 		comprobar_foto();
 	}
