@@ -11,17 +11,45 @@
 		if (examen.match('KET')) {
 		    console.log("No es obligatoria la foto porque es un examen KET"); 
 		    $("#legal_foto").hide();
+		    $("#legal_general").show();
+		}
+		else if (examen.match('YLE')) {
+		    console.log("No es obligatoria la foto porque es un examen YLE"); 
+		    $("#legal_foto").hide();
+		    $("#legal_general").hide();
 		}
 		else if (examen.match('schools')){
 		    console.log("No es obligatoria la foto porque es un examen for schools"); 
 		    $("#legal_foto").hide();
+		    $("#legal_general").show();
 		
 		}
 		else {
 		    console.log("Si es obligatoria la foto"); 
 		    $("#legal_foto").show();
+		    $("#legal_general").show();
 		}
 	    
+	}
+	function comprobar_condiciones() {
+	    	comprobar_aceptacion();
+		comprobar_menor();
+		if (examen.match('YLE')) {
+                    console.log("Es un examen YLE así que tiene que ser menor si o o si");
+                    $("#legal_foto").hide();  
+		    $("#id_minor").attr("checked",true)
+                    $("#id_minor").prop('disabled', true);
+		    $("#id_tutor_name").prop('disabled', false);
+		    $("#id_tutor_surname").prop('disabled', false);
+                }
+		else {
+                    $("#legal_foto").show();  
+		    $("#id_minor").attr("checked",false)
+                    $("#id_minor").prop('disabled', false);
+		    $("#id_tutor_name").prop('disabled', true);
+		    $("#id_tutor_surname").prop('disabled', true);
+                }
+		comprobar_foto();
 	}
 	function comprobar_aceptacion() {
 		console.log("Han hecho click en el check de las condiciones");
@@ -80,12 +108,10 @@
 	    $("#normativa_general").hide();
 	    $("#normativa_foto").hide();
             //Comprobamos si se puede enviar
-	    comprobar_aceptacion();
-	    comprobar_menor();
-	    comprobar_foto();
+	    comprobar_condiciones();
             $("#id_centre_name").prop('disabled', false);
             //Control de la aceptación de las condiciones:
-	    $("#id_exam").change(comprobar_foto);
+	    $("#id_exam").change(comprobar_condiciones);
             $("#id_accept_conditions").change(comprobar_aceptacion);
 	    $("#id_accept_photo_conditions").change(comprobar_aceptacion);
 	    $("#id_minor").change(comprobar_menor);
@@ -110,8 +136,17 @@
 
 
 <span class="label label-info"> Atención! </span>La única forma de pago aceptada es <b>vía tarjeta de crédito/débito</b>.<br />
-<span class="label label-info"> Atención! </span>Los exámenes serán presenciales y se realizarán en las <a href="http://www.eide.es/esl/EIDE/Donde-esta-EIDE">instalaciones de EIDE</a>.
+<span class="label label-info"> Atención! </span>Los exámenes serán presenciales y se realizarán en las <a href="http://www.eide.es/esl/EIDE/Donde-esta-EIDE">instalaciones de EIDE</a> (Santurtzi, Bizkaia).
 
+</div>
+
+<div class="alert-mesagge block-message alert">
+<p>En cumplimiento con los establecido en la Ley Orgánica 15/99 de Protección de Datos de Carácter Personal, los datos
+de carácter personal que nos facilite serán utilizados en la forma y con las limitaciones y derechos que recoge la Ley y
+pasarán a formar parte de un fichero propiedad de EIDE. Estos datos son necesarios para la gestión de los exámenes
+de inglés por parte de Cambridge English Language Assessment y son transferidos a la Universidad de Cambridge con
+el único fin de la prestación de dicho servicio. Al facilitarnos sus datos personales consiente el tratamiento informatizado
+o no de los mismos por EIDE para los fines anteriormente citados.</p>
 </div>
 
 <div class="row">
@@ -123,7 +158,7 @@
 	<p>En el siguiente desplegable, selecciona el nivel, tipo, formato y fecha de examen.</p>
 	<ul>
 	    <li>Niveles de Exámenes: <b>KET</b>: A2 – <b>PET</b>: B1– <b>FCE</b>: First Certificate. B2. – <b>CAE</b>: Advanced. C1. – <b>CPE</b>: Proficiency. C2.</li>
-	    <li>Tipo de examen: Ordinario (no llevan ninguna sigla) - <b>FS</b>: For Schools, exámenes para menores de 18</li>
+	    <li>Tipo de examen: Ordinario (no llevan ninguna sigla) - <b>FS</b>: For Schools, exámenes para menores de 18 - <b>YLE</b>: Exámenes Young Learners, para niños/as de primaria.</li>
 	    <li>Formato: <b>CB</b>: Computer Based. Exámenes en ordenador – <b>PB</b>: Paper Based. Exámenes ordinarios en papel.</li>
 	</ul>
 	{{ form|as_bootstrap }}
@@ -131,7 +166,7 @@
 </div>
 
 
-<div class="row">
+<div id="legal_general" class="row">
     <div class="span14">
 	{% include "cambridge/legal.html" %}
 	<div>

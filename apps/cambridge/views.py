@@ -95,6 +95,10 @@ class RegistrationListView(ListView):
 	#Limitamos a las matriculas de examenes posteriores al día de hoy y que estén pagadas
 	queryset=Registration.objects.filter(exam__exam_date__gt=datetime.date.today(),paid=True)
 
+class ExamList(ListView):
+    queryset=Exam.objects.filter(exam_date__gt=datetime.date.today())
+    template_name='cambridge/exam_list.html'
+
 class IndexExamList(ListView):
 	model=Exam
 	def get_context_data(self, **kwargs):
