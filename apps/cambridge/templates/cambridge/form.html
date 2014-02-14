@@ -13,6 +13,11 @@
 		    $("#legal_foto").hide();
 		    $("#legal_general").show();
 		}
+		else if (examen.match('FS')) {
+		    console.log("No es obligatoria la foto porque es un examen FS"); 
+		    $("#legal_foto").hide();
+		    $("#legal_general").show();
+		}
 		else if (examen.match('YLE')) {
 		    console.log("No es obligatoria la foto porque es un examen YLE"); 
 		    $("#legal_foto").hide();
@@ -61,6 +66,10 @@
 		examen = $('#id_exam').find(":selected").text();
 		if (examen.match('KET')) {
 		    console.log("No es obligatoria la foto porque es un examen KET"); 
+		    no_foto_obligatoria=true;
+		}
+		else if (examen.match('FS')) {
+		    console.log("No es obligatoria la foto porque es un examen FS"); 
 		    no_foto_obligatoria=true;
 		}
 		else {
