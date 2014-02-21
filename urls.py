@@ -18,6 +18,9 @@ urlpatterns = patterns("",
     url(r"^index$", direct_to_template, {
         "template": "homepage.html",
     }, name="index"),
+    url(r"^cookies$", direct_to_template, {
+        "template": "cookielaw/politica_cookies.html",
+    }, name="cookies"),
     url(r"^$", redirect_to, {
         "url": "/index",
     }, name="home"),
