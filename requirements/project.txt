@@ -6,7 +6,7 @@
 # Put project-specific requirements here.
 # See http://pip-installer.org/requirement-format.html for more information.
 south
-reportlab
+reportlab==2.4
 html5lib
 xhtml2pdf
 pisa
