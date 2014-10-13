@@ -30,7 +30,7 @@ from models import *
 urlpatterns = patterns('hobetuz/',
     url(r'^list/$',login_required(RegistrationList.as_view()), name="hobetuz_list"),
     url(r'^new/$',RegistrationCreateView.as_view(), name="hobetuz_nueva"),
-    #~ url(r'^excel/$',RegistrationExcelView, name="hobetuz_excel"),
+    url(r'^excel/$',RegistrationExcelView, name="hobetuz_excel"),
     url(r'^edit/(?P<pk>\d+)/$',login_required(RegistrationUpdateView.as_view()), name="hobetuz_edit"),
     #~ url(r'^delete/(?P<pk>\d+)/$',
         #~ login_required(DeleteView.as_view(

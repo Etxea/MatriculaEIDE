@@ -108,29 +108,33 @@ class Registration(models.Model):
 		html_content = u"""
 
 <div class="well">
-    Acaba de realizar una solicitud de matrícula para: <br />
-    %s 
+    Acaba de realizar una solicitud de curso para: <br />
+    %s <br>
+    %s <br>
+    %s <br>
+    %s <br>
+    %s <br>
 </div>
-"""%(self.curso,)
+"""%(self.curso,self.curso2,self.curso3,self.curso4,self.curso5)
 		
 		message_body = html_content
 		##send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
 		msg = EmailMultiAlternatives(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
 		msg.attach_alternative(html_content, "text/html")
 		##msg.content_subtype = "html"
-		#msg.send()
+		msg.send()
 		 
 		### Para los admins
 		subject = "Hay una nueva matricula para Hobetuz %s"%self.curso
-		message_body = u"""Se ha dado de alta una nueva matricula para el examen %s. 
-Los datos son del alumno son: 
+		message_body = u"""Se ha dado de alta una nueva solictud de hobetuz. 
+Los datos son del solicitante son: 
 	Nombre: %s
 	Apellidos: %s
 	Telefono Fijo: %s
 	Telefono Móvil: %s
 	e-mail: %s
-"""%(self.curso,self.name,self.surname,self.telephone,self.telephone2,self.email)
-		#mail_admins(subject, message_body)
+"""%(self.name,self.surname,self.telephone,self.telephone2,self.email)
+		mail_admins(subject, message_body)
 		
 	def __unicode__(self):
 		return "%s-%s"%(self.id,self.email)

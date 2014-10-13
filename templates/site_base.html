@@ -39,10 +39,10 @@
 	    
 	    {% if user.is_authenticated %}
 	    <ul class="dropdown-menu">
-			<li><a href="{% url hobetuz  %}">Matriculate</a></li>
+			<li><a href="{% url hobetuz  %}">Solicitud</a></li>
 			
 			<li><a href="{% url hobetuz_curso_lista %}">{% trans "Gestionar de cursos" %}</a></li>
-			<li><a href="{% url hobetuz_list %}">{% trans "Lista Matrículas" %}</a></li>
+			<li><a href="{% url hobetuz_list %}">{% trans "Gestionar Solicitudes" %}</a></li>
 		
 		</ul>
 	    	{% endif %}

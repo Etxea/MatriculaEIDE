@@ -88,11 +88,11 @@ class RegistrationCreateView(CreateView):
 	def get_success_url(self):
 		## FIXME usar un reverse o lazy_reverse
 		return '/hobetuz/thanks/'
-#~ 
-#~ @login_required	
-#~ def RegistrationExcelView(request):
-    #~ objs = Registration.objects.filter(paid=True)
-    #~ return ExcelResponse(objs)
+
+@login_required	
+def RegistrationExcelView(request):
+    objs = Registration.objects.all()
+    return ExcelResponse(objs)
 #~ 
 #~ class RegistrationListView(ListView):
 	#~ #model=ComputerBasedRegistration

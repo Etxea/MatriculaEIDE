@@ -7,9 +7,9 @@
 
 <div class="hero-unit">
 
-    <h2>{% trans "Matriculas para cursos HOBETUZ" %}</h2>
+    <h2>{% trans "Solicita un curso HOBETUZ" %}</h2>
     <br />
-    <p>{% trans "Matricularse en EIDE para realizar un curso de HOBETUZ es sencillo, tan solo elige tu curso." %}</p>
+    <p>{% trans "Solicutar un curso de HOBETUZ en EIDE para es sencillo, tan solo elige tu curso." %}</p>
     <p>
 		<ul>
 			{% for course in object_list %}
@@ -18,7 +18,7 @@
 		</ul>
     </p>
     <p class="pagination-centered" >
-		<a class="btn primary large" href="{% url hobetuz_nueva %}">{% trans "Matricúlate" %}</a>
+		<a class="btn primary large" href="{% url hobetuz_nueva %}">{% trans "Solicitud" %}</a>
 	</p>
 </div>
 <!--
