@@ -64,27 +64,27 @@ class Curso(models.Model):
 
 #Asbtract model to inherit from him
 class Registration(models.Model):
-	curso = models.ForeignKey(Curso,verbose_name="Primera Opción",limit_choices_to = {'matricula_abierta': True})
+	curso = models.ForeignKey(Curso,verbose_name="Primera Opción (*)",limit_choices_to = {'matricula_abierta': True})
 	curso2 = models.ForeignKey(Curso,verbose_name="Segunda Opción",limit_choices_to = {'matricula_abierta': True},blank=True,related_name="registration2_set",null=True)
 	curso3 = models.ForeignKey(Curso,verbose_name="Tercera Opción",limit_choices_to = {'matricula_abierta': True},blank=True,related_name="registration3_set",null=True)
 	curso4 = models.ForeignKey(Curso,verbose_name="Cuarta Opción",limit_choices_to = {'matricula_abierta': True},blank=True,related_name="registration4_set",null=True)
 	curso5 = models.ForeignKey(Curso,verbose_name="Quinta Opción",limit_choices_to = {'matricula_abierta': True},blank=True,related_name="registration5_set",null=True)
 
 	password = models.CharField(_('Password'),max_length=6,blank=True,editable=False)
-	name = models.CharField(_('Name'),max_length=50)
-	surname = models.CharField(_('Surname'),max_length=100)
+	name = models.CharField(_('Nombre (*)'),max_length=50)
+	surname = models.CharField(_('Apellido(s) (*)'),max_length=100)
 	#~ address = models.CharField(_('Address'),max_length=100)
 	#~ location = models.CharField(_('Location'),max_length=100)
 	#~ postal_code = models.DecimalField(_('Postal Code'),max_digits=6, decimal_places=0)
 	#~ sex = models.DecimalField(_('Sex'),max_digits=1, decimal_places=0,choices=SEXO)
 	#~ birth_date = models.DateField(_('Birth Date'),help_text=_('Formato: DD-MM-AAAA(dia-mes-año)'))
 	#dni = models.CharField(max_length=9,blank=True,help_text=_('Introduce el DNI completo con la letra sin espacios ni guiones'))
-	telephone = models.CharField(_('Teléfono Fijo'),max_length=12)
-	telephone2 = models.CharField(_('Teléfono Móvil'),max_length=12)
+	telephone = models.CharField(_('Teléfono Fijo (*)'),max_length=12)
+	telephone2 = models.CharField(_('Teléfono Móvil (*)'),max_length=12)
 	email = models.EmailField()
 	titulacion = models.DecimalField(_('Titulación'),max_digits=1, decimal_places=0,choices=TITULACION)
 	
-	desempleado = models.BooleanField(_('Desempleado'), help_text=_('Check this if you are an alumn of EIDE. If not please fill in your centre name'))
+	desempleado = models.BooleanField(_('Desempleado (*)'), help_text=_('haga click en el check si se encuentra en situación de desempleo'))
 	fecha_desempleo = models.DateField(default=datetime.date.today, blank=True, null=True)
 	
 	empresa_nombre = models.CharField(_('Nombre de la empresa'),max_length=100, blank=True)
@@ -128,7 +128,7 @@ class Registration(models.Model):
 		msg.send()
 		 
 		### Para los admins
-		subject = "Hay una nueva matricula para Hobetuz %s"%self.curso
+		subject = "Hay una nueva solicitud para Hobetuz %s"%self.curso
 		message_body = u"""Se ha dado de alta una nueva solictud de hobetuz. 
 Los datos son del solicitante son: 
 	Nombre: %s
