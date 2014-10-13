@@ -103,7 +103,7 @@ class Registration(models.Model):
 	
 	def send_confirmation_email(self):
 		##Para el alumno
-		subject = "Te has matriculado para un curso de HOBETUZ en EIDE"
+		subject = "Has solicitado un curso de HOBETUZ en EIDE"
 		
 		html_content = u"""
 
@@ -114,6 +114,9 @@ class Registration(models.Model):
     %s <br>
     %s <br>
     %s <br>
+</div>
+<div class="well">
+<p>En caso de que convoquemos un curso de los que solicita y cumpla los requisitos, no pondremos en contacto con usted para realizar un proceso de selección.</p>
 </div>
 """%(self.curso,self.curso2,self.curso3,self.curso4,self.curso5)
 		
