@@ -11,7 +11,7 @@
     <thead>
         <tr>
             <td>Identificador</td>
-            <td>{% trans "Curso" %}</td>
+            <td>{% trans "Cursos" %}</td>
             <td>{% trans "Surname" %}</td>
             <td>{% trans "Name" %}</td>
             <!--<td>{% trans "Paid" %}</td>-->
@@ -23,7 +23,7 @@
         {% for matricula in object_list %}
         <tr>
             <td> <a href="{% url hobetuz_edit matricula.id %}">{{ matricula }}</a> </td>
-            <td>{{ matricula.curso.name }}</td>
+            <td>{{ matricula.curso.name }} | {{ matricula.curso2.name }} | {{ matricula.curso3.name }} | {{ matricula.curso4.name }} | {{ matricula.curso5.name }}</td>
             <td>{{ matricula.surname }}</td>
             <td>{{ matricula.name }}</td>
             

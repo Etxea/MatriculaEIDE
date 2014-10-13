@@ -48,6 +48,12 @@ TITULACION = (
     (4, _('Grado, Licenciatura o Diplomatura')),
 )
 
+NIVELES_IDIOMAS = (
+    (1, _('Cero')),
+    (2, _('Inicial')),
+    (3, _('Intermedio')),
+    (4, _('Avanzado')),
+)
 
 class Curso(models.Model):
 	name = models.CharField(max_length=50)
@@ -58,7 +64,12 @@ class Curso(models.Model):
 
 #Asbtract model to inherit from him
 class Registration(models.Model):
-	curso = models.ForeignKey(Curso,limit_choices_to = {'matricula_abierta': True})
+	curso = models.ForeignKey(Curso,verbose_name="Primera Opción",limit_choices_to = {'matricula_abierta': True})
+	curso2 = models.ForeignKey(Curso,verbose_name="Segunda Opción",limit_choices_to = {'matricula_abierta': True},blank=True,related_name="registration2_set",null=True)
+	curso3 = models.ForeignKey(Curso,verbose_name="Tercera Opción",limit_choices_to = {'matricula_abierta': True},blank=True,related_name="registration3_set",null=True)
+	curso4 = models.ForeignKey(Curso,verbose_name="Cuarta Opción",limit_choices_to = {'matricula_abierta': True},blank=True,related_name="registration4_set",null=True)
+	curso5 = models.ForeignKey(Curso,verbose_name="Quinta Opción",limit_choices_to = {'matricula_abierta': True},blank=True,related_name="registration5_set",null=True)
+
 	password = models.CharField(_('Password'),max_length=6,blank=True,editable=False)
 	name = models.CharField(_('Name'),max_length=50)
 	surname = models.CharField(_('Surname'),max_length=100)
@@ -74,13 +85,18 @@ class Registration(models.Model):
 	titulacion = models.DecimalField(_('Titulación'),max_digits=1, decimal_places=0,choices=TITULACION)
 	
 	desempleado = models.BooleanField(_('Desempleado'), help_text=_('Check this if you are an alumn of EIDE. If not please fill in your centre name'))
-	fecha_desempleo = models.DateField(default=datetime.date.today, blank=True)
+	fecha_desempleo = models.DateField(default=datetime.date.today, blank=True, null=True)
 	
 	empresa_nombre = models.CharField(_('Nombre de la empresa'),max_length=100, blank=True)
 	empresa_puesto = models.CharField(_('Puesto en la empresa'),max_length=100, blank=True)
 	empresa_actividad = models.CharField(_('Actividad de la empresa'),max_length=200, blank=True)
 	
 	registration_date = models.DateField(default=datetime.date.today, auto_now_add=True)
+	
+	nivel_ingles = models.DecimalField(_('Nivel Ingles'),help_text="En caso de que halla escogido este diioma indique su nivel",max_digits=1, decimal_places=0,choices=NIVELES_IDIOMAS,blank=True,null=True)
+	nivel_frances = models.DecimalField(_('Nivel Frances'),help_text="En caso de que halla escogido este diioma indique su nivel",max_digits=1, decimal_places=0,choices=NIVELES_IDIOMAS,blank=True,null=True)
+	nivel_aleman = models.DecimalField(_('Nivel Aleman'),help_text="En caso de que halla escogido este diioma indique su nivel",max_digits=1, decimal_places=0,choices=NIVELES_IDIOMAS,blank=True,null=True)
+	nivel_chino = models.DecimalField(_('Nivel Chino'),help_text="En caso de que halla escogido este diioma indique su nivel",max_digits=1, decimal_places=0,choices=NIVELES_IDIOMAS,blank=True,null=True)
 	
 	accept_conditions = models.BooleanField(_('Accept the conditions'), help_text=_('You must accept the conditions to register'),default=True,blank=True)
 	
@@ -117,7 +133,7 @@ Los datos son del alumno son:
 		#mail_admins(subject, message_body)
 		
 	def __unicode__(self):
-		return "%s-%s"%(self.id,self.curso)
+		return "%s-%s"%(self.id,self.email)
 	def registration_name(self):
 		#return "%s - %s, %s"%(self.exam,self.surname,self.name)
 		#~ return "%s"%(self.exam)
