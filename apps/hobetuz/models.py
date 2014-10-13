@@ -79,12 +79,12 @@ class Registration(models.Model):
 	#~ sex = models.DecimalField(_('Sex'),max_digits=1, decimal_places=0,choices=SEXO)
 	#~ birth_date = models.DateField(_('Birth Date'),help_text=_('Formato: DD-MM-AAAA(dia-mes-año)'))
 	#dni = models.CharField(max_length=9,blank=True,help_text=_('Introduce el DNI completo con la letra sin espacios ni guiones'))
-	telephone = models.CharField(_('Teléfono Fijo (*)'),max_length=12)
-	telephone2 = models.CharField(_('Teléfono Móvil (*)'),max_length=12)
+	telephone = models.CharField('Teléfono Fijo (*)',max_length=12)
+	telephone2 = models.CharField('Teléfono Móvil (*)',max_length=12)
 	email = models.EmailField()
 	titulacion = models.DecimalField(_('Titulación'),max_digits=1, decimal_places=0,choices=TITULACION)
 	
-	desempleado = models.BooleanField(_('Desempleado (*)'), help_text=_('haga click en el check si se encuentra en situación de desempleo'))
+	desempleado = models.BooleanField(_('Desempleado'), help_text=_('haga click en el check si se encuentra en situación de desempleo'))
 	fecha_desempleo = models.DateField(default=datetime.date.today, blank=True, null=True)
 	
 	empresa_nombre = models.CharField(_('Nombre de la empresa'),max_length=100, blank=True)
