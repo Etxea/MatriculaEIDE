@@ -148,10 +148,16 @@ Telefono Fijo: %s
 Telefono Móvil: %s
 e-mail: %s
 
+Curso1: %s
+Curso2: %s
+Curso3: %s
+Curso4: %s
+Curso5: %s
+
 Para mas detalle visitar:
 https://matricula-eide.es/%s
 
-"""%(self.name,self.surname,self.telephone,self.telephone2,self.email,self.get_detail_url())
+"""%(self.name,self.surname,self.telephone,self.telephone2,self.email,self.curso,self.curso2,self.curso3,self.curso4,self.curso5,self.get_detail_url())
 		message_html = u"""
 <html>
 <body>		
