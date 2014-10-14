@@ -82,6 +82,8 @@
 {% endblock %}
 
 {% block extra_body_base %}
+    {% if analytics %}
     {% analytics %}
+    {% endif %}
     {% block extra_body %}{% endblock %}
 {% endblock %}

@@ -100,10 +100,10 @@ class Registration(models.Model):
 	
 	registration_date = models.DateField(default=datetime.date.today, auto_now_add=True)
 	
-	nivel_ingles = models.DecimalField(_('Nivel Ingles'),help_text="En caso de que halla escogido este diioma indique su nivel",max_digits=1, decimal_places=0,choices=NIVELES_IDIOMAS,blank=True,null=True)
-	nivel_frances = models.DecimalField(_('Nivel Frances'),help_text="En caso de que halla escogido este diioma indique su nivel",max_digits=1, decimal_places=0,choices=NIVELES_IDIOMAS,blank=True,null=True)
-	nivel_aleman = models.DecimalField(_('Nivel Aleman'),help_text="En caso de que halla escogido este diioma indique su nivel",max_digits=1, decimal_places=0,choices=NIVELES_IDIOMAS,blank=True,null=True)
-	nivel_chino = models.DecimalField(_('Nivel Chino'),help_text="En caso de que halla escogido este diioma indique su nivel",max_digits=1, decimal_places=0,choices=NIVELES_IDIOMAS,blank=True,null=True)
+	nivel_ingles = models.DecimalField(_('Nivel Ingles'),help_text="En caso de que haya escogido este idioma indique su nivel",max_digits=1, decimal_places=0,choices=NIVELES_IDIOMAS,blank=True,null=True)
+	nivel_frances = models.DecimalField(_('Nivel Frances'),help_text="En caso de que haya escogido este idioma indique su nivel",max_digits=1, decimal_places=0,choices=NIVELES_IDIOMAS,blank=True,null=True)
+	nivel_aleman = models.DecimalField(_('Nivel Aleman'),help_text="En caso de que haya escogido este idioma indique su nivel",max_digits=1, decimal_places=0,choices=NIVELES_IDIOMAS,blank=True,null=True)
+	nivel_chino = models.DecimalField(_('Nivel Chino'),help_text="En caso de que haya escogido este idioma indique su nivel",max_digits=1, decimal_places=0,choices=NIVELES_IDIOMAS,blank=True,null=True)
 	
 	accept_conditions = models.BooleanField(_('Accept the conditions'), help_text=_('You must accept the conditions to register'),default=True,blank=True)
 	
