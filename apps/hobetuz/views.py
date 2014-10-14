@@ -41,31 +41,26 @@ import logging
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
-#~ 
-#~ def ver(request, pk):
-	#~ registration = get_object_or_404(Registration, id=pk)
-	#~ payload = {'registration': registration}
-	#~ file_data = render_to_string('hobetuz/imprimir.html', payload, RequestContext(request))
-	#~ myfile = StringIO.StringIO()
-	#~ return HttpResponse( file_data )
-#~ 
-#~ 
-#~ 
-#~ def imprimir(registration,request):
-	#~ payload = {'registration': registration}
-	#~ response_pdf = render_to_pdf_response('hobetuz/matricula_imprimir.html', 
-		#~ payload, pdfname='hobetuz-%s.pdf'%registration.id)
-	#~ response_html = render_to_response('hobetuz/matricula_imprimir.html', 
-		#~ payload)
-#~ 
+
+def ver(request, pk):
+	registration = get_object_or_404(Registration, id=pk)
+	payload = {'registration': registration}
+	file_data = render_to_string('hobetuz/detalle.html', payload, RequestContext(request))
+	myfile = StringIO.StringIO()
+	return HttpResponse( file_data )
+
+def imprimir(registration,request):
+	payload = {'registration': registration}
+	#~ response_pdf = render_to_pdf_response('hobetuz/matricula_imprimir.html',payload, pdfname='hobetuz-%s.pdf'%registration.id)
+	response_html = render_to_response('hobetuz/matricula_imprimir.html',payload)
 	#~ return response_pdf
-#~ 
-#~ @login_required
-#~ def imprimir_hobetuz(request, pk):
-	#~ logger.debug("Vamos a imprimir una matricula normal")
-	#~ registration = Registration.objects.get(id=pk)
-	#~ return imprimir(registration,request)
-#~ 
+	return response_html
+
+@login_required
+def imprimir_hobetuz(request, pk):
+	registration = Registration.objects.get(id=pk)
+	return imprimir(registration,request)
+
 
 class RegistrationList(ListView):
 	model=Registration

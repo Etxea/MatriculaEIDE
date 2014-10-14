@@ -32,13 +32,12 @@ urlpatterns = patterns('hobetuz/',
     url(r'^new/$',RegistrationCreateView.as_view(), name="hobetuz_nueva"),
     url(r'^excel/$',RegistrationExcelView, name="hobetuz_excel"),
     url(r'^edit/(?P<pk>\d+)/$',login_required(RegistrationUpdateView.as_view()), name="hobetuz_edit"),
-    #~ url(r'^delete/(?P<pk>\d+)/$',
-        #~ login_required(DeleteView.as_view(
-            #~ model=Registration,
-            #~ success_url="/hobetuz/list/")), name="hobetuz_delete"),
-    #~ url(r'^view/(?P<pk>\d+)/$', ver, name="hobetuz_view"),
-    #~ url(r'^print/(?P<pk>\d+)/$', imprimir_hobetuz, name="hobetuz_imprimir"),
-    #~ url(r'^new/(?P<pk>\d+)/$',RegistrationCreateView.as_view()),
+    url(r'^delete/(?P<pk>\d+)/$',
+        login_required(DeleteView.as_view(
+            model=Registration,
+            success_url="/hobetuz/list/")), name="hobetuz_delete"),
+    url(r'^view/(?P<pk>\d+)/$', ver, name="hobetuz_view"),
+    url(r'^print/(?P<pk>\d+)/$', imprimir_hobetuz, name="hobetuz_imprimir"),
     
     ## Genericas
     url(r'thanks/$', direct_to_template, {'template': 'hobetuz/gracias.html' },name="hobetuz_gracias"),
