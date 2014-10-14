@@ -113,7 +113,8 @@ class Registration(models.Model):
 		subject = "Has solicitado un curso de HOBETUZ en EIDE"
 		
 		html_content = u"""
-
+<html>
+<body>
 <div class="well">
     Acaba de realizar una solicitud de curso para: <br />
     %s <br>
@@ -125,6 +126,8 @@ class Registration(models.Model):
 <div class="well">
 <p>En caso de que convoquemos un curso de los que solicita y cumpla los requisitos, no pondremos en contacto con usted para realizar un proceso de selección.</p>
 </div>
+</body>
+</html>
 """%(self.curso,self.curso2,self.curso3,self.curso4,self.curso5)
 		
 		message_body = html_content
@@ -135,8 +138,21 @@ class Registration(models.Model):
 		msg.send()
 		 
 		### Para los admins
-		subject = "Hay una nueva solicitud para Hobetuz %s"%self.curso
+		subject = "[Hobetuz]Hay una nueva solicitud para Hobetuz"
 		message_body = u"""
+Se ha dado de alta una nueva solictud de hobetuz. 
+Los datos son del solicitante son: 
+Nombre: %s
+Apellidos: %s
+Telefono Fijo: %s
+Telefono Móvil: %s
+e-mail: %s
+
+Para mas detalle visitar:
+https://matricula-eide.es/%s
+
+"""%(self.name,self.surname,self.telephone,self.telephone2,self.email,self.get_detail_url())
+		message_html = u"""
 <html>
 <body>		
 Se ha dado de alta una nueva solictud de hobetuz. 
@@ -159,10 +175,11 @@ Los datos son del solicitante son:
 </tr>
 </table>
 Para mas detalle visitar:
-<a href="https://matricula-eide.es%s">Detalles</a>
+<a href="https://matricula-eide.es/%s">Detalles</a>
 </body>	
-"""%(self.name,self.surname,self.telephone,self.telephone2,self.email,self.get_detail_url)
-		mail_admins(subject, message_body)
+"""%(self.name,self.surname,self.telephone,self.telephone2,self.email,self.get_detail_url())
+		
+		mail_admins(subject, message_body,False,None,message_html)
 		
 	def __unicode__(self):
 		return "%s-%s"%(self.id,self.email)
