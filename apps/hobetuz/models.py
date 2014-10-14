@@ -20,6 +20,7 @@ from django.db import models
 from django.contrib.localflavor import generic
 from django.contrib.localflavor.es.forms import *
 from django.core.mail import EmailMultiAlternatives
+from django.core.urlresolvers import reverse
 
 from random import choice
 from string import letters
@@ -135,18 +136,38 @@ class Registration(models.Model):
 		 
 		### Para los admins
 		subject = "Hay una nueva solicitud para Hobetuz %s"%self.curso
-		message_body = u"""Se ha dado de alta una nueva solictud de hobetuz. 
+		message_body = u"""
+<html>
+<body>		
+Se ha dado de alta una nueva solictud de hobetuz. 
 Los datos son del solicitante son: 
-	Nombre: %s
-	Apellidos: %s
-	Telefono Fijo: %s
-	Telefono Móvil: %s
-	e-mail: %s
-"""%(self.name,self.surname,self.telephone,self.telephone2,self.email)
+<table>
+<tr>
+	<td>Nombre:</td><td> %s</td>
+</tr>
+<tr>
+	</d>Apellidos:</td><td> %s</td>
+</tr>
+<tr>
+	<td>Telefono Fijo:</td><td> %s</td>
+</tr>
+<tr>
+	<td>Telefono Móvil:</td><td> %s</td>
+</tr>
+<tr>
+	<td>e-mail:</td><td> %s</td>
+</tr>
+</table>
+Para mas detalle visitar:
+<a href="https://matricula-eide.es%s">Detalles</a>
+</body>	
+"""%(self.name,self.surname,self.telephone,self.telephone2,self.email,self.get_detail_url)
 		mail_admins(subject, message_body)
 		
 	def __unicode__(self):
 		return "%s-%s"%(self.id,self.email)
+	def get_detail_url(self):
+		return reverse('hobetuz_view',args=[self.id])
 	def registration_name(self):
 		#return "%s - %s, %s"%(self.exam,self.surname,self.name)
 		#~ return "%s"%(self.exam)
