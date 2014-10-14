@@ -46,6 +46,11 @@ TITULACION = (
     (2, _('Graduado Escolar o ESO')),
     (3, _('Bachillerato, COU o similar')),
     (4, _('Grado, Licenciatura o Diplomatura')),
+    (5, _('Certificado de Profesionalidad en Turismo y Hostelería de Nivel 1')),
+    (6, _('Certificado de Profesionalidad en Turismo y Hostelería de Nivel 2 o 3')),
+    (7, _('Ciclo Grado Medio, FPI, Certificado de Profesionalidad de Nivel 2 en otra especialidad')),
+    (8, _('Ciclo de Grado Superior, FPII; Certificado de Profesionalidad de Nivel 3 en otra especialidad')),
+ 
 )
 
 NIVELES_IDIOMAS = (
@@ -79,9 +84,9 @@ class Registration(models.Model):
 	#~ sex = models.DecimalField(_('Sex'),max_digits=1, decimal_places=0,choices=SEXO)
 	#~ birth_date = models.DateField(_('Birth Date'),help_text=_('Formato: DD-MM-AAAA(dia-mes-año)'))
 	#dni = models.CharField(max_length=9,blank=True,help_text=_('Introduce el DNI completo con la letra sin espacios ni guiones'))
-	telephone = models.CharField(verbose_name='Teléfono Fijo (*)',max_length=12)
-	telephone2 = models.CharField(verbose_name='Teléfono Móvil (*)',max_length=12)
-	email = models.EmailField(verbose_name='Email (*)')
+	telephone = models.CharField('Tel. Fijo (*)',max_length=12)
+	telephone2 = models.CharField('Tel. Móvil (*)',max_length=12)
+	email = models.EmailField('Email (*)')
 	
 	titulacion = models.DecimalField(_('Titulación (*)'),max_digits=1, decimal_places=0,choices=TITULACION)
 	

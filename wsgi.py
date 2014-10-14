@@ -1,3 +1,9 @@
+import os, sys
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
+sys.path.append(os.path.abspath(os.path.dirname(__file__)))
+
+
 from django.core.handlers.wsgi import WSGIHandler
 
 import pinax.env

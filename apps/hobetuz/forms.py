@@ -33,8 +33,8 @@ class CursoForm(ModelForm):
 class RegistrationForm(ModelForm):
 	class Meta:
 		model = Registration
-	telephone = ESPhoneNumberField(label=_("Teléfono Fijo"))
-	telephone2 = ESPhoneNumberField(label=_("Teléfono Móvil"))
+	telephone = ESPhoneNumberField(label=_("Teléfono Fijo (*)"))
+	telephone2 = ESPhoneNumberField(label=_("Teléfono Móvil (*)"))
 	#dni = ESIdentityCardNumberField()
 	#~ postal_code = ESPostalCodeField(label=_("Código Postal"))
 	#~ class Meta:

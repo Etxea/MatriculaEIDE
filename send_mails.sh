@@ -1,3 +1,4 @@
 #/bin/bash
-cd /var/www/virtual/matricula-eide.es/MatriculaEIDE 
-/usr/bin/python manage.py send_mail >> ./send_mail.log 2>&1
+cd /var/www/vhosts/eide.es/MatriculaEIDE 
+. ./bin/activate
+./manage.py send_mail >> ./send_mail.log 2>&1
