@@ -28,7 +28,7 @@ import StringIO
 import ho.pisa as pisa
 from excel_response import ExcelResponse
 
-from django_xhtml2pdf.utils import render_to_pdf_response
+from django_xhtml2pdf.utils import render_to_pdf_response, generate_pdf
 #from utils import  render_to_pdf_response
 
 from models import *
@@ -44,16 +44,17 @@ logger = logging.getLogger(__name__)
 
 def ver(request, pk):
 	registration = get_object_or_404(Registration, id=pk)
-	payload = {'registration': registration}
+	payload = {'registration': registration, 'request': request}
 	file_data = render_to_string('hobetuz/detalle.html', payload, RequestContext(request))
 	myfile = StringIO.StringIO()
 	return HttpResponse( file_data )
 
 def imprimir(registration,request):
 	payload = {'registration': registration}
-	#~ response_pdf = render_to_pdf_response('hobetuz/matricula_imprimir.html',payload, pdfname='hobetuz-%s.pdf'%registration.id)
-	response_html = render_to_response('hobetuz/matricula_imprimir.html',payload)
-	#~ return response_pdf
+	#response_pdf = render_to_pdf_response('hobetuz/matricula_imprimir.html',payload, pdfname='hobetuz-%s.pdf'%registration.id)
+	#response_pdf = render_to_pdf_response('hobetuz/detalle.html',payload, pdfname='hobetuz-%s.pdf'%registration.id)
+	response_html = render_to_response('hobetuz/detalle.html',payload, RequestContext(request))
+	#return response_pdf
 	return response_html
 
 @login_required

@@ -10,10 +10,10 @@
 <table class="table">
     <thead>
         <tr>
-            <td>Identificador</td>
+            <td>ID</td>
             <td>{% trans "Cursos" %}</td>
-            <td>{% trans "Surname" %}</td>
-            <td>{% trans "Name" %}</td>
+            <td>{% trans "Nombre" %}</td>
+            <td>{% trans "Desempleado" %}</td>
             
             <td> Acciones </td>
             
@@ -22,15 +22,16 @@
     <tbody>
         {% for matricula in object_list %}
         <tr>
-            <td> <a href="{% url hobetuz_view matricula.id %}">{{ matricula }}</a> </td>
+            <td> <a href="{% url hobetuz_view matricula.id %}">{{ matricula.id }}</a> </td>
             <td>{{ matricula.curso.name }} | {{ matricula.curso2.name }} | {{ matricula.curso3.name }} | {{ matricula.curso4.name }} | {{ matricula.curso5.name }}</td>
-            <td>{{ matricula.surname }}</td>
-            <td>{{ matricula.name }}</td>
+            <td>{{ matricula.surname }},{{ matricula.name }}</td>
+	    <td>{{ matricula.desempleado}}</td>
             
             
             <td>
-				<a class="btn" href="{% url hobetuz_edit matricula.id %}">Editar</a> 
-                <a class="btn" href="{% url hobetuz_imprimir matricula.id %}">{% trans "Print" %}</a>
+		<a class="btn primary" href="{% url hobetuz_view matricula.id %}">Detalles</a>
+		<a class="btn" href="{% url hobetuz_edit matricula.id %}">Editar</a> 
+                <!-- <a class="btn" href="{% url hobetuz_imprimir matricula.id %}">{% trans "Print" %}</a> -->
                 <a class="btn" href="{% url hobetuz_delete matricula.id %}">{% trans "Delete" %}</a>
             </td>
         </tr>

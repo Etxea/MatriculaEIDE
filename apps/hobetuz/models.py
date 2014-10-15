@@ -65,7 +65,7 @@ class Curso(models.Model):
 	name = models.CharField(max_length=50)
 	matricula_abierta = models.BooleanField(_('Matricula Abierta'),default=datetime.date.today)
 	def __unicode__(self):
-		return "Curso de %s"%(self.name)
+		return u"Curso de %s"%(self.name)
 	
 
 #Asbtract model to inherit from him
@@ -190,7 +190,7 @@ Para mas detalle visitar:
 		mail_admins(subject, message_body,False,None,message_html)
 		
 	def __unicode__(self):
-		return "%s-%s"%(self.id,self.email)
+		return u"%s-%s"%(self.id,self.email)
 	def get_detail_url(self):
 		return reverse('hobetuz_view',args=[self.id])
 	def registration_name(self):
