@@ -157,9 +157,9 @@ Curso5: %s
 Desempleado: %s
 
 Para mas detalle visitar:
-https://matricula-eide.es/%s
+https://matricula-eide.es/hobetuz/list/
 
-"""%(self.name,self.surname,self.telephone,self.telephone2,self.email,self.curso,self.curso2,self.curso3,self.curso4,self.curso5,self.desempleado,self.get_detail_url())
+"""%(self.name,self.surname,self.telephone,self.telephone2,self.email,self.curso,self.curso2,self.curso3,self.curso4,self.curso5,self.desempleado)
 		message_html = u"""
 <html>
 <body>		
@@ -183,16 +183,17 @@ Los datos son del solicitante son:
 </tr>
 </table>
 Para mas detalle visitar:
-<a href="https://matricula-eide.es/%s">Detalles</a>
+<a href="https://matricula-eide.es/hobetuz/list/">Lista</a>
 </body>	
-"""%(self.name,self.surname,self.telephone,self.telephone2,self.email,self.get_detail_url())
+"""%(self.name,self.surname,self.telephone,self.telephone2,self.email)
 		
 		mail_admins(subject, message_body,False,None,message_html)
 		
 	def __unicode__(self):
 		return u"%s-%s"%(self.id,self.email)
-	def get_detail_url(self):
-		return reverse('hobetuz_view',args=[self.id])
+	#def get_detail_url(self):
+		#return reverse('hobetuz_view',args=[self.id])
+		#return "/hobetuz/view/%d/"%self.id
 	def registration_name(self):
 		#return "%s - %s, %s"%(self.exam,self.surname,self.name)
 		#~ return "%s"%(self.exam)
