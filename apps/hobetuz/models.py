@@ -21,6 +21,7 @@ from django.contrib.localflavor import generic
 from django.contrib.localflavor.es.forms import *
 from django.core.mail import EmailMultiAlternatives
 from django.core.urlresolvers import reverse
+from django.template.loader import render_to_string
 
 from random import choice
 from string import letters
@@ -136,6 +137,23 @@ class Registration(models.Model):
 		msg.attach_alternative(html_content, "text/html")
 		##msg.content_subtype = "html"
 		msg.send()
+		
+		##Para el secretaria
+		
+		subject = "[HOBETUZ] nueva solicitud desde la Web"
+		payload = {'registration': self}
+		
+		html_content = render_to_string('hobetuz/detalle.html', payload)
+		
+		message_body = html_content
+		##send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
+		msg = EmailMultiAlternatives(subject, message_body, settings.DEFAULT_FROM_EMAIL, ["moebius198@gmail.com","secretaria@eide.es"])
+		msg.attach_alternative(html_content, "text/html")
+		##msg.content_subtype = "html"
+		msg.send()
+
+
+
 		 
 		### Para los admins
 		subject = "[Hobetuz]Hay una nueva solicitud para Hobetuz"
