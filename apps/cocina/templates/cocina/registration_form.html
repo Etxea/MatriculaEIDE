@@ -1,0 +1,143 @@
+{% extends "site_base.html"%}
+{% load i18n %}
+{% load bootstrap_tags %}
+
+{% block extra_head %}
+
+<script>
+	function comprobar_aceptacion() {
+		console.log("Comprobamos de las condiciones");
+		acepta = false;
+		if ($("#id_accept_conditions").is(":checked"))
+		{
+		    console.log("Condiciones generales aceptadas");
+			acepta = true;
+		}
+		if (acepta) {
+		    console.log("Dice que las acepta");
+		    $("#send_form").prop('disabled', false);
+		    console.log("Ocultamos el aviso");
+		    $("#aviso_condiciones").hide();
+		}else {
+		    //Deshabilitamos el envio hasta que acepten las condiciones
+			console.log("Dice que NO las acepta");
+			$("#send_form").prop('disabled', true);
+		    console.log("Mostramos el aviso");
+		    $("#aviso_condiciones").show();
+		}
+    }
+	function comprobar_desempleado() {
+		console.log("Han hecho click en el check de desempleado");
+		if ($("#id_desempleado").is(":checked")) {
+			console.log("Dice que esta desempleado");
+			//~ $("#id_trabajador_baja_cual").prop('disabled', true);			
+			$("#id_trabajo_previo").prop('disabled', false);			
+	   }else {
+			console.log("Dice que NO está desempleado");
+			//~ $("#id_trabajador_baja_cual").prop('disabled', false);
+			$("#id_trabajo_previo").prop('disabled', true);			
+		}
+	};
+	function comprobar_trabajoprevio() {
+		console.log("Han hecho click en el check de trabajo previo");
+		if ($("#id_trabajo_previo").is(":checked")) {
+			console.log("Dice que si ha trabajado");
+			$("#id_tiempo_desempleo").prop('disabled', false);
+		} else  {
+			console.log("Dice que no ha trabajado antes");
+			$("#id_tiempo_desempleo").prop('disabled', true);
+			$("#id_tiempo_desempleo").val(0);
+			
+		}
+	}
+	
+	function comprobar_experienciaprevia() {
+		
+		if ($("#id_experiencia_previa").is(":checked")) {
+		
+			$("#id_experiencia_previa_actividad").prop('disabled', false);
+		} else  {
+		
+			$("#id_experiencia_previa_actividad").prop('disabled', true);
+		}
+	}
+	
+	function comprobar_cursoprevio() {
+		console.log("Han hecho click en el check de curso precio");
+		if ($("#id_curso_previo").is(":checked")) {
+			console.log("Dice que si ha hecho curso");
+			$("#id_curso_previo_tipo").prop('disabled', false);
+		} else  {
+			console.log("Dice que no ha hecho curso");
+			$("#id_curso_previo_tipo").prop('disabled', true);
+		}
+	}
+	function comprobar_estudios() {
+		console.log("Han cambiado el nivel de estudios");
+		estudios =  $("#id_nivel_estudios").val();
+		if (estudios < 3 ) {
+			console.log("activamos experiencia");
+			$("#id_experiencia_previa").prop('disabled', false);
+			$("#id_experiencia_previa_actividad").prop('disabled', false);			
+		}
+		else {
+			console.log("activamos contrato previo");
+			$("#id_experiencia_previa").prop('disabled', true);
+			$("#id_experiencia_previa_actividad").prop('disabled', true);			
+		}
+	}
+	
+	$(document).ready(function() {
+	    $("#normativa_general").hide();
+		//Comprobamos si se puede enviar
+	    comprobar_aceptacion();
+        comprobar_desempleado();
+        comprobar_cursoprevio();
+        comprobar_estudios();
+        comprobar_trabajoprevio();
+        comprobar_experienciaprevia();
+        //Control de la aceptación de las condiciones:
+		$("#id_accept_conditions").change(comprobar_aceptacion);
+	    $("#id_desempleado").change(comprobar_desempleado);
+	    $("#id_nivel_estudios").change(comprobar_estudios);
+	    $("#id_experiencia_previa").change(comprobar_experienciaprevia);
+	    $("#id_curso_previo").change(comprobar_cursoprevio);
+	    $("#id_trabajo_previo").change(comprobar_trabajoprevio);
+            
+	});            
+</script>
+
+{% endblock%}
+
+{% block body %}
+
+<h1>{% trans "Solicita un curso de Cocina" %}</h1>
+
+
+<div class="alert-mesagge block-message alert">
+<p>En cumplimiento con los establecido en la Ley Orgánica 15/99 de Protección de Datos de Carácter Personal, los datos de carácter personal que nos facilite serán utilizados en la forma y con las limitaciones y derechos que recoge la Ley y pasarán a formar parte de un fichero propiedad de EIDE. Estos datos son necesarios para la gestión de los cursos de Hobetuz. Al facilitarnos sus datos personales consiente el tratamiento informatizado o no de los mismos por EIDE para los fines anteriormente citados.</p>
+</div>
+
+<div class="alert-mesagge block-message alert">
+<p>Si desea solicitar un curso de Cocina en EIDE, por favor, indíquenos los datos que le indicamos a continuación. Esta solicitud no implica que vaya a ser seleccionado. En caso de que convoquemos un curso de los que solicita y cumpla los requisitos, no pondremos en contacto con usted para realizar un proceso de selección.</p>
+<p>Los campos con un (*) con oblitarios el resto son opcionales</p>
+</div>
+
+<div class="row">
+    <div class="span14">
+		
+	<form action="" method="post" class="form-horizontal" >{% csrf_token %}
+	{{ form|as_bootstrap }}
+    </div> 
+</div>
+
+<div class="row">
+    <div class="span12">    
+	<div class="well" id="aviso_condiciones">
+	    {% trans "<b>¡Atención!.</b> Todavía no ha aceptado las condiciones. Si no acepta las condiciones generales no podrá enviar la matrícula." %}
+	</div>
+	<input id="send_form" class="btn primary pull-right" type="submit" value="{% trans 'Submit' %}" />
+    </div> 
+</div> 
+
+{% endblock %}

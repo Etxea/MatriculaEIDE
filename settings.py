@@ -182,6 +182,7 @@ INSTALLED_APPS = [
     "pagosonline",
     "cursosespanol",
     "hobetuz",
+    "cocina",
 
 ]
 

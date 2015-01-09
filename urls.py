@@ -36,7 +36,7 @@ urlpatterns = patterns("",
     url(r"^hobetuz/", include("hobetuz.urls")),
     url(r"^pagos/", include("pagosonline.urls")),
     url(r"^espanol/", include("cursosespanol.urls")),
-
+    url(r"^cocina/", include("cocina.urls")),
 )
 
 
