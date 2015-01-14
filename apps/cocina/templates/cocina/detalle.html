@@ -29,8 +29,10 @@
 <h2>Estudios y experiencia</h2>
 <table class="table">
 	<tr>
-		<td>Nivel de estudios</td><td>{{ registration.get_nivel_estudios_display}}</td>
-		<td>Curso previo</td><td>{%if registration.curso_previo %} Sí {% else  %} No {% endif %} </td>  {% if registration.curso_previo %} <td>Tipo</td><td>{{ registration.get_curso_previo_tipo_display}}</td>{% else%}<td></td><td></td>{% endif %}<td></td><td></td>
+		<td><b>Nivel de estudios</b></td><td>{{ registration.get_nivel_estudios_display}}</td>
+	</tr>
+	<tr>
+		<td><b>Curso previo</b></td><td>{%if registration.curso_previo %} Sí {% else  %} No {% endif %} </td>  {% if registration.curso_previo %} <td><b>Tipo</b></td><td>{{ registration.get_curso_previo_tipo_display}}</td>{% else%}<td></td><td></td>{% endif %}<td></td><td></td>
 	</tr>
 
 	
@@ -39,15 +41,15 @@
 <h2>Datos laborales</h2>
 <table class="table">
 	<tr>
-		<td><b>Experiencia</b></td><td>{{ registration.experiencia_previa|yesno:"Sí,No" }}</td><td>{{ registrationexperiencia_previa_actividad}}</td>
+		<td><b>Experiencia</b></td><td>{{ registration.experiencia_previa|yesno:"Sí,No" }}</td><td><b>trabajo</b></td><td>{{ registration.experiencia_previa_actividad}}</td>
 	</tr>
 		<tr>
-		<td>Desempleado</td><td>{{ registration.desempleado|yesno:"Sí,No" }}</td>
+		<td><b>Desempleado</b></td><td>{{ registration.desempleado|yesno:"Sí,No" }}</td>
 			{% if registration.desempleado %} 
-				<td>Contrato previo</td><td>{{ registration.trabajo_previo|yesno:"Sí,No" }}</td>
-				<td>Duración</td><td>{{ registration.get_tiempo_desempleo_display }}</td>
+				<td><b>Contrato previo</b></td><td>{{ registration.trabajo_previo|yesno:"Sí,No" }}</td>
+				<td><b>Duración</b></td><td>{{ registration.get_tiempo_desempleo_display }}</td>
 			{% else%}
-				<td>Trabajador de baja cualificación</td><td>{{ registration.trabajador_baja_cual|yesno:"Sí,No" }}</td>
+				<td><b>Trabajador de baja cualificación<b></td><td>{{ registration.trabajador_baja_cual|yesno:"Sí,No" }}</td>
 			{% endif %}
 	</tr>
 </table>

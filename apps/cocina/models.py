@@ -206,8 +206,9 @@ Para mas detalle visitar:
 				self.curso_previo_tipo=0
 		
 			#We send a confirmation mail to te registrant and a advise mail to the admins
-			self.send_confirmation_email()
+			
 			print "vamos a guardar",self
 			
 		super(Registration, self).save(*args, **kwargs)
+		self.send_confirmation_email()
 		
