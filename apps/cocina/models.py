@@ -53,7 +53,7 @@ NIVELES_ESTUDIOS = (
 )
 
 CURSOS = (
-	(0, _('Ninguno')),
+	(0, _('Otros')),
     (1, _('Certificado de Profesionalidad de nivel 1 del área de Hostelería y Turismo')),
     (2, _('Certificado de Profesionalidad de nivel 2 del área de Hostelería y Turismo')),
     (3, _('Certificado de Profesionalidad de cualquier área de nivel 3')),
@@ -68,7 +68,8 @@ TIEMPO_DESEMPLEO = (
 class Registration(models.Model):
 	password = models.CharField(_('Password'),max_length=6,blank=True,editable=False,default="  ")
 	registration_date = models.DateField(default=datetime.date.today, auto_now_add=True,editable=False)
-	
+	curso_1 = models.BooleanField('Certificado de Profesionalidad en Dirección y Producción en Cocina')
+	curso_2 = models.BooleanField('Certificado de Profesionalidad en Dirección en Restauración')
 	name = models.CharField(_('Nombre (*)'),max_length=50)
 	surname = models.CharField(_('Apellido(s) (*)'),max_length=100)
 	location = models.CharField(_('Localidad (*)'),max_length=100)
@@ -79,7 +80,7 @@ class Registration(models.Model):
 	
 	nivel_estudios = models.DecimalField(_('Estudios (*)'),help_text="*La titulación está ordenada de la más baja a la más alta. Debe seleccionar la titulación más alta que tenga. <br> **Titulación obtenida en el extranjero: En caso de estudios realizados en el extranjero, sólo indicar los estudios que están homologados en España. Si no están homologados, indicar la titulación más alta que tenga homologada en España o, si no tiene titulación homologada en España, seleccione la opción 'sin estudios'. ",max_digits=1, decimal_places=0,choices=NIVELES_ESTUDIOS,default=0,blank=True)
 	
-	curso_previo = models.BooleanField(_('Curso previo'), help_text=_(' ¿Ha realizado alguna vez un Certificado de Profesionalidad o curso de COCINA?'),blank=True)
+	curso_previo = models.BooleanField(_('¿Ha realizado alguna vez un Certificado de Profesionalidad o curso de COCINA?'), help_text=_(' ¿Ha realizado alguna vez un Certificado de Profesionalidad o curso de COCINA?'),blank=True)
 	curso_previo_tipo = models.DecimalField(_('Tipo curso previo'),help_text="¿De qué tipo?",max_digits=1, decimal_places=0,choices=CURSOS, blank=True,default=0)
 	
 	experiencia_previa = models.BooleanField(_('Experiencia previa'), help_text=_('Ha realizado algún curso de cocina o tiene experiencia en cocina o restauración'),blank=True)
@@ -204,11 +205,8 @@ Para mas detalle visitar:
 			
 			if not self.curso_previo:
 				self.curso_previo_tipo=0
-		
 			#We send a confirmation mail to te registrant and a advise mail to the admins
-			
-			print "vamos a guardar",self
-			
+			#~ print "vamos a guardar",self
 		super(Registration, self).save(*args, **kwargs)
 		self.send_confirmation_email()
 		
