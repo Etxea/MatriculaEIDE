@@ -79,7 +79,7 @@ class Exam(models.Model):
 	
 #Asbtract model to inherit from him
 class Registration(models.Model):
-	exam = models.ForeignKey(Exam,limit_choices_to = {'registration_end_date__gte': datetime.date.today})
+	exam = models.ForeignKey(Exam,limit_choices_to = {'registration_end_date__gt': datetime.date.today})
 	password = models.CharField(_('Password'),max_length=6,blank=True,editable=False)
 	name = models.CharField(_('Name'),max_length=50)
 	surname = models.CharField(_('Surname'),max_length=100)
