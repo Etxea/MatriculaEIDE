@@ -84,7 +84,7 @@ class Registration(models.Model):
 	#~ location = models.CharField(_('Location'),max_length=100)
 	#~ postal_code = models.DecimalField(_('Postal Code'),max_digits=6, decimal_places=0)
 	#~ sex = models.DecimalField(_('Sex'),max_digits=1, decimal_places=0,choices=SEXO)
-	birth_date = models.DateField(_('Birth Date'),help_text=_('Formato: DD-MM-AAAA(dia-mes-año)'))
+	birth_date = models.DateField(_('Birth Date'),help_text=_('Formato: AAAA-MM-DD(año-mes-día)'))
 	#dni = models.CharField(max_length=9,blank=True,help_text=_('Introduce el DNI completo con la letra sin espacios ni guiones'))
 	telephone = models.CharField('Tel. Fijo (*)',max_length=12)
 	telephone2 = models.CharField('Tel. Móvil (*)',max_length=12)
@@ -93,7 +93,7 @@ class Registration(models.Model):
 	titulacion = models.DecimalField(_('Titulación (*)'),max_digits=1, decimal_places=0,choices=TITULACION)
 	
 	desempleado = models.BooleanField(_('Desempleado'), help_text=_('haga click en el check si se encuentra en situación de desempleo'))
-	fecha_desempleo = models.DateField(default=datetime.date.today, blank=True, null=True)
+	fecha_desempleo = models.DateField(default=datetime.date.today, blank=True, null=True,help_text=_('Formato: AAAA-MM-DD(año-mes-día)'))
 	
 	empresa_nombre = models.CharField(_('Nombre de la empresa'),max_length=100, blank=True)
 	empresa_puesto = models.CharField(_('Puesto en la empresa'),max_length=100, blank=True)

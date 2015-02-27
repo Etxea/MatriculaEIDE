@@ -51,13 +51,14 @@
 		}
 	};
 	$(document).ready(function() {
-	    $("#normativa_general").hide();
+		$("#id_birth_date").datepicker({format: "dd-mm-yyyy",weekStart: 1});
+	    	$("#normativa_general").hide();
 		//Comprobamos si se puede enviar
-	    comprobar_aceptacion();
-        comprobar_desempleado();
-        //Control de la aceptación de las condiciones:
+	    	comprobar_aceptacion();
+        	comprobar_desempleado();
+        	//Control de la aceptación de las condiciones:
 		$("#id_accept_conditions").change(comprobar_aceptacion);
-	    $("#id_desempleado").change(comprobar_desempleado);
+	    	$("#id_desempleado").change(comprobar_desempleado);
             
 	});            
 </script>
