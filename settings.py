@@ -181,8 +181,8 @@ INSTALLED_APPS = [
     "cambridge",
     "pagosonline",
     "cursosespanol",
-    "hobetuz",
-    "cocina",
+#    "hobetuz",
+#    "cocina",
 
 ]
 
