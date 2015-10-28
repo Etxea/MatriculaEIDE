@@ -16,20 +16,20 @@
 	<!--
 		@page { margin-left: 2cm; margin-right: 2cm; margin-top: 1.25cm; margin-bottom: 0.83cm }
 		P { margin-bottom: 0.21cm; direction: ltr; color: #000000; widows: 2; orphans: 2 }
-		P.western { font-family: "Times New Roman", serif; font-size: 12pt; so-language: es-ES }
-		P.cjk { font-family: "Times New Roman", serif; font-size: 12pt }
-		P.ctl { font-family: "Times New Roman", serif; font-size: 12pt; so-language: ar-SA }
+		P.western { font-family: "Times New Roman", serif; font-size: 18pt; so-language: es-ES }
+		P.cjk { font-family: "Times New Roman", serif; font-size: 18pt }
+		P.ctl { font-family: "Times New Roman", serif; font-size: 18pt; so-language: es-ES }
 		H1 { margin-top: 0cm; margin-bottom: 0cm; direction: ltr; color: #000000; text-align: center; widows: 2; orphans: 2 }
-		H1.western { font-family: "Times New Roman", serif; font-size: 12pt; so-language: es-ES }
-		H1.cjk { font-family: "Times New Roman", serif; font-size: 12pt }
-		H1.ctl { font-family: "Tahoma", sans-serif; font-size: 12pt; so-language: ar-SA }
+		H1.western { font-family: "Times New Roman", serif; font-size: 18pt; so-language: es-ES }
+		H1.cjk { font-family: "Times New Roman", serif; font-size: 18pt }
+		H1.ctl { font-family: "Tahoma", sans-serif; font-size: 18pt; so-language: es-ES }
 		H2 { margin-top: 0cm; margin-bottom: 0cm; direction: ltr; color: #000000; text-align: center; widows: 2; orphans: 2 }
 		H2.western { so-language: es-ES; font-style: italic }
 		H2.cjk { font-family: "Times New Roman", serif; font-style: italic }
-		H2.ctl { font-family: "Tahoma", sans-serif; font-size: 12pt; so-language: ar-SA; font-style: italic }
-		P.sdfootnote-western { margin-bottom: 0cm; font-family: "Times New Roman", serif; font-size: 10pt; so-language: es-ES }
-		P.sdfootnote-cjk { margin-bottom: 0cm; font-family: "Times New Roman", serif; font-size: 10pt }
-		P.sdfootnote-ctl { margin-bottom: 0cm; font-family: "Times New Roman", serif; font-size: 10pt; so-language: ar-SA }
+		H2.ctl { font-family: "Tahoma", sans-serif; font-size: 18pt; so-language: es-ES; font-style: italic }
+		P.sdfootnote-western { margin-bottom: 0cm; font-family: "Times New Roman", serif; font-size: 16pt; so-language: es-ES }
+		P.sdfootnote-cjk { margin-bottom: 0cm; font-family: "Times New Roman", serif; font-size: 16pt }
+		P.sdfootnote-ctl { margin-bottom: 0cm; font-family: "Times New Roman", serif; font-size: 16pt; so-language: es-ES }
 		A:link { color: #0000ff }
 		A.sdfootnoteanc { font-size: 57% }
 	-->
@@ -57,48 +57,48 @@
 <br>
 
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 200%">
-<FONT FACE="Arial, sans-serif"><FONT SIZE=2><B>NOMBRE Y APELLIDOS:</B> {{ registration.surname }}, {{ registration.name }}</FONT></FONT></P>
+<FONT FACE="Arial, sans-serif"><FONT g><B>NOMBRE Y APELLIDOS:</B> {{ registration.surname }}, {{ registration.name }}</FONT></FONT></P>
 
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 200%">
-<FONT FACE="Arial, sans-serif"><FONT SIZE=2><B>DIRECCI&Oacute;N: </B>{{ registration.address }} </FONT></FONT></P>
+<FONT FACE="Arial, sans-serif"><FONT g><B>DIRECCI&Oacute;N: </B>{{ registration.address }} </FONT></FONT></P>
 
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 200%">
-<FONT FACE="Arial, sans-serif"><FONT SIZE=2><B>POBLACI&Oacute;N:</B> {{ registration.location }}
+<FONT FACE="Arial, sans-serif"><FONT g><B>POBLACI&Oacute;N:</B> {{ registration.location }}
 </FONT></FONT></P>
 
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 200%">
-<FONT FACE="Arial, sans-serif"><FONT SIZE=2><B> CODIGO POSTAL: {{ registration.postal_code }}</B></FONT></FONT></P>
+<FONT FACE="Arial, sans-serif"><FONT g><B> CODIGO POSTAL: {{ registration.postal_code }}</B></FONT></FONT></P>
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 150%">
 	
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 200%">
-<FONT FACE="Arial, sans-serif"><FONT SIZE=2><B> EMAIL: {{ registration.email }}</B></FONT></FONT></P>
+<FONT FACE="Arial, sans-serif"><FONT g><B> EMAIL: {{ registration.email }}</B></FONT></FONT></P>
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 150%">
 
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 200%">
-<FONT FACE="Arial, sans-serif"><FONT SIZE=2><B> PAGADA: {{ registration.paid }}</B></FONT></FONT></P>
+<FONT FACE="Arial, sans-serif"><FONT g><B> PAGADA: {{ registration.paid }}</B></FONT></FONT></P>
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 150%">
 
-<FONT FACE="Arial, sans-serif"><FONT SIZE=2><B>TEL&Eacute;FONO(S):</B> {{ registration.telephone }} </FONT></FONT></P>
+<FONT FACE="Arial, sans-serif"><FONT g><B>TEL&Eacute;FONO(S):</B> {{ registration.telephone }} </FONT></FONT></P>
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 200%">
-<FONT FACE="Arial, sans-serif"><FONT SIZE=2>
+<FONT FACE="Arial, sans-serif"><FONT g>
 <B>   	F. NACIMIENTO:</B>{{ registration.birth_date }}</FONT></FONT></P>
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 150%">
-<B><FONT FACE="Arial, sans-serif"><FONT SIZE=2>ALUMNO/A DE EIDE:</B>{{ registration.eide_alumn }}</FONT></FONT></P>
+<B><FONT FACE="Arial, sans-serif"><FONT g>ALUMNO/A DE EIDE:</B>{{ registration.eide_alumn }}</FONT></FONT></P>
 
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 200%">
-	<FONT FACE="Arial, sans-serif"><FONT SIZE=2>
+	<FONT FACE="Arial, sans-serif"><FONT g>
 	<B>CENTRO:</B>{{ registration.centre_name }}
 	</FONT></FONT>
 </P>
 
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 200%">
-	<FONT FACE="Arial, sans-serif"><FONT SIZE=2>
+	<FONT FACE="Arial, sans-serif"><FONT g>
 	<B>FECHA DE REALIZACI&Oacute;N DE LA MATR&Iacute;CULA:</B>{{ registration.registration_date }}
 	</FONT></FONT>
 </P>
 
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0cm; line-height: 200%">
-	<FONT FACE="Arial, sans-serif"><FONT SIZE=2>
+	<FONT FACE="Arial, sans-serif"><FONT g>
 	<B>C&Oacute;DIGO DEL PAGO:</B>cambridge-pb.{{ registration.id }}
 	</FONT></FONT>
 </P>

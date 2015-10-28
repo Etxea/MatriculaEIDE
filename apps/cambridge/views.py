@@ -58,6 +58,7 @@ def imprimir(registration,request):
 	response_html = render_to_response('cambridge/matricula_imprimir.html', 
 		payload)
 
+	#return response_html
 	return response_pdf
 
 @login_required
