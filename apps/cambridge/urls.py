@@ -46,6 +46,8 @@ urlpatterns = patterns('cambridge/',
     url(r'^new/(?P<pk>\d+)/$',RegistrationCreateView.as_view()),
     url(r'^new/$',RegistrationCreateView.as_view(), name="cambridge_nueva"),
     
+    #Colegios
+    url(r'berriotxoa/$', direct_to_template, {'template': 'cambridge/berriotxoa.html' },name="cambridge_berriotxoa"),
 
     ## Genericas
     url(r'thanks/$', direct_to_template, {'template': 'cambridge/gracias.html' },name="cambridge_gracias"),
