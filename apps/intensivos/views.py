@@ -1,6 +1,6 @@
 # Create your views here.
 from django.contrib.auth.decorators import login_required, permission_required
-from django.views.generic import DetailView, ListView, CreateView, UpdateView, View
+from django.views.generic import DetailView, ListView, CreateView, UpdateView, View, DeleteView
 from django.views.generic.edit import ModelFormMixin
 
 from models import *
@@ -18,14 +18,13 @@ class RegistrationDeleteView(DeleteView):
 class RegistrationPayment(DetailView):
 	model=Registration
 	template_name='intesivos/payment.html'
-
 	
 class RegistrationCreateView(CreateView):
 	model = Registration
 	form_class = RegistrationForm
-	template_name='registration_form.html'
+	template_name='intensivos/registration_form.html'
 	def get_success_url(self):
-		return self.object.generate_payment_url()
+		return '/intensivos/thanks/'
 
 def RegistrationExcelView(request):
     objs = Registration.objects.all()
@@ -33,4 +32,4 @@ def RegistrationExcelView(request):
 
 class RegistrationListView(ListView):
 	model = Registration
-	template_name='espanol/list.html'
+	template_name='intensivos/lista.html'

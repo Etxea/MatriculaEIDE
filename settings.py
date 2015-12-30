@@ -183,6 +183,7 @@ INSTALLED_APPS = [
     "cursosespanol",
 #    "hobetuz",
 #    "cocina",
+    "intensivos",
 
 ]
 

@@ -27,13 +27,13 @@ from forms import *
 from models import *
 
 
-urlpatterns = patterns('intesivos/',
-    url(r'^list/$',login_required(RegistrationList.as_view()), name="intesivos_list"),
-    url(r'^new/$',RegistrationCreateView.as_view(), name="intesivos_nueva"),
-    url(r'^excel/$',RegistrationExcelView, name="intesivos_excel"),
-    url(r'^edit/(?P<pk>\d+)/$',login_required(RegistrationUpdateView.as_view()), name="intesivos_edit"),
-    url(r'^delete/(?P<pk>\d+)/$', login_required(RegistrationDeleteView.as_view(), name="intesivos_delete"),
-    url(r'^view/(?P<pk>\d+)/$', login_required(RegistrationDetailView.as_view()), name="intesivos_view"),
-    url(r'thanks/$', direct_to_template, {'template': 'intesivos/gracias.html' },name="intesivos_gracias"),
-    url(r'^/?$', direct_to_template,{'template': 'intesivos/portada.html' },name="intesivos"),
+urlpatterns = patterns('intensivos/',
+    url(r'^list/$',login_required(RegistrationListView.as_view()), name="intesivos_list"),
+    url(r'^new/$',RegistrationCreateView.as_view(), name="intensivos_nueva"),
+    #~ url(r'^excel/$',RegistrationExcelView, name="intensivos_excel"),
+    #~ url(r'^edit/(?P<pk>\d+)/$',RegistrationUpdateView.as_view(), name="intensivos_edit"),
+    #~ url(r'^delete/(?P<pk>\d+)/$', login_required(RegistrationDeleteView.as_view(), name="intensivos_delete"),
+    url(r'^view/(?P<pk>\d+)/$', login_required(RegistrationDetailView.as_view()), name="intensivos_detalle"),
+    url(r'thanks/$', direct_to_template, {'template': 'intensivos/gracias.html' },name="intensivos_gracias"),
+    url(r'^/?$', direct_to_template,{'template': 'portada.html' },name="intensivos"),
 )

@@ -1,14 +1,34 @@
-from django.db import models
+# -*- coding: utf-8 -*-
 
-# Create your models here.
+from django.db import models
+from django.utils.translation import gettext_lazy as _
+import datetime 
+from django.conf import settings
+#Para la autogneración de passwd
+from random import choice
+from string import letters
+#Para el envio del mail de confirmacion
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+
+# favour django-mailer but fall back to django.core.mail
+if "mailer" in settings.INSTALLED_APPS:
+    from mailer import send_mail, mail_admins
+else:
+    from django.core.mail import send_mail, mail_admins
+
+
 SEXO = (
     (1, _('Male')),
     (2, _('Female')),
 )
 
 CURSO = (
-    (1, _('Elementary/Upper')),
-    (2, _('FCE/CAE')),
+    (1, _('Elementary/Upper: Mañana (72h)')),
+    (2, _('Elementary/Upper: Tarde (72h)')),
+    (3, _('FCE/CAE: Mañana (72h)')),
+    (4, _('FCE/CAE: Tarde (72h)')),
+    (5, _('FCE/CAE: Tarde (54h)')),
 )
 
 NIVELES_IDIOMAS = (
@@ -23,7 +43,7 @@ NIVELES_IDIOMAS = (
 )
 
 class Registration(models.Model):
-	curso = models.DecimalField('Nivel Ingles',max_digits=1, decimal_places=0,choices=CURSO)
+	curso = models.DecimalField('Curso',max_digits=1, decimal_places=0,choices=CURSO)
 	password = models.CharField(_('Password'),max_length=6,blank=True,editable=False)
 	name = models.CharField(_('Nombre (*)'),max_length=50)
 	surname = models.CharField(_('Apellido(s) (*)'),max_length=100)
@@ -33,7 +53,7 @@ class Registration(models.Model):
 	telephone = models.CharField('Tel. Fijo (*)',max_length=12)
 	email = models.EmailField('Email (*)')
 	registration_date = models.DateField(default=datetime.date.today, auto_now_add=True)
-	nivel_ingles = models.DecimalField(_('Nivel Ingles'),help_text="En caso de que haya escogido este idioma indique su nivel",max_digits=1, decimal_places=0,choices=NIVELES_IDIOMAS,blank=True,null=True)
+	nivel_ingles = models.DecimalField(_('Nivel Ingles Actual'),help_text="",max_digits=1, decimal_places=0,choices=NIVELES_IDIOMAS,blank=True,null=True)
 	accept_conditions = models.BooleanField(_('Accept the conditions'), help_text=_('You must accept the conditions to register'),default=True,blank=True)
 	paid = models.BooleanField(_('Paid'),default=False)
 	
@@ -67,7 +87,7 @@ class Registration(models.Model):
 		subject = "[EIDE] Matrícula curso intensivo"
 		payload = {'registration': self}
 		
-		html_content = render_to_string('intesivos/detalle.html', payload)
+		html_content = render_to_string('intensivos/detalle.html', payload)
 		
 		message_body = html_content
 		##send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
@@ -94,7 +114,7 @@ Curso: %s
 Para mas detalle visitar:
 https://matricula-eide.es/intensivos/list/
 
-"""%(self.name,self.surname,self.telephone,,self.email,self.curso)
+"""%(self.name,self.surname,self.telephone,self.email,self.curso)
 		message_html = u"""
 <html>
 <body>		
@@ -138,7 +158,7 @@ Para mas detalle visitar:
 	def save(self, *args, **kwargs):
 		##We generate a random password
 		if self.id is None:
-			#We set de password, not used roght now
+			#We set de password, not used right now
 			self.password = ''.join([choice(letters) for i in xrange(6)])
 			#We send a confirmation mail to te registrant and a advise mail to the admins
 			self.send_confirmation_email()

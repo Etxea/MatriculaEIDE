@@ -32,14 +32,14 @@
 	    {% endif %}
 	</li>
 	<li class="dropdown">
-	    <a href="{% url cambridge  %}" {% if user.is_authenticated %} class="dropdown-toggle" data-toggle="dropdown" {% endif %}>
+	    <a href="{% url intensivos  %}" {% if user.is_authenticated %} class="dropdown-toggle" data-toggle="dropdown" {% endif %}>
 		INTENSIVOS
 		<b class="caret"></b>
 	    </a>
 	    {% if user.is_authenticated %}
 	    <ul class="dropdown-menu">
-		<li><a href="{% url cambridge_exam_list %}">{% trans "Lista de cursos" %}</a></li>
-		<li><a href="{% url cambridge_list %}">{% trans "Lista Matrículas" %}</a></li>
+		
+		<li><a href="{% url intesivos_list %}">{% trans "Lista Matrículas" %}</a></li>
 		</ul>
 	    {% endif %}
 	</li>
