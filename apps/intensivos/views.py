@@ -1,4 +1,3 @@
-# Create your views here.
 from django.contrib.auth.decorators import login_required, permission_required
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, View, DeleteView
 from django.views.generic.edit import ModelFormMixin
@@ -6,18 +5,20 @@ from django.views.generic.edit import ModelFormMixin
 from models import *
 from forms import *
 
-
 class RegistrationDetailView(DetailView):
 	model=Registration
-	template_name='intesivos/detalle.html'
+	template_name='intensivos/detalle.html'
 
 class RegistrationDeleteView(DeleteView):
 	model=Registration
 	
 
+class RegistrationUpdateView(UpdateView):
+	model=Registration	
+
 class RegistrationPayment(DetailView):
 	model=Registration
-	template_name='intesivos/payment.html'
+	template_name='intensivos/payment.html'
 	
 class RegistrationCreateView(CreateView):
 	model = Registration

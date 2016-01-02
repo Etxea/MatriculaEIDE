@@ -56,7 +56,8 @@ class Registration(models.Model):
 	nivel_ingles = models.DecimalField(_('Nivel Ingles Actual'),help_text="",max_digits=1, decimal_places=0,choices=NIVELES_IDIOMAS,blank=True,null=True)
 	accept_conditions = models.BooleanField(_('Accept the conditions'), help_text=_('You must accept the conditions to register'),default=True,blank=True)
 	paid = models.BooleanField(_('Paid'),default=False)
-	
+	def get_absolute_url(self):
+		return '/intensivos/edit/%d/'%self.id
 	def send_confirmation_email(self):
 		##Para el alumno
 		subject = "Has solicitado un curso Intensivo en EIDE"
