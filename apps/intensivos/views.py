@@ -11,7 +11,7 @@ class RegistrationDetailView(DetailView):
 
 class RegistrationDeleteView(DeleteView):
 	model=Registration
-	
+	success_url = '/intensivos/list/'
 
 class RegistrationUpdateView(UpdateView):
 	model=Registration	
