@@ -3,10 +3,13 @@
 {% load i18n %}
 
 {% block body %}
+
+<!-- 
 <p>
 <a class="btn btn-success" href="#">Bajar como fichero excel</a></li>
 </p>
-<hr />
+-->
+
 <table class="table">
     <thead>
         <tr>
@@ -30,7 +33,7 @@
             <td>{{ matricula.surname }},{{ matricula.name }}</td>
 			<td>{{ matricula.get_curso_display}}</td>
 			<td>{{ matricula.get_nivel_ingles_display}}</td>
-			<td>{{ matricula.email}}</td>
+			<td><a href="mailto:{{ matricula.email}}">{{ matricula.email}}</a></td>
 			<td>{{ matricula.telephone}}</td>
 			<td>{{ matricula.birth_date}}</td>
          

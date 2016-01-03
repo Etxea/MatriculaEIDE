@@ -44,22 +44,10 @@
 {% block body %}
 
 <h1>{% trans "Inscripción a un curso de Intensivo" %}</h1>
-
-
-<div class="alert-mesagge block-message alert">
-<p>En cumplimiento con los establecido en la Ley Orgánica 15/99 de Protección de Datos de Carácter Personal, los datos de carácter personal que nos facilite serán utilizados en la forma y con las limitaciones y derechos que recoge la Ley y pasarán a formar parte de un fichero propiedad de EIDE. Estos datos son necesarios para la gestión de los cursos de Hobetuz. Al facilitarnos sus datos personales consiente el tratamiento informatizado o no de los mismos por EIDE para los fines anteriormente citados.</p>
-</div>
-
-<div class="alert-mesagge block-message alert">
-		<ul>
-			<li>Forma de pago: 100 € al realizar la inscripción, el resto el primer día de clase.</li>
-			<li>NOTA1: EIDE se reserva el derecho de cancelar el cursillo si no hubiera el número mínimo de 5 alumnos, en cuyo caso se devolverá el dinero entregado por el alumno. Si el curso se realiza  no se devolverá el importe de la matrícula.  Fecha límite de inscripción: 22/12/2015</li>
-			<li>Nota2: El importe del curso NO se devolverá si algún alumno se da de baja una vez comenzado el mismo.</li>
-		</ul>
-</div>
+<h2>Lista de cursos</h2>
 <div>
     <h3>Elementary/Upper</h3>
-    <table>
+    <table class="table">
 		<thead>
 			<th>HORARIO</th>
 			<th>DÍAS</th>
@@ -125,32 +113,32 @@
 		</tbody>
 		</table>
 </div>
+
 <div class="row">
-    <div class="span12">
-		
+	<h2>Pre-Inscripción</h2>
+    <div class="span12">		
 	<form action="" method="post" class="form-horizontal" >{% csrf_token %}
 	{{ form|as_bootstrap }}
     </div> 
 </div>
-
+<!-- Legal -->
 <div id="legal_general" class="row">
     <div class="span14">
         {% include "intensivos/legal.html" %}
         <div>
             ¿Aceptas las condiciones? <input type="checkbox" id="id_accept_conditions" name="accept_conditions">
-        </div>
-        
+        </div>        
     </div> 
 </div>
-
-
+<!-- Legal -->
+<!-- Aviso y envio -->
 <div class="row">
     <div class="span12">    
 	<div class="well" id="aviso_condiciones">
 	    {% trans "<b>¡Atención!.</b> Todavía no ha aceptado las condiciones. Si no acepta las condiciones generales no podrá enviar la matrícula." %}
 	</div>
-	<input id="send_form" class="btn primary pull-right" type="submit" value="{% trans 'Submit' %}" />
+	<input id="send_form" class="btn primary pull-right" type="submit" value="Enviar" />
     </div> 
 </div> 
-
+<!-- Aviso y envio -->
 {% endblock %}
