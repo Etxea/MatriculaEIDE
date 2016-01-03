@@ -23,6 +23,12 @@
 	    <ul class="dropdown-menu">
 		<li><a href="{% url cambridge_exam_list %}">{% trans "Lista de examenes" %}</a></li>
 		<li><a href="{% url cambridge_exam_new %}">{% trans "Nuevo examene" %}</a></li>
+		
+		<li class="divider"></li>
+		<li>Schools</li>
+		<li><a href="{% url cambridge_schools_exam_list %}">{% trans "Lista de examenes" %}</a></li>
+		<li><a href="{% url cambridge_schools_exam_new %}">{% trans "Nuevo examene" %}</a></li>
+		
 		<li class="divider"></li>
 		<li><a href="{% url cambridge_list %}">{% trans "Lista Matrículas" %}</a></li>
 		<li class="divider"></li>

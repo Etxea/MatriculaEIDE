@@ -73,9 +73,19 @@ class Exam(models.Model):
 		except:
 			return 0
 	def __str__(self):
-		return "%s %s %s"%(self.level.name,self.get_exam_type_display(),self.exam_date.strftime('%d-%m-%Y'))
+		return self.__unicode__()
 	def __unicode__(self):
 		return "%s %s %s"%(self.level.name,self.get_exam_type_display(),self.exam_date.strftime('%d-%m-%Y'))
+
+class School(models.Model):
+	name = models.CharField(_('Name'),max_length=50)
+	def __unicode__(self):
+		return self.name
+
+class SchoolExam(Exam):
+	school = models.ForeignKey(School)
+	def __unicode__(self):
+		return "[%s] %s %s %s"%(self.school,self.level.name,self.get_exam_type_display(),self.exam_date.strftime('%d-%m-%Y'))
 	
 #Asbtract model to inherit from him
 class Registration(models.Model):

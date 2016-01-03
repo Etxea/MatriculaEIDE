@@ -47,6 +47,9 @@ urlpatterns = patterns('cambridge/',
     url(r'^new/$',RegistrationCreateView.as_view(), name="cambridge_nueva"),
     
     #Colegios
+    url(r'schools/exam/list/$', login_required(SchoolExamList.as_view()),name="cambridge_schools_exam_list"),
+    url(r'schools/exam/new/$', login_required(SchoolExamCreate.as_view()),name="cambridge_schools_exam_new"),
+    url(r'schools/(?P<school_name>\w+)/new/$', SchoolRegistrationCreateView.as_view()),
     url(r'berriotxoa/$', direct_to_template, {'template': 'cambridge/berriotxoa.html' },name="cambridge_berriotxoa"),
 
     ## Genericas
