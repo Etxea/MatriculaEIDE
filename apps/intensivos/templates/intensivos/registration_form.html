@@ -26,39 +26,15 @@
 		    $("#aviso_condiciones").show();
 		}
     }
-	function comprobar_desempleado() {
-		console.log("Han hecho click en el check de desempleado");
-		if ($("#id_desempleado").is(":checked")) {
-			console.log("Dice que esta desempleado");
-			
-			$("#id_fecha_desempleo").prop('disabled', false);
-			
-			$("#id_empresa_nombre").prop('disabled', true);
-			$("#id_empresa_puesto").prop('disabled', true);
-			$("#id_empresa_actividad").prop('disabled', true);
-			
-	    
-	   }else {
-			//Deshabilitamos el envio hasta que acepten las condiciones
-			console.log("Dice que NO está desempleado");
-			$("#id_fecha_desempleo").prop('disabled', true);
-			
-			$("#id_empresa_nombre").prop('disabled', false);
-			$("#id_empresa_puesto").prop('disabled', false);
-			$("#id_empresa_actividad").prop('disabled', false);
-			
-					
-		}
-	};
 	$(document).ready(function() {
-		$("#id_birth_date").datepicker({format: "dd-mm-yyyy",weekStart: 1});
-	    	$("#normativa_general").hide();
+		//~ $("#id_birth_date").datepicker({format: "dd-mm-yyyy",weekStart: 1});
+    	$("#normativa_general").hide();
 		//Comprobamos si se puede enviar
-	    	comprobar_aceptacion();
-        	comprobar_desempleado();
-        	//Control de la aceptación de las condiciones:
+    	comprobar_aceptacion();
+        	
+		//Control de la aceptación de las condiciones:
 		$("#id_accept_conditions").change(comprobar_aceptacion);
-	    	$("#id_desempleado").change(comprobar_desempleado);
+	    	
             
 	});            
 </script>
@@ -156,6 +132,17 @@
 	{{ form|as_bootstrap }}
     </div> 
 </div>
+
+<div id="legal_general" class="row">
+    <div class="span14">
+        {% include "intensivos/legal.html" %}
+        <div>
+            ¿Aceptas las condiciones? <input type="checkbox" id="id_accept_conditions" name="accept_conditions">
+        </div>
+        
+    </div> 
+</div>
+
 
 <div class="row">
     <div class="span12">    

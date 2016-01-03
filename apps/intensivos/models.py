@@ -74,7 +74,7 @@ class Registration(models.Model):
 </div>
 </body>
 </html>
-"""%(self.curso)
+"""%(self.get_curso_display)
 		
 		message_body = html_content
 		##send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
@@ -85,7 +85,7 @@ class Registration(models.Model):
 		
 		##Para el secretaria
 		
-		subject = "[EIDE] Matrícula curso intensivo"
+		subject = "[EIDE] Matricula curso intensivo"
 		payload = {'registration': self}
 		
 		html_content = render_to_string('intensivos/detalle.html', payload)
@@ -115,11 +115,11 @@ Curso: %s
 Para mas detalle visitar:
 https://matricula-eide.es/intensivos/list/
 
-"""%(self.name,self.surname,self.telephone,self.email,self.curso)
+"""%(self.name,self.surname,self.telephone,self.email,self.get_curso_display)
 		message_html = u"""
 <html>
 <body>		
-Se ha dado de alta una nueva solictud de hobetuz. 
+Se ha dado de alta una nueva solictud de intensivo: 
 Los datos son del solicitante son: 
 <table>
 <tr>
@@ -129,7 +129,7 @@ Los datos son del solicitante son:
 	</d>Apellidos:</td><td> %s</td>
 </tr>
 <tr>
-	<td>Telefono Fijo:</td><td> %s</td>
+	<td>Teléfono:</td><td> %s</td>
 </tr>
 
 <tr>
@@ -142,18 +142,13 @@ Los datos son del solicitante son:
 Para mas detalle visitar:
 <a href="https://matricula-eide.es/intesivos/list/">Lista</a>
 </body>	
-"""%(self.name,self.surname,self.telephone,self.email,self.curso)
+"""%(self.name,self.surname,self.telephone,self.email,self.get_curso_display)
 		
 		mail_admins(subject, message_body,False,None,message_html)
 		
 	def __unicode__(self):
 		return u"%s-%s"%(self.id,self.email)
-	#def get_detail_url(self):
-		#return reverse('hobetuz_view',args=[self.id])
-		#return "/hobetuz/view/%d/"%self.id
 	def registration_name(self):
-		#return "%s - %s, %s"%(self.exam,self.surname,self.name)
-		#~ return "%s"%(self.exam)
 		return self.__unicode__()
 	#Antes de guardar hacemos algunas cosas, como generar password y enviar un mail
 	def save(self, *args, **kwargs):

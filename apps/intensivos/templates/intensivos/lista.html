@@ -13,8 +13,11 @@
             <td>ID</td>
             
             <td>{% trans "Nombre" %}</td>
-            <td>{% trans "Apellidos" %}</td>
-            <td>Intensivo</td>
+            <td>Curso</td>
+            <td>Nivel</td>
+            <td>Email</td>
+            <td>Telefono</td>
+            <td>Fecha Nac.</td>
             <td>Acciones</td>
             
         </tr>
@@ -25,15 +28,17 @@
             <td> <a href="{% url intensivos_detalle matricula.id %}">{{ matricula.id }}</a> </td>
             
             <td>{{ matricula.surname }},{{ matricula.name }}</td>
-			<td>{{ matricula.curso}}</td>
+			<td>{{ matricula.get_curso_display}}</td>
 			<td>{{ matricula.get_nivel_ingles_display}}</td>
-            
-            
+			<td>{{ matricula.email}}</td>
+			<td>{{ matricula.telephone}}</td>
+			<td>{{ matricula.birth_date}}</td>
+         
             <td>
-		<a class="btn primary" href="{% url intensivos_detalle matricula.id %}">Detalles</a>
-		<a class="btn" href="{% url intensivos_edit matricula.id %}">Editar</a> 
+		<a class="btn primary small" href="{% url intensivos_detalle matricula.id %}">Detalles</a>
+		<a class="btn small" href="{% url intensivos_edit matricula.id %}">Editar</a> 
                 <!-- <a class="btn" href="{% url cocina_imprimir matricula.id %}">{% trans "Print" %}</a> -->
-                <a class="btn" href="{% url intensivos_delete matricula.id %}">{% trans "Delete" %}</a>
+                <a class="btn small" href="{% url intensivos_delete matricula.id %}">{% trans "Delete" %}</a>
             </td>
         </tr>
     {% endfor %}
