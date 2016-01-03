@@ -79,6 +79,7 @@ class Exam(models.Model):
 
 class School(models.Model):
 	name = models.CharField(_('Name'),max_length=50)
+	password = models.CharField(_('Password'),max_length=50)
 	def __unicode__(self):
 		return self.name
 

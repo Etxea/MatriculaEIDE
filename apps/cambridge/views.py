@@ -90,7 +90,14 @@ class RegistrationCreateView(CreateView):
 class SchoolRegistrationCreateView(RegistrationCreateView):
     form_class = SchoolRegistrationForm
     template_name='cambridge/registration_form.html'
-    
+    def get(self, request, *args, **kwargs):
+        #~ print request
+        print kwargs
+        #Comprobamos le pass sno 
+        if 'password' in self.request.POST:
+            print "Comprobamos el password",self.object.password,request.POST['password']
+        
+        return super(SchoolRegistrationCreateView, self).get(request, *args, **kwargs)
     def get_form_kwargs(self):
         kwargs = super(SchoolRegistrationCreateView, self).get_form_kwargs()
         #recogemos  y añadimos kwargs a la form
@@ -126,14 +133,14 @@ class IndexExamList(ListView):
     model=Exam
     template_name='cambridge/index.html'
     def get_context_data(self, **kwargs):
-		context = super(IndexExamList, self).get_context_data(**kwargs)
-		context.update({
-		'examenes_pb' : Exam.objects.filter(registration_end_date__gte=datetime.date.today()).filter(exam_type=1),
-		'examenes_cb' : Exam.objects.filter(registration_end_date__gte=datetime.date.today()).filter(exam_type=2),
-		'examenes_fs_pb' : Exam.objects.filter(registration_end_date__gte=datetime.date.today()).filter(exam_type=3),
-		'examenes_fs_cb' : Exam.objects.filter(registration_end_date__gte=datetime.date.today()).filter(exam_type=4)
-		})
-		return context
+        context = super(IndexExamList, self).get_context_data(**kwargs)
+        context.update({
+        'examenes_pb' : Exam.objects.filter(registration_end_date__gte=datetime.date.today()).filter(exam_type=1),
+        'examenes_cb' : Exam.objects.filter(registration_end_date__gte=datetime.date.today()).filter(exam_type=2),
+        'examenes_fs_pb' : Exam.objects.filter(registration_end_date__gte=datetime.date.today()).filter(exam_type=3),
+        'examenes_fs_cb' : Exam.objects.filter(registration_end_date__gte=datetime.date.today()).filter(exam_type=4)
+        })
+        return context
              
         #return render_to_response('cambridge/index.html',{'examenes_pb': examenes_pb, 'examenes_cb': examenes_cb,'examenes_fs': examenes_fs})
-	
+    
