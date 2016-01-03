@@ -4,16 +4,24 @@
 
 {% block body %}
 
-<h1>La matrícula de {{ registration.get_desplay_curso }}</h1>
+<h1>Preinscripción para {{ registration.get_curso_display }}</h1>
 <table class="table">
 	<tr>
-		<td><b>Curso</b></td><td> {{registration.get_curso_display}} </td>
+		<td><b>Nivel</b></td><td> {{registration.get_curso_display}} </td>
+	</tr>
+	<tr>
+		<td><b>Horarios</b></td>
+		<td> -
+			{%for horario in registration.horarios.all %}
+				{{ horario.name }} -
+			{% endfor %}
+		</td>
 	</tr>
 	<tr>
 		<td><b>Nombre y Apellidos</b></td><td>{{ registration.name }} {{ registration.surname }}</td>
 	</tr>
 	<tr>
-		<td><b>Fecha registro/b></td><td> {{registration.registration_date}} </td>
+		<td><b>Fecha registro</b></td><td> {{registration.registration_date}} </td>
 	</tr>
 	<tr>
 		<td><b>Dirección</b></td><td>{{registration.location}}</td>

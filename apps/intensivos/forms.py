@@ -27,21 +27,25 @@ from django.contrib.admin import widgets
 from django.utils.translation import gettext_lazy as _
 
 class RegistrationForm(ModelForm):
-	telephone = ESPhoneNumberField(label=_("Teléfono"))
-	class Meta:
-		model = Registration
-		exclude = ('paid','accept_conditions')
-		#fields = ['exam','minor','tutor_name','tutor_surname','name','surname','address','location','postal_code','sex','birth_date','telephone','email','eide_alumn','centre_name']
-	def __init__(self, *args, **kwargs):
-		super(ModelForm, self).__init__(*args, **kwargs)
-		self.fields['birth_date'].widget.format = '%Y-%m-%d'
-		self.fields['birth_date'].input_formats = ['%Y-%m-%d']	
+    telephone = ESPhoneNumberField(label=_("Teléfono"))
+    #~ horarios = forms.ModelMultipleChoiceField(required=True,widget = forms.CheckboxSelectMultiple)
+    class Meta:
+        model = Registration
+        exclude = ('paid','accept_conditions')
+        #~ widgets = {
+            #~ 'horarios': forms.widgets.CheckboxSelectMultiple(),
+        #~ }
+    def __init__(self, *args, **kwargs):
+        super(ModelForm, self).__init__(*args, **kwargs)
+        self.fields['birth_date'].widget.format = '%Y-%m-%d'
+        self.fields['birth_date'].input_formats = ['%Y-%m-%d']
+        self.fields['horarios'].widget.attrs['size']='6'  
 
 class RegistrationEditForm(ModelForm):
-	telephone = ESPhoneNumberField(label=_("Teléfono"))
-	class Meta:
-		model = Registration
-	def __init__(self, *args, **kwargs):
-		super(ModelForm, self).__init__(*args, **kwargs)
-		self.fields['birth_date'].widget.format = '%Y-%m-%d'
-		self.fields['birth_date'].input_formats = ['%Y-%m-%d']
+    telephone = ESPhoneNumberField(label=_("Teléfono"))
+    class Meta:
+        model = Registration
+    def __init__(self, *args, **kwargs):
+        super(ModelForm, self).__init__(*args, **kwargs)
+        self.fields['birth_date'].widget.format = '%Y-%m-%d'
+        self.fields['birth_date'].input_formats = ['%Y-%m-%d']
