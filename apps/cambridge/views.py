@@ -88,32 +88,18 @@ class RegistrationCreateView(CreateView):
 #           return '/cambridge/thanks/'
 
 
-class SchoolRegistrationCreateView(RegistrationCreateView):
-    form_class = SchoolRegistrationForm
-    template_name='cambridge/school_registration_form.html'
-    def get(self, request, *args, **kwargs):
-        
-        #Comprobamos el password
-        if 'school_password' in kwargs:
-            school = School.objects.get(name=kwargs['school_name'])
-            print "Comprobamos el password",school.password,kwargs['school_password']
-            if school.password == kwargs['school_password']:
-                return super(SchoolRegistrationCreateView, self).get(request, *args, **kwargs)
-            else:
-                return redirect('/cambridge/')
-        else:
-            return redirect('/cambridge/')
-    def get_form_kwargs(self):
-        kwargs = super(SchoolRegistrationCreateView, self).get_form_kwargs()
-        #recogemos  y añadimos kwargs a la form
-        print self.kwargs
-        kwargs['school_name'] = self.kwargs['school_name']
-        return kwargs
     
 @login_required 
 def RegistrationExcelView(request):
     objs = Registration.objects.filter(paid=True)
     return ExcelResponse(objs)
+
+class RegistrationListView(ListView):
+    #model=ComputerBasedRegistration
+    template_name='cambridge/lista.html'
+    #Limitamos a las matriculas de examenes posteriores al día de hoy y que estén pagadas
+    queryset=Registration.objects.filter(exam__exam_date__gt=datetime.date.today(),paid=True)
+
 
 class RegistrationListView(ListView):
     #model=ComputerBasedRegistration
@@ -133,6 +119,33 @@ class SchoolExamCreate(CreateView):
     model = SchoolExam
     success_url="/cambridge/schools/exam/list/"
     form_class = SchoolExamForm
+
+class SchoolRegistrationListView(ListView):
+    template_name='cambridge/school_lista.html'
+    #Limitamos a las matriculas de examenes posteriores al día de hoy y que estén pagadas
+    queryset=Registration.objects.filter(exam__exam_date__gt=datetime.date.today(),exam=SchoolExam.objects.all())
+
+class SchoolRegistrationCreateView(RegistrationCreateView):
+    form_class = SchoolRegistrationForm
+    template_name='cambridge/school_registration_form.html'
+    def get(self, request, *args, **kwargs):
+        #Comprobamos el password
+        if 'school_password' in kwargs:
+            school = School.objects.get(name=kwargs['school_name'])
+            print "Comprobamos el password",school.password,kwargs['school_password']
+            if school.password == kwargs['school_password']:
+                return super(SchoolRegistrationCreateView, self).get(request, *args, **kwargs)
+            else:
+                return redirect('/cambridge/')
+        else:
+            return redirect('/cambridge/')
+    def get_form_kwargs(self):
+        kwargs = super(SchoolRegistrationCreateView, self).get_form_kwargs()
+        #recogemos y añadimos kwargs a la form
+        print self.kwargs
+        kwargs['school_name'] = self.kwargs['school_name']
+        return kwargs
+
 
 class IndexExamList(ListView):
     model=Exam

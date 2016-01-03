@@ -27,63 +27,64 @@ from django.contrib.admin import widgets
 from django.utils.translation import gettext_lazy as _
 
 class ExamForm(ModelForm):
-	class Meta:
-		model = Exam
-	def __init__(self, *args, **kwargs):
-		super(ModelForm, self).__init__(*args, **kwargs)
-		self.fields['exam_date'].widget.format = '%d-%m-%Y'
-		self.fields['registration_end_date'].widget.format = '%d-%m-%Y'
-		# at the same time, set the input format on the date field like you want it:
-		self.fields['exam_date'].input_formats = ['%d-%m-%Y']	
-		self.fields['registration_end_date'].input_formats = ['%d-%m-%Y']	
+    class Meta:
+        model = Exam
+    def __init__(self, *args, **kwargs):
+        super(ModelForm, self).__init__(*args, **kwargs)
+        self.fields['exam_date'].widget.format = '%d-%m-%Y'
+        self.fields['registration_end_date'].widget.format = '%d-%m-%Y'
+        # at the same time, set the input format on the date field like you want it:
+        self.fields['exam_date'].input_formats = ['%d-%m-%Y']   
+        self.fields['registration_end_date'].input_formats = ['%d-%m-%Y']   
 
 class SchoolExamForm(ExamForm):
-	class Meta:
-		model = SchoolExam
-		
+    class Meta:
+        model = SchoolExam
+        
 class RegistrationForm(ModelForm):
-	telephone = ESPhoneNumberField(label=_("Teléfono"))
-	#dni = ESIdentityCardNumberField()
-	postal_code = ESPostalCodeField(label=_("Código Postal"))
-	class Meta:
-		model = Registration
-		exclude = ('paid')
-		fields = ['exam','minor','tutor_name','tutor_surname','name','surname','address','location','postal_code','sex','birth_date','telephone','email','eide_alumn','centre_name']
-	def __init__(self, *args, **kwargs):
-		super(ModelForm, self).__init__(*args, **kwargs)
-		self.fields['birth_date'].widget.format = '%d-%m-%Y'
-		# at the same time, set the input format on the date field like you want it:
-		self.fields['birth_date'].input_formats = ['%d-%m-%Y']	
+    telephone = ESPhoneNumberField(label=_("Teléfono"))
+    #dni = ESIdentityCardNumberField()
+    postal_code = ESPostalCodeField(label=_("Código Postal"))
+    class Meta:
+        model = Registration
+        exclude = ('paid')
+        fields = ['exam','minor','tutor_name','tutor_surname','name','surname','address','location','postal_code','sex','birth_date','telephone','email','eide_alumn','centre_name']
+    def __init__(self, *args, **kwargs):
+        super(ModelForm, self).__init__(*args, **kwargs)
+        self.fields['birth_date'].widget.format = '%d-%m-%Y'
+        # at the same time, set the input format on the date field like you want it:
+        self.fields['birth_date'].input_formats = ['%d-%m-%Y']  
 
 class SchoolRegistrationForm(ModelForm):
-	telephone = ESPhoneNumberField(label=_("Teléfono"))
-	#dni = ESIdentityCardNumberField()
-	postal_code = ESPostalCodeField(label=_("Código Postal"))
-	class Meta:
-		model = Registration
-		exclude = ('paid','minor','eide_alumn','centre_name')
-		fields = ['exam','tutor_name','tutor_surname','name','surname','address','location','postal_code','sex','birth_date','telephone','email']
-	def __init__(self, school_name, *args, **kwargs):
-		super(ModelForm, self).__init__(*args, **kwargs)
-		self.school_name = school_name
-		#Limitamos los examenes a los de la escuela
-		school = School.objects.get(name=school_name)
-		print school
-		self.fields['exam'].queryset = SchoolExam.objects.filter(school=school)
-		
-		self.fields['birth_date'].widget.format = '%d-%m-%Y'
-		# at the same time, set the input format on the date field like you want it:
-		self.fields['birth_date'].input_formats = ['%d-%m-%Y']	
+    telephone = ESPhoneNumberField(label=_("Teléfono"))
+    #dni = ESIdentityCardNumberField()
+    postal_code = ESPostalCodeField(label=_("Código Postal"))
+    class Meta:
+        model = Registration
+        exclude = ('paid','minor','eide_alumn','centre_name')
+        fields = ['exam','tutor_name','tutor_surname','name','surname','address','location','postal_code','sex','birth_date','telephone','email']
+    def __init__(self, school_name, *args, **kwargs):
+        super(ModelForm, self).__init__(*args, **kwargs)
+        self.school_name = school_name
+        #Limitamos los examenes a los de la escuela
+        school = School.objects.get(name=school_name)
+        #~ print school
+        self.fields['exam'].queryset = SchoolExam.objects.filter(school=school)
+        #~ self.fields['minor'].initial = True
+        #~ self.fields['eide_alumn'].initial = False
+        self.fields['birth_date'].widget.format = '%d-%m-%Y'
+        # at the same time, set the input format on the date field like you want it:
+        self.fields['birth_date'].input_formats = ['%d-%m-%Y']  
 
 class RegistrationEditForm(ModelForm):
-	telephone = ESPhoneNumberField(label=_("Teléfono"))
-	#dni = ESIdentityCardNumberField()
-	postal_code = ESPostalCodeField(label=_("Código Postal"))
-	class Meta:
-		model = Registration
-	def __init__(self, *args, **kwargs):
-		super(ModelForm, self).__init__(*args, **kwargs)
-		self.fields['birth_date'].widget.format = '%d-%m-%Y'
+    telephone = ESPhoneNumberField(label=_("Teléfono"))
+    #dni = ESIdentityCardNumberField()
+    postal_code = ESPostalCodeField(label=_("Código Postal"))
+    class Meta:
+        model = Registration
+    def __init__(self, *args, **kwargs):
+        super(ModelForm, self).__init__(*args, **kwargs)
+        self.fields['birth_date'].widget.format = '%d-%m-%Y'
 
-		# at the same time, set the input format on the date field like you want it:
-		self.fields['birth_date'].input_formats = ['%d-%m-%Y']
+        # at the same time, set the input format on the date field like you want it:
+        self.fields['birth_date'].input_formats = ['%d-%m-%Y']
