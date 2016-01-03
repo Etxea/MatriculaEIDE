@@ -64,17 +64,24 @@ class Registration(models.Model):
 		
 		html_content = u"""
 <html>
+<head>
+        <link rel="stylesheet" href="https://matricula-eide.es/site_media/static/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://matricula-eide.es/site_media/static/css/extra.css">
+</head>
 <body>
 <div class="well">
-    Acaba de realizar una solicitud de curso para: <br />
+    <p>Buenas</p>
+    Acaba de realizar una solicitud de curso intensivo para: <br />
     %s <br>
+    <p>Pronto nos pondremos en contacto desde EIDE para formalizar la inscripción.</p>
+    <p>Gracias.</p>
 </div>
 <div class="well">
 <p></p>
 </div>
 </body>
 </html>
-"""%(self.get_curso_display)
+"""%(self.get_curso_display())
 		
 		message_body = html_content
 		##send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])

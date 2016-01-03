@@ -7,3 +7,7 @@ local_settings.py
 logfile
 send_mail.log
 dev.db
+site_media
+share
+cron_mail.log
+cron_mail_deferred.log
