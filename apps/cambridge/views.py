@@ -90,7 +90,7 @@ class RegistrationCreateView(CreateView):
 
 class SchoolRegistrationCreateView(RegistrationCreateView):
     form_class = SchoolRegistrationForm
-    template_name='cambridge/registration_form.html'
+    template_name='cambridge/school_registration_form.html'
     def get(self, request, *args, **kwargs):
         
         #Comprobamos el password

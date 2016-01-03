@@ -61,8 +61,8 @@ class SchoolRegistrationForm(ModelForm):
 	postal_code = ESPostalCodeField(label=_("Código Postal"))
 	class Meta:
 		model = Registration
-		exclude = ('paid')
-		fields = ['exam','minor','tutor_name','tutor_surname','name','surname','address','location','postal_code','sex','birth_date','telephone','email','eide_alumn','centre_name']
+		exclude = ('paid','minor','eide_alumn','centre_name')
+		fields = ['exam','tutor_name','tutor_surname','name','surname','address','location','postal_code','sex','birth_date','telephone','email']
 	def __init__(self, school_name, *args, **kwargs):
 		super(ModelForm, self).__init__(*args, **kwargs)
 		self.school_name = school_name
