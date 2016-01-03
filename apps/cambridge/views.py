@@ -20,9 +20,10 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.template.loader import render_to_string
 from django.template import RequestContext
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, View
 from django.views.generic.edit import ModelFormMixin
+
 
 import StringIO
 import ho.pisa as pisa
@@ -91,13 +92,17 @@ class SchoolRegistrationCreateView(RegistrationCreateView):
     form_class = SchoolRegistrationForm
     template_name='cambridge/registration_form.html'
     def get(self, request, *args, **kwargs):
-        #~ print request
-        print kwargs
-        #Comprobamos le pass sno 
-        if 'password' in self.request.POST:
-            print "Comprobamos el password",self.object.password,request.POST['password']
         
-        return super(SchoolRegistrationCreateView, self).get(request, *args, **kwargs)
+        #Comprobamos el password
+        if 'school_password' in kwargs:
+            school = School.objects.get(name=kwargs['school_name'])
+            print "Comprobamos el password",school.password,kwargs['school_password']
+            if school.password == kwargs['school_password']:
+                return super(SchoolRegistrationCreateView, self).get(request, *args, **kwargs)
+            else:
+                return redirect('/cambridge/')
+        else:
+            return redirect('/cambridge/')
     def get_form_kwargs(self):
         kwargs = super(SchoolRegistrationCreateView, self).get_form_kwargs()
         #recogemos  y añadimos kwargs a la form
