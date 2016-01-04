@@ -16,7 +16,6 @@
 #  MA 02110-1301, USA.
 #  
 
-
 from django import forms
 from django.forms import ModelForm
 from models import *
@@ -28,31 +27,14 @@ from django.utils.translation import gettext_lazy as _
 
 class RegistrationForm(ModelForm):
     telephone = ESPhoneNumberField(label=_("Teléfono"))
-    #~ horarios = forms.ModelMultipleChoiceField(required=True,widget = forms.CheckboxSelectMultiple)
     class Meta:
         model = Registration
         exclude = ('paid','accept_conditions')
-        #~ widgets = {
-            #~ 'horarios': forms.widgets.CheckboxSelectMultiple(),
-        #~ }
     def __init__(self, *args, **kwargs):
         super(ModelForm, self).__init__(*args, **kwargs)
         self.fields['birth_date'].widget.format = '%Y-%m-%d'
         self.fields['birth_date'].input_formats = ['%Y-%m-%d']
         self.fields['horarios'].widget.attrs['size']='6'  
-    def save(self, commit=True):
-        instancia = super(RegistrationForm, self).save(commit=False)
-	instancia.save(commit=False)
-        print self.cleaned_data
-	for horario in self.cleaned_data['horarios']:
-            print "Añadiendo",horario
-            instancia.horarios.add(horario)
-            print "Añadido",horario
-        if commit:
-            print "vamos a guardar"
-            instancia.save()
-            print "guardado"
-        return instancia
 
 class RegistrationEditForm(ModelForm):
     telephone = ESPhoneNumberField(label=_("Teléfono"))

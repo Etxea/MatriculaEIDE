@@ -99,13 +99,11 @@ class Registration(models.Model):
         ##msg.content_subtype = "html"
         msg.send()
         
-        ##Para el secretaria
-        
+        ##Para el secretaria        
         subject = "[EIDE] Matricula curso intensivo"
         payload = {'registration': self}
         
         html_content = render_to_string('intensivos/detalle.html', payload)
-        
         message_body = html_content
         ##send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
         msg = EmailMultiAlternatives(subject, message_body, settings.DEFAULT_FROM_EMAIL, ["moebius1984@gmail.com","secretaria@eide.es"])
@@ -113,9 +111,6 @@ class Registration(models.Model):
         ##msg.content_subtype = "html"
         msg.send()
 
-
-
-         
         ### Para los admins
         subject = "[INTENSIVOS]Hay una nueva matrícula"
         message_body = u"""
@@ -166,13 +161,5 @@ Para mas detalle visitar:
         return u"%s-%s"%(self.id,self.email)
     def registration_name(self):
         return self.__unicode__()
-    #Antes de guardar hacemos algunas cosas, como generar password y enviar un mail
-    def save(self, *args, **kwargs):
-        ##We generate a random password
-        if self.id is None:
-            #We set de password, not used right now
-            self.password = ''.join([choice(letters) for i in xrange(6)])
-            #We send a confirmation mail to te registrant and a advise mail to the admins
-            self.send_confirmation_email()
-        super(Registration, self).save(*args, **kwargs)
+   
         
