@@ -51,8 +51,6 @@ class Horario(models.Model):
         return self.name
 
 class Registration(models.Model):
-    curso = models.DecimalField('Nivel',max_digits=1, decimal_places=0,choices=CURSO)
-    horarios = models.ManyToManyField(Horario)
     password = models.CharField(_('Password'),max_length=6,blank=True,editable=False)
     name = models.CharField(_('Nombre (*)'),max_length=50)
     surname = models.CharField(_('Apellido(s) (*)'),max_length=100)
@@ -63,6 +61,8 @@ class Registration(models.Model):
     email = models.EmailField('Email (*)')
     registration_date = models.DateField(default=datetime.date.today, auto_now_add=True)
     nivel_ingles = models.DecimalField(_('Nivel Ingles Actual'),help_text="",max_digits=1, decimal_places=0,choices=NIVELES_IDIOMAS,blank=True,null=True)
+    curso = models.DecimalField('Nivel del curso',max_digits=1, decimal_places=0,choices=CURSO)
+    horarios = models.ManyToManyField(Horario,help_text="Recuerde que debe elegir todos los horarios que le sean posibles")
     accept_conditions = models.BooleanField(_('Accept the conditions'), help_text=_('You must accept the conditions to register'),default=True,blank=True)
     paid = models.BooleanField(_('Paid'),default=False)
     def get_absolute_url(self):

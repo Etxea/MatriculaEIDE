@@ -26,7 +26,7 @@ from django.contrib.admin import widgets
 from django.utils.translation import gettext_lazy as _
 
 class RegistrationForm(ModelForm):
-    telephone = ESPhoneNumberField(label=_("Teléfono"))
+    telephone = ESPhoneNumberField(label=_("Teléfono (*)"))
     class Meta:
         model = Registration
         exclude = ('paid','accept_conditions')
