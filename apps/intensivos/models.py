@@ -46,7 +46,7 @@ NIVELES_IDIOMAS = (
 )
 
 class Horario(models.Model):
-    name = models.CharField(_('Horario (*)'),max_length=50)
+    name = models.CharField(_('Horario (*)'),max_length=50,primary_key=True)
     def __unicode__(self):
         return self.name
 

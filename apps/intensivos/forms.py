@@ -40,6 +40,19 @@ class RegistrationForm(ModelForm):
         self.fields['birth_date'].widget.format = '%Y-%m-%d'
         self.fields['birth_date'].input_formats = ['%Y-%m-%d']
         self.fields['horarios'].widget.attrs['size']='6'  
+    def save(self, commit=True):
+        instancia = super(RegistrationForm, self).save(commit=False)
+	instancia.save(commit=False)
+        print self.cleaned_data
+	for horario in self.cleaned_data['horarios']:
+            print "Añadiendo",horario
+            instancia.horarios.add(horario)
+            print "Añadido",horario
+        if commit:
+            print "vamos a guardar"
+            instancia.save()
+            print "guardado"
+        return instancia
 
 class RegistrationEditForm(ModelForm):
     telephone = ESPhoneNumberField(label=_("Teléfono"))
