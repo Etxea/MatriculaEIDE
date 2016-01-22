@@ -33,13 +33,24 @@ class ExamForm(ModelForm):
         super(ModelForm, self).__init__(*args, **kwargs)
         self.fields['exam_date'].widget.format = '%d-%m-%Y'
         self.fields['registration_end_date'].widget.format = '%d-%m-%Y'
-        # at the same time, set the input format on the date field like you want it:
         self.fields['exam_date'].input_formats = ['%d-%m-%Y']   
         self.fields['registration_end_date'].input_formats = ['%d-%m-%Y']   
 
-class SchoolExamForm(ExamForm):
+class SchoolExamForm(ModelForm):
     class Meta:
         model = SchoolExam
+    def __init__(self, school_name, *args, **kwargs):
+        super(ModelForm, self).__init__(*args, **kwargs)
+        self.fields['exam_date'].widget.format = '%d-%m-%Y'
+        self.fields['registration_end_date'].widget.format = '%d-%m-%Y'
+        self.fields['exam_date'].input_formats = ['%d-%m-%Y']   
+        self.fields['registration_end_date'].input_formats = ['%d-%m-%Y']   
+
+        self.school_name = school_name
+        #Limitamos los examenes a los de la escuela
+        school = School.objects.get(name=school_name)
+        self.fields['level'].queryset = SchoolLevel.objects.filter(school=school)
+        
         
 class RegistrationForm(ModelForm):
     telephone = ESPhoneNumberField(label=_("Teléfono"))

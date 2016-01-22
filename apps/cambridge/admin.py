@@ -31,11 +31,18 @@ class ExamAdmin(admin.ModelAdmin):
 
 class SchoolAdmin(admin.ModelAdmin):
 	pass
+	
 class SchoolExamAdmin(admin.ModelAdmin):
 	pass
+
+class SchoolLevelAdmin(admin.ModelAdmin):
+    pass
+
 
 admin.site.register(Registration, RegistrationAdmin)
 admin.site.register(Level, LevelAdmin)
 admin.site.register(Exam, ExamAdmin)
+
+admin.site.register(SchoolLevel, SchoolLevelAdmin)
 admin.site.register(SchoolExam, SchoolExamAdmin)
 admin.site.register(School, SchoolAdmin)

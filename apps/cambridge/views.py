@@ -118,11 +118,23 @@ class SchoolExamList(ListView):
 class SchoolExamCreate(CreateView):
     model = SchoolExam
     success_url="/cambridge/schools/exam/list/"
+    template_name = "cambridge/school_exam_form.html"
     form_class = SchoolExamForm
+    #Limitamos los niveles a los que tiene el colegio
+    def get_form_kwargs(self):
+        kwargs = super(SchoolExamCreate, self).get_form_kwargs()
+        #recogemos y añadimos kwargs a la form
+        kwargs['school_name'] = self.kwargs['school_name']
+        return kwargs
+    #Añadimos el school_name al contexto
+    def get_context_data(self, **kwargs):
+        context = super(SchoolExamCreate, self).get_context_data(**kwargs)
+        context['school_name'] = self.kwargs['school_name']
+        return context
 
 class SchoolRegistrationListView(ListView):
     template_name='cambridge/school_lista.html'
-    #Limitamos a las matriculas de examenes posteriores al día de hoy y que estén pagadas
+    #Limitamos a las matriculas de examenes posteriores al día de hoy y que estén pagadas y sean de la escuela
     queryset=Registration.objects.filter(exam__exam_date__gt=datetime.date.today(),exam=SchoolExam.objects.all())
 
 class SchoolRegistrationCreateView(RegistrationCreateView):
@@ -142,9 +154,13 @@ class SchoolRegistrationCreateView(RegistrationCreateView):
     def get_form_kwargs(self):
         kwargs = super(SchoolRegistrationCreateView, self).get_form_kwargs()
         #recogemos y añadimos kwargs a la form
-        print self.kwargs
         kwargs['school_name'] = self.kwargs['school_name']
         return kwargs
+    #Añadimos el school_name al contexto
+    def get_context_data(self, **kwargs):
+        context = super(SchoolRegistrationCreateView, self).get_context_data(**kwargs)
+        context['school_name'] = self.kwargs['school_name']
+        return context
 
 
 class IndexExamList(ListView):

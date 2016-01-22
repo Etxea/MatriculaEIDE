@@ -83,10 +83,16 @@ class School(models.Model):
     def __unicode__(self):
         return self.name
 
+class SchoolLevel(Level):
+    school = models.ForeignKey(School)
+    def __unicode__(self):
+        return "[%s] %s-%se"%(self.school,self.name,self.price)
+
 class SchoolExam(Exam):
     school = models.ForeignKey(School)
     def __unicode__(self):
         return "[%s] %s %s %s"%(self.school,self.level.name,self.get_exam_type_display(),self.exam_date.strftime('%d-%m-%Y'))
+
     
 #Asbtract model to inherit from him
 class Registration(models.Model):
