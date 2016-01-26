@@ -86,7 +86,7 @@ class School(models.Model):
 class SchoolLevel(Level):
     school = models.ForeignKey(School)
     def __unicode__(self):
-        return "[%s] %s-%se"%(self.school,self.name,self.price)
+        return "[%s] %s-%se"%(self.school,self.name.split(" ")[0],self.price)
 
 class SchoolExam(Exam):
     school = models.ForeignKey(School)
