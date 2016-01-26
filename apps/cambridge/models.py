@@ -91,7 +91,7 @@ class SchoolLevel(Level):
 class SchoolExam(Exam):
     school = models.ForeignKey(School)
     def __unicode__(self):
-        return "[%s] %s %s %s"%(self.school,self.level.name,self.get_exam_type_display(),self.exam_date.strftime('%d-%m-%Y'))
+        return "%s %s %s"%(self.level.schoolevel.__unicode__(),self.get_exam_type_display(),self.exam_date.strftime('%d-%m-%Y'))
 
     
 #Asbtract model to inherit from him
@@ -331,7 +331,10 @@ Puedes ver más detalles e imprimirla en la siguente url http://matricula-eide.e
         return "%s-%s"%(self.id,self.exam)
     def registration_name(self):
         #return "%s - %s, %s"%(self.exam,self.surname,self.name)
-        return "%s"%(self.exam)
+	try:
+	    return "%s"%(self.exam.level.schoollevel.__unicode__())
+	except:
+            return "%s"%(self.exam)
     def save(self, *args, **kwargs):
         ##We generate a random password
         if self.id is not None:
