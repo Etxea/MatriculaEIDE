@@ -34,7 +34,7 @@ $(document).ready(function() {
 });
 </script>
 
-<h1>{% trans "Matricúlate para un Exámen Cambridge" %}</h1>
+<h1>{% trans "Matricúlate para un Exámen Cambridge" %} en {{school_name}}</h1>
 
 <div class="alert-message block-message error">
 
@@ -62,7 +62,6 @@ o no de los mismos por EIDE para los fines anteriormente citados.</p>
 	<p>En el siguiente desplegable, selecciona el nivel, tipo, formato y fecha de examen.</p>
 	<ul>
 	    <li>Niveles de Exámenes: <b>KET</b>: A2 – <b>PET</b>: B1– <b>FCE</b>: First Certificate. B2. – <b>CAE</b>: Advanced. C1. – <b>CPE</b>: Proficiency. C2.</li>
-	    <li>Tipo de examen: Ordinario (no llevan ninguna sigla) - <b>FS</b>: For Schools, exámenes para menores de 18 - <b>YLE</b>: Exámenes Young Learners, para niños/as de primaria.</li>
 	    <li>Formato: <b>CB</b>: Computer Based. Exámenes en ordenador – <b>PB</b>: Paper Based. Exámenes ordinarios en papel.</li>
 	</ul>
 	{{ form|as_bootstrap }}
@@ -72,7 +71,7 @@ o no de los mismos por EIDE para los fines anteriormente citados.</p>
 
 <div id="legal_general" class="row">
     <div class="span14">
-	{% include "cambridge/legal.html" %}
+	{% include "cambridge/school_legal.html" %}
 	<div>
 	    ¿Aceptas las condiciones? <input type="checkbox" id="id_accept_conditions" name="accept_conditions">
         </div>

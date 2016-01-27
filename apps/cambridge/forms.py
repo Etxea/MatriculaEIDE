@@ -65,6 +65,7 @@ class RegistrationForm(ModelForm):
         self.fields['birth_date'].widget.format = '%d-%m-%Y'
         # at the same time, set the input format on the date field like you want it:
         self.fields['birth_date'].input_formats = ['%d-%m-%Y']  
+        self.fields['exam'].queryset = Exam.objects.filter(registration_end_date__gte=datetime.date.today(),schoolexam__isnull=True)
 
 class SchoolRegistrationForm(ModelForm):
     telephone = ESPhoneNumberField(label=_("Teléfono"))
