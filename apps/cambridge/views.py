@@ -115,6 +115,9 @@ class SchoolExamList(ListView):
     queryset=SchoolExam.objects.filter(exam_date__gt=datetime.date.today())
     template_name='cambridge/school_exam_list.html'
 
+class SchoolListView(ListView):
+	model = School
+
 class SchoolExamCreate(CreateView):
     model = SchoolExam
     success_url="/cambridge/schools/exam/list/"

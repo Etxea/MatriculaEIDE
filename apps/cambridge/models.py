@@ -83,6 +83,14 @@ class School(models.Model):
     password = models.CharField(_('Password'),max_length=50)
     def __unicode__(self):
         return self.name
+    def exam_count(self):
+        return self.schoolexam_set.all().count()
+    def registration_count(self):
+        total=0
+        for e in self.schoolexam_set.all():
+            total = total + e.registration_set.all().count()
+        return total
+        
 
 class SchoolLevel(Level):
     school = models.ForeignKey(School)
