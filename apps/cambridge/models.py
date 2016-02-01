@@ -90,7 +90,19 @@ class School(models.Model):
         for e in self.schoolexam_set.all():
             total = total + e.registration_set.all().count()
         return total
-        
+
+class Venue(models.Model):
+    name = models.CharField(_('Name'),max_length=50)
+    password = models.CharField(_('Password'),max_length=50)
+    def __unicode__(self):
+        return self.name
+    def exam_count(self):
+        return self.venueexam_set.all().count()
+    def registration_count(self):
+        total=0
+        for e in self.venueexam_set.all():
+            total = total + e.registration_set.all().count()
+        return total
 
 class SchoolLevel(Level):
     school = models.ForeignKey(School)
@@ -102,8 +114,12 @@ class SchoolExam(Exam):
     def __unicode__(self):
         return "%s %s"%(self.level.__unicode__(),self.exam_date.strftime('%d-%m-%Y'))
 
-    
-#Asbtract model to inherit from him
+class VenueExam(Exam):
+    venue = models.ForeignKey(Venue)
+    def __unicode__(self):
+        return "[%s] %s %s"%(self.venue,self.level.__unicode__(),self.exam_date.strftime('%d-%m-%Y'))
+
+
 class Registration(models.Model):
     exam = models.ForeignKey(Exam,limit_choices_to = {'registration_end_date__gt': datetime.date.today})
     password = models.CharField(_('Password'),max_length=6,blank=True,editable=False)

@@ -28,20 +28,12 @@ from django.views.generic.edit import ModelFormMixin
 import StringIO
 import ho.pisa as pisa
 from excel_response import ExcelResponse
-
 from django_xhtml2pdf.utils import render_to_pdf_response
-#from utils import  render_to_pdf_response
-
 from models import *
 from forms import *
-
-
-# import the logging library
 import logging
-
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
-
 
 def ver(request, pk):
     registration = get_object_or_404(Registration, id=pk)
@@ -50,15 +42,12 @@ def ver(request, pk):
     myfile = StringIO.StringIO()
     return HttpResponse( file_data )
 
-
-
 def imprimir(registration,request):
     payload = {'registration': registration}
     response_pdf = render_to_pdf_response('cambridge/matricula_imprimir.html', 
         payload, pdfname='cambridge-%s.pdf'%registration.id)
     response_html = render_to_response('cambridge/matricula_imprimir.html', 
         payload)
-
     #return response_html
     return response_pdf
 
@@ -71,23 +60,13 @@ def imprimir_cambridge(request, pk):
 class RegistrationPayment(DetailView):
     model=Registration
     template_name='cambridge/payment.html'
-
     
-
 class RegistrationCreateView(CreateView):
     model = Registration
     form_class = RegistrationForm
     template_name='cambridge/registration_form.html'
     def get_success_url(self):
         return '/cambridge/pay/%d'%self.object.id
-#       #Comprobamos si el pago es por txartela:
-#       if True:
-#           return self.object.generate_payment_url()
-#       else:
-#           ## FIXME usar un reverse o lazy_reverse
-#           return '/cambridge/thanks/'
-
-
     
 @login_required 
 def RegistrationExcelView(request):
@@ -95,14 +74,6 @@ def RegistrationExcelView(request):
     return ExcelResponse(objs)
 
 class RegistrationListView(ListView):
-    #model=ComputerBasedRegistration
-    template_name='cambridge/lista.html'
-    #Limitamos a las matriculas de examenes posteriores al día de hoy y que estén pagadas
-    queryset=Registration.objects.filter(exam__exam_date__gt=datetime.date.today(),paid=True)
-
-
-class RegistrationListView(ListView):
-    #model=ComputerBasedRegistration
     template_name='cambridge/lista.html'
     #Limitamos a las matriculas de examenes posteriores al día de hoy y que estén pagadas
     queryset=Registration.objects.filter(exam__exam_date__gt=datetime.date.today(),paid=True)
@@ -181,3 +152,57 @@ class IndexExamList(ListView):
              
         #return render_to_response('cambridge/index.html',{'examenes_pb': examenes_pb, 'examenes_cb': examenes_cb,'examenes_fs': examenes_fs})
     
+##Venues
+class VenueExamList(ListView):
+    queryset=VenueExam.objects.filter(exam_date__gt=datetime.date.today())
+    template_name='cambridge/venue_exam_list.html'
+
+class VenueExamCreate(CreateView):
+    model = VenueExam
+    success_url="/cambridge/venues/exam/list/"
+    template_name = "cambridge/venue_exam_form.html"
+    form_class = VenueExamForm
+    #Limitamos los niveles a los que tiene el colegio
+    def get_form_kwargs(self):
+        kwargs = super(VenueExamCreate, self).get_form_kwargs()
+        #recogemos y añadimos kwargs a la form
+        kwargs['venue_name'] = self.kwargs['venue_name']
+        return kwargs
+    #Añadimos el school_name al contexto
+    def get_context_data(self, **kwargs):
+        context = super(VenueExamCreate, self).get_context_data(**kwargs)
+        context['venue_name'] = self.kwargs['venue_name']
+        return context
+
+class VenueListView(ListView):
+	model = Venue
+
+class VenueRegistrationListView(ListView):
+    template_name='cambridge/venue_lista.html'
+    #Limitamos a las matriculas de examenes posteriores al día de hoy y que estén pagadas y sean de la escuela
+    queryset=Registration.objects.filter(exam__exam_date__gt=datetime.date.today(),exam=SchoolExam.objects.all())
+
+class VenueRegistrationCreateView(RegistrationCreateView):
+    form_class = VenueRegistrationForm
+    template_name='cambridge/venue_registration_form.html'
+    #~ def get(self, request, *args, **kwargs):
+        #~ #Comprobamos el password
+        #~ if 'school_password' in kwargs:
+            #~ school = School.objects.get(name=kwargs['school_name'])
+            #~ print "Comprobamos el password",school.password,kwargs['school_password']
+            #~ if school.password == kwargs['school_password']:
+                #~ return super(SchoolRegistrationCreateView, self).get(request, *args, **kwargs)
+            #~ else:
+                #~ return redirect('/cambridge/')
+        #~ else:
+            #~ return redirect('/cambridge/')
+    def get_form_kwargs(self):
+        kwargs = super(VenueRegistrationCreateView, self).get_form_kwargs()
+        #recogemos y añadimos kwargs a la form
+        kwargs['venue_name'] = self.kwargs['venue_name']
+        return kwargs
+    #Añadimos el school_name al contexto
+    def get_context_data(self, **kwargs):
+        context = super(VenueRegistrationCreateView, self).get_context_data(**kwargs)
+        context['venue_name'] = self.kwargs['venue_name']
+        return context

@@ -54,6 +54,13 @@ urlpatterns = patterns('cambridge/',
     url(r'schools/new/(?P<school_name>\w+)/(?P<school_password>\w+)/$', SchoolRegistrationCreateView.as_view()),
     url(r'berriotxoa/$', direct_to_template, {'template': 'cambridge/berriotxoa.html' },name="cambridge_berriotxoa"),
 
+    #Venues
+    url(r'venue/exam/list/$', login_required(VenueExamList.as_view()),name="cambridge_venues_exam_list"),
+    url(r'venue/exam/(?P<venue_name>\w+)/new/$', login_required(VenueExamCreate.as_view()),name="cambridge_venues_exam_new"),
+    url(r'venue/list/$', login_required(VenueListView.as_view()),name="cambridge_venues_list"),
+    url(r'venue/registrations/list/$', login_required(VenueRegistrationListView.as_view()),name="cambridge_venues_registration_list"),
+    url(r'venue/new/(?P<venue_name>\w+)/$', VenueRegistrationCreateView.as_view()),
+    
     ## Genericas
     url(r'thanks/$', direct_to_template, {'template': 'cambridge/gracias.html' },name="cambridge_gracias"),
     ##For the exams

@@ -46,3 +46,11 @@ admin.site.register(Exam, ExamAdmin)
 admin.site.register(SchoolLevel, SchoolLevelAdmin)
 admin.site.register(SchoolExam, SchoolExamAdmin)
 admin.site.register(School, SchoolAdmin)
+
+class VenueAdmin(admin.ModelAdmin):
+	pass
+	
+class VenueExamAdmin(admin.ModelAdmin):
+	pass
+admin.site.register(VenueExam, VenueExamAdmin)
+admin.site.register(Venue, VenueAdmin)
