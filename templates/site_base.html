@@ -26,11 +26,16 @@
 		<li><a href="{% url cambridge_exam_new %}">{% trans "Nuevo examene" %}</a></li>
 		<li><a href="{% url cambridge_list %}">{% trans "Lista Matrículas" %}</a></li>
 		<li class="divider"></li>
-		<li><a href="#">Schools</a></li>
+		<li><a href="{% url cambridge_schools_list %}">Schools</a></li>
 		<li><a href="/admin/cambridge/schoollevel/">{% trans "Gestionar niveles" %}</a></li>
 		<li><a href="{% url cambridge_schools_exam_list %}">{% trans "Lista de examenes Schools" %}</a></li>
-		<li><a href="{% url cambridge_list %}">{% trans "Lista Matrículas" %}</a></li>
+		<li><a href="{% url cambridge_schools_registration_list %}">{% trans "Lista Matrículas" %}</a></li>
 		<li class="divider"></li>
+		<li class="divider"></li>
+		<li><a href="{% url cambridge_venues_list %}">Venues</a></li>
+		<li><a href="/admin/cambridge/venue/">{% trans "Gestionar venues" %}</a></li>
+		<li><a href="{% url cambridge_venues_exam_list %}">{% trans "Lista de examenes Venue" %}</a></li>
+		<li><a href="{% url cambridge_venues_registration_list %}">{% trans "Lista Matrículas Venues" %}</a></li>
 		
 	    </ul>
 	    {% endif %}
