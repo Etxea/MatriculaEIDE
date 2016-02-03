@@ -25,6 +25,7 @@ from django.template.loader import render_to_string
 from random import choice
 from string import letters
 import datetime
+import sys
 
 from django.conf import settings
 
@@ -54,7 +55,11 @@ class Level(models.Model):
     name = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     def __unicode__(self):
-        return "%s-%se"%(self.name,self.price)
+        try:
+            return "[%s] %s-%s"%(self.schoollevel.school,self.name.split(" ")[0],self.price)
+	
+        except:
+            return "%s-%s"%(self.name,self.price)
     
 
 class Exam(models.Model):
@@ -76,7 +81,7 @@ class Exam(models.Model):
     def __str__(self):
         return self.__unicode__()
     def __unicode__(self):
-        return "%s %s %s"%(self.level.name,self.get_exam_type_display(),self.exam_date.strftime('%d-%m-%Y'))
+        return "%s %s %s"%(self.level,self.get_exam_type_display(),self.exam_date.strftime('%d-%m-%Y'))
 
 class School(models.Model):
     name = models.CharField(_('Name'),max_length=50)
@@ -86,8 +91,6 @@ class School(models.Model):
 
 class SchoolLevel(Level):
     school = models.ForeignKey(School)
-    def __unicode__(self):
-        return "[%s] %s-%se"%(self.school,self.name.split(" ")[0],self.price)
 
 class SchoolExam(Exam):
     school = models.ForeignKey(School)
