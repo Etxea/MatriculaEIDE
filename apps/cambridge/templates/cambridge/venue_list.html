@@ -4,11 +4,11 @@
 <h2>Lista de Venues</h2>
 <table class="table">
 	<thead>
-		<th>Name</th><th>Exams</th><th>Regist. Number</th>
+		<th>Name</th><th>Description</th><th>Password</th><th>Exams</th><th>Regist. Number</th>
 	</thead>
 	{% for venue in object_list %}
 	<tr>
-		<td>{{venue}}</td><td>{{venue.exam_count}}</td><td>{{venue.registration_count}}</td>
+		<td><a href="/admin/cambridge/venue/{{venue.id}}/" class="icon icon-pencil">edit</a> - {{venue}}</td><td>{{venue.description}}</td><td>{{venue.password}}</td><td>{{venue.exam_count}}</td><td>{{venue.registration_count}}</td>
 	</tr>
 	{% endfor %}
 </table>
