@@ -104,10 +104,11 @@ class SchoolExamCreate(CreateView):
     def get_context_data(self, **kwargs):
         context = super(SchoolExamCreate, self).get_context_data(**kwargs)
         context['school_name'] = self.kwargs['school_name']
+        
         return context
 
 class SchoolRegistrationListView(ListView):
-    template_name='cambridge/school_lista.html'
+    template_name='cambridge/school_registration_list.html'
     #Limitamos a las matriculas de examenes posteriores al día de hoy y que estén pagadas y sean de la escuela
     queryset=Registration.objects.filter(exam__exam_date__gt=datetime.date.today(),exam=SchoolExam.objects.all())
 
@@ -134,6 +135,8 @@ class SchoolRegistrationCreateView(RegistrationCreateView):
     def get_context_data(self, **kwargs):
         context = super(SchoolRegistrationCreateView, self).get_context_data(**kwargs)
         context['school_name'] = self.kwargs['school_name']
+        context['school'] = School.objects.get(name=self.kwargs['school_name'])
+        print "tenemos la school",context['school']
         return context
 
 
@@ -162,23 +165,12 @@ class VenueExamCreate(CreateView):
     success_url="/cambridge/venues/exam/list/"
     template_name = "cambridge/venue_exam_form.html"
     form_class = VenueExamForm
-    #Limitamos los niveles a los que tiene el colegio
-    def get_form_kwargs(self):
-        kwargs = super(VenueExamCreate, self).get_form_kwargs()
-        #recogemos y añadimos kwargs a la form
-        kwargs['venue_name'] = self.kwargs['venue_name']
-        return kwargs
-    #Añadimos el school_name al contexto
-    def get_context_data(self, **kwargs):
-        context = super(VenueExamCreate, self).get_context_data(**kwargs)
-        context['venue_name'] = self.kwargs['venue_name']
-        return context
 
 class VenueListView(ListView):
 	model = Venue
 
 class VenueRegistrationListView(ListView):
-    template_name='cambridge/venue_lista.html'
+    template_name='cambridge/venue_registration_list.html'
     #Limitamos a las matriculas de examenes posteriores al día de hoy y que estén pagadas y sean de la escuela
     queryset=Registration.objects.filter(exam__exam_date__gt=datetime.date.today(),exam=SchoolExam.objects.all())
 

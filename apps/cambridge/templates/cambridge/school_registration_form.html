@@ -34,12 +34,14 @@ $(document).ready(function() {
 });
 </script>
 
-<h1>{% trans "Matricúlate para un Exámen Cambridge" %} en {{school_name}}</h1>
+<h1>{% trans "Matricúlate para un Exámen Cambridge" %} en {{school.description}}</h1>
 
 <div class="alert-message block-message error">
 
 
+<span class="label label-info"> Atención! </span>Convocatoria abierta únicamente para los alumnos/as del centro <b>{{school.description}}</b>.<br />
 <span class="label label-info"> Atención! </span>La única forma de pago aceptada es <b>vía tarjeta de crédito/débito</b>.<br />
+<span class="label label-info"> Atención! </span>Los exámenes se realizarán en las instalaciones de <b>{{school.description}}</b>.<br />
 
 
 </div>
@@ -62,7 +64,9 @@ o no de los mismos por EIDE para los fines anteriormente citados.</p>
 	<p>En el siguiente desplegable, selecciona el nivel, tipo, formato y fecha de examen.</p>
 	<ul>
 	    <li>Niveles de Exámenes: <b>KET</b>: A2 – <b>PET</b>: B1– <b>FCE</b>: First Certificate. B2. – <b>CAE</b>: Advanced. C1. – <b>CPE</b>: Proficiency. C2.</li>
+<!--
 	    <li>Formato: <b>CB</b>: Computer Based. Exámenes en ordenador – <b>PB</b>: Paper Based. Exámenes ordinarios en papel.</li>
+-->
 	</ul>
 	{{ form|as_bootstrap }}
     </div> 

@@ -104,17 +104,14 @@ class RegistrationEditForm(ModelForm):
 class VenueExamForm(ModelForm):
     class Meta:
         model = VenueExam
-    def __init__(self, venue_name, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super(ModelForm, self).__init__(*args, **kwargs)
         self.fields['exam_date'].widget.format = '%d-%m-%Y'
         self.fields['registration_end_date'].widget.format = '%d-%m-%Y'
         self.fields['exam_date'].input_formats = ['%d-%m-%Y']   
         self.fields['registration_end_date'].input_formats = ['%d-%m-%Y']   
-
-        self.venue_name = venue_name
-        #Limitamos los examenes a los de la escuela
-        venue = Venue.objects.get(name=venue_name)
-        self.fields['level'].queryset = VenueLevel.objects.filter(venue=venue)
+        self.fields['level'].queryset = Level.objects.filter(schoollevel__isnull=True)
+        
 
 
 class VenueRegistrationForm(ModelForm):
