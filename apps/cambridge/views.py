@@ -172,7 +172,7 @@ class VenueListView(ListView):
 class VenueRegistrationListView(ListView):
     template_name='cambridge/venue_registration_list.html'
     #Limitamos a las matriculas de examenes posteriores al día de hoy y que estén pagadas y sean de la escuela
-    queryset=Registration.objects.filter(exam__exam_date__gt=datetime.date.today(),exam=SchoolExam.objects.all())
+    queryset=Registration.objects.filter(exam__exam_date__gt=datetime.date.today(),exam=VenueExam.objects.all())
 
 class VenueRegistrationCreateView(RegistrationCreateView):
     form_class = VenueRegistrationForm

@@ -25,7 +25,7 @@
         {% for matricula in object_list %}
         <tr>
             <td> <a href="{% url cambridge_edit matricula.id %}">cambridge.pb-{{ matricula.id }}</a> </td>
-            <td>{{ matricula.exam.veueexam.venue }}</td>
+            <td>{{ matricula.exam.venueexam.venue }}</td>
             <td>{{ matricula.exam.level.name }}</td>
             <td>{{ matricula.exam.exam_date }}</td>
             <td>{{ matricula.surname }}</td>
