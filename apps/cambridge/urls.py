@@ -53,6 +53,7 @@ urlpatterns = patterns('cambridge/',
     url(r'schools/registrations/list/$', login_required(SchoolRegistrationListView.as_view()),name="cambridge_schools_registration_list"),
     url(r'schools/new/(?P<school_name>\w+)/(?P<school_password>\w+)/$', SchoolRegistrationCreateView.as_view(),name="cambridge_schools_new_registration"),
     url(r'berriotxoa/$', direct_to_template, {'template': 'cambridge/berriotxoa.html' },name="cambridge_berriotxoa"),
+    url(r'schools/fuentefresnedo/$', direct_to_template, {'template': 'cambridge/fuentefresnedo.html' },name="cambridge_fuentefresnedo"),
 
     #Venues
     url(r'venue/exam/list/$', login_required(VenueExamList.as_view()),name="cambridge_venues_exam_list"),
