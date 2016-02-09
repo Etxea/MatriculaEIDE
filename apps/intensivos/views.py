@@ -44,3 +44,28 @@ def RegistrationExcelView(request):
 class RegistrationListView(ListView):
     model = Registration
     template_name='intensivos/lista.html'
+
+
+
+
+class IntensivoCreateView(CreateView):
+    model = Intensivo
+    form_class = IntensivoForm
+    template_name='intensivos/course_form.html'
+    def get_success_url(self):
+        return '/intensivos/course/list/'
+
+class IntensivoListView(ListView):
+    model = Intensivo
+    template_name='intensivos/course_list.html'
+
+
+class IntensivoDeleteView(DeleteView):
+    model=Intensivo
+    template_name='intensivos/course_delete_confirm.html'
+    success_url = '/intensivos/course/list/'
+
+class IntensivoUpdateView(UpdateView):
+    model=Intensivo  
+    template_name='intensivos/course_form.html'
+    form_class = IntensivoForm

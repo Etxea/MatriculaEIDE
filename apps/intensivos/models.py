@@ -34,6 +34,11 @@ CURSO = (
     (8, _('Proficiency (C2)')),
 )
 
+NIVELES_INTESIVO = (
+    (1, _('Elementary/Upper')),
+    (2, _('FCE/CAE')),
+)
+
 NIVELES_IDIOMAS = (
     (1, _('A1')),
     (2, _('A2')),
@@ -44,6 +49,16 @@ NIVELES_IDIOMAS = (
     (7, _('C1.2')),
     (8, _('C2'))
 )
+
+class Intensivo(models.Model):
+    name = models.CharField(_('Name'),max_length=50)
+    nivel = models.DecimalField('Nivel del curso',max_digits=1, decimal_places=0,choices=NIVELES_INTESIVO)
+    dias = models.CharField(_('Dias'),max_length=50)
+    horario = models.CharField(_('Horario'),max_length=50)
+    inicio = models.DateField(_('Start'),help_text=_('Formato: AAAA-MM-DD(año-mes-día)'))
+    fin = models.DateField(_('End'),help_text=_('Formato: AAAA-MM-DD(año-mes-día)'))
+    horas = models.DecimalField('Horas',max_digits=3, decimal_places=0)
+    precio = models.DecimalField(max_digits=5, decimal_places=2)
 
 class Horario(models.Model):
     name = models.CharField(_('Horario (*)'),max_length=50,primary_key=True)

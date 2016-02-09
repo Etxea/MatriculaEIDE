@@ -44,3 +44,13 @@ class RegistrationEditForm(ModelForm):
         super(ModelForm, self).__init__(*args, **kwargs)
         self.fields['birth_date'].widget.format = '%Y-%m-%d'
         self.fields['birth_date'].input_formats = ['%Y-%m-%d']
+
+class IntensivoForm(ModelForm):
+    class Meta:
+        model = Intensivo
+    def __init__(self, *args, **kwargs):
+        super(ModelForm, self).__init__(*args, **kwargs)
+        self.fields['inicio'].widget.format = '%Y-%m-%d'
+        self.fields['inicio'].input_formats = ['%Y-%m-%d']
+        self.fields['fin'].widget.format = '%Y-%m-%d'
+        self.fields['fin'].input_formats = ['%Y-%m-%d']

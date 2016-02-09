@@ -28,6 +28,11 @@ from models import *
 
 
 urlpatterns = patterns('intensivos/',
+    url(r'^course/list/$',IntensivoListView.as_view(), name="intesivos_course_list"),
+    url(r'^course/new/$',IntensivoCreateView.as_view(), name="intensivos_course_new"),
+    url(r'^course/edit/(?P<pk>\d+)/$',IntensivoUpdateView.as_view(), name="intensivos_course_edit"),
+    url(r'^course/delete/(?P<pk>\d+)/$',IntensivoDeleteView.as_view(), name="intensivos_course_delete"),
+    
     url(r'^list/$',login_required(RegistrationListView.as_view()), name="intesivos_list"),
     url(r'^new/$',RegistrationCreateView.as_view(), name="intensivos_nueva"),
     #~ url(r'^excel/$',RegistrationExcelView, name="intensivos_excel"),

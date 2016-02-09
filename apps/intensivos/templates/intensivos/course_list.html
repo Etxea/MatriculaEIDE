@@ -1,0 +1,42 @@
+{% extends "site_base.html"%}
+
+{% load i18n %}
+
+{% block body %}
+
+<!-- 
+<p>
+<a class="btn btn-success" href="#">Bajar como fichero excel</a></li>
+</p>
+-->
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>ID</td>
+            
+            <td>{% trans "Nombre" %}</td>
+            <td>Nivel</td>
+            <td>Inicio</td>
+            <td>Fin</td>
+            <td>Fecha Nac.</td>
+            <td>Acciones</td>
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% for intensivo in object_list %}
+        <tr>
+            <td> <a href="{% url intensivos_course_edit intensivo.id %}">{{ intensivo.nombre }}</a> </td>
+            
+            <td></td>
+			<td>{{ intensivo.get_nivel_display}}</td>
+			
+			<td>{{ matricula.birth_date}}</td>
+         
+        
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
