@@ -7,13 +7,16 @@
 <h1>Preinscripción para {{ registration.get_curso_display }}</h1>
 <table class="table">
 	<tr>
-		<td><b>Nivel</b></td><td> {{registration.get_curso_display}} </td>
+		<td><b>Nivel Deseadp</b></td><td> {{registration.get_curso_display}} </td>
+	</tr>
+	<tr>
+		<td><b>Nivel de Ingles actual</b></td><td>{{registration.get_nivel_ingles_display}}</td>
 	</tr>
 	<tr>
 		<td><b>Horarios</b></td>
-		<td> -
-			{%for horario in registration.horarios.all %}
-				{{ horario.name }} -
+		<td>
+			{%for intensivo in registration.intensivos.all %}
+				{{ intensivo }} <br />
 			{% endfor %}
 		</td>
 	</tr>
@@ -35,9 +38,7 @@
 	<tr>
 		<td><b>Teléfono</b></td><td>{{registration.telephone}}</td>
 	</tr>
-	<tr>
-		<td><b>Nivel de Ingles</b></td><td>{{registration.get_nivel_ingles_display}}</td>
-	</tr>
+	
 	<tr>
 		<td><b></b></td><td>{{registration.}}</td>
 	</tr>	

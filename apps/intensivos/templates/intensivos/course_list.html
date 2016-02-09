@@ -9,34 +9,40 @@
 <a class="btn btn-success" href="#">Bajar como fichero excel</a></li>
 </p>
 -->
-
+<h2>Lista de cursos Intensivos</h2>
 <table class="table">
     <thead>
         <tr>
-            <td>ID</td>
             
-            <td>{% trans "Nombre" %}</td>
-            <td>Nivel</td>
-            <td>Inicio</td>
-            <td>Fin</td>
-            <td>Fecha Nac.</td>
-            <td>Acciones</td>
-            
+            <th>{% trans "Nombre" %}</th>
+            <th>Nivel</th>
+            <th>Días</th>
+            <th>Horario</th>
+            <th>Inicio</th>
+            <th>Fin</th>
+            <th>Horas</th>
+            <th>Precio</th>
+            <th>Reservas</th>
         </tr>
     </thead>
     <tbody>
         {% for intensivo in object_list %}
         <tr>
-            <td> <a href="{% url intensivos_course_edit intensivo.id %}">{{ intensivo.nombre }}</a> </td>
-            
-            <td></td>
+            <td> <a href="{% url intensivos_course_edit intensivo.id %}">{{ intensivo.name }}</a> </td>
 			<td>{{ intensivo.get_nivel_display}}</td>
-			
-			<td>{{ matricula.birth_date}}</td>
-         
-        
+			<td>{{ intensivo.dias}}</td>
+            <td>{{ intensivo.horario}}</td>
+            <td>{{ intensivo.inicio}}</td>
+            <td>{{ intensivo.fin}}</td>
+            <td>{{ intensivo.horas}}</td>
+            <td>{{ intensivo.precio}}</td>
+            <td>{{ intensivo.reservas}}</td>
         </tr>
     {% endfor %}
     </tbody>
 </table>
+
+
+	<a class="btn primary pull-left" href="{% url intensivos_course_new %}" >Nuevo intensivo</a> 
+
 {% endblock %}

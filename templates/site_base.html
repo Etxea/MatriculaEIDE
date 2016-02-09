@@ -47,7 +47,7 @@
 	    </a>
 	    {% if user.is_authenticated %}
 	    <ul class="dropdown-menu">
-		
+		<li><a href="{% url intesivos_course_list %}">{% trans "Lista Intensivos" %}</a></li>
 		<li><a href="{% url intesivos_list %}">{% trans "Lista Matrículas" %}</a></li>
 		</ul>
 	    {% endif %}

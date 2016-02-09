@@ -59,6 +59,10 @@ class Intensivo(models.Model):
     fin = models.DateField(_('End'),help_text=_('Formato: AAAA-MM-DD(año-mes-día)'))
     horas = models.DecimalField('Horas',max_digits=3, decimal_places=0)
     precio = models.DecimalField(max_digits=5, decimal_places=2)
+    def reservas(self):
+        return len(self.registration_set.all())
+    def __unicode__(self):
+		return "%s-%s"%(self.get_nivel_display(),self.name)
 
 class Horario(models.Model):
     name = models.CharField(_('Horario (*)'),max_length=50,primary_key=True)
@@ -77,7 +81,7 @@ class Registration(models.Model):
     registration_date = models.DateField(default=datetime.date.today, auto_now_add=True)
     nivel_ingles = models.DecimalField(_('Nivel Ingles Actual'),help_text="",max_digits=1, decimal_places=0,choices=NIVELES_IDIOMAS,blank=True,null=True)
     curso = models.DecimalField('Nivel del curso',max_digits=1, decimal_places=0,choices=CURSO)
-    horarios = models.ManyToManyField(Horario,help_text="Recuerde que debe elegir todos los horarios que le sean posibles")
+    intensivos = models.ManyToManyField(Intensivo,help_text="Recuerde que debe elegir todos los horarios que le sean posibles")
     accept_conditions = models.BooleanField(_('Accept the conditions'), help_text=_('You must accept the conditions to register'),default=True,blank=True)
     paid = models.BooleanField(_('Paid'),default=False)
     def get_absolute_url(self):

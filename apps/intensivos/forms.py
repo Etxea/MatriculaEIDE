@@ -34,7 +34,7 @@ class RegistrationForm(ModelForm):
         super(ModelForm, self).__init__(*args, **kwargs)
         self.fields['birth_date'].widget.format = '%Y-%m-%d'
         self.fields['birth_date'].input_formats = ['%Y-%m-%d']
-        self.fields['horarios'].widget.attrs['size']='6'  
+        self.fields['intensivos'].widget.attrs['size']='6'  
 
 class RegistrationEditForm(ModelForm):
     telephone = ESPhoneNumberField(label=_("Teléfono"))

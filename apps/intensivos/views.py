@@ -15,6 +15,7 @@ class RegistrationDeleteView(DeleteView):
 
 class RegistrationUpdateView(UpdateView):
     model=Registration  
+    success_url = '/intensivos/list/'
 
 class RegistrationPayment(DetailView):
     model=Registration
@@ -24,15 +25,20 @@ class RegistrationCreateView(CreateView):
     model = Registration
     form_class = RegistrationForm
     template_name='intensivos/registration_form.html'
+    def get_context_data(self, **kwargs):
+        context = super(RegistrationCreateView, self).get_context_data(**kwargs)
+        context['lista_intensivos'] = Intensivo.objects.all()
+        return context
+        
     def get_success_url(self):
         return '/intensivos/thanks/'
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.save()    
         self.object.password = ''.join([choice(letters) for i in xrange(6)])
-        for horario in form.cleaned_data['horarios']:
-            print "Abadimos horarrio",horario
-            self.object.horarios.add(horario)
+        for intensivo in form.cleaned_data['intensivos']:
+            print "Abadimos intensivo",intensivo
+            self.object.intensivos.add(intensivo)
         
         self.object.send_confirmation_email()
         return super(ModelFormMixin, self).form_valid(form)

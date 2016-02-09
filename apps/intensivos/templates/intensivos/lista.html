@@ -9,15 +9,15 @@
 <a class="btn btn-success" href="#">Bajar como fichero excel</a></li>
 </p>
 -->
-
+<h2>Lista de reservas para Intensivos</h2>
 <table class="table">
     <thead>
         <tr>
             <td>ID</td>
-            
             <td>{% trans "Nombre" %}</td>
             <td>Curso</td>
             <td>Nivel</td>
+            <td>Intensivos elegidos</td>
             <td>Email</td>
             <td>Telefono</td>
             <td>Fecha Nac.</td>
@@ -33,6 +33,11 @@
             <td>{{ matricula.surname }},{{ matricula.name }}</td>
 			<td>{{ matricula.get_curso_display}}</td>
 			<td>{{ matricula.get_nivel_ingles_display}}</td>
+			<td>
+			{%for intensivo in matricula.intensivos.all %}
+				{{ intensivo }} <br />
+			{% endfor %}
+			</td>
 			<td><a href="mailto:{{ matricula.email}}">{{ matricula.email}}</a></td>
 			<td>{{ matricula.telephone}}</td>
 			<td>{{ matricula.birth_date}}</td>
@@ -47,4 +52,5 @@
     {% endfor %}
     </tbody>
 </table>
+	<a class="btn primary pull-left" href="{% url intensivos_nueva %}" >Nueva matricula</a> 
 {% endblock %}
