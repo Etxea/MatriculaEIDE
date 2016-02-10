@@ -110,7 +110,7 @@ class SchoolExamCreate(CreateView):
 class SchoolRegistrationListView(ListView):
     template_name='cambridge/school_registration_list.html'
     #Limitamos a las matriculas de examenes posteriores al día de hoy y que estén pagadas y sean de la escuela
-    queryset=Registration.objects.filter(exam__exam_date__gt=datetime.date.today(),exam=SchoolExam.objects.all())
+    queryset=Registration.objects.filter(exam__exam_date__gt=datetime.date.today(),exam__in=SchoolExam.objects.all())
 
 class SchoolRegistrationCreateView(RegistrationCreateView):
     form_class = SchoolRegistrationForm
@@ -162,7 +162,7 @@ class VenueExamList(ListView):
 
 class VenueExamCreate(CreateView):
     model = VenueExam
-    success_url="/cambridge/venues/exam/list/"
+    success_url="/cambridge/venue/exam/list/"
     template_name = "cambridge/venue_exam_form.html"
     form_class = VenueExamForm
 
@@ -172,7 +172,7 @@ class VenueListView(ListView):
 class VenueRegistrationListView(ListView):
     template_name='cambridge/venue_registration_list.html'
     #Limitamos a las matriculas de examenes posteriores al día de hoy y que estén pagadas y sean de la escuela
-    queryset=Registration.objects.filter(exam__exam_date__gt=datetime.date.today(),exam=VenueExam.objects.all())
+    queryset=Registration.objects.filter(exam__exam_date__gt=datetime.date.today(),exam__in=VenueExam.objects.all())
 
 class VenueRegistrationCreateView(RegistrationCreateView):
     form_class = VenueRegistrationForm
