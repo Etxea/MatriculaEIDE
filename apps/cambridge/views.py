@@ -197,4 +197,5 @@ class VenueRegistrationCreateView(RegistrationCreateView):
     def get_context_data(self, **kwargs):
         context = super(VenueRegistrationCreateView, self).get_context_data(**kwargs)
         context['venue_name'] = self.kwargs['venue_name']
+        context['venue'] = Venue.objects.get(name=self.kwargs['venue_name'])
         return context

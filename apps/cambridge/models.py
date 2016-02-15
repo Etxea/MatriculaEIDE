@@ -128,7 +128,7 @@ class SchoolExam(Exam):
 class VenueExam(Exam):
     venue = models.ForeignKey(Venue)
     def __unicode__(self):
-        return "[%s] %s %s"%(self.venue,self.level.__unicode__(),self.exam_date.strftime('%d-%m-%Y'))
+        return "[%s]%s %s %s"%(self.venue,self.level.__unicode__(),self.get_exam_type_display(),self.exam_date.strftime('%d-%m-%Y'))
 
 
 class Registration(models.Model):
