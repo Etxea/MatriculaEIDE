@@ -120,7 +120,7 @@ class VenueRegistrationForm(ModelForm):
     postal_code = ESPostalCodeField(label=_("Código Postal"))
     class Meta:
         model = Registration
-        exclude = ('paid','minor','eide_alumn','centre_name')
+        exclude = ('paid','minor','eide_alumn','centre_name','tutor_name','tutor_surname')
         fields = ['exam','tutor_name','tutor_surname','name','surname','address','location','postal_code','sex','birth_date','telephone','email']
     def __init__(self, venue_name, *args, **kwargs):
         super(ModelForm, self).__init__(*args, **kwargs)
