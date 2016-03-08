@@ -184,6 +184,7 @@ INSTALLED_APPS = [
 #    "hobetuz",
 #    "cocina",
     "intensivos",
+    "inscripciones",
 
 ]
 

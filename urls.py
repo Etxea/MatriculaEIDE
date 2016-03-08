@@ -38,6 +38,7 @@ urlpatterns = patterns("",
     url(r"^espanol/", include("cursosespanol.urls")),
     url(r"^cocina/", include("cocina.urls")),
     url(r"^intensivos/", include("intensivos.urls")),
+    url(r"^inscripciones/", include("inscripciones.urls")),
 )
 
 
