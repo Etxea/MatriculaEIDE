@@ -32,20 +32,14 @@ class RegistrationCreateView(CreateView):
         #~ context = super(RegistrationCreateView, self).get_context_data(**kwargs)
         #~ context['lista_inscripciones'] = Intensivo.objects.all()
         #~ return context
-        
     def get_success_url(self):
         return '/inscripciones/thanks/'
-    #~ def form_valid(self, form):
-        #~ self.object = form.save(commit=False)
-        #~ self.object.save()    
-        #~ self.object.password = ''.join([choice(letters) for i in xrange(6)])
-        #~ for intensivo in form.cleaned_data['inscripciones']:
-            #~ print "Abadimos intensivo",intensivo
-            #~ self.object.inscripciones.add(intensivo)
-        
-        #~ self.object.send_confirmation_email()
-        #~ return super(ModelFormMixin, self).form_valid(form)
-
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.save()    
+        self.object.password = ''.join([choice(letters) for i in xrange(6)])
+        self.object.send_confirmation_email()
+        return super(ModelFormMixin, self).form_valid(form)
 def RegistrationExcelView(request):
     objs = Registration.objects.all()
     return ExcelResponse(objs)
