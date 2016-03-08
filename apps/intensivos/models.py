@@ -98,10 +98,8 @@ class Registration(models.Model):
 </head>
 <body>
 <div class="well">
-    <p>Buenas</p>
-    Acaba de realizar una solicitud de curso intensivo para: <br />
-    %s <br>
-    <p>Pronto nos pondremos en contacto desde EIDE para formalizar la inscripción.</p>
+    Muchas gracias por la solicitud del curso: %s <br>
+    <p>Pronto nos pondremos en contacto desde EIDE para darle más información.</p>
     <p>Gracias.</p>
 </div>
 <div class="well">
