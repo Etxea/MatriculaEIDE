@@ -6,7 +6,6 @@ from django.views.generic.edit import ModelFormMixin
 from models import *
 from forms import *
 
-
 class RegistrationDetailView(DetailView):
     model=Registration
     template_name='inscripciones/detalle.html'
