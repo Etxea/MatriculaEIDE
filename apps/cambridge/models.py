@@ -85,7 +85,7 @@ class Exam(models.Model):
             return "[%s] %s %s"%(self.schoollevel,self.get_exam_type_display(),self.exam_date.strftime('%d-%m-%Y'))	
         except:
             try:
-                return "[%s] %s %s"%(self.venueexam,self.get_exam_type_display(),self.exam_date.strftime('%d-%m-%Y'))	
+                return "%s"%(self.venueexam)	
             except:
                 return "%s %s %s"%(self.level,self.get_exam_type_display(),self.exam_date.strftime('%d-%m-%Y'))
 
