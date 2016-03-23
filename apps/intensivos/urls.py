@@ -20,7 +20,7 @@ from django.conf.urls.defaults import *
 from django.views.generic import list_detail, create_update
 from django.views.generic.simple import direct_to_template
 from django.contrib.auth.decorators import login_required, permission_required
-from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView, RedirectView
 
 from views import *
 from forms import *
@@ -40,5 +40,6 @@ urlpatterns = patterns('intensivos/',
     url(r'^delete/(?P<pk>\d+)/$', login_required(RegistrationDeleteView.as_view()), name="intensivos_delete"),
     url(r'^view/(?P<pk>\d+)/$', login_required(RegistrationDetailView.as_view()), name="intensivos_detalle"),
     url(r'thanks/$', direct_to_template, {'template': 'intensivos/gracias.html' },name="intensivos_gracias"),
-#    url(r'^/?$', direct_to_template,{'template': 'portada.html' },name="intensivos"),
+    #url(r'^/?$', direct_to_template,{'template': 'portada.html' },name="intensivos"),
+    url(r'^/?$', RedirectView.as_view(url='/intensivos/new/'),name="intensivos"),
 )
