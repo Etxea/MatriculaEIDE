@@ -37,6 +37,7 @@ CURSO = (
 NIVELES_INTESIVO = (
     (1, _('Elementary/Upper')),
     (2, _('FCE/CAE')),
+    (3, _('Todos los niveles')),
 )
 
 NIVELES_IDIOMAS = (
@@ -62,7 +63,7 @@ class Intensivo(models.Model):
     def reservas(self):
         return len(self.registration_set.all())
     def __unicode__(self):
-		return "%s-%s"%(self.get_nivel_display(),self.name)
+        return "%s-%s"%(self.get_nivel_display(),self.name)
 
 class Horario(models.Model):
     name = models.CharField(_('Horario (*)'),max_length=50,primary_key=True)

@@ -75,3 +75,4 @@ class IntensivoUpdateView(UpdateView):
     model=Intensivo  
     template_name='intensivos/course_form.html'
     form_class = IntensivoForm
+    success_url = '/intensivos/course/list/'
