@@ -40,5 +40,5 @@ urlpatterns = patterns('intensivos/',
     url(r'^delete/(?P<pk>\d+)/$', login_required(RegistrationDeleteView.as_view()), name="intensivos_delete"),
     url(r'^view/(?P<pk>\d+)/$', login_required(RegistrationDetailView.as_view()), name="intensivos_detalle"),
     url(r'thanks/$', direct_to_template, {'template': 'intensivos/gracias.html' },name="intensivos_gracias"),
-    url(r'^/?$', direct_to_template,{'template': 'portada.html' },name="intensivos"),
+#    url(r'^/?$', direct_to_template,{'template': 'portada.html' },name="intensivos"),
 )
