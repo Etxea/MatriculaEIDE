@@ -170,16 +170,15 @@ INSTALLED_APPS = [
     "south",
     "bootstrapform",
 #    "piwik",
-    # Pinax
     "pinax.apps.account",
     "pinax.apps.signup_codes",
     "cookielaw",
 
-    # project
     "about",
     "profiles",
     "cambridge",
     "pagosonline",
+    "pasarelapago",
     "cursosespanol",
 #    "hobetuz",
 #    "cocina",
