@@ -18,6 +18,7 @@
 from django.views.generic.simple import direct_to_template
 from django.contrib.csrf.middleware import csrf_exempt
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView, View
+from django.core.urlresolvers import reverse
 
 import datetime
 
@@ -30,33 +31,34 @@ log = logging.getLogger("MatriculaEIDE")
 
 class pagos_lista(ListView):
     model = Pago
-    template_name="pago_list.html"
+    template_name="pasarelapago/pago_list.html"
     
 class crear_pago_manual(CreateView):
     #model = Pago
     form_class = PagoForm
-    template_name="pago_manual_crear.html"
+    template_name="pasarelapago/pasarela_manual_crear.html"
 
 class editar_pago_manual(UpdateView):
     model = Pago
     #form_class = PagoForm
-    template_name="pago_manual_editar.html"
+    template_name="pasarelapago/pago_manual_editar.html"
 
 class borrar_pago_manual(DeleteView):
     model = Pago
     success_url ="/pagos/lista"
     #form_class = PagoForm
-    template_name="pago_manual_borrar.html"
+    template_name="pasarelapago/pago_manual_borrar.html"
     
     
 def pagar_manual(request,pago_id):
     reference = "manual"
-    return direct_to_template(request,template = "pago_manual_pagar.html",extra_context={"payament_info": payament_info(reference, pago_id)})
+    url_confirmar = request.build_absolute_uri(reverse('pago_confirmar'))
+    return direct_to_template(request,template = "pasarelapago/pago_manual_pagar.html",extra_context={"payament_info": payament_info(reference, pago_id, url_confirmar),'url_confirmar': url_confirmar})
 
 def make_payment(request, reference, order_id):
     """ Recibimos un texto de referencia, el ID de la orden y una cantidad en euros (sin decimales)"""
     return direct_to_template(request,
-        template= "pago.html",
+        template= "pasarelapago/pago.html",
         extra_context={"payament_info": payament_info(reference, order_id)})
 
 @csrf_exempt
@@ -88,14 +90,14 @@ def confirm_payment(request):
             log.debug( "Tenemos la matricula/pago, vamos a marcalo como pagado")
             r.set_as_paid()
             log.debug( "Mostramos al TPV la pagina de pago OK")
-            return direct_to_template(request,template="pago_confirmar.html")
+            return direct_to_template(request,template="pasarelapago/pago_confirmar.html")
         else:
-            return direct_to_template(request,template="pago_noconfirmar.html")
+            return direct_to_template(request,template="pasarelapago/pago_noconfirmar.html")
     except:
         exc_type, exc_value, exc_traceback = sys.exc_info()
         log.debug("No hemos sido capaces de validar el pago de la matricula ha fallado el try con la excepcion: %s %s %s"%(exc_type,exc_value,exc_traceback))
         log.debug(exc_type)
         log.debug(exc_value)
         log.debug(exc_traceback)
-        return direct_to_template(request,template="pago_noconfirmar.html")
+        return direct_to_template(request,template="pasarelapago/pago_noconfirmar.html")
     

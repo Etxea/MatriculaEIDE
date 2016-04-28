@@ -18,12 +18,14 @@
 from django.db import models
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
-import hashlib
-import datetime
-#from django.utils.text import slugify
 from django.template.defaultfilters import slugify
-from cambridge.models import Registration
 from django.core.mail import send_mail, mail_admins
+
+from cambridge.models import Registration
+import datetime
+import hashlib, json, base64, hmac
+from Crypto.Cipher import DES3
+
 
 import logging
 log = logging.getLogger("MatriculaEIDE")
@@ -63,45 +65,105 @@ class payament_info:
     Ds_Merchant_MerchantCode = ""
     Ds_Merchant_Terminal = ""
     Ds_Merchant_MerchantName= "EIDE"
+    Ds_Merchant_ProductDescription="Pago a EIDE"
+    Ds_Merchant_TransactionType="0"
     url_ok = ""
     url_nok = ""    
     clave = ""
     #Estas no cambian entre instalaciones
     cifrado="SHA1"
-    tipo_moneda="978"
+    Ds_Merchant_Currency="978"
     exponente="2"
     pago_soportado="SSL"
     #Estas las generamos
-    amount = ""
+    Ds_Merchant_Amount = ""
+    Ds_Merchant_SumTotal = 0
     order_id = ""
-    firma = ""
+    Ds_Merchant_MerchantSignature = ""
     
-    def __init__(self, reference, order_id):
+    
+    def __init__(self, reference, order_id, url_confirmar):
         if reference=="cambridge":
             r = Registration.objects.get(id=order_id)
             #La cantidad la multiplicamos por 100 para tener los 2 decimales en un numero entero
-            self.amount = int(float(r.exam.level.price)*100)
-            self.amount_text = "%s"%(float(r.exam.level.price))
+            self.Ds_Merchant_Amount = "%012d" % int(float(r.exam.level.price)*100)
+            self.Ds_Merchant_SumTotal = self.Ds_Merchant_Amount
+            self.amount_text = "%"%(float(r.exam.level.price))
+            #~ self.Ds_Merchant_ProductDescription = ""
             #generamos el order_i con la referencia, subreferencia y el ID del la matricula para luego saber cual es
-            self.order_id = "%s-%s-%s"%(reference,order_id,slugify(r.registration_name()))
+            self.Ds_Merchant_Order = "%04dCAMB%04d"%(order_id,r.id)
         elif reference == "manual":
             p = Pago.objects.get(id=order_id)
-            self.amount = int(float(p.importe)*100)
+            self.Ds_Merchant_Amount = "%012d" % int(float(p.importe)*100)
+            self.Ds_Merchant_SumTotal = self.Ds_Merchant_Amount
+            #~ self.Ds_Merchant_ProductDescription = ""
             self.amount_text = "%s €"%p.importe
-            self.order_id = "manual-%s"%order_id
+            self.Ds_Merchant_Order = "%04dMANU%04d"%(int(order_id),p.id)
         #Leemos de los settings
-        self.Ds_Merchant_MerchantCode = settings.PAYMENT_INFO["Ds_Merchant_MerchantCode"]
-        self.AcquirerBIN=settings.PAYMENT_INFO["AcquirerBIN"]
-        self.Ds_Merchant_Terminal=settings.PAYMENT_INFO["Ds_Merchant_Terminal"]
-        self.clave=settings.PAYMENT_INFO["clave"]
-        self.action_url=settings.PAYMENT_INFO["action_url"]
-        self.url_ok=settings.PAYMENT_INFO["url_ok"]
-        self.url_nok=settings.PAYMENT_INFO["url_nok"]
+        self.Ds_Merchant_MerchantCode = settings.PAYMENT_INFO2["Ds_Merchant_MerchantCode"]
+        self.DS_Merchant_Currency = settings.PAYMENT_INFO2["DS_Merchant_Currency"]
+        #~ self.AcquirerBIN=settings.PAYMENT_INFO2["AcquirerBIN"]
+        self.Ds_Merchant_Terminal=settings.PAYMENT_INFO2["Ds_Merchant_Terminal"]
+        self.Ds_Merchant_TransactionType=settings.PAYMENT_INFO2["Ds_Merchant_TransactionType"]
+        self.clave=settings.PAYMENT_INFO2["clave"]
+        self.action_url=settings.PAYMENT_INFO2["action_url"]
+        self.Ds_Merchant_UrlOK=settings.PAYMENT_INFO2["Ds_Merchant_UrlOK"]
+        self.Ds_Merchant_UrlKO=settings.PAYMENT_INFO2["Ds_Merchant_UrlKO"]
         #calculamos el SHA1 de la operación
-        texto = self.clave + self.MerchantID + self.AcquirerBIN + self.TerminalID + \
-            self.order_id + str(self.amount) + self.tipo_moneda + self.exponente + \
-            self.cifrado + self.url_ok + self.url_nok;        
-        clave_sha1 = hashlib.sha1()
-        clave_sha1.update(str(texto))
-        self.firma = clave_sha1.hexdigest()
+        #~ texto = self.clave + self.Ds_Merchant_MerchantCode + self.TerminalID + \
+            #~ self.order_id + str(self.amount) + self.tipo_moneda + self.exponente + \
+            #~ self.cifrado + self.url_ok + self.url_nok;     
+            
+        texto = self.Ds_Merchant_Amount + self.Ds_Merchant_Order + self. Ds_Merchant_MerchantCode + self.DS_Merchant_Currency +\
+            self.Ds_Merchant_TransactionType + url_confirmar + self.clave
+        sermepa_dict = {
+            "Ds_Merchant_MerchantData": "lalalala", # id del Pedido o Carrito, para identificarlo en el mensaje de vuelta
+            "Ds_Merchant_MerchantName": 'ACME',
+            "Ds_Merchant_Amount": self.Ds_Merchant_Amount,
+            "Ds_Merchant_Terminal": self.Ds_Merchant_Terminal,
+            "Ds_Merchant_MerchantCode": self.Ds_Merchant_MerchantCode,
+            "Ds_Merchant_Currency": self.Ds_Merchant_Currency,
+            "Ds_Merchant_MerchantURL": url_confirmar,
+            "Ds_Merchant_UrlOK": self.Ds_Merchant_UrlOK ,
+            "Ds_Merchant_UrlKO": self.Ds_Merchant_UrlKO,
+            "Ds_Merchant_Order": self.Ds_Merchant_Order,
+            "Ds_Merchant_TransactionType": '0',
+        }        
+        order_encrypted = encrypt_order_with_3DES(self.clave,self.Ds_Merchant_Order)
+        self.Ds_Merchant_MerchantSignature = sign_hmac256(order_encrypted, encode_parameters(sermepa_dict))
 
+
+"""
+    Given a dict; create a json object, codify it in base64 and delete their carrier returns
+    @var merchant_parameters: Dict with all merchant parameters
+    @return Ds_MerchantParameters: Encoded json structure with all parameters
+"""
+def encode_parameters(merchant_parameters):
+    parameters = (json.dumps(merchant_parameters)).encode()
+    return ''.join(unicode(base64.encodestring(parameters), 'utf-8').splitlines())
+
+
+"""
+    This method creates a unique key for every request, 
+    based on the Ds_Merchant_Order and in the shared secret (SERMEPA_SECRET_KEY).
+    This unique key is Triple DES ciphered.
+    @var merchant_parameters: Dict with all merchant parameters
+    @return order_encrypted: The encrypted order
+"""
+def encrypt_order_with_3DES(clave,Ds_Merchant_Order):
+    pycrypto = DES3.new(base64.standard_b64decode(clave), DES3.MODE_CBC, IV=b'\0\0\0\0\0\0\0\0')
+    order_padded = Ds_Merchant_Order.ljust(16, b'\0')
+    return pycrypto.encrypt(order_padded)
+
+
+
+"""
+    Use the order_encrypted we have to sign the merchant data using a HMAC SHA256 algorithm 
+    and encode the result using Base64
+    @var order_encrypted: Encrypted Ds_Merchant_Order
+    @var Ds_MerchantParameters: Redsys aleready encoded parameters
+    @return Ds_Signature: Generated signature encoded in base64
+"""
+def sign_hmac256(order_encrypted, Ds_MerchantParameters):
+    hmac_value = hmac.new(order_encrypted, Ds_MerchantParameters, hashlib.sha256).digest()
+    return base64.b64encode(hmac_value)

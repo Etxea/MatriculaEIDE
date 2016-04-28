@@ -7,8 +7,8 @@ import posixpath
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 DEBUG = True
-#DEBUG = False
-TEMPLATE_DEBUG = DEBUG
+#~ DEBUG = False
+#~ TEMPLATE_DEBUG = DEBUG
 
 # tells Pinax to serve media through the staticfiles app.
 SERVE_MEDIA = DEBUG
@@ -173,6 +173,7 @@ INSTALLED_APPS = [
     "pinax.apps.account",
     "pinax.apps.signup_codes",
     "cookielaw",
+    #~ "sermepa",
 
     "about",
     "profiles",

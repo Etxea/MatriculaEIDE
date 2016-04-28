@@ -40,6 +40,7 @@ urlpatterns = patterns("",
     url(r"^cocina/", include("cocina.urls")),
     url(r"^intensivos/", include("intensivos.urls")),
     url(r"^inscripciones/", include("inscripciones.urls")),
+    #~ url(r'^sermepa/', include('sermepa.urls')),
 )
 
 

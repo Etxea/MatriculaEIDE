@@ -29,10 +29,11 @@ Vamos aproceder al pago de la matrícula a través de tarjeta de crédito. Lo op
     <INPUT id="url_nok" NAME="URL_NOK" TYPE=hidden VALUE="{{ payament_info.url_nok }}">
     <INPUT id="firma" NAME="Firma" readonly TYPE=hidden VALUE="{{ payament_info.firma }}"><br />
     <INPUT NAME="Cifrado" TYPE=hidden VALUE="{{ payament_info.cifrado }}">
-    <INPUT id="num_operacion" NAME="Ds_Merchant_Order" TYPE=hidden VALUE="{{ payament_info.order_id }}"><br />
-    <INPUT id="importe" NAME="Ds_Merchant_Amount" READONLY TYPE=hidden VALUE={{ payament_info.amount }}><br />
+    <INPUT id="Ds_Merchant_Order" NAME="Ds_Merchant_Order" TYPE=hidden VALUE="{{ payament_info.Ds_Merchant_Order }}"><br />
+    <INPUT id="Ds_Merchant_Amount" NAME="Ds_Merchant_Amount" READONLY TYPE=hidden VALUE={{ payament_info.Ds_Merchant_Amount }}><br />
+    <INPUT id="Ds_Merchant_SumTotal" NAME="Ds_Merchant_SumTotal" READONLY TYPE=hidden VALUE={{ payament_info.Ds_Merchant_SumTotal }}><br />
     <INPUT id="Ds_Merchant_TransactionType" NAME="Ds_Merchant_TransactionType" READONLY TYPE=hidden VALUE=0><br />
-    <INPUT id="tipo_moneda" NAME="TipoMoneda" TYPE=hidden VALUE={{ payament_info.tipo_moneda }}>
+    <INPUT id="Ds_Merchant_Currency" NAME="Ds_Merchant_Currency" TYPE=hidden VALUE={{ payament_info.tipo_moneda }}>
     <INPUT id="exponente" NAME="Exponente" TYPE=hidden VALUE={{ payament_info.exponente }}>
     <INPUT NAME="Pago_soportado" TYPE=hidden VALUE=SSL>
     <CENTER>
