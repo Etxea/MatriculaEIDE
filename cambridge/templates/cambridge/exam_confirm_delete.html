@@ -4,8 +4,8 @@
     <h1>{% trans "Delete Exam" %}{{object}}</h1>
 
 	<form action="{% url cambridge_exam_delete object.id %}" method="post">{% csrf_token %}
-	{% load bootstrap_tags %}
-	{{ form|as_bootstrap }}
+	{% load bootstrap %}
+	{{ form|bootstrap }}
 	¿Seguro que desas borrar exámen {{object}} ?
     <br />
 	<input class="btn submit" type="submit" value="Eliminar"/>

@@ -12,8 +12,8 @@
     <h1>{% trans "Exam " %}{{object}}</h1>
 
 	<form class="form-horizontal" action="{% url cambridge_exam_new %}" method="post">{% csrf_token %}
-	    {% load bootstrap_tags %}
-	    {{ form|as_bootstrap }}
+	    {% load bootstrap %}
+	    {{ form|bootstrap }}
 	    <input class="submit btn-form" type="submit" value="{% trans 'Save' %}" />
 	    <a class="btn" href="{% url cambridge_exam_list %}">{% trans "Cancel" %}</a>
 	</form>

@@ -1,6 +1,6 @@
 {% extends "site_base.html"%}
 {% load i18n %}
-{% load bootstrap_tags %}
+{% load bootstrap %}
 
 
 {% block body %}
@@ -106,7 +106,7 @@ o no de los mismos por EIDE para los fines anteriormente citados.</p>
 	    <li>Tipo de examen: Ordinario (no llevan ninguna sigla) - <b>FS</b>: For Schools, exámenes para menores de 18 - <b>YLE</b>: Exámenes Young Learners, para niños/as de primaria.</li>
 	    <li>Formato: <b>CB</b>: Computer Based. Exámenes en ordenador – <b>PB</b>: Paper Based. Exámenes ordinarios en papel.</li>
 	</ul>
-	{{ form|as_bootstrap }}
+	{{ form|bootstrap }}
     </div> 
 </div>
 

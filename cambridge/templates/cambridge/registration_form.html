@@ -7,5 +7,5 @@
 {% endblock %}
 
 {% block cambridge_form_action %}
-    <form action="{% url cambridge_nueva %}" method="post" class="form-horizontal" >{% csrf_token %}
+    <form action="{% url 'cambridge_nueva' %}" method="post" class="form-horizontal" >{% csrf_token %}
 {% endblock %}

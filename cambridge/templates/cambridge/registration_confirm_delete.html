@@ -4,8 +4,8 @@
     <h1>{% trans "Delete Resgistration" %}{{object.exam}}</h1>
 
 	<form action="{% url cambridge_delete object.id %}" method="post">{% csrf_token %}
-	{% load bootstrap_tags %}
-	{{ form|as_bootstrap }}
+	{% load bootstrap %}
+	{{ form|bootstrap }}
     ¿Seguro que desas borrar la matricula de {{object.name}} {{object.surname}} para el {{object.exam}} ?
     <br />
 	<input class="btn submit" type="submit" value="Eliminar"/>
