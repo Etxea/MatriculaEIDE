@@ -22,13 +22,16 @@ from django.forms import ModelForm
 from models import *
 from django.forms.models import inlineformset_factory
 from django.forms.extras.widgets import SelectDateWidget
-from django.contrib.localflavor.es.forms import *
+from localflavor.es.forms import *
 from django.contrib.admin import widgets                                       
 from django.utils.translation import gettext_lazy as _
 
 class ExamForm(ModelForm):
+    
     class Meta:
         model = Exam
+        fields = '__all__'
+        
     def __init__(self, *args, **kwargs):
         super(ModelForm, self).__init__(*args, **kwargs)
         self.fields['exam_date'].widget.format = '%d-%m-%Y'
@@ -39,6 +42,7 @@ class ExamForm(ModelForm):
 class SchoolExamForm(ModelForm):
     class Meta:
         model = SchoolExam
+        fields = '__all__'
     def __init__(self, school_name, *args, **kwargs):
         super(ModelForm, self).__init__(*args, **kwargs)
         self.fields['exam_date'].widget.format = '%d-%m-%Y'
@@ -58,7 +62,7 @@ class RegistrationForm(ModelForm):
     postal_code = ESPostalCodeField(label=_("Código Postal"))
     class Meta:
         model = Registration
-        exclude = ('paid')
+        #~ exclude = ('paid')
         fields = ['exam','minor','tutor_name','tutor_surname','name','surname','address','location','postal_code','sex','birth_date','telephone','email','eide_alumn','centre_name']
     def __init__(self, *args, **kwargs):
         super(ModelForm, self).__init__(*args, **kwargs)
@@ -73,7 +77,7 @@ class SchoolRegistrationForm(ModelForm):
     postal_code = ESPostalCodeField(label=_("Código Postal"))
     class Meta:
         model = Registration
-        exclude = ('paid','minor','eide_alumn','centre_name')
+        #~ exclude = 'paid','minor','eide_alumn','centre_name')
         fields = ['exam','tutor_name','tutor_surname','name','surname','address','location','postal_code','sex','birth_date','telephone','email']
     def __init__(self, school_name, *args, **kwargs):
         super(ModelForm, self).__init__(*args, **kwargs)
@@ -94,6 +98,7 @@ class RegistrationEditForm(ModelForm):
     postal_code = ESPostalCodeField(label=_("Código Postal"))
     class Meta:
         model = Registration
+        fields = '__all__'
     def __init__(self, *args, **kwargs):
         super(ModelForm, self).__init__(*args, **kwargs)
         self.fields['birth_date'].widget.format = '%d-%m-%Y'
@@ -104,6 +109,7 @@ class RegistrationEditForm(ModelForm):
 class VenueExamForm(ModelForm):
     class Meta:
         model = VenueExam
+        fields = '__all__'
     def __init__(self, *args, **kwargs):
         super(ModelForm, self).__init__(*args, **kwargs)
         self.fields['exam_date'].widget.format = '%d-%m-%Y'
@@ -120,7 +126,7 @@ class VenueRegistrationForm(ModelForm):
     postal_code = ESPostalCodeField(label=_("Código Postal"))
     class Meta:
         model = Registration
-        exclude = ('paid','minor','eide_alumn','centre_name','tutor_name','tutor_surname')
+        #~ exclude = ('paid','minor','eide_alumn','centre_name','tutor_name','tutor_surname')
         fields = ['exam','tutor_name','tutor_surname','name','surname','address','location','postal_code','sex','birth_date','telephone','email']
     def __init__(self, venue_name, *args, **kwargs):
         super(ModelForm, self).__init__(*args, **kwargs)

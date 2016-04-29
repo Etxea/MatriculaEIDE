@@ -16,11 +16,11 @@
 #  MA 02110-1301, USA.
 #  
 
-from django.conf.urls.defaults import *
-from django.views.generic import list_detail, create_update
-from django.views.generic.simple import direct_to_template
+from django.conf.urls import patterns, url, include
+
+#~ from django.views.generic.simple import direct_to_template
 from django.contrib.auth.decorators import login_required, permission_required
-from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import TemplateView, DetailView, ListView, CreateView, UpdateView, DeleteView
 
 from views import *
 from forms import *
@@ -52,8 +52,8 @@ urlpatterns = patterns('cambridge/',
     url(r'schools/list/$', login_required(SchoolListView.as_view()),name="cambridge_schools_list"),
     url(r'schools/registrations/list/$', login_required(SchoolRegistrationListView.as_view()),name="cambridge_schools_registration_list"),
     url(r'schools/new/(?P<school_name>\w+)/(?P<school_password>\w+)/$', SchoolRegistrationCreateView.as_view(),name="cambridge_schools_new_registration"),
-    url(r'berriotxoa/$', direct_to_template, {'template': 'cambridge/berriotxoa.html' },name="cambridge_berriotxoa"),
-    url(r'schools/fuentefresnedo/$', direct_to_template, {'template': 'cambridge/fuentefresnedo.html' },name="cambridge_fuentefresnedo"),
+    url(r'berriotxoa/$', TemplateView.as_view( template_name = 'cambridge/berriotxoa.html' ),name="cambridge_berriotxoa"),
+    url(r'schools/fuentefresnedo/$', TemplateView.as_view( template_name =  'cambridge/fuentefresnedo.html' ),name="cambridge_fuentefresnedo"),
 
     #Venues
     url(r'venue/exam/list/$', login_required(VenueExamList.as_view()),name="cambridge_venues_exam_list"),
@@ -63,7 +63,7 @@ urlpatterns = patterns('cambridge/',
     url(r'venue/new/(?P<venue_name>\w+)/$', VenueRegistrationCreateView.as_view(),name="cambridge_venues_new_registration"),
     
     ## Genericas
-    url(r'thanks/$', direct_to_template, {'template': 'cambridge/gracias.html' },name="cambridge_gracias"),
+    url(r'thanks/$', TemplateView.as_view( template_name = 'cambridge/gracias.html' ),name="cambridge_gracias"),
     ##For the exams
     url(r'^exam/list/$',login_required(
 		ListView.as_view(model=Exam,template_name='cambridge/exam_list.html')

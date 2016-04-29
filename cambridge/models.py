@@ -146,7 +146,7 @@ class Registration(models.Model):
     email = models.EmailField()
     eide_alumn = models.BooleanField(_('EIDE Alumn'), help_text=_('Check this if you are an alumn of EIDE. If not please fill in your centre name'))
     centre_name = models.CharField(_('Centre Name'),max_length=100, blank=True) 
-    registration_date = models.DateField(default=datetime.date.today, auto_now_add=True)
+    registration_date = models.DateField(auto_now_add=True)
     paid = models.BooleanField(_('Paid'),default=False)
     accept_conditions = models.BooleanField(_('Accept the conditions'), help_text=_('You must accept the conditions to register'),default=True,blank=True)
     accept_photo_conditions = models.BooleanField(_('Aceptar las conficiones de la foto.'), help_text=_('Debes aceptar las condiciones de la la toma de foto para poder matricularte.'),default=True,blank=True)

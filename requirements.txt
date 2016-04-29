@@ -3,6 +3,12 @@ django-user-accounts==1.3.1
 pinax-webanalytics==2.0.1
 pinax-eventlog==1.1.1
 pinax-theme-bootstrap==7.8.0
-django-excel-response 
+xlwt
+django-excel-response3
 django-countries==1.1.1
 django-localflavor==1.2
+html5lib
+pisa==3.0.33
+reportlab==2.7
+xhtml2pdf
+django_xhtml2pdf
