@@ -1,0 +1,88 @@
+{% extends "site_base.html"%}
+{% load i18n %}
+{% load bootstrap_tags %}
+
+{% block extra_head %}
+
+<script>
+	function comprobar_aceptacion() {
+		console.log("Comprobamos de las condiciones");
+		acepta = false;
+		if ($("#id_accept_conditions").is(":checked"))
+		{
+		    console.log("Condiciones generales aceptadas");
+			acepta = true;
+		}
+		if (acepta) {
+		    console.log("Dice que las acepta");
+		    $("#send_form").prop('disabled', false);
+		    console.log("Ocultamos el aviso");
+		    $("#aviso_condiciones").hide();
+		}else {
+		    //Deshabilitamos el envio hasta que acepten las condiciones
+			console.log("Dice que NO las acepta");
+			$("#send_form").prop('disabled', true);
+		    console.log("Mostramos el aviso");
+		    $("#aviso_condiciones").show();
+		}
+    }
+	$(document).ready(function() {
+		//~ $("#id_birth_date").datepicker({format: "dd-mm-yyyy",weekStart: 1});
+    	$("#normativa_general").hide();
+		//Comprobamos si se puede enviar
+    	comprobar_aceptacion();
+        	
+		//Control de la aceptación de las condiciones:
+		$("#id_accept_conditions").change(comprobar_aceptacion);
+	    	
+            
+	});            
+</script>
+
+{% endblock%}
+
+{% block body %}
+<div class="row">
+    <div class="span12">		
+	<h1>{% trans "Inscripción a un curso" %}</h1>
+	<div>
+	    {{ curso.description }}
+	    
+	    <h3>SOLICITUD INSCRIPCIÓN PARA CURSOS GRATUITOS PARA MENORES DE 30 AÑOS</h3>
+	    <p>Subvencionados por el Servicio Público de Empleo Estatal</p>
+	    <p>Actualmente, está previsto que se impartan los siguientes cursos:</p>
+	    <ul>
+	    <li>Inglés nivel A2 para menores de 30 años (150 horas).  Del 12 Abril-24 al Junio de 09.00 a 12.00. Requisitos de idioma: nivel de inglés B1.</li>
+	    <li>Inglés nivel B2 para menores de 30 años (240 horas). Del 5 de Abril al 30 de Junio de 09.00 a 13.15. Requisitos de idioma: nivel de inglés B2.</li>
+	    <li>Inglés nivel C1 para menores de 30 años (240 horas). De Octubre a Diciembre de 2016, 4 horas por día en horario de mañana de Lunes a Viernes. Requisitos de idioma: nivel de inglés C1.</li>
+	    </ul>
+	    <p>NOTA: Las fechas y horarios pueden sufrir variaciones.</p>
+	    <p>REQUISITOS MÍNIMOS DE ESTUDIOS: ESO</p>
+	    <p>Si está interesado/a rellene los siguientes datos y nos pondremos en contacto con usted.</p>
+	</div>
+	<form action="" method="post" class="form-horizontal" >{% csrf_token %}
+	{{ form|as_bootstrap }}
+    </div> 
+</div>
+<!-- Legal -->
+<div id="legal_general" class="row">
+    <div class="span14">
+        {% include "inscripciones/legal.html" %}
+        <div>
+            ¿Aceptas las condiciones? <input type="checkbox" id="id_accept_conditions" name="accept_conditions">
+        </div>        
+    </div> 
+</div>
+<!-- Legal -->
+
+<!-- Aviso y envio -->
+<div class="row">
+    <div class="span12">    
+	<div class="well" id="aviso_condiciones">
+	    {% trans "<b>¡Atención!.</b> Todavía no ha aceptado las condiciones. Si no acepta las condiciones generales no podrá enviar la matrícula." %}
+	</div>
+	<input id="send_form" class="btn primary pull-right" type="submit" value="Enviar" />
+    </div> 
+</div> 
+<!-- Aviso y envio -->
+{% endblock %}

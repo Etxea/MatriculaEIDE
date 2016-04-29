@@ -1,0 +1,27 @@
+{% extends "site_base.html"%}
+{% load i18n %}
+{% load bootstrap_tags %}
+
+{% block extra_head %}
+
+<script>
+	
+	$(document).ready(function() {
+		$("#inicio").datepicker({format: "dd-mm-yyyy",weekStart: 1});
+		$("#fin").datepicker({format: "dd-mm-yyyy",weekStart: 1});
+	});            
+</script>
+
+{% endblock%}
+
+{% block body %}
+<div class="row">
+<h1>{% trans "Nuevo Curso de Intensivo" %}</h1>
+    <div class="span12">		
+	<form action="" method="post" class="form-horizontal" >{% csrf_token %}
+	{{ form|as_bootstrap }}
+	<input id="send_form" class="btn primary pull-right" type="submit" value="Enviar" />
+    </div> 
+</div>
+<!-- Aviso y envio -->
+{% endblock %}
