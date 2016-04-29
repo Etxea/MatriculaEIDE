@@ -21,7 +21,7 @@ from django.forms import ModelForm
 from models import *
 from django.forms.models import inlineformset_factory
 from django.forms.extras.widgets import SelectDateWidget
-from django.contrib.localflavor.es.forms import *
+from localflavor.es.forms import *
 from django.contrib.admin import widgets                                       
 from django.utils.translation import gettext_lazy as _
 
@@ -40,6 +40,7 @@ class RegistrationEditForm(ModelForm):
     telephone = ESPhoneNumberField(label=_("Teléfono"))
     class Meta:
         model = Registration
+        fields = '__all__'
     def __init__(self, *args, **kwargs):
         super(ModelForm, self).__init__(*args, **kwargs)
         self.fields['birth_date'].widget.format = '%Y-%m-%d'
@@ -48,6 +49,7 @@ class RegistrationEditForm(ModelForm):
 class IntensivoForm(ModelForm):
     class Meta:
         model = Intensivo
+        fields = '__all__'
     def __init__(self, *args, **kwargs):
         super(ModelForm, self).__init__(*args, **kwargs)
         self.fields['inicio'].widget.format = '%Y-%m-%d'

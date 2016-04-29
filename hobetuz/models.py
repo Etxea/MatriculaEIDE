@@ -17,8 +17,8 @@
 #  
 
 from django.db import models
-from django.contrib.localflavor import generic
-from django.contrib.localflavor.es.forms import *
+from localflavor import generic
+from localflavor.es.forms import *
 from django.core.mail import EmailMultiAlternatives
 from django.core.urlresolvers import reverse
 from django.template.loader import render_to_string
@@ -99,7 +99,7 @@ class Registration(models.Model):
 	empresa_puesto = models.CharField(_('Puesto en la empresa'),max_length=100, blank=True)
 	empresa_actividad = models.CharField(_('Actividad de la empresa'),max_length=200, blank=True)
 	
-	registration_date = models.DateField(default=datetime.date.today, auto_now_add=True)
+	registration_date = models.DateField(auto_now_add=True)
 	
 	nivel_ingles = models.DecimalField(_('Nivel Ingles'),help_text="En caso de que haya escogido este idioma indique su nivel",max_digits=1, decimal_places=0,choices=NIVELES_IDIOMAS,blank=True,null=True)
 	nivel_frances = models.DecimalField(_('Nivel Frances'),help_text="En caso de que haya escogido este idioma indique su nivel",max_digits=1, decimal_places=0,choices=NIVELES_IDIOMAS,blank=True,null=True)

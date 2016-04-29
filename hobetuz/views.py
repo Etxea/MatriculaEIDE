@@ -26,7 +26,7 @@ from django.views.generic.edit import ModelFormMixin
 
 import StringIO
 import ho.pisa as pisa
-from excel_response import ExcelResponse
+from excel_response3 import ExcelResponse
 
 from django_xhtml2pdf.utils import render_to_pdf_response, generate_pdf
 #from utils import  render_to_pdf_response

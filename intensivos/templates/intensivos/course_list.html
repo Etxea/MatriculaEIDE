@@ -28,7 +28,7 @@
     <tbody>
         {% for intensivo in object_list %}
         <tr>
-            <td> <a href="{% url intensivos_course_edit intensivo.id %}">{{ intensivo.name }}</a> </td>
+            <td> <a href="{% url 'intensivos_course_edit' intensivo.id %}">{{ intensivo.name }}</a> </td>
 			<td>{{ intensivo.get_nivel_display}}</td>
 			<td>{{ intensivo.dias}}</td>
             <td>{{ intensivo.horario}}</td>
@@ -43,6 +43,6 @@
 </table>
 
 
-	<a class="btn primary pull-left" href="{% url intensivos_course_new %}" >Nuevo intensivo</a> 
+	<a class="btn primary pull-left" href="{% url 'intensivos_course_new' %}" >Nuevo intensivo</a> 
 
 {% endblock %}

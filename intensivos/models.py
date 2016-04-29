@@ -79,7 +79,7 @@ class Registration(models.Model):
     birth_date = models.DateField(_('Birth Date'),help_text=_('Formato: AAAA-MM-DD(año-mes-día)'))
     telephone = models.CharField('Tel. Fijo (*)',max_length=12)
     email = models.EmailField('Email (*)')
-    registration_date = models.DateField(default=datetime.date.today, auto_now_add=True)
+    registration_date = models.DateField(auto_now_add=True)
     nivel_ingles = models.DecimalField(_('Nivel Ingles Actual'),help_text="",max_digits=1, decimal_places=0,choices=NIVELES_IDIOMAS,blank=True,null=True)
     curso = models.DecimalField('Nivel del curso',max_digits=1, decimal_places=0,choices=CURSO)
     intensivos = models.ManyToManyField(Intensivo,help_text="Recuerde que debe elegir todos los horarios que le sean posibles")

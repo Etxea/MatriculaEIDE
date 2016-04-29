@@ -16,18 +16,16 @@
 #  MA 02110-1301, USA.
 #  
 
-from django.conf.urls.defaults import *
-from django.views.generic import list_detail, create_update
-from django.views.generic.simple import direct_to_template
+from django.conf.urls import url
 from django.contrib.auth.decorators import login_required, permission_required
-from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView, RedirectView
+from django.views.generic import TemplateView, DetailView, ListView, CreateView, UpdateView, DeleteView, RedirectView
 
 from views import *
 from forms import *
 from models import *
 
 
-urlpatterns = patterns('intensivos/',
+urlpatterns = [
     url(r'^course/list/$',IntensivoListView.as_view(), name="intesivos_course_list"),
     url(r'^course/new/$',IntensivoCreateView.as_view(), name="intensivos_course_new"),
     url(r'^course/edit/(?P<pk>\d+)/$',IntensivoUpdateView.as_view(), name="intensivos_course_edit"),
@@ -39,7 +37,7 @@ urlpatterns = patterns('intensivos/',
     url(r'^edit/(?P<pk>\d+)/$',login_required(RegistrationUpdateView.as_view()), name="intensivos_edit"),
     url(r'^delete/(?P<pk>\d+)/$', login_required(RegistrationDeleteView.as_view()), name="intensivos_delete"),
     url(r'^view/(?P<pk>\d+)/$', login_required(RegistrationDetailView.as_view()), name="intensivos_detalle"),
-    url(r'thanks/$', direct_to_template, {'template': 'intensivos/gracias.html' },name="intensivos_gracias"),
+    url(r'thanks/$', TemplateView.as_view(template_name = 'intensivos/gracias.html' ),name="intensivos_gracias"),
     #url(r'^/?$', direct_to_template,{'template': 'portada.html' },name="intensivos"),
     url(r'^/?$', RedirectView.as_view(url='/intensivos/new/'),name="intensivos"),
-)
+]

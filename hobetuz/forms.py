@@ -22,17 +22,19 @@ from django.forms import ModelForm
 from models import *
 from django.forms.models import inlineformset_factory
 from django.forms.extras.widgets import SelectDateWidget
-from django.contrib.localflavor.es.forms import *
+from localflavor.es.forms import *
 from django.contrib.admin import widgets                                       
 from django.utils.translation import gettext_lazy as _
 
 class CursoForm(ModelForm):
 	class Meta:
+		fields = '__all__'
 		model = Curso
 		
 class RegistrationForm(ModelForm):
 	class Meta:
 		model = Registration
+		fields = '__all__'
 	telephone = ESPhoneNumberField(label=_("Teléfono Fijo (*)"))
 	telephone2 = ESPhoneNumberField(label=_("Teléfono Móvil (*)"))
 	#dni = ESIdentityCardNumberField()
