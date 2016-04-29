@@ -23,11 +23,11 @@ ALLOWED_HOSTS = []
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = "UTC"
+TIME_ZONE = "Europe/Madrid"
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "es-es"
 
 SITE_ID = int(os.environ.get("SITE_ID", 1))
 
@@ -133,9 +133,12 @@ INSTALLED_APPS = [
     "account",
     "pinax.eventlog",
     "pinax.webanalytics",
+    "localflavor",
+    "sermepa",
 
     # project
     "matriculas",
+    "cambridge",
 ]
 
 # A sample logging configuration. The only tangible logging
@@ -151,12 +154,31 @@ LOGGING = {
             "()": "django.utils.log.RequireDebugFalse"
         }
     },
+    'formatters': {
+        'standard': {
+            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt' : "%d/%b/%Y %H:%M:%S"
+        },
+    },
     "handlers": {
         "mail_admins": {
             "level": "ERROR",
             "filters": ["require_debug_false"],
             "class": "django.utils.log.AdminEmailHandler"
-        }
+        },
+        'console':{
+            'level':'INFO',
+            'class':'logging.StreamHandler',
+            'formatter': 'standard'
+        },
+        'logfile': {
+            'level':'DEBUG',
+            'class':'logging.handlers.RotatingFileHandler',
+            'filename': PROJECT_ROOT + "/logs",
+            'maxBytes': 50000,
+            'backupCount': 2,
+            'formatter': 'standard',
+        },
     },
     "loggers": {
         "django.request": {
@@ -164,6 +186,11 @@ LOGGING = {
             "level": "ERROR",
             "propagate": True,
         },
+        'MatriculaEIDE': {
+            'handlers': ['console', 'logfile'],
+            'level': 'DEBUG',
+        },
+
     }
 }
 
@@ -184,3 +211,8 @@ ACCOUNT_USE_AUTH_AUTHENTICATE = True
 AUTHENTICATION_BACKENDS = [
     "account.auth_backends.UsernameAuthenticationBackend",
 ]
+try:
+    from local_settings import *
+except ImportError:
+    pass
+
