@@ -65,8 +65,8 @@ class Level(models.Model):
 class Exam(models.Model):
     exam_type =  models.DecimalField(_('Tipo Examen'),max_digits=1, decimal_places=0,choices=EXAM_TYPE)
     level = models.ForeignKey(Level)
-    exam_date =  models.DateField(default=datetime.date.today)
-    registration_end_date =  models.DateField(_('Fecha fin de la matriculación'),default=datetime.date.today)
+    exam_date =  models.DateField(default=datetime.date.today())
+    registration_end_date =  models.DateField(_('Fecha fin de la matriculación'),default=datetime.date.today())
     def registrations(self):
         try:
             return self.registration_set.count()
@@ -132,7 +132,7 @@ class VenueExam(Exam):
 
 
 class Registration(models.Model):
-    exam = models.ForeignKey(Exam,limit_choices_to = {'registration_end_date__gt': datetime.date.today})
+    exam = models.ForeignKey(Exam,limit_choices_to = {'registration_end_date__gt': datetime.date.today()})
     password = models.CharField(_('Password'),max_length=6,blank=True,editable=False)
     name = models.CharField(_('Name'),max_length=50)
     surname = models.CharField(_('Surname'),max_length=100)
