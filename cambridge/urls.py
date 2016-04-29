@@ -27,7 +27,7 @@ from forms import *
 from models import *
 
 
-urlpatterns = patterns('cambridge/',
+urlpatterns = [
     url(r'^list/$',login_required(RegistrationListView.as_view()), name="cambridge_list"),
     url(r'^excel/$',RegistrationExcelView, name="cambridge_excel"),
     url(r'^pay/(?P<pk>\d+)/$',RegistrationPayment.as_view(),name="cambridge_pay"),
@@ -84,4 +84,4 @@ urlpatterns = patterns('cambridge/',
             success_url = '/cambridge/exam/list',
             template_name='cambridge/exam_edit.html')), name="cambridge_exam_edit"),
     url(r'^/?$', IndexExamList.as_view(),name="cambridge"),
-)
+]

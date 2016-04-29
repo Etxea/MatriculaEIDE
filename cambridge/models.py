@@ -28,7 +28,7 @@ import datetime
 import sys
 
 from django.conf import settings
-
+from django.utils import timezone
 # favour django-mailer but fall back to django.core.mail
 if "mailer" in settings.INSTALLED_APPS:
     from mailer import send_mail, mail_admins
@@ -65,8 +65,8 @@ class Level(models.Model):
 class Exam(models.Model):
     exam_type =  models.DecimalField(_('Tipo Examen'),max_digits=1, decimal_places=0,choices=EXAM_TYPE)
     level = models.ForeignKey(Level)
-    exam_date =  models.DateField(default=datetime.date.today())
-    registration_end_date =  models.DateField(_('Fecha fin de la matriculación'),default=datetime.date.today())
+    exam_date =  models.DateField(default=timezone.now)
+    registration_end_date =  models.DateField(_('Fecha fin de la matriculación'),default=timezone.now)
     def registrations(self):
         try:
             return self.registration_set.count()

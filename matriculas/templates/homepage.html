@@ -1,77 +1,47 @@
 {% extends "site_base.html" %}
-
 {% load i18n %}
 
-{% block head_title %}pinax-project-account{% endblock %}
+{% block head_title %}{% trans "Sistema Online de matrícula en EIDE" %}{% endblock %}
+{% block body %}
 
-{% block body_class %}home{% endblock %}
+<div class="hero-unit">
+    <h1>{% trans "Bienvenido al sistema Online de matrícula en EIDE" %}</h1>
+    <br />
+    <p>
+        {% blocktrans %}
+        Bienvenido al sistema Online de matrícula en EIDE. Desde aquí podrás matricularte en los exámenes de Cambridge y próximamente 
+        podrás matricularte en nuestros cursos intensivos y cursos de español para extranjeros.
+        {% endblocktrans %}
+    <p>
+		Utilizamos la plataforma de pago de la CECA (Confederación Española Cajas de Ahorros), un sistema completamente seguro. 
+		Cuando pulséis “Realizar Pago”, el sistema os redireccionará al <a href="https://be.ceca.es/BEWeb/2000/2000/inicia_identificacion.action">sistema de pago CECA</a>, 
+		integrado en Cecabank, donde deberéis facilitar todos los datos necesarios para dicho medio de pago. Este será el único momento en que se os solicitará esa información.
+	</p>
+	<p>
+		EIDE nunca tendrá acceso al a informaciónde vuestra tarjeta, siendo una operación segura con la garantía del CECA.
+	</p>
+	<p>
+		El pago del pedido se produce en tiempo real a través del TPV Virtual una vez se haya comprobado que los datos proporcionados son correctos.
+	</p>
 
-{% block body_base %}
-    <section class="jumbotron">
-        <div class="container">
-            {% include "_messages.html" %}
-            <h1>{% blocktrans %}Welcome to<br>pinax-project-account{% endblocktrans %}</h1>
-            <p>
-                {% blocktrans %}
-                In addition to what is provided by the "zero" project, this project
-                provides thorough integration with django-user-accounts, adding
-                comprehensive account management functionality. It is a foundation
-                suitable for most sites that have user accounts.
-                {% endblocktrans %}
-            </p>
-            {% if not user.is_authenticated %}
-            {% url "account_login" as login_url %}
-            {% url "account_signup" as signup_url %}
-            <p>{% blocktrans %}You can <a href="{{ login_url }}" class="btn btn-default">Log In</a> or <a href="{{ signup_url }}" class="btn btn-primary">Sign Up</a> to try out the site.{% endblocktrans %}</p>
-            {% endif %}
-        </div>
-    </section>
-    <section>
-        <div class="container">
-            <h2 class="text-center">{% blocktrans %}What is Pinax?{% endblocktrans %}</h2>
-            <p class="lead">
-                {% blocktrans %}
-                <b>Pinax</b> is an open-source platform based on Django and
-                intended to provide a starting point for websites. It takes
-                care of the things that many sites have in common, so you can
-                focus on what makes your site different.
-                {% endblocktrans %}
-            </p>
-            <div class="feature-columns">
-                <div>
-                    <i class="fa fa-cubes fa-3x"></i><br>
-                    {% blocktrans %}
-                    <b>Starter projects</b> provide project layout,
-                    scaffolding, already integrated components and
-                    ready-to-go code.
-                    {% endblocktrans %}
-                </div>
-                <div>
-                    <i class="fa fa-puzzle-piece fa-3x"></i><br>
-                    {% blocktrans %}
-                    <b>Reusable apps</b> provide common
-                    infrastructure, back-end functionality,
-                    and user-facing components.
-                    {% endblocktrans %}
-                </div>
-                <div>
-                    <i class="fa fa-tint fa-3x"></i><br>
-                    {% blocktrans %}
-                    <b>Themes</b> provide default templates and
-                    stylesheets for quick prototyping and easy customization.
-                    {% endblocktrans %}
-                </div>
-            </div>
-        </div>
-    </section>
-    <section>
-        <div class="container">
-            <p class="lead text-center">
-                {% blocktrans %}
-                See <a href="http://pinaxproject.com/">pinaxproject.com</a>
-                for more information.
-                {% endblocktrans %}
-            </p>
-        </div>
-    </section>
+
+    </p>
+</div>
+<div class="row">
+ <div class="span5">
+   <h2>{% trans "Cambridge Exams" %}</h2>
+   <p> {% trans "Aquí te puedes matricular para los Exámenes de Cambridge, tanto en papel (Paper Based Test) como en ordenador (Computer BAsed test)." %}</p>
+    <a class="btn primary large" href="{% url 'cambridge' %}">{% trans "Go to the registration for Cambridge Exams" %}</a>
+ </div>
+ <div class="span5">
+   <h2>{% trans "Cursos de Hobetuz" %}</h2>
+   <p> {% trans "Aquí te puedes solicitar un curso de formación continua de Hobetuz." %}</p>
+   <a class="btn primary large" href="{% url 'hobetuz_nueva' %}">{% trans "Solita un curso" %}</a>
+    
+ </div>
+ <div class="span5">
+   <h2>{% trans "Cursos Intensivos" %}</h2>
+   <p> {% trans "Próximamente...." %}</p>
+ </div>
+</div>
 {% endblock %}

@@ -139,6 +139,8 @@ INSTALLED_APPS = [
     # project
     "matriculas",
     "cambridge",
+    "hobetuz",
+    "intensivos",
 ]
 
 # A sample logging configuration. The only tangible logging
@@ -200,7 +202,7 @@ FIXTURE_DIRS = [
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-ACCOUNT_OPEN_SIGNUP = True
+ACCOUNT_OPEN_SIGNUP = False
 ACCOUNT_EMAIL_UNIQUE = True
 ACCOUNT_EMAIL_CONFIRMATION_REQUIRED = False
 ACCOUNT_LOGIN_REDIRECT_URL = "home"
