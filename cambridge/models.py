@@ -17,8 +17,8 @@
 #  
 
 from django.db import models
-from django.contrib.localflavor import generic
-from django.contrib.localflavor.es.forms import *
+from localflavor import generic
+from localflavor.es.forms import *
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 
