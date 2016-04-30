@@ -10,7 +10,7 @@
 	<tr>
 		<td><a href="/admin/cambridge/venue/{{venue.id}}/" class="icon icon-pencil">edit</a> - {{venue}}</td>
 		<td>{{venue.description}}</td>
-		<td><a href="{% url cambridge_venues_new_registration venue.name %}">Enter</a></td>
+		<td><a href="{% url 'cambridge_venues_new_registration' venue.name %}">Enter</a></td>
 		<td>{{venue.exam_count}}</td>
 		<td>{{venue.registration_count}}</td>
 	</tr>

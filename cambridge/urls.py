@@ -81,6 +81,7 @@ urlpatterns = [
     url(r'^exam/edit/(?P<pk>\d+)/$',
         login_required(UpdateView.as_view(
             model=Exam,
+            fields = '__all__',
             success_url = '/cambridge/exam/list',
             template_name='cambridge/exam_edit.html')), name="cambridge_exam_edit"),
     url(r'^/?$', IndexExamList.as_view(),name="cambridge"),

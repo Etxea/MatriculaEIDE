@@ -10,7 +10,7 @@
 	<tr>
 		<td><a href="/admin/cambridge/school/{{school.id}}/" class="icon icon-pencil">edit</a> - {{school}}</td>
 		<td>{{school.description}}</td>
-		<td><a href="{% url cambridge_schools_new_registration school.name school.password %}">Enter</a></td><td>{{school.exam_count}}</td><td>{{school.registration_count}}</td>
+		<td><a href="{% url 'cambridge_schools_new_registration' school.name school.password %}">Enter</a></td><td>{{school.exam_count}}</td><td>{{school.registration_count}}</td>
 	</tr>
 	{% endfor %}
 </table>
