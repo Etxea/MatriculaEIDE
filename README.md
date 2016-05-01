@@ -1,4 +1,4 @@
-# {{ project_name }}
+# Sistema de Matrículas Online para EIDE
 
 ## Getting Started
 
@@ -11,3 +11,9 @@ pip install -r requirements.txt
 ./manage.py loaddata sites
 ./manage.py runserver
 ```
+
+
+## Librerías
+
+ * DateTimePicker: https://github.com/nkunihiko/django-bootstrap3-datetimepicker
+

@@ -20,9 +20,15 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.template.loader import render_to_string
 from django.template import RequestContext
 from django.http import HttpResponse
+from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, View
 from django.views.generic.edit import ModelFormMixin
+
+from django.conf import settings
+from sermepa.forms import SermepaPaymentForm
+from sermepa.signals import payment_was_successful, payment_was_error, signature_error
+from sermepa.models import SermepaIdTPV
 
 
 import StringIO
@@ -57,9 +63,77 @@ def imprimir_cambridge(request, pk):
     registration = Registration.objects.get(id=pk)
     return imprimir(registration,request)
 
-class RegistrationPayment(DetailView):
-    model=Registration
-    template_name='cambridge/payment.html'
+def RegistrationPayment(request, pk, trans_type='0'):
+    #~ site = Site.objects.get_current()
+    site_domain = "127.0.0.1:8000"
+    reg = Registration.objects.get(id=pk)
+    amount = int(5.50 * 100) #El precio es en céntimos de euro
+
+    merchant_parameters = {
+        "Ds_Merchant_Titular": 'John Doe',
+        "Ds_Merchant_MerchantData": 'cam-%s'%reg.id, # id del Pedido o Carrito, para identificarlo en el mensaje de vuelta
+        "Ds_Merchant_MerchantName": settings.SERMEPA_COMERCIO,
+        "Ds_Merchant_ProductDescription": 'matricula-cambridge-%s'%reg.id,
+        "Ds_Merchant_Amount": int(reg.exam.level.price*100),
+        "Ds_Merchant_Terminal": settings.SERMEPA_TERMINAL,
+        "Ds_Merchant_MerchantCode": settings.SERMEPA_MERCHANT_CODE,
+        "Ds_Merchant_Currency": settings.SERMEPA_CURRENCY,
+        "Ds_Merchant_MerchantURL": "http://%s%s" % (site_domain, '/pasarela/confirmar/'),
+        "Ds_Merchant_UrlOK": "http://%s%s" % (site_domain, reverse('cambridge_gracias')),
+        #~ "Ds_Merchant_UrlOK": "http://%s%s" % (site_domain, reverse('end')),
+        "Ds_Merchant_UrlKO": "http://%s%s" % (site_domain, reverse('cambridge_error')),
+        #~ "Ds_Merchant_UrlKO": "http://%s%s" % (site_domain, reverse('end')),
+        "Ds_Merchant_Order": SermepaIdTPV.objects.new_idtpv(),
+        "Ds_Merchant_TransactionType": '0',
+    }
+    if trans_type == '0': #Compra puntual
+        order = SermepaIdTPV.objects.new_idtpv() #Tiene que ser un número único cada vez
+        merchant_parameters.update({
+            "Ds_Merchant_Order": order,
+            "Ds_Merchant_TransactionType": trans_type,
+        })
+    elif trans_type == 'L': #Compra recurrente por fichero. Cobro inicial
+        order = SermepaIdTPV.objects.new_idtpv() #Tiene que ser un número único cada vez
+        merchant_parameters.update({
+            "Ds_Merchant_Order": order,
+            "Ds_Merchant_TransactionType": trans_type,
+        })
+    elif trans_type == 'M': #Compra recurrente por fichero. Cobros sucesivos
+        # order = suscripcion.idtpv #Primer idtpv, 10 dígitos
+        order = ''
+        merchant_parameters.update({
+            "Ds_Merchant_Order": order,
+            "Ds_Merchant_TransactionType": trans_type,
+        })
+    elif trans_type == '0': #Compra recurrente por Referencia. Cobro inicial
+        order = 'REQUIRED'
+        merchant_parameters.update({
+            "Ds_Merchant_Order": order,
+            "Ds_Merchant_TransactionType": trans_type,
+        })
+    elif trans_type == '0': #Compra recurrente por Referencia. Cobros sucesivos
+        # order = suscripcion.idreferencia #Primer idtpv, 10 dígitos
+        order = ''
+        merchant_parameters.update({
+            "Ds_Merchant_Order": order,
+            "Ds_Merchant_TransactionType": trans_type,
+        })
+    elif trans_type == '3': #Devolución
+        # order = suscripcion.idreferencia #Primer idtpv, 10 dígitos
+        order = ''
+        merchant_parameters.update({
+            "Ds_Merchant_Order": order,
+            "Ds_Merchant_TransactionType": trans_type,
+            #"Ds_Merchant_AuthorisationCode": pedido.Ds_AuthorisationCode, #Este valor sale
+            "Ds_Merchant_AuthorisationCode": '',
+            # de la SermepaResponse obtenida del cobro que se quiere devolver.
+        })
+        
+    form = SermepaPaymentForm(merchant_parameters=merchant_parameters)
+    print "Tenemos el form"
+    print form.render()
+    return HttpResponse(render_to_response('cambridge/payment.html', {'form': form, 'debug': settings.DEBUG, 'registration': reg}))
+    
     
 class RegistrationCreateView(CreateView):
     model = Registration

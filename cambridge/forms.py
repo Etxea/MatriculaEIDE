@@ -18,7 +18,7 @@
 
 
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm, DateField
 from models import *
 from django.forms.models import inlineformset_factory
 #~ from django.forms.extras.widgets import SelectDateWidget
@@ -64,6 +64,7 @@ class RegistrationForm(ModelForm):
     telephone = ESPhoneNumberField(label=_("Teléfono"))
     #dni = ESIdentityCardNumberField()
     postal_code = ESPostalCodeField(label=_("Código Postal"))
+    birth_date = DateField(input_formats=['%d-%m-%Y'])
     class Meta:
         model = Registration
         #~ exclude = ('paid')

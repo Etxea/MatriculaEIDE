@@ -140,7 +140,7 @@ class Registration(models.Model):
     location = models.CharField(_('Location'),max_length=100)
     postal_code = models.DecimalField(_('Postal Code'),max_digits=6, decimal_places=0)
     sex = models.DecimalField(_('Sex'),max_digits=1, decimal_places=0,choices=SEXO)
-    birth_date = models.DateField(_('Birth Date'),help_text=_('Formato: DD-MM-AAAA(dia-mes-año)'))
+    birth_date = models.DateField(_('Birth Date'), help_text=_('Formato: DD-MM-AAAA(dia-mes-año)'))
     #dni = models.CharField(max_length=9,blank=True,help_text=_('Introduce el DNI completo con la letra sin espacios ni guiones'))
     telephone = models.CharField(_('Telephone'),max_length=12)
     email = models.EmailField()

@@ -30,7 +30,7 @@ from models import *
 urlpatterns = [
     url(r'^list/$',login_required(RegistrationListView.as_view()), name="cambridge_list"),
     url(r'^excel/$',RegistrationExcelView, name="cambridge_excel"),
-    url(r'^pay/(?P<pk>\d+)/$',RegistrationPayment.as_view(),name="cambridge_pay"),
+    url(r'^pay/(?P<pk>\d+)/$',RegistrationPayment,name="cambridge_pay"),
     url(r'^edit/(?P<pk>\d+)/$',
         login_required(UpdateView.as_view(
             model=Registration,
@@ -64,6 +64,7 @@ urlpatterns = [
     
     ## Genericas
     url(r'thanks/$', TemplateView.as_view( template_name = 'cambridge/gracias.html' ),name="cambridge_gracias"),
+    url(r'error/$', TemplateView.as_view( template_name = 'cambridge/error.html' ),name="cambridge_error"),
     ##For the exams
     url(r'^exam/list/$',login_required(
 		ListView.as_view(model=Exam,template_name='cambridge/exam_list.html')
