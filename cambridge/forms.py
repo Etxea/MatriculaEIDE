@@ -21,7 +21,8 @@ from django import forms
 from django.forms import ModelForm
 from models import *
 from django.forms.models import inlineformset_factory
-from django.forms.extras.widgets import SelectDateWidget
+#~ from django.forms.extras.widgets import SelectDateWidget
+from bootstrap3_datetime.widgets import DateTimePicker
 from localflavor.es.forms import *
 from django.contrib.admin import widgets                                       
 from django.utils.translation import gettext_lazy as _
@@ -35,10 +36,12 @@ class ExamForm(ModelForm):
         
     def __init__(self, *args, **kwargs):
         super(ModelForm, self).__init__(*args, **kwargs)
-        self.fields['exam_date'].widget.format = '%d-%m-%Y'
-        self.fields['registration_end_date'].widget.format = '%d-%m-%Y'
-        self.fields['exam_date'].input_formats = ['%d-%m-%Y']   
-        self.fields['registration_end_date'].input_formats = ['%d-%m-%Y']   
+        self.fields['exam_date'].widget = DateTimePicker(options={"format": "DD-MM-YYYY",
+                                       "pickTime": False})
+        self.fields['registration_end_date'].wifget = DateTimePicker(options={"format": "DD-MM-YYYY",
+                                       "pickTime": False})
+        self.fields['exam_date'].input_formats = ['%Y-%m-%d']   
+        self.fields['registration_end_date'].input_formats = ['%Y-%m-%d']   
 
 class SchoolExamForm(ModelForm):
     class Meta:
@@ -65,11 +68,11 @@ class RegistrationForm(ModelForm):
         model = Registration
         #~ exclude = ('paid')
         fields = ['exam','minor','tutor_name','tutor_surname','name','surname','address','location','postal_code','sex','birth_date','telephone','email','eide_alumn','centre_name']
+        widgets = {
+            'birth_date' : DateTimePicker(options={"format": "DD-MM-YYYY", "pickTime": False}),
+        }
     def __init__(self, *args, **kwargs):
         super(ModelForm, self).__init__(*args, **kwargs)
-        self.fields['birth_date'].widget.format = '%d-%m-%Y'
-        # at the same time, set the input format on the date field like you want it:
-        self.fields['birth_date'].input_formats = ['%d-%m-%Y']  
         self.fields['exam'].queryset = Exam.objects.filter(registration_end_date__gte=date.today(),schoolexam__isnull=True,venueexam__isnull=True)
 
 class SchoolRegistrationForm(ModelForm):
@@ -89,9 +92,9 @@ class SchoolRegistrationForm(ModelForm):
         self.fields['exam'].queryset = SchoolExam.objects.filter(school=school)
         #~ self.fields['minor'].initial = True
         #~ self.fields['eide_alumn'].initial = False
-        self.fields['birth_date'].widget.format = '%d-%m-%Y'
+        #~ self.fields['birth_date'].widget.format = '%d-%m-%Y'
         # at the same time, set the input format on the date field like you want it:
-        self.fields['birth_date'].input_formats = ['%d-%m-%Y']  
+        #~ self.fields['birth_date'].input_formats = ['%d-%m-%Y']  
 
 class RegistrationEditForm(ModelForm):
     telephone = ESPhoneNumberField(label=_("Teléfono"))

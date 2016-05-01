@@ -135,6 +135,7 @@ INSTALLED_APPS = [
     "pinax.webanalytics",
     "localflavor",
     "sermepa",
+    "bootstrap3_datetime",
 
     # project
     "matriculas",
