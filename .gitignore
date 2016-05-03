@@ -8,4 +8,5 @@ include/
 lib/
 local/
 logs/*.*
+logs
 matriculas/local_settings.*

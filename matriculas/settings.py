@@ -139,6 +139,7 @@ INSTALLED_APPS = [
 
     # project
     "matriculas",
+    "pasarela",
     "cambridge",
     "hobetuz",
     "intensivos",
