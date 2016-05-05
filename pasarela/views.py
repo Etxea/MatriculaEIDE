@@ -19,6 +19,14 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView, View
 from django.template.response import TemplateResponse
+from django.http import HttpResponse
+from django.shortcuts import render_to_response
+from django.core.urlresolvers import reverse
+from django.conf import settings
+from sermepa.forms import SermepaPaymentForm
+from sermepa.signals import payment_was_successful, payment_was_error, signature_error
+from sermepa.models import SermepaIdTPV
+
 
 import datetime
 import sys
@@ -102,3 +110,18 @@ def confirm_payment(request):
         log.debug(exc_traceback)
         return TemplateResponse(request,"pago_noconfirmar.html")
     
+def payment_ok(sender, **kwargs):
+    print "Pago OK"
+    print sender
+    print kwargs
+    pass
+
+def payment_ko(sender, **kwargs):
+    pass
+
+def sermepa_ipn_error(sender, **kwargs):
+    pass
+
+payment_was_successful.connect(payment_ok)
+payment_was_error.connect(payment_ko)
+signature_error.connect(sermepa_ipn_error)
