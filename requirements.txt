@@ -13,3 +13,4 @@ reportlab==2.7
 xhtml2pdf
 django_xhtml2pdf
 pycrypto
+MySQL-python

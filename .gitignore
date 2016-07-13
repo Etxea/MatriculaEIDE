@@ -10,3 +10,4 @@ local/
 logs/*.*
 logs
 matriculas/local_settings.*
+pip-selfcheck.json
