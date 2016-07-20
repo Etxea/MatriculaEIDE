@@ -23,6 +23,7 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
 from django.conf import settings
+from django.dispatch import receiver
 from sermepa.forms import SermepaPaymentForm
 from sermepa.signals import payment_was_successful, payment_was_error, signature_error
 from sermepa.models import SermepaIdTPV
@@ -110,18 +111,35 @@ def confirm_payment(request):
         log.debug(exc_traceback)
         return TemplateResponse(request,"pago_noconfirmar.html")
     
+@receiver(payment_was_successful)
 def payment_ok(sender, **kwargs):
-    print "Pago OK"
-    print sender
-    print kwargs
-    pass
+    log.debug("Somos el evento payment_was_successful gestionado por payment_ok")
+    reference = sender.Ds_MerchantData
+    log.debug("tenemos la referencia: %s"%reference)
+    registration_type = reference.split('-')[0]
+    registration_id = reference.split('-')[1]
+    log.debug( "tenemos una matricula de %s con el id %s"%(registration_type, registration_id))
+    r = None
+    #Buscamos la matricula 
+    if registration_type=="cam":
+        log.debug("Es cambridge la buscamos en BBDD")
+        r = Registration.objects.get(id=registration_id)
+    elif registration_type=="man":
+        log.debug("Vamos a confirmar un pago manual. Lo buscamos en BBDD...")
+        r = Pago.objects.get(id=registration_id)
+        log.debug("Hemos encontrado el pago manual %s"%r.id)
+    else:
+        log.debug( "No sabemos que tipo de matricula es!" )
+    #Comprobamos si tenemos una matricula
+    if r:
+        log.debug( "Tenemos la matricula/pago, vamos a marcalo como pagado")
+        r.set_as_paid()
+    
 
+@receiver(payment_was_error)
 def payment_ko(sender, **kwargs):
     pass
 
 def sermepa_ipn_error(sender, **kwargs):
     pass
 
-payment_was_successful.connect(payment_ok)
-payment_was_error.connect(payment_ko)
-signature_error.connect(sermepa_ipn_error)

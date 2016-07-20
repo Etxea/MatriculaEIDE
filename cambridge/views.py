@@ -24,6 +24,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, View
 from django.views.generic.edit import ModelFormMixin
+from django.contrib.sites.models import Site
 
 from django.conf import settings
 from sermepa.forms import SermepaPaymentForm
@@ -64,8 +65,8 @@ def imprimir_cambridge(request, pk):
     return imprimir(registration,request)
 
 def RegistrationPayment(request, pk, trans_type='0'):
-    #~ site = Site.objects.get_current()
-    site_domain = "127.0.0.1:8000"
+    site = Site.objects.get_current()
+    site_domain = site.domain
     reg = Registration.objects.get(id=pk)
     amount = int(5.50 * 100) #El precio es en céntimos de euro
 
@@ -78,16 +79,17 @@ def RegistrationPayment(request, pk, trans_type='0'):
         "Ds_Merchant_Terminal": settings.SERMEPA_TERMINAL,
         "Ds_Merchant_MerchantCode": settings.SERMEPA_MERCHANT_CODE,
         "Ds_Merchant_Currency": settings.SERMEPA_CURRENCY,
-        "Ds_Merchant_MerchantURL": "http://%s%s" % (site_domain, '/pasarela/confirmar/'),
+        "Ds_Merchant_MerchantURL":  settings.SERMEPA_URL_DATA,
         "Ds_Merchant_UrlOK": "http://%s%s" % (site_domain, reverse('cambridge_gracias')),
         #~ "Ds_Merchant_UrlOK": "http://%s%s" % (site_domain, reverse('end')),
         "Ds_Merchant_UrlKO": "http://%s%s" % (site_domain, reverse('cambridge_error')),
         #~ "Ds_Merchant_UrlKO": "http://%s%s" % (site_domain, reverse('end')),
-        "Ds_Merchant_Order": SermepaIdTPV.objects.new_idtpv(),
+        #"Ds_Merchant_Order": SermepaIdTPV.objects.new_idtpv(),
         "Ds_Merchant_TransactionType": '0',
     }
     if trans_type == '0': #Compra puntual
         order = SermepaIdTPV.objects.new_idtpv() #Tiene que ser un número único cada vez
+        print "Tenemos la order ",order
         merchant_parameters.update({
             "Ds_Merchant_Order": order,
             "Ds_Merchant_TransactionType": trans_type,
@@ -210,7 +212,6 @@ class SchoolRegistrationCreateView(RegistrationCreateView):
         context = super(SchoolRegistrationCreateView, self).get_context_data(**kwargs)
         context['school_name'] = self.kwargs['school_name']
         context['school'] = School.objects.get(name=self.kwargs['school_name'])
-        print "tenemos la school",context['school']
         return context
 
 

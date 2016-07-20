@@ -14,7 +14,7 @@
 		...la única manera de pago para las matriculas será <b>a traves de tarjeta de crédito.</b>
 	</p>
     <p class="pagination-centered" >
-		<a class="btn primary large" href="{% url 'cambridge_nueva' %}">{% trans "Matricúlate" %}</a>
+		<a class="btn btn-primary btn-lg" href="{% url 'cambridge_nueva' %}">{% trans "Matricúlate" %}</a>
 	</p>
 </div>
 <div class="row">
@@ -35,7 +35,7 @@
 </div>
 <hr />
 <div class="row">
-    <div class="span4">
+    <div class="col-md-3">
 	<p> ... si quieres realizar el <b>examen en papel</b>, matricúlate para un Paper Based Exam. </p>
 	<p>Tenemos las siguientes convocatorias: </p> 
 	<ul>
@@ -44,7 +44,7 @@
 	{% endfor %}
 	</ul>
     </div>
-    <div class="span4">
+    <div class="col-md-3">
 	<p>... si quieres realizar el <b>examen en un ordenador</b>, matricúlate para un Computer Based Exam. </p>
 	<p>Tenemos las siguientes convocatorias:</p>
 	<ul>
@@ -53,7 +53,7 @@
 	{% endfor %}
 	</ul>
     </div>
-    <div class="span4">
+    <div class="col-md-3">
 	<p>... si quieres realizar el <b>examen en papel y eres menor de edad</b> matrículate para un For Schools. </p><p>Tenemos las siguientes convocatorias:</p>
 	<ul>
 	{% for exam in examenes_fs_pb %}
@@ -61,7 +61,7 @@
 	{% endfor %}
 	</ul>
     </div>
-    <div class="span4">
+    <div class="col-md-3">
 	<p>... si quieres realizar el <b>examen en ordenador y eres menor</b> matrículate para un For Schools.</p>
 	<p>Tenemos las siguientes convocatorias:</p>
 	<ul>

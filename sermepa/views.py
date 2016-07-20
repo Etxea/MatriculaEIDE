@@ -9,12 +9,18 @@ from sermepa.forms import SermepaResponseForm
 from sermepa.models import OPER_REFUND, SermepaResponse
 from sermepa.utils import decode_parameters, redsys_check_response
 
+from pasarela.views import payment_ok, payment_ko, sermepa_ipn_error
+
+import logging
+log = logging.getLogger("MatriculaEIDE")
+
 @csrf_exempt
 def sermepa_ipn(request):
-    print "sermepa_ipn",request.POST
+    log.debug("Somos sermepa_ipn y hemos recibido:")
+    log.debug(request.POST)
     form = SermepaResponseForm(request.POST)
     if form.is_valid():
-        print "Form is valid"
+        log.debug("Form is valid")
         # Get parameters from decoded Ds_MerchantParameters object
         merchant_parameters = decode_parameters(form.cleaned_data['Ds_MerchantParameters'])
         sermepa_resp = SermepaResponse()
@@ -53,25 +59,29 @@ def sermepa_ipn(request):
             sermepa_resp.Ds_ExpiryDate = merchant_parameters['Ds_ExpiryDate']
 
         sermepa_resp.save()
-        print sermepa_resp
+        log.debug("Guardada la respuesta")
+        log.debug(sermepa_resp)
         # Check signature
         valid_signature = redsys_check_response(form.cleaned_data['Ds_Signature'], form.cleaned_data['Ds_MerchantParameters'], )
         if valid_signature:
             if int(sermepa_resp.Ds_Response) < 100:
-                print "payment_was_successful"
+                log.debug( "payment_was_successful")
                 payment_was_successful.send(sender=sermepa_resp) #signal
             elif sermepa_resp.Ds_Response == '0900' and\
                  sermepa_resp.Ds_TransactionType==OPER_REFUND:
                     refund_was_successful.send(sender=sermepa_resp)  #signal
             else:
-                print "payment_was_error"
+                log.debug( "payment_was_error")
                 payment_was_error.send(sender=sermepa_resp) #signal
         else:
-            print "signature_error"
+            log.debug( "signature_error")
             signature_error.send(sender=sermepa_resp) #signal
     else:
-        print "Form not valid"
-        print form.errors
+        log.debug( "Form not valid")
+        log.debug( form.errors )
     return HttpResponse()
 
+payment_was_successful.connect(payment_ok)
+payment_was_error.connect(payment_ko)
+signature_error.connect(sermepa_ipn_error)
 
