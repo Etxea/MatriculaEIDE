@@ -1,6 +1,6 @@
 {% extends "site_base.html"%}
 {% load i18n %}
-{% load bootstrap_tags %}
+{% load bootstrap%}
 
 {% block extra_head %}
 
@@ -19,7 +19,7 @@
 <h1>{% trans "Nuevo Curso de Intensivo" %}</h1>
     <div class="span12">		
 	<form action="" method="post" class="form-horizontal" >{% csrf_token %}
-	{{ form|as_bootstrap }}
+	{{ form|bootstrap }}
 	<input id="send_form" class="btn primary pull-right" type="submit" value="Enviar" />
     </div> 
 </div>

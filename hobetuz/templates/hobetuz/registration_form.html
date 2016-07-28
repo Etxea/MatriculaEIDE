@@ -1,6 +1,6 @@
 {% extends "site_base.html"%}
 {% load i18n %}
-{% load bootstrap_tags %}
+{% load bootstrap %}
 
 {% block extra_head %}
 
@@ -83,7 +83,7 @@
     <div class="span14">
 		
 	<form action="" method="post" class="form-horizontal" >{% csrf_token %}
-	{{ form|as_bootstrap }}
+	{{ form|bootstrap }}
     </div> 
 </div>
 
