@@ -37,16 +37,15 @@
  </div>
  <div class="col-md-4">
    <h2>{% trans "Cursos de Hobetuz" %}</h2>
-   <!--
    <p> {% trans "Aquí te puedes solicitar un curso de formación continua de Hobetuz." %}</p>
    <p> {% trans "Próximamente...." %}</p>
-   <a class="btn btn-primary btn-lg" href="{% url 'hobetuz_nueva' %}">{% trans "Solita un curso" %}</a>
-   -->
+   <a class="btn btn-primary" href="{% url 'hobetuz_nueva' %}">{% trans "Solita un curso" %}</a>
     
  </div>
  <div class="col-md-4">
    <h2>{% trans "Cursos Intensivos" %}</h2>
-   <p> {% trans "Próximamente...." %}</p>
+   <a class="btn btn-primary" href="{% url 'intensivos_nueva' %}">
+       Inscribite en nuestros cursos intensivos</a>
  </div>
 </div>
 {% endblock %}
