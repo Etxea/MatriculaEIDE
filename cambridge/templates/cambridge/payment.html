@@ -7,15 +7,15 @@
     Acaba de realizar una solicitud de matrícula para: <b>{{registration.exam}}</b><br />
     La matrícula se hará efectiva una vez se haya recibido el pago de {{registration.exam.level.price}} €.
 
-
+<!--
+	    {{ form.render }}
+-->
 	{% if debug %}
-    <h3>sandbox</h3>
 	    {{ form.sandbox }}
 	{% else %}
 	    {{ form.render }}
         <h3>Form final </h3>
 	{% endif %}
-
 </div>
 <div class="well">
     <h1>DATOS DE CONTACTO</h1>

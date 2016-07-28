@@ -64,7 +64,7 @@ class RegistrationForm(ModelForm):
     telephone = ESPhoneNumberField(label=_("Teléfono"))
     #dni = ESIdentityCardNumberField()
     postal_code = ESPostalCodeField(label=_("Código Postal"))
-    birth_date = DateField(input_formats=['%d-%m-%Y'])
+    birth_date = DateField(label="Fecha Nac. (DD-MM-AAAA)", input_formats=['%d-%m-%Y'])
     class Meta:
         model = Registration
         #~ exclude = ('paid')

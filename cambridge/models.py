@@ -19,7 +19,7 @@
 from django.db import models
 from localflavor import generic
 from localflavor.es.forms import *
-from django.core.mail import EmailMultiAlternatives
+from django.core.mail import EmailMultiAlternatives, send_mail, mail_admins
 from django.template.loader import render_to_string
 
 from random import choice
@@ -30,10 +30,10 @@ import sys
 from django.conf import settings
 from django.utils import timezone
 # favour django-mailer but fall back to django.core.mail
-if "mailer" in settings.INSTALLED_APPS:
-    from mailer import send_mail, mail_admins
-else:
-    from django.core.mail import send_mail, mail_admins
+#if "mailer" in settings.INSTALLED_APPS:
+#    from mailer import send_mail, mail_admins
+#else:
+#    from django.core.mail import send_mail, mail_admins
 
 from django.utils.translation import gettext_lazy as _
 # Create your models here.
@@ -140,7 +140,7 @@ class Registration(models.Model):
     location = models.CharField(_('Location'),max_length=100)
     postal_code = models.DecimalField(_('Postal Code'),max_digits=6, decimal_places=0)
     sex = models.DecimalField(_('Sex'),max_digits=1, decimal_places=0,choices=SEXO)
-    birth_date = models.DateField(_('Birth Date'), help_text=_('Formato: DD-MM-AAAA(dia-mes-año)'))
+    birth_date = models.DateField('Fecha Nacm. DD-MM-AAAA', help_text=_('Formato: DD-MM-AAAA(dia-mes-año)'))
     #dni = models.CharField(max_length=9,blank=True,help_text=_('Introduce el DNI completo con la letra sin espacios ni guiones'))
     telephone = models.CharField(_('Telephone'),max_length=12)
     email = models.EmailField()
@@ -187,7 +187,7 @@ Los datos son del alumno son:
     Telefono: %s
     e-mail: %s
 """%(self.exam,self.name,self.surname,self.telephone,self.email)
-        #mail_admins(subject, message_body)
+        mail_admins(subject, message_body)
     def send_paiment_confirmation_email(self):
         subject = "Se ha confirmado el pago de la matricula para el examen %s"%self.exam
         html_content=u"""<html><body>
@@ -206,10 +206,11 @@ DNI o pasaporte que atestigüe su identidad en cada examen (escrito y oral).</p>
         html_content= html_content+u"""</body></html>"""
         message_body = html_content
         ##send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
-        msg = EmailMultiAlternatives(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
-        msg.attach_alternative(html_content, "text/html")
+        #msg = EmailMultiAlternatives(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
+        #msg.attach_alternative(html_content, "text/html")
         ##msg.content_subtype = "html"
-        msg.send()
+        #msg.send()
+        send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL,[self.email], html_message=message_body)
         
         subject = "[cambridge] Se ha confirmado el pago de una matrcicula"
         message_body = u"""Se acaba de confirmar el pago de un matricula para examen %s. \n 
@@ -218,7 +219,7 @@ ID de la mátricula: %s \n
 Nombre: %s \n Apellidos: %s \n
 Puedes ver más detalles e imprimirla en la siguente url http://matricula-eide.es/cambridge/edit/%s/
 """%(self.exam,self.id,self.name,self.surname,self.id)
-        mail_admins(subject, message_body)
+        mail_admins(subject, message_body, html_message=message_body)
     def set_as_paid(self):
         self.paid = True
         self.save()
