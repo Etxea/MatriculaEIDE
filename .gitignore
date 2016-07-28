@@ -7,6 +7,7 @@ bin/
 include/
 lib/
 local/
+share/
 logs/*.*
 logs
 matriculas/local_settings.*
