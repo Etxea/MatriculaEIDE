@@ -58,7 +58,7 @@ NIVELES_IDIOMAS = (
 
 class Intensivo(models.Model):
     name = models.CharField(_('Name'),max_length=50)
-    nivel = models.DecimalField('Nivel del curso',max_digits=1, decimal_places=0,choices=NIVELES_INTESIVO)
+#    nivel = models.DecimalField('Nivel del curso',max_digits=1, decimal_places=0,choices=NIVELES_INTESIVO)
     dias = models.CharField(_('Dias'),max_length=50)
     horario = models.CharField(_('Horario'),max_length=50)
     inicio = models.DateField(_('Start'),help_text=_('Formato: AAAA-MM-DD(año-mes-día)'))
@@ -68,7 +68,7 @@ class Intensivo(models.Model):
     def reservas(self):
         return len(self.registration_set.all())
     def __unicode__(self):
-        return "%s-%s"%(self.get_nivel_display(),self.name)
+        return "%s"%(self.name)
 
 class Horario(models.Model):
     name = models.CharField(_('Horario (*)'),max_length=50,primary_key=True)
@@ -87,7 +87,7 @@ class Registration(models.Model):
     registration_date = models.DateField(auto_now_add=True)
     nivel_ingles = models.DecimalField(_('Nivel Ingles Actual'),help_text="",max_digits=1, decimal_places=0,choices=NIVELES_IDIOMAS,blank=True,null=True)
     curso = models.DecimalField('Nivel del curso',max_digits=1, decimal_places=0,choices=CURSO)
-    intensivos = models.ManyToManyField(Intensivo,help_text="Recuerde que debe elegir todos los horarios que le sean posibles")
+    intensivos = models.ManyToManyField(Intensivo,help_text="Recuerde que debe elegir todos los horarios a los que le sea posible asistir. Para seleccionar varios horarios use la tecla CTRL y haga click con el ratón en todas las opciones")
     accept_conditions = models.BooleanField(_('Accept the conditions'), help_text=_('You must accept the conditions to register'),default=True,blank=True)
     paid = models.BooleanField(_('Paid'),default=False)
     def get_absolute_url(self):
@@ -135,7 +135,7 @@ class Registration(models.Model):
         msg.send()
 
         ### Para los admins
-        subject = "[INTENSIVOS]Hay una nueva matrícula"
+        subject = u"[INTENSIVOS]Hay una nueva matrícula"
         message_body = u"""
 Se ha dado de alta una nueva solictud de intensivo. 
 Los datos son del solicitante son: 

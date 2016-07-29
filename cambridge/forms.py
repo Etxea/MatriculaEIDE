@@ -36,12 +36,12 @@ class ExamForm(ModelForm):
         
     def __init__(self, *args, **kwargs):
         super(ModelForm, self).__init__(*args, **kwargs)
-        self.fields['exam_date'].widget = DateTimePicker(options={"format": "DD-MM-YYYY",
-                                       "pickTime": False})
-        self.fields['registration_end_date'].wifget = DateTimePicker(options={"format": "DD-MM-YYYY",
-                                       "pickTime": False})
-        self.fields['exam_date'].input_formats = ['%Y-%m-%d']   
-        self.fields['registration_end_date'].input_formats = ['%Y-%m-%d']   
+        #self.fields['exam_date'].widget = DateTimePicker(options={"format": "DD-MM-YYYY", "pickTime": False})
+        #self.fields['registration_end_date'].wifget = DateTimePicker(options={"format": "DD-MM-YYYY", "pickTime": False})
+        #self.fields['exam_date'].input_formats = ['%Y-%m-%d']   
+        #self.fields['registration_end_date'].input_formats = ['%Y-%m-%d']   
+        self.fields['exam_date'].widget = forms.widgets.DateInput(format='%Y-%m-%d')
+        self.fields['registration_end_date'].widget = forms.widgets.DateInput(format='%Y-%m-%d')
 
 class SchoolExamForm(ModelForm):
     class Meta:

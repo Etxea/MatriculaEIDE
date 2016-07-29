@@ -50,7 +50,6 @@
     <thead>
         <tr>
             <th>{% trans "Nombre" %}</th>
-            <th>Nivel</th>
             <th>Días</th>
             <th>Horario</th>
             <th>Inicio</th>
@@ -64,7 +63,6 @@
         {% for intensivo in lista_intensivos %}
         <tr>
             <td>{{ intensivo.name }}</td>
-			<td>{{ intensivo.get_nivel_display}}</td>
 			<td>{{ intensivo.dias}}</td>
             <td>{{ intensivo.horario}}</td>
             <td>{{ intensivo.inicio}}</td>

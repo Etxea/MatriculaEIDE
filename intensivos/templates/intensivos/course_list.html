@@ -15,7 +15,6 @@
         <tr>
             
             <th>{% trans "Nombre" %}</th>
-            <th>Nivel</th>
             <th>Días</th>
             <th>Horario</th>
             <th>Inicio</th>
@@ -29,7 +28,6 @@
         {% for intensivo in object_list %}
         <tr>
             <td> <a href="{% url 'intensivos_course_edit' intensivo.id %}">{{ intensivo.name }}</a> </td>
-			<td>{{ intensivo.get_nivel_display}}</td>
 			<td>{{ intensivo.dias}}</td>
             <td>{{ intensivo.horario}}</td>
             <td>{{ intensivo.inicio}}</td>
