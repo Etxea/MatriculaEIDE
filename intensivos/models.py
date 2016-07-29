@@ -35,9 +35,14 @@ CURSO = (
 )
 
 NIVELES_INTESIVO = (
-    (1, _('Elementary/Upper')),
-    (2, _('FCE/CAE')),
-    (3, _('Todos los niveles')),
+    (1, _('Elementary (A2)')),
+    (2, _('Pre-Intermediate (B1.1)')),
+    (3, _('Intermediate (B1.2)')),
+    (4, _('Upper-Intermediate (B2.1)')),
+    (5, _('First Certificate (B2.2)')),
+    (6, _('Pre-Advanded (C1.1)')),
+    (7, _('Advanced (C1.2)')),
+    (8, _('Proficiency (C2)')),
 )
 
 NIVELES_IDIOMAS = (
