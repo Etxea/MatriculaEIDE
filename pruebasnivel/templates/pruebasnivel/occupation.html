@@ -1,0 +1,21 @@
+{% extends "site_base.html"%}
+
+{% load i18n %}
+
+{% block body %}
+<h1>Ocupación de {{ venue }}</h1>
+    <table class="table">
+        {% for week in month %}
+        <tr>
+            {% for day in week %}
+                {% if day != 0 %}
+                <td {% if forloop.counter > 5 %} style="background-color: #999999" {% endif %}>{{ day }}</td>
+                    {% else %}
+                    <td>-</td>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </tr>
+    </tbody>
+    </table>
+{% endblock %}

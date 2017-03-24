@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 
 
@@ -143,6 +144,7 @@ INSTALLED_APPS = [
     "cambridge",
     "hobetuz",
     "intensivos",
+    "pruebasnivel",
 ]
 
 # A sample logging configuration. The only tangible logging
