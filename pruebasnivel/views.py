@@ -84,8 +84,10 @@ class OccupationView(TemplateView):
         context['month_cal'] = month_cal
         context['month'] = month
         context['year'] = year
-        context['venue_name'] = "EIDE Ora"
         context['venue_id'] = venue_id
+        context['venue_name'] = VENUES[venue_id][1]
+        context['week_days'] = WEEKDAYS
+        context['hours'] = HOURS
         return context
 
 class AvailiabilityCreate(CreateView):

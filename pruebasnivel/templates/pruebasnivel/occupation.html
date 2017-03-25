@@ -1,16 +1,39 @@
 {% extends "site_base.html"%}
-
+{% load reservation_tags %}
 {% load i18n %}
 
 {% block body %}
 <h1>Ocupación de {{ venue_name }}</h1>
     <table class="table">
+    <thead>
+    {% for day in week_days %}
+    <th>{{ day.1 }}</th>
+    {% endfor %}
+    <th></th>
+    <th></th>
+    </thead>
         {% for week in month_cal %}
         <tr>
             {% for day in week %}
                 {% if day != 0 %}
                 <td {% if forloop.counter > 5 %} style="background-color: #999999" {% endif %}>
-                    <a href="{% url 'pruebasnivel_reservar' venue year month day %}">{{ day }}</a>
+                {% if forloop.counter < 6 %}
+                    {{ day }}
+                <ul>
+                    {% for hour in hours %}
+                        <li>{{ hour.1 }}
+                        {% venue_availiable venue_id day hour.0 as availiable %}
+                        {% if availiable %}
+                        <a href="{% url 'pruebasnivel_reservar' venue_id year month day %}">
+                        <span class="glyphicon glyphicon-plus-sign"></span>
+                        </a>
+                        {% else %}
+                        <span class="glyphicon glyphicon-ban-circle"></span>
+                        {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+                    {% endif %}
                 </td>
                     {% else %}
                     <td>-</td>

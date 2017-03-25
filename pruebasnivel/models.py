@@ -26,12 +26,13 @@ SEXO = (
 ENGLISH_LEVEL = (
     (1, _('A1')),
     (2, _('A2')),
-    (3, _('B1')),
-    (4, _('B2.1')),
-    (5, _('B2.2')),
-    (6, _('C1.1')),
-    (7, _('C1.2')),
-    (8, _('C2'))
+    (3, _('B1.1')),
+    (4, _('B1.2 (PET)')),
+    (5, _('B2.1')),
+    (6, _('B2.2 (FIRST)')),
+    (7, _('C1.1')),
+    (8, _('C1.2')),
+    (9, _('C2 (ADVANCED)'))
 )
 VENUES = (
     (1, "Genaro Ora"),
@@ -81,6 +82,7 @@ class Availability(models.Model):
     weekday = models.DecimalField(_('Week Day'), max_digits=1, decimal_places=0, choices=WEEKDAYS)
 
 class Reservation(models.Model):
+    create_date = models.DateField(auto_now_add=True)
     password = models.CharField(_('Password'), max_length=6, blank=True, editable=False)
     venue = models.DecimalField(_('Venue'), max_digits=1, decimal_places=0, choices=VENUES)
     name = models.CharField(_('Nombre (*)'), max_length=50)
@@ -91,7 +93,12 @@ class Reservation(models.Model):
     telephone = models.CharField('Tel. Fijo (*)', max_length=12)
     email = models.EmailField('Email (*)')
     registration_date = models.DateField(default=datetime.date.today)
-    create_date = models.DateField(auto_now_add=True)
+    english_level = models.DecimalField(_('English Level'), max_digits=1, decimal_places=0, choices=ENGLISH_LEVEL,default=1)
+    last_english_certificate = models.BooleanField(u'Tienes titulación oficial de Cambridge English o EOI.',default=False)
+    last_english_certificate_description = models.CharField(u'Cual es la más alta obtenida', max_length=100,blank=True)
+    last_english_course = models.CharField(u'Último curso de inglés más avanzado realizado.', max_length=100,blank=True)
+    centre = models.CharField(_('Academia/colegio/instituto/universidad'), max_length=100,blank=True)
+    course = models.CharField(_('Nivel o curso escolar realizado'), max_length=100,blank=True)
     accept_conditions = models.BooleanField(_('Accept the conditions'), help_text=_('You must accept the conditions to register'),default=True,blank=True)
     def send_confirmation_email(self):
         ##Para el alumno
