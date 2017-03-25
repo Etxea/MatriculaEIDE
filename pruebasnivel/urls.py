@@ -20,7 +20,12 @@ from django.conf.urls import url
 from views import *
 
 urlpatterns = [
-    url(r'^$', RegistrationHome.as_view(), name="pruebasnivel_home"),
-    url(r'^thanks/$', RegistrationThanks.as_view(), name="pruebasnivel_thanks"),
-    url(r'^reservar/(?P<venue>\d+)/(?P<year>\d+)/(?P<month>\d+)/$',OccupationView.as_view(),name="pruebasnivel_ocupacion_semana"),
+    url(r'^$', ReservationHome.as_view(), name="pruebasnivel_home"),
+    url(r'^thanks/$', ReservationThanks.as_view(), name="pruebasnivel_thanks"),
+    url(r'^reservas/(?P<venue>\d+)/(?P<year>\d+)/(?P<month>\d+)/$',OccupationView.as_view(),name="pruebasnivel_occupation"),
+    url(r'^reservar/(?P<venue>\d+)/(?P<year>\d+)/(?P<month>\d+)/(?P<day>\d+)/$',ReservationCreateView.as_view(),name="pruebasnivel_reservar"),
+    url(r'^disponibilidad/(?P<venue>\d+)/$',AvailiabilityView.as_view(),name="pruebasnivel_disponibilidad"),
+    url(r'^disponibilidad/(?P<venue>\d+)/(?P<day>\d+)/(?P<hour>\d+)/add/$',AvailiabilityCreate.as_view(),name="pruebasnivel_disponibilidad_nueva"),
+    url(r'^disponibilidad/(?P<pk>\d+)/delete/$',AvailiabilityDelete.as_view(),name="pruebasnivel_disponibilidad_borrar"),
+    url(r'^disponibilidad/(?P<pk>\d+)/$',AvailiabilityUpdate.as_view(),name="pruebasnivel_disponibilidad_editar"),
 ]

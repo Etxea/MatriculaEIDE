@@ -3,13 +3,15 @@
 {% load i18n %}
 
 {% block body %}
-<h1>Ocupación de {{ venue }}</h1>
+<h1>Ocupación de {{ venue_name }}</h1>
     <table class="table">
-        {% for week in month %}
+        {% for week in month_cal %}
         <tr>
             {% for day in week %}
                 {% if day != 0 %}
-                <td {% if forloop.counter > 5 %} style="background-color: #999999" {% endif %}>{{ day }}</td>
+                <td {% if forloop.counter > 5 %} style="background-color: #999999" {% endif %}>
+                    <a href="{% url 'pruebasnivel_reservar' venue year month day %}">{{ day }}</a>
+                </td>
                     {% else %}
                     <td>-</td>
                 {% endif %}

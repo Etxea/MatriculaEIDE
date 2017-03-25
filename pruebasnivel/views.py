@@ -2,45 +2,51 @@
 
 from django.contrib.auth.decorators import login_required, permission_required
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, View, DeleteView, TemplateView
-from django.views.generic.edit import ModelFormMixin
+from django.core.urlresolvers import reverse_lazy
 import calendar
-
+from datetime import date
 from models import *
-#from forms import *
+from forms import *
 
 
-class RegistrationDetailView(DetailView):
-    model = Registration
+class ReservationDetailView(DetailView):
+    model = Reservation
     template_name = 'inscripciones/detalle.html'
 
 
-class RegistrationDeleteView(DeleteView):
-    model = Registration
+class ReservationDeleteView(DeleteView):
+    model = Reservation
     success_url = '/inscripciones/list/'
 
 
-class RegistrationUpdateView(UpdateView):
-    model = Registration
+class ReservationUpdateView(UpdateView):
+    model = Reservation
     success_url = '/inscripciones/list/'
 
 
-class RegistrationPayment(DetailView):
-    model = Registration
+class ReservationPayment(DetailView):
+    model = Reservation
     template_name = 'inscripciones/payment.html'
 
 
-class RegistrationCreateView(CreateView):
-    model = Registration
-    #form_class = RegistrationForm
-    # ~ fields = "__all__"
-    exclude = [ "password" ]
-    # ~ exclude = ["paid", "registration_date"]
-    template_name = 'inscripciones/registration_form.html'
+class ReservationCreateView(CreateView):
+    model = Reservation
+    form_class = ReservationForm
+    template_name = 'pruebasnivel/reservation_form.html'
 
     # ~ def get_context_data(self, **kwargs):
-    # ~ context = super(RegistrationCreateView, self).get_context_data(**kwargs)
+    # ~ context = super(ReservationCreateView, self).get_context_data(**kwargs)
     # ~ context['lista_inscripciones'] = Intensivo.objects.all()
     # ~ return context
+    def get_initial(self):
+        initial = super(ReservationCreateView, self).get_initial()
+        initial['venue'] = self.kwargs['venue']
+        day = int(self.kwargs['day'])
+        month = int(self.kwargs['month'])
+        year = int(self.kwargs['year'])
+        initial['registration_date'] = date(year,month,day)
+        return initial
+
     def get_success_url(self):
         return '/pruebasdenivel/thanks/'
 
@@ -51,20 +57,19 @@ class RegistrationCreateView(CreateView):
         self.object.send_confirmation_email()
         return super(ModelFormMixin, self).form_valid(form)
 
-
-def RegistrationExcelView(request):
-    objs = Registration.objects.all()
+def ReservationExcelView(request):
+    objs = Reservation.objects.all()
     return ExcelResponse(objs)
 
 
-class RegistrationListView(ListView):
-    model = Registration
+class ReservationListView(ListView):
+    model = Reservation
     template_name = 'inscripciones/lista.html'
 
-class RegistrationHome(TemplateView):
+class ReservationHome(TemplateView):
     template_name="pruebasnivel/home.html"
 
-class RegistrationThanks(TemplateView):
+class ReservationThanks(TemplateView):
     template_name = "pruebasnivel/thanks.html"
 
 class OccupationView(TemplateView):
@@ -72,7 +77,53 @@ class OccupationView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(OccupationView, self).get_context_data(**kwargs)
         cal = calendar.Calendar()
-        month = cal.monthdayscalendar(int(kwargs['year']), int(kwargs['month']))
+        venue_id = int(kwargs['venue'])
+        month = int(kwargs['month'])
+        year = int(kwargs['year'])
+        month_cal = cal.monthdayscalendar(year, month)
+        context['month_cal'] = month_cal
         context['month'] = month
-        context['venue'] = "EIDE Ora"
+        context['year'] = year
+        context['venue_name'] = "EIDE Ora"
+        context['venue_id'] = venue_id
+        return context
+
+class AvailiabilityCreate(CreateView):
+    template_name = "pruebasnivel/availiability_form.html"
+    model = Availability
+    fields = ['venue','hour','weekday']
+    def get_initial(self):
+        initial = super(AvailiabilityCreate, self).get_initial()
+        initial['venue'] = self.kwargs['venue']
+        initial['weekday'] = int(self.kwargs['day'])
+        initial['hour'] = int(self.kwargs['hour'])
+        return initial
+
+    def get_success_url(self, **kwargs):
+        return reverse_lazy('pruebasnivel_disponibilidad', args=(self.object.venue,))
+
+class AvailiabilityUpdate(UpdateView):
+    template_name = "pruebasnivel/availiability_form.html"
+    model = Availability
+
+class AvailiabilityDelete(DeleteView):
+    template_name = "pruebasnivel/availiability_deleteform.html"
+    model = Availability
+    def get_success_url(self, **kwargs):
+        return reverse_lazy('pruebasnivel_disponibilidad', args=(self.object.venue,))
+
+
+class AvailiabilityView(ListView):
+    model = Availability
+    template_name = "pruebasnivel/availiability.html"
+    def get_queryset(self):
+        venue_id = int(self.kwargs['venue'])
+        return Availability.objects.filter(venue=venue_id)
+    def get_context_data(self, **kwargs):
+        context = super(AvailiabilityView, self).get_context_data(**kwargs)
+        venue_id = int(self.kwargs['venue'])
+        context['week_days'] = WEEKDAYS
+        context['hours'] = HOURS
+        context['venue_name'] = VENUES[venue_id][1]
+        context['venue_id'] = venue_id
         return context
