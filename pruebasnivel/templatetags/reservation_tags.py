@@ -28,6 +28,21 @@ def venue_availiable(venue, week_day, hour, *args, **kwargs):
     else:
         return True
 
+@register.simple_tag(name="venue_occupation")
+def venue_occupation(venue, week_day, hour, *args, **kwargs):
+    if venue_availiable(venue, week_day, hour:
+        reservations = Reservation.objects.filter(venue=int(venue),weekday=int(week_day),hour=int(hour))
+        if len(reservations)==0:
+            return 3
+        elif len(reservations)=<3:
+            return 2
+        else:
+            return 1
+    else:
+        return 0
+
+
+
 @register.simple_tag(name="venue_availiability_id")
 def venue_availiability_id(venue, week_day, hour, *args, **kwargs):
     ava = Availability.objects.get(venue=int(venue), weekday=int(week_day), hour=int(hour))
