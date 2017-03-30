@@ -45,8 +45,10 @@ def venue_occupation(venue, year, month, day, hour,  *args, **kwargs):
         reseva_url = reverse_lazy('pruebasnivel_reservar',kwargs={'venue':venue,'year':year,'month':month,'day':day,'hour':hour})
         if len(reservations)==0:
             return '<a href="%s"><span class="glyphicon glyphicon-plus-sign text-success">Libre</span></a>'%reseva_url
-        elif len(reservations)<3:
+        elif len(reservations)<2:
             return '<a href="%s"><span class="glyphicon glyphicon-plus-sign text-success">Algo ocupado</span></a>'%reseva_url
+        elif len(reservations) < 3:
+            return '<a href="%s"><span class="glyphicon glyphicon-plus-sign text-warning">Muy ocupado</span></a>' % reseva_url
         else:
            return '<span class="glyphicon glyphicon-ban-circle text-danger">Ocupado</span>'
     else:
