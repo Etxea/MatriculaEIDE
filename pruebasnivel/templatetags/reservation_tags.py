@@ -43,16 +43,18 @@ def venue_occupation(venue, year, month, day, hour,  *args, **kwargs):
     if venue_availiable(venue, week_day, hour):
         reservations = Reservation.objects.filter(venue=venue,registration_date=registration_date,hour=hour)
         reseva_url = reverse_lazy('pruebasnivel_reservar',kwargs={'venue':venue,'year':year,'month':month,'day':day,'hour':hour})
-        if len(reservations)==0:
-            return '<a href="%s"><span class="glyphicon glyphicon-plus-sign text-success">Libre</span></a>'%reseva_url
-        elif len(reservations)<2:
-            return '<a href="%s"><span class="glyphicon glyphicon-plus-sign text-success">Algo ocupado</span></a>'%reseva_url
-        elif len(reservations) < 3:
-            return '<a href="%s"><span class="glyphicon glyphicon-plus-sign text-warning">Muy ocupado</span></a>' % reseva_url
+        num_reservas=len(reservations)
+        libres = 4-num_reservas
+        if num_reservas==0:
+            return '<a href="%s"><span class="glyphicon glyphicon-plus-sign text-success">%s plazas</span></a>'%(reseva_url,libres)
+        elif num_reservas<2:
+            return '<a href="%s"><span class="glyphicon glyphicon-plus-sign text-success">%s plazas</span></a>'%(reseva_url,libres)
+        elif num_reservas<3:
+            return '<a href="%s"><span class="glyphicon glyphicon-plus-sign text-warning">%s plazas</span></a>' %(reseva_url,libres)
         else:
-           return '<span class="glyphicon glyphicon-ban-circle text-danger">Ocupado</span>'
+           return '<span class="glyphicon glyphicon-ban-circle text-danger">0 plazas</span>'
     else:
-        return '<span class="glyphicon glyphicon-ban-circle danger">No disponible</span>'
+        return '<span class="glyphicon glyphicon-ban-circle danger"></span>'
 
 
 
