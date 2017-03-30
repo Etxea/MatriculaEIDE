@@ -44,18 +44,19 @@ class ReservationCreateView(CreateView):
         day = int(self.kwargs['day'])
         month = int(self.kwargs['month'])
         year = int(self.kwargs['year'])
+        initial['hour'] = int(self.kwargs['hour'])
         initial['registration_date'] = date(year,month,day)
         return initial
 
     def get_success_url(self):
-        return '/pruebasdenivel/thanks/'
+        return reverse_lazy('pruebasnivel_thanks')
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.save()
         self.object.password = ''.join([choice(letters) for i in xrange(6)])
-        self.object.send_confirmation_email()
-        return super(ModelFormMixin, self).form_valid(form)
+        #self.object.send_confirmation_email()
+        return super(ReservationCreateView, self).form_valid(form)
 
 def ReservationExcelView(request):
     objs = Reservation.objects.all()

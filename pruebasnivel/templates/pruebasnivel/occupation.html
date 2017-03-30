@@ -21,15 +21,10 @@
                     {{ day }}
                 <ul>
                     {% for hour in hours %}
-                        <li>{{ hour.1 }}
-                        {% venue_availiable venue_id day hour.0 as availiable %}
-                        {% if availiable %}
-                        <a href="{% url 'pruebasnivel_reservar' venue_id year month day %}">
-                        <span class="glyphicon glyphicon-plus-sign"></span>
-                        </a>
-                        {% else %}
-                        <span class="glyphicon glyphicon-ban-circle"></span>
-                        {% endif %}
+                        <li>{{ hour.1 }}:
+                            {% autoescape off %}
+                            {% venue_occupation venue_id year month day hour.0 %}
+                            {% endautoescape %}
                         </li>
                     {% endfor %}
                 </ul>

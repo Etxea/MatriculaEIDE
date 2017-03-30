@@ -16,12 +16,15 @@
 #  MA 02110-1301, USA.
 #
 from django import template
+from django.core.urlresolvers import reverse_lazy
 from pruebasnivel.models import *
+from datetime import date
 
 register = template.Library()
 
 @register.simple_tag(name="venue_availiable")
 def venue_availiable(venue, week_day, hour, *args, **kwargs):
+    #print "%s %s %s"%(venue,week_day,hour)
     ava = Availability.objects.filter(venue=int(venue),weekday=int(week_day),hour=int(hour))
     if len(ava) == 0:
         return False
@@ -29,17 +32,25 @@ def venue_availiable(venue, week_day, hour, *args, **kwargs):
         return True
 
 @register.simple_tag(name="venue_occupation")
-def venue_occupation(venue, week_day, hour, *args, **kwargs):
-    if venue_availiable(venue, week_day, hour:
-        reservations = Reservation.objects.filter(venue=int(venue),weekday=int(week_day),hour=int(hour))
+def venue_occupation(venue, year, month, day, hour,  *args, **kwargs):
+    venue = int(venue)
+    year = int(year)
+    month = int(month)
+    day= int(day)
+    hour = int(hour)
+    registration_date = date(year, month, day)
+    week_day = registration_date.weekday()+1
+    if venue_availiable(venue, week_day, hour):
+        reservations = Reservation.objects.filter(venue=venue,registration_date=registration_date,hour=hour)
+        reseva_url = reverse_lazy('pruebasnivel_reservar',kwargs={'venue':venue,'year':year,'month':month,'day':day,'hour':hour})
         if len(reservations)==0:
-            return 3
-        elif len(reservations)=<3:
-            return 2
+            return '<a href="%s"><span class="glyphicon glyphicon-plus-sign text-success">Libre</span></a>'%reseva_url
+        elif len(reservations)<3:
+            return '<a href="%s"><span class="glyphicon glyphicon-plus-sign text-success">Algo ocupado</span></a>'%reseva_url
         else:
-            return 1
+           return '<span class="glyphicon glyphicon-ban-circle text-danger">Ocupado</span>'
     else:
-        return 0
+        return '<span class="glyphicon glyphicon-ban-circle danger">No disponible</span>'
 
 
 

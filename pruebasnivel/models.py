@@ -93,6 +93,7 @@ class Reservation(models.Model):
     telephone = models.CharField('Tel. Fijo (*)', max_length=12)
     email = models.EmailField('Email (*)')
     registration_date = models.DateField(default=datetime.date.today)
+    hour = models.DecimalField(_('Hour'), max_digits=1, decimal_places=0, choices=HOURS)
     english_level = models.DecimalField(_('English Level'), max_digits=1, decimal_places=0, choices=ENGLISH_LEVEL,default=1)
     last_english_certificate = models.BooleanField(u'Tienes titulación oficial de Cambridge English o EOI.',default=False)
     last_english_certificate_description = models.CharField(u'Cual es la más alta obtenida', max_length=100,blank=True)
@@ -115,7 +116,7 @@ class Reservation(models.Model):
         ##send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
         msg = EmailMultiAlternatives(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
         msg.attach_alternative(html_content, "text/html")
-        send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email], html_message=message_body)
+        #send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email], html_message=message_body)
 
         ### Para los admins
         subject = "Hay una nueva reserva de prueba de nivel para cambridge %s"%self.get_venue_display()
@@ -125,4 +126,4 @@ class Reservation(models.Model):
             Apellidos: %s
             Telefono: %s
             e-mail: %s """%(self.get_venue_display(),self.registration_date,self.name,self.surname,self.telephone,self.email)
-        mail_admins(subject, message_body)
+        #mail_admins(subject, message_body)
