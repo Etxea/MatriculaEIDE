@@ -14,3 +14,5 @@ matriculas/local_settings.*
 pip-selfcheck.json
 send_mail.log
 server.log
+local_settings.py
+logfile

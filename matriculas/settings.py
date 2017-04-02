@@ -136,6 +136,7 @@ INSTALLED_APPS = [
     "localflavor",
     "sermepa",
     "bootstrap3_datetime",
+    "gunicorn",
 
     # project
     "matriculas",
