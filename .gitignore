@@ -16,3 +16,4 @@ send_mail.log
 server.log
 local_settings.py
 logfile
+.idea
