@@ -8,7 +8,7 @@ xlwt
 django-excel-response3
 django-countries==1.1.1
 django-localflavor==1.2
-html5lib
+html5lib==1.0b8
 pisa==3.0.33
 reportlab==2.7
 xhtml2pdf
