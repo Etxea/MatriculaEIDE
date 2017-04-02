@@ -32,7 +32,7 @@ class ReservationPayment(DetailView):
 class ReservationCreateView(CreateView):
     model = Reservation
     form_class = ReservationForm
-    template_name = 'pruebasnivel/reservation_form.html'
+    template_name = 'leveltests/reservation_form.html'
 
     # ~ def get_context_data(self, **kwargs):
     # ~ context = super(ReservationCreateView, self).get_context_data(**kwargs)
@@ -49,7 +49,7 @@ class ReservationCreateView(CreateView):
         return initial
 
     def get_success_url(self):
-        return reverse_lazy('pruebasnivel_thanks')
+        return reverse_lazy('leveltests_thanks')
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -65,16 +65,16 @@ def ReservationExcelView(request):
 
 class ReservationListView(ListView):
     model = Reservation
-    template_name = 'inscripciones/lista.html'
+    template_name = 'leveltests/reservation_list.html'
 
 class ReservationHome(TemplateView):
-    template_name="pruebasnivel/home.html"
+    template_name="leveltests/home.html"
 
 class ReservationThanks(TemplateView):
-    template_name = "pruebasnivel/thanks.html"
+    template_name = "leveltests/thanks.html"
 
 class OccupationView(TemplateView):
-    template_name = "pruebasnivel/occupation.html"
+    template_name = "leveltests/occupation.html"
     def get_context_data(self, **kwargs):
         context = super(OccupationView, self).get_context_data(**kwargs)
         cal = calendar.Calendar()
@@ -92,7 +92,7 @@ class OccupationView(TemplateView):
         return context
 
 class AvailiabilityCreate(CreateView):
-    template_name = "pruebasnivel/availiability_form.html"
+    template_name = "leveltests/availiability_form.html"
     model = Availability
     fields = ['venue','hour','weekday']
     def get_initial(self):
@@ -103,22 +103,22 @@ class AvailiabilityCreate(CreateView):
         return initial
 
     def get_success_url(self, **kwargs):
-        return reverse_lazy('pruebasnivel_disponibilidad', args=(self.object.venue,))
+        return reverse_lazy('leveltests_availability', args=(self.object.venue,))
 
 class AvailiabilityUpdate(UpdateView):
-    template_name = "pruebasnivel/availiability_form.html"
+    template_name = "leveltests/availiability_form.html"
     model = Availability
 
 class AvailiabilityDelete(DeleteView):
-    template_name = "pruebasnivel/availiability_deleteform.html"
+    template_name = "leveltests/availiability_deleteform.html"
     model = Availability
     def get_success_url(self, **kwargs):
-        return reverse_lazy('pruebasnivel_disponibilidad', args=(self.object.venue,))
+        return reverse_lazy('leveltests_availability', args=(self.object.venue,))
 
 
 class AvailiabilityView(ListView):
     model = Availability
-    template_name = "pruebasnivel/availiability.html"
+    template_name = "leveltests/availiability.html"
     def get_queryset(self):
         venue_id = int(self.kwargs['venue'])
         return Availability.objects.filter(venue=venue_id)

@@ -4,4 +4,4 @@ from django.apps import AppConfig
 
 
 class PruebasnivelConfig(AppConfig):
-    name = 'pruebasnivel'
+    name = 'leveltests'

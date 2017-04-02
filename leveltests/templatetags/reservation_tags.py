@@ -17,7 +17,7 @@
 #
 from django import template
 from django.core.urlresolvers import reverse_lazy
-from pruebasnivel.models import *
+from leveltests.models import *
 from datetime import date
 
 register = template.Library()
@@ -42,7 +42,7 @@ def venue_occupation(venue, year, month, day, hour,  *args, **kwargs):
     week_day = registration_date.weekday()+1
     if venue_availiable(venue, week_day, hour):
         reservations = Reservation.objects.filter(venue=venue,registration_date=registration_date,hour=hour)
-        reseva_url = reverse_lazy('pruebasnivel_reservar',kwargs={'venue':venue,'year':year,'month':month,'day':day,'hour':hour})
+        reseva_url = reverse_lazy('leveltests_reservar',kwargs={'venue':venue,'year':year,'month':month,'day':day,'hour':hour})
         num_reservas=len(reservations)
         libres = 4-num_reservas
         if num_reservas==0:

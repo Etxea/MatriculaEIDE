@@ -145,7 +145,7 @@ INSTALLED_APPS = [
     "cambridge",
     "hobetuz",
     "intensivos",
-    "pruebasnivel",
+    "leveltests",
 ]
 
 # A sample logging configuration. The only tangible logging
