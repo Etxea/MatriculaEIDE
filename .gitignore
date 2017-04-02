@@ -9,7 +9,7 @@ lib/
 local/
 share/
 logs/*.*
-logs
+logs*
 matriculas/local_settings.*
 pip-selfcheck.json
 send_mail.log

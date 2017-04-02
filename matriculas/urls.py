@@ -15,6 +15,7 @@ urlpatterns = [
     url(r"^cambridge/", include("cambridge.urls")),    
     url(r"^hobetuz/", include("hobetuz.urls")),
     url(r"^intensivos/", include("intensivos.urls")),
+    url(r"^pruebasnivel/", include("pruebasnivel.urls")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
