@@ -80,10 +80,14 @@ class SchoolRegistrationForm(ModelForm):
     telephone = ESPhoneNumberField(label=_("Teléfono"))
     #dni = ESIdentityCardNumberField()
     postal_code = ESPostalCodeField(label=_("Código Postal"))
+    birth_date = DateField(label="Fecha Nac. (DD-MM-AAAA)", input_formats=['%d-%m-%Y'])
     class Meta:
         model = Registration
         #~ exclude = 'paid','minor','eide_alumn','centre_name')
         fields = ['exam','tutor_name','tutor_surname','name','surname','address','location','postal_code','sex','birth_date','telephone','email']
+        widgets = {
+            'birth_date' : DateTimePicker(options={"format": "DD-MM-YYYY", "pickTime": False}),
+        }
     def __init__(self, school_name, *args, **kwargs):
         super(ModelForm, self).__init__(*args, **kwargs)
         self.school_name = school_name
@@ -115,6 +119,9 @@ class VenueExamForm(ModelForm):
     class Meta:
         model = VenueExam
         fields = '__all__'
+        widgets = {
+            'birth_date' : DateTimePicker(options={"format": "DD-MM-YYYY", "pickTime": False}),
+        }
     def __init__(self, *args, **kwargs):
         super(ModelForm, self).__init__(*args, **kwargs)
         self.fields['exam_date'].widget.format = '%d-%m-%Y'
