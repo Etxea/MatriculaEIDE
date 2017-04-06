@@ -1,0 +1,33 @@
+{% extends "site_base.html"%}
+{% load i18n %}
+{% load reservation_tags %}
+
+{% block body %}
+<h1>Disponibilidad de {{ venue_name }}</h1>
+    <table class="table">
+    <thead>
+        {% for day in week_days %}
+            <th>{{ day.1 }}</th>
+        {% endfor %}
+    </thead>
+    <tbody>
+        {% for hour in hours %}
+        <tr>
+            {% for day in week_days %}
+                    {% venue_availiable venue_id day.0 hour.0 as availiable %}
+                    <td>{{ hour.1 }}
+                    {% if availiable %}
+                        {% venue_availiability_id venue_id day.0 hour.0 as pk %}
+                        <a href="{% url 'leveltests_availability_delete' pk %}"><span class="glyphicon glyphicon-trash"></span> </a>
+                    {% else %}
+                        <a href="{% url 'leveltests_availability_new' venue_id day.0 hour.0 %}"><span class="glyphicon glyphicon-plus"></span> </a>
+                    {% endif %}
+
+                    </td>
+
+            {% endfor %}
+        {% endfor %}
+        </tr>
+    </tbody>
+    </table>
+{% endblock %}

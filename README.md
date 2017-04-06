@@ -1,28 +1,19 @@
-MatriculaEIDE
-============
-Este es un pequeño programa para gestionar las matriculas a los examenes de cambridge ofertados por el centro EIDE (http://eide.es)
+# Sistema de Matrículas Online para EIDE
 
+## Getting Started
 
-Install
--------
+Make sure you are using a virtual environment of some sort (e.g. `virtualenv` or
+`pyenv`).
 
 ```
-git clone git@github.com:jonlatorre/MatriculaEIDE.git
-cd MatriculaEIDE
-virtualenv .
-. bin/activate
-sudo apt-get install libjpeg-dev
-pip install -r requirements/project.txt
-echo "SITE_ROOT='$(pwd)'" > local_settings.py
-./manage.py syncdb
+pip install -r requirements.txt
+./manage.py migrate
+./manage.py loaddata sites
 ./manage.py runserver
 ```
 
 
-Author
-------
+## Librerías
 
- - Jon Latorre Martinez <jonlatorremartinez@gmail.com>
+ * DateTimePicker: https://github.com/nkunihiko/django-bootstrap3-datetimepicker
 
-License
--------

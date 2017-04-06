@@ -1,0 +1,56 @@
+{% extends "site_base.html"%}
+
+{% load i18n %}
+
+{% block body %}
+
+<!-- 
+<p>
+<a class="btn btn-success" href="#">Bajar como fichero excel</a></li>
+</p>
+-->
+<h2>Lista de reservas para Intensivos</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>{% trans "Nombre" %}</td>
+            <td>Curso</td>
+            <td>Nivel</td>
+            <td>Intensivos elegidos</td>
+            <td>Email</td>
+            <td>Telefono</td>
+            <td>Fecha Nac.</td>
+            <td>Acciones</td>
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% for matricula in object_list %}
+        <tr>
+            <td> <a href="{% url 'intensivos_detalle' matricula.id %}">{{ matricula.id }}</a> </td>
+            
+            <td>{{ matricula.surname }},{{ matricula.name }}</td>
+			<td>{{ matricula.get_curso_display}}</td>
+			<td>{{ matricula.get_nivel_ingles_display}}</td>
+			<td>
+			{%for intensivo in matricula.intensivos.all %}
+				{{ intensivo }} <br />
+			{% endfor %}
+			</td>
+			<td><a href="mailto:{{ matricula.email}}">{{ matricula.email}}</a></td>
+			<td>{{ matricula.telephone}}</td>
+			<td>{{ matricula.birth_date}}</td>
+         
+            <td>
+		<a class="btn primary small" href="{% url 'intensivos_detalle' matricula.id %}">Detalles</a>
+		<a class="btn small" href="{% url 'intensivos_edit' matricula.id %}">Editar</a> 
+                
+                <a class="btn small" href="{% url 'intensivos_delete' matricula.id %}">{% trans "Delete" %}</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+	<a class="btn primary pull-left" href="{% url 'intensivos_nueva' %}" >Nueva matricula</a> 
+{% endblock %}

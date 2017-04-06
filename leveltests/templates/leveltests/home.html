@@ -1,0 +1,29 @@
+{% extends "site_base.html"%}
+
+{% load i18n %}
+
+{% block body %}
+<h1>Sistema de reserva para pruebas de nivel</h1>
+    Si no has estudiado antes con nosotros, tendrás que hacer una prueba de nivel gratuita antes de matricularte.
+<ol>
+    <li>Selecciona el centro en el que quieres hacer la prueba de nivel</li>
+    <li>Selecciona el mes</li>
+    <li>Selecciona la fecha y la hora de la prueba de nivel</li>
+</ol>
+
+<!-- Recibirás un mensaje de confirmación por correo electrónico. En el caso de que desees realizar algún cambio o cancelar la prueba de nivel, pincha en el enlace que recibiste con dicho mensaje. -->
+
+<ul>
+<li>Genaro Orá</li>
+<ul>
+    <li><a href="{% url 'leveltests_occupation' 1 2107 4  %}">Abril</a></li>
+    <li><a href="{% url 'leveltests_occupation' 1 2107 4  %}">Mayo</a></li>
+</ul>
+<li>Kabiezes</li>
+<ul>
+    <li><a href="{% url 'leveltests_occupation' 2 2107 4  %}">Abril</a></li>
+    <li><a href="{% url 'leveltests_occupation' 2 2107 4  %}">Mayo</a></li>
+</ul>
+
+</ul>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "site_base.html"%}
+
+{% load i18n %}
+
+{% block body %}
+<h1>Reservas para pruebas de nivel</h1>
+    <table class="table">
+    <thead>
+    <th>ID</th>
+    <th>Venue</th>
+    <th>Fecha</th>
+    <th>Hora</th>
+    <th>Apellidos</th>
+    <th>Nombre</th>
+    <th>Fecha Nac.</th>
+    <th>Certificado</th>
+    <th>Último Curso</th>
+    <th>Centro</th>
+    <th>Curso</th>
+    </thead>
+    <tbody>
+    {%  for reserva in object_list %}
+        <tr>
+        <td>{{ reserva.id }}</td>
+        <td>{{ reserva.get_venue_display }}</td>
+        <td>{{ reserva.registration_date }}</td>
+        <td>{{ reserva.get_hour_display }}</td>
+        <td>{{ reserva.surname }}</td>
+        <td>{{ reserva.name }}</td>
+        <td>{{ reserva.birth_date }}</td>
+        <td>{{ reserva.last_english_certificate|yesno }} -
+            {{ reserva.last_english_certificate_description }}</td>
+        <td>{{ reserva.last_english_course }}</td>
+        <td>{{ reserva.centre }}</td>
+        <td>{{ reserva.course }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "site_base.html"%}
+{% block body %}
+<h2>¿Confirma que desea borrar la matrícula?</h2>
+<div>
+<form action="{% url 'intensivos_delete' object.id %}" method="post">{% csrf_token %}
+Se va a borrar la matricula de {{object.name}} {{object.surname}} , ¿Está seguro?
+</div>
+<a class="btn primary" href="{% url 'intesivos_list' %}">Cancelar</a>
+<input class="btn submit" type="submit" value="Borrar"/>
+</form>
+{% endblock %}
