@@ -1,0 +1,176 @@
+{% extends "site_base.html"%}
+{% load i18n %}
+{% load bootstrap %}
+
+{% block extra_head %}
+
+<script>
+	function comprobar_aceptacion() {
+		console.log("Comprobamos de las condiciones");
+		acepta = false;
+		if ($("#id_accept_conditions").is(":checked"))
+		{
+		    console.log("Condiciones generales aceptadas");
+			acepta = true;
+		}
+		if (acepta) {
+		    console.log("Dice que las acepta");
+		    $("#send_form").prop('disabled', false);
+		    console.log("Ocultamos el aviso");
+		    $("#aviso_condiciones").hide();
+		}else {
+		    //Deshabilitamos el envio hasta que acepten las condiciones
+			console.log("Dice que NO las acepta");
+			$("#send_form").prop('disabled', true);
+		    console.log("Mostramos el aviso");
+		    $("#aviso_condiciones").show();
+		}
+    }
+	$(document).ready(function() {
+		//~ $("#id_birth_date").datepicker({format: "dd-mm-yyyy",weekStart: 1});
+    	$("#normativa_general").hide();
+		//Comprobamos si se puede enviar
+    	comprobar_aceptacion();
+        	
+		//Control de la aceptación de las condiciones:
+		$("#id_accept_conditions").change(comprobar_aceptacion);
+	    	
+            
+	});            
+</script>
+
+{% endblock%}
+
+{% block body %}
+
+<h1>{% trans "Inscripción a un curso de Intensivo" %}</h1>
+<h2>Lista de cursos</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>{% trans "Nombre" %}</th>
+            <th>Días</th>
+            <th>Horario</th>
+            <th>Inicio</th>
+            <th>Fin</th>
+            <th>Horas</th>
+<!--            <th>Precio</th>
+            <th>Reservas</th>-->
+        </tr>
+    </thead>
+    <tbody>
+        {% for intensivo in lista_intensivos %}
+        <tr>
+            <td>{{ intensivo.name }}</td>
+			<td>{{ intensivo.dias}}</td>
+            <td>{{ intensivo.horario}}</td>
+            <td>{{ intensivo.inicio}}</td>
+            <td>{{ intensivo.fin}}</td>
+            <td>{{ intensivo.horas}}</td>
+<!--            <td>{{ intensivo.precio}}</td>
+            <td>{{ intensivo.reservas}}</td>-->
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<!--
+<div>
+    <h3>Elementary/Upper</h3>
+    <table class="table">
+		<thead>
+			<th>HORARIO</th>
+			<th>DÍAS</th>
+			<th>HORAS</th>
+			<th>COMIENZO</th>
+			<th>FINAL</th>
+			<th>PRECIO</th>
+		</thead>
+		<tbody>
+			<tr>
+				<td>9:00:-11:00 ó 11:00-13.00</td>
+				<td>Lu a Ju</td>
+				<td>80</td>
+				<td>11 Enero</td>
+				<td>17 marzo</td>
+				<td>550 €</td>
+			</tr>
+			<tr>
+				<td>Lu 17:00-18:00 Ma y Ju 17:00-19:00 Mi 17:30-20:30</td>
+				<td>Lu a Ju</td>
+				<td>80</td>
+				<td>11 Enero</td>
+				<td>17 marzo</td>
+				<td>550 €</td>
+			</tr>
+		</tbody>
+		</table>
+    <h3>FCE/CAE</h3>
+    <table>
+		<thead>
+			<th>HORARIO</th>
+			<th>DÍAS</th>
+			<th>HORAS</th>
+			<th>COMIENZO</th>
+			<th>FINAL</th>
+			<th>PRECIO</th>
+		</thead>
+		<tbody>
+			<tr>
+				<td>9:00:-11:00 ó 11:00-13.00</td>
+				<td>Lu a Ju</td>
+				<td>72</td>
+				<td></td>
+				<td></td>
+				<td>505 €</td>
+			</tr>
+			<tr>
+				<td>Lunes 16:00-19:00 Martes 16:00-17:00 Miercoles 16:00-18:00 Jueves 16:00-18:00</td>
+				<td>Lu a Ju</td>
+				<td>72</td>
+				<td></td>
+				<td></td>
+				<td>505 €</td>
+			</tr>
+			<tr>
+				<td>19.00 -20.30</td>
+				<td>Lu a Ju</td>
+				<td>54</td>
+				<td></td>
+				<td></td>
+				<td>380 €</td>
+			</tr>
+		</tbody>
+		</table>
+</div>
+-->
+
+<div class="row">
+	<h2>Pre-Inscripción</h2>
+    <div class="span12">		
+	<form action="" method="post" class="form-horizontal" >{% csrf_token %}
+	{{ form|bootstrap }}
+    </div> 
+</div>
+<!-- Legal -->
+<div id="legal_general" class="row">
+    <div class="span14">
+        {% include "intensivos/legal.html" %}
+        <div>
+            ¿Aceptas las condiciones? <input type="checkbox" id="id_accept_conditions" name="accept_conditions">
+        </div>        
+    </div> 
+</div>
+<!-- Legal -->
+<!-- Aviso y envio -->
+<div class="row">
+    <div class="span12">    
+	<div class="well" id="aviso_condiciones">
+	    {% trans "<b>¡Atención!.</b> Todavía no ha aceptado las condiciones. Si no acepta las condiciones generales no podrá enviar la matrícula." %}
+	</div>
+	<input id="send_form" class="btn primary pull-right" type="submit" value="Enviar" />
+    </div> 
+</div> 
+<!-- Aviso y envio -->
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "site_base.html"%}
+{% load reservation_tags %}
+{% load i18n %}
+
+{% block body %}
+<h1>Ocupación de {{ venue_name }}</h1>
+    <table class="table">
+    <thead>
+    {% for day in week_days %}
+    <th>{{ day.1 }}</th>
+    {% endfor %}
+    <th></th>
+    <th></th>
+    </thead>
+        {% for week in month_cal %}
+        <tr>
+            {% for day in week %}
+                {% if day != 0 %}
+                <td {% if forloop.counter > 5 %} style="background-color: #999999" {% endif %}>
+                {% if forloop.counter < 6 %}
+                    {{ day }}
+                <ul>
+                    {% for hour in hours %}
+                        <li>{{ hour.1 }}:
+                            {% autoescape off %}
+                            {% venue_occupation venue_id year month day hour.0 %}
+                            {% endautoescape %}
+                        </li>
+                    {% endfor %}
+                </ul>
+                    {% endif %}
+                </td>
+                    {% else %}
+                    <td>-</td>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </tr>
+    </tbody>
+    </table>
+{% endblock %}

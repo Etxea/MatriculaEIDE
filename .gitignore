@@ -1,4 +1,8 @@
 *.pyc
+node_modules/
+_build/
+dev.db
+site_media/
 bin/
 include/
 lib/
@@ -11,3 +15,13 @@ site_media
 share
 cron_mail.log
 cron_mail_deferred.log
+share/
+logs/*.*
+logs*
+matriculas/local_settings.*
+pip-selfcheck.json
+send_mail.log
+server.log
+local_settings.py
+logfile
+.idea
