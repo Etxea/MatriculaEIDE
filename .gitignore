@@ -11,3 +11,6 @@ site_media
 share
 cron_mail.log
 cron_mail_deferred.log
+logs*
+pip-selfcheck.json
+server.log
