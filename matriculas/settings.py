@@ -142,6 +142,7 @@ INSTALLED_APPS = [
     # project
     "matriculas",
     "pasarela",
+    "pagosonline",
     "cambridge",
     "hobetuz",
     "intensivos",
