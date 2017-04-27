@@ -1,0 +1,11 @@
+{% extends "site_base.html"%}
+{% load i18n %}
+{% block body %}
+
+	<form action="" method="post">{% csrf_token %}
+    ¿Seguro que desas borrar el intensivo de {{object.name}} ?
+    <br />
+	<input class="btn submit" type="submit" value="Eliminar"/>
+	<a class="btn" href="{% url 'intesivos_course_list' %}">{% trans "Cancel" %}</a>
+    </form>
+{% endblock %}

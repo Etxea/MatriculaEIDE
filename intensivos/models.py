@@ -69,6 +69,9 @@ class Intensivo(models.Model):
         return len(self.registration_set.all())
     def __unicode__(self):
         return "%s"%(self.name)
+    class Meta:
+        ordering = ["-inicio"]
+
 
 class Horario(models.Model):
     name = models.CharField(_('Horario (*)'),max_length=50,primary_key=True)

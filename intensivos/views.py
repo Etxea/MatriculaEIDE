@@ -2,6 +2,8 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, View, DeleteView
 from django.views.generic.edit import ModelFormMixin
 
+import datetime
+
 from models import *
 from forms import *
 
@@ -27,7 +29,7 @@ class RegistrationCreateView(CreateView):
     template_name='intensivos/registration_form.html'
     def get_context_data(self, **kwargs):
         context = super(RegistrationCreateView, self).get_context_data(**kwargs)
-        context['lista_intensivos'] = Intensivo.objects.all()
+        context['lista_intensivos'] = Intensivo.objects.filter(inicio__gt=datetime.date.today())
         return context
         
     def get_success_url(self):

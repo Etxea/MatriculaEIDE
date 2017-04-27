@@ -22,6 +22,7 @@
             <th>Horas</th>
             <th>Precio</th>
             <th>Reservas</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -35,12 +36,13 @@
             <td>{{ intensivo.horas}}</td>
             <td>{{ intensivo.precio}}</td>
             <td>{{ intensivo.reservas}}</td>
+            <td> <a class="btn btn-warning" href="{% url 'intensivos_course_delete' intensivo.id %}">Borrar</a><td>
         </tr>
     {% endfor %}
     </tbody>
 </table>
 
 
-	<a class="btn primary pull-left" href="{% url 'intensivos_course_new' %}" >Nuevo intensivo</a> 
+	<a class="btn btn-primary pull-left" href="{% url 'intensivos_course_new' %}" >Nuevo intensivo</a> 
 
 {% endblock %}
