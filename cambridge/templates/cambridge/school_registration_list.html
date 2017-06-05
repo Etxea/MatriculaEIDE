@@ -12,6 +12,7 @@
         <tr>
             <td>Identificador</td>
             <td>School</td>
+            <td>Fecha Reali.</td>
             <td>{% trans "Level" %}</td>
             <td>{% trans "Exam Date" %}</td>
             <td>{% trans "Surname" %}</td>
@@ -26,6 +27,7 @@
         <tr>
             <td> <a href="{% url 'cambridge_edit' matricula.id %}">cambridge.pb-{{ matricula.id }}</a> </td>
             <td>{{ matricula.exam.schoolexam.school }}</td>
+            <td>{{ matricula.registration_date }}</td>
             <td>{{ matricula.exam.level.name }}</td>
             <td>{{ matricula.exam.exam_date }}</td>
             <td>{{ matricula.surname }}</td>
