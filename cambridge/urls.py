@@ -29,6 +29,7 @@ from models import *
 
 urlpatterns = [
     url(r'^list/$',login_required(RegistrationListView.as_view()), name="cambridge_list"),
+    url(r'^list/all$',login_required(RegistrationListViewAll.as_view()), name="cambridge_list_all"),
     url(r'^excel/$',RegistrationExcelView, name="cambridge_excel"),
     url(r'^pay/(?P<pk>\d+)/$',RegistrationPayment,name="cambridge_pay"),
     url(r'^edit/(?P<pk>\d+)/$',

@@ -152,7 +152,12 @@ def RegistrationExcelView(request):
 class RegistrationListView(ListView):
     template_name='cambridge/lista.html'
     #Limitamos a las matriculas de examenes posteriores al día de hoy y que estén pagadas
-    queryset=Registration.objects.filter(exam__exam_date__gt=datetime.date.today(),paid=True)
+    queryset=Registration.objects.filter(exam__exam_date__gt=datetime.date.today(),paid=True).order_by('-registration_date')
+
+class RegistrationListViewAll(ListView):
+    template_name='cambridge/lista.html'
+    #Limitamos a las matriculas de examenes posteriores al día de hoy y que estén pagadas
+    queryset=Registration.objects.filter(exam__exam_date__gt=datetime.date.today()).order_by('-registration_date')
 
 class ExamList(ListView):
     queryset=Exam.objects.filter(exam_date__gt=datetime.date.today())
