@@ -9,7 +9,7 @@
   });
   </script>
 
-    <h1>{% trans "Exam " %}{{object}}</h1>
+    <h1>{% trans "New Exam for " %}{{school_name}}</h1>
 
 	<form class="form-horizontal" action="{% url 'cambridge_schools_exam_new' school_name %}" method="post">{% csrf_token %}
 	    {% load bootstrap %}

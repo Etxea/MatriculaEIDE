@@ -166,9 +166,13 @@ class ExamList(ListView):
 class SchoolExamList(ListView):
     queryset=SchoolExam.objects.filter(exam_date__gt=datetime.date.today())
     template_name='cambridge/school_exam_list.html'
+    def get_context_data(self, **kwargs):
+        context = super(SchoolExamList, self).get_context_data(**kwargs)
+        context['schools'] = School.objects.all()
+        return context
 
 class SchoolListView(ListView):
-	model = School
+    model = School
 
 class SchoolExamCreate(CreateView):
     model = SchoolExam
@@ -185,8 +189,10 @@ class SchoolExamCreate(CreateView):
     def get_context_data(self, **kwargs):
         context = super(SchoolExamCreate, self).get_context_data(**kwargs)
         context['school_name'] = self.kwargs['school_name']
-        
+        context['school'] = School.objects.get(name=self.kwargs['school_name'])
         return context
+    def get_initial(self):
+        return { 'school': School.objects.get(name=self.kwargs['school_name']) }
 
 class SchoolRegistrationListView(ListView):
     template_name='cambridge/school_registration_list.html'
