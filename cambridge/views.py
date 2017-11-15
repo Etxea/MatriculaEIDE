@@ -163,6 +163,10 @@ class ExamList(ListView):
     queryset=Exam.objects.filter(exam_date__gt=datetime.date.today())
     template_name='cambridge/exam_list.html'
 
+class SchoolCreateView(CreateView):
+    model = School
+    fields = "__all__"
+
 class SchoolExamList(ListView):
     queryset=SchoolExam.objects.filter(exam_date__gt=datetime.date.today())
     template_name='cambridge/school_exam_list.html'
