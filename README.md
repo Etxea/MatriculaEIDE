@@ -19,6 +19,14 @@ echo "SITE_ROOT='$(pwd)'" > matriculas/local_settings.py
 ./manage.py runserver
 ```
 
+Run in Docker
+------
+
+```
+docker build . -t me
+docker run -d -p 8000:8000 me
+x-www-browser http://localhost:8000
+```
 
 Author
 ------
