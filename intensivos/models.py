@@ -65,10 +65,11 @@ class Intensivo(models.Model):
     fin = models.DateField(_('End'),help_text=_('Formato: AAAA-MM-DD(año-mes-día)'))
     horas = models.DecimalField('Horas',max_digits=3, decimal_places=0)
     precio = models.DecimalField(max_digits=5, decimal_places=2)
+    venue = models.CharField(_('Lugar de impartición'), max_length=50, default="EIDE")
     def reservas(self):
         return len(self.registration_set.all())
     def __unicode__(self):
-        return "%s"%(self.name)
+        return "%s:%s"%(self.venue,self.name)
     class Meta:
         ordering = ["-inicio"]
 
@@ -90,7 +91,6 @@ class Registration(models.Model):
     registration_date = models.DateField(auto_now_add=True)
     nivel_ingles = models.DecimalField(_('Nivel Ingles Actual'),help_text="",max_digits=1, decimal_places=0,choices=NIVELES_IDIOMAS,blank=True,null=True)
     curso = models.DecimalField('Nivel del curso',max_digits=1, decimal_places=0,choices=CURSO)
-    venue =  models.CharField(_('Centro donde desea realizar el curso'),max_length=50,default="EIDE")
     intensivos = models.ManyToManyField(Intensivo,help_text="Recuerde que debe elegir todos los horarios a los que le sea posible asistir. Para seleccionar varios horarios use la tecla CTRL y haga click con el ratón en todas las opciones")
     accept_conditions = models.BooleanField(_('Accept the conditions'), help_text=_('You must accept the conditions to register'),default=True,blank=True)
     paid = models.BooleanField(_('Paid'),default=False)
