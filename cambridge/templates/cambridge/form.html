@@ -6,11 +6,11 @@
 {% block extra_body %}
 
     <script>
-	/* Funcion que comprueba si el examen es KET y si lo es oculta el texto legal de la foto */
+	/* Funcion que comprueba si el examen es Key y si lo es oculta el texto legal de la foto */
 	function comprobar_foto() {
 		examen = $('#id_exam').find(":selected").text();
-		if (examen.match('KET')) {
-		    console.log("No es obligatoria la foto porque es un examen KET"); 
+		if (examen.match('Key')) {
+		    console.log("No es obligatoria la foto porque es un examen Key"); 
 		    $("#legal_foto").hide();
 		    $("#legal_general").show();
 		}
@@ -65,8 +65,8 @@
 		console.log("Han hecho click en el check de las condiciones");
 		//Comprobamos si es obligatoria la foto
 		examen = $('#id_exam').find(":selected").text();
-		if (examen.match('KET')) {
-		    console.log("No es obligatoria la foto porque es un examen KET"); 
+		if (examen.match('Key')) {
+		    console.log("No es obligatoria la foto porque es un examen Key"); 
 		    no_foto_obligatoria=true;
 		}
 		else if (examen.match('FS')) {
@@ -175,7 +175,7 @@ o no de los mismos por EIDE para los fines anteriormente citados.</p>
 
 	<p>En el siguiente desplegable, selecciona el nivel, tipo, formato y fecha de examen.</p>
 	<ul>
-	    <li>Niveles de Exámenes: <b>KET</b>: A2 – <b>PET</b>: B1– <b>FCE</b>: First Certificate. B2. – <b>CAE</b>: Advanced. C1. – <b>CPE</b>: Proficiency. C2.</li>
+	    <li>Niveles de Exámenes: <b>Key</b>: A2 – <b>Preliminary</b>: B1– <b>First</b>: First Certificate. B2. – <b>Advanced</b>: Advanced. C1. – <b>Proficiency</b>: Proficiency. C2.</li>
 	    <li>Tipo de examen: Ordinario (no llevan ninguna sigla) - <b>FS</b>: For Schools, exámenes para menores de 18 - <b>YLE</b>: Exámenes Young Learners, para niños/as de primaria.</li>
 	    <li>Formato: <b>CB</b>: Computer Based. Exámenes en ordenador – <b>PB</b>: Paper Based. Exámenes ordinarios en papel.</li>
 	</ul>
