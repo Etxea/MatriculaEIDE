@@ -138,6 +138,7 @@ INSTALLED_APPS = [
     "sermepa",
     "bootstrap3_datetime",
     "gunicorn",
+    "cookielaw",
 
     # project
     "matriculas",
