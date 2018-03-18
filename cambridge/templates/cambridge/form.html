@@ -151,7 +151,7 @@
 {% block cambridge_form_header %}{% endblock %}
 
 <div class="alert-message block-message error">
-
+{% blocktrans %}
 
 <span class="label label-info"> Atención! </span>La única forma de pago aceptada es <b>vía tarjeta de crédito/débito</b>.<br />
 <span class="label label-info"> Atención! </span>Los exámenes serán presenciales y se realizarán en las <a href="http://www.eide.es/esl/EIDE/Donde-esta-EIDE">instalaciones de EIDE</a> (Santurtzi, Bizkaia).
@@ -166,20 +166,20 @@ de inglés por parte de Cambridge English Language Assessment y son transferidos
 el único fin de la prestación de dicho servicio. Al facilitarnos sus datos personales consiente el tratamiento informatizado
 o no de los mismos por EIDE para los fines anteriormente citados.</p>
 </div>
-
+{% endblocktrans %}
 <div class="row">
     <div class="span14">
 		
 	{% block cambridge_form_action %}{% endblock %}
 
-
+    {% blocktrans %}
 	<p>En el siguiente desplegable, selecciona el nivel, tipo, formato y fecha de examen.</p>
 	<ul>
 	    <li>Niveles de Exámenes: <b>Key</b>: A2 – <b>Preliminary</b>: B1– <b>First</b>: First Certificate. B2. – <b>Advanced</b>: Advanced. C1. – <b>Proficiency</b>: Proficiency. C2.</li>
 	    <li>Tipo de examen: Ordinario (no llevan ninguna sigla) - <b>FS</b>: For Schools, exámenes para menores de 18 - <b>YLE</b>: Exámenes Young Learners, para niños/as de primaria.</li>
 	    <li>Formato: <b>CB</b>: Computer Based. Exámenes en ordenador – <b>PB</b>: Paper Based. Exámenes ordinarios en papel.</li>
 	</ul>
-	
+	{% endblocktrans %}
 	{{ form|bootstrap }}
     </div> 
 </div>
@@ -189,7 +189,7 @@ o no de los mismos por EIDE para los fines anteriormente citados.</p>
     <div class="span14">
 	{% include "cambridge/legal.html" %}
 	<div>
-	    ¿Aceptas las condiciones? <input type="checkbox" id="id_accept_conditions" name="accept_conditions">
+	    {%  trans "¿Aceptas las condiciones?" %} <input type="checkbox" id="id_accept_conditions" name="accept_conditions">
         </div>
 	
     </div> 
@@ -200,7 +200,7 @@ o no de los mismos por EIDE para los fines anteriormente citados.</p>
 	{% include "cambridge/legal_foto.html" %}
 
 	<div>
-	    ¿Aceptas las condiciones para la toma de la foto?
+	    {%  trans "¿Aceptas las condiciones para la toma de la foto?" %}
 	    <input type="checkbox" id="id_accept_photo_conditions" name="accept_photo_conditions">
         </div>
     </div> 
