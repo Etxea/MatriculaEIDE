@@ -9,7 +9,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r"^$", TemplateView.as_view(template_name="homepage.html"), name="home"),
-    url(r"^lang/$", TemplateView.as_view(template_name="language.html"), name="laguange"),
+    url(r"^lang/$", TemplateView.as_view(template_name="language.html"), name="language"),
     url(r"^admin/", include(admin.site.urls)),
     url(r"^account/", include("account.urls")),
     url(r"^sermepa/", include("sermepa.urls")),

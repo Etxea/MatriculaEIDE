@@ -151,22 +151,25 @@
 {% block cambridge_form_header %}{% endblock %}
 
 <div class="alert-message block-message error">
-{% blocktrans %}
 
-<span class="label label-info"> Atención! </span>La única forma de pago aceptada es <b>vía tarjeta de crédito/débito</b>.<br />
-<span class="label label-info"> Atención! </span>Los exámenes serán presenciales y se realizarán en las <a href="http://www.eide.es/esl/EIDE/Donde-esta-EIDE">instalaciones de EIDE</a> (Santurtzi, Bizkaia).
+<span class="label label-info"> {% trans "Atención!" %} </span>{% trans "La única forma de pago aceptada es <b>vía tarjeta de crédito/débito</b>" %}.<br />
+<span class="label label-info"> {% trans "Atención!" %} </span>{% trans "Los exámenes serán presenciales y se realizarán en las <a href='http://www.eide.es/esl/EIDE/Donde-esta-EIDE'>instalaciones de EIDE</a> (Santurtzi, Bizkaia)." %}
 
 </div>
 
 <div class="alert-mesagge block-message alert">
-<p>En cumplimiento con los establecido en la Ley Orgánica 15/99 de Protección de Datos de Carácter Personal, los datos
+<p>
+{% blocktrans %}
+En cumplimiento con los establecido en la Ley Orgánica 15/99 de Protección de Datos de Carácter Personal, los datos
 de carácter personal que nos facilite serán utilizados en la forma y con las limitaciones y derechos que recoge la Ley y
 pasarán a formar parte de un fichero propiedad de EIDE. Estos datos son necesarios para la gestión de los exámenes
 de inglés por parte de Cambridge English Language Assessment y son transferidos a la Universidad de Cambridge con
 el único fin de la prestación de dicho servicio. Al facilitarnos sus datos personales consiente el tratamiento informatizado
-o no de los mismos por EIDE para los fines anteriormente citados.</p>
-</div>
+o no de los mismos por EIDE para los fines anteriormente citados.
 {% endblocktrans %}
+    </p>
+</div>
+
 <div class="row">
     <div class="span14">
 		

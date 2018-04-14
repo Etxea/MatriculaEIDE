@@ -140,7 +140,7 @@ class Registration(models.Model):
     location = models.CharField(_('Localidad'),max_length=100)
     postal_code = models.DecimalField(_('Código Postal'),max_digits=6, decimal_places=0)
     sex = models.DecimalField(_('Sexo'),max_digits=1, decimal_places=0,choices=SEXO)
-    birth_date = models.DateField('Fecha Nacm. DD-MM-AAAA', help_text=_('Formato: DD-MM-AAAA(dia-mes-año)'))
+    birth_date = models.DateField(_('Fecha Nacm. DD-MM-AAAA'), help_text=_('Formato: DD-MM-AAAA(dia-mes-año)'))
     #dni = models.CharField(max_length=9,blank=True,help_text=_('Introduce el DNI completo con la letra sin espacios ni guiones'))
     telephone = models.CharField(_('Teléfono'),max_length=12)
     email = models.EmailField()
@@ -156,7 +156,7 @@ class Registration(models.Model):
 
     def send_confirmation_email(self):
         ##Para el alumno
-        subject = "Te has matriculado para un examen Cambridge en EIDE"
+        subject = _("Te has matriculado para un examen Cambridge en EIDE")
         
         html_content = u"""
         
