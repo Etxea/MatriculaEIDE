@@ -132,7 +132,7 @@ class VenueExam(Exam):
 
 
 class Registration(models.Model):
-    exam = models.ForeignKey(Exam,limit_choices_to = {'registration_end_date__gt': datetime.date.today()})
+    exam = models.ForeignKey(Exam,limit_choices_to = {'registration_end_date__gte': datetime.date.today()})
     password = models.CharField(_('Password'),max_length=6,blank=True,editable=False)
     name = models.CharField(_('Nombre'),max_length=50)
     surname = models.CharField(_('Apellido(s)'),max_length=100)
