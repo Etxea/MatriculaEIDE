@@ -192,7 +192,8 @@ o no de los mismos por EIDE para los fines anteriormente citados.
     <div class="span14">
 	{% include "cambridge/legal.html" %}
 	<div>
-	    {%  trans "¿Aceptas las condiciones?" %} <input type="checkbox" id="id_accept_conditions" name="accept_conditions">
+        <input type="checkbox" id="id_accept_conditions" name="accept_conditions">
+	    {%  trans "Doy mi consentimiento expreso para recibir comunicaciones en los términos anteriormente descritos." %} 
         </div>
 	
     </div> 
@@ -203,8 +204,8 @@ o no de los mismos por EIDE para los fines anteriormente citados.
 	{% include "cambridge/legal_foto.html" %}
 
 	<div>
-	    {%  trans "¿Aceptas las condiciones para la toma de la foto?" %}
 	    <input type="checkbox" id="id_accept_photo_conditions" name="accept_photo_conditions">
+	    {%  trans "Doy mi consentimiento expreso para que mi imagen pueda ser utilizada en la página Web o en redes sociales del centro así como en todo el material publicitario que pueda utilizar." %}
         </div>
     </div> 
 </div>

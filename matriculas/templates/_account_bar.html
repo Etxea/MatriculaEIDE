@@ -3,7 +3,7 @@
 
 <ul class="nav navbar-nav pull-right">
     <li>
-       <p class="navbar-text">
+       <span class="navbar-text">
             <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
                 <input name="next" type="hidden" value="{{ redirect_to }}">
                 <select name="language">
@@ -18,7 +18,7 @@
             </select>
 
             </form>
-        </p>
+        </span>
     </li>
     {% if request.user.is_authenticated %}
         <p class="navbar-text">
