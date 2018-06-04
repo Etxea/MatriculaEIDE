@@ -106,7 +106,7 @@ class Registration(models.Model):
 	nivel_aleman = models.DecimalField(_('Nivel Aleman'),help_text="En caso de que haya escogido este idioma indique su nivel",max_digits=1, decimal_places=0,choices=NIVELES_IDIOMAS,blank=True,null=True)
 	nivel_chino = models.DecimalField(_('Nivel Chino'),help_text="En caso de que haya escogido este idioma indique su nivel",max_digits=1, decimal_places=0,choices=NIVELES_IDIOMAS,blank=True,null=True)
 	
-	accept_conditions = models.BooleanField(_('Accept the conditions'), help_text=_('You must accept the conditions to register'),default=True,blank=True)
+	accept_conditions = models.BooleanField(_('Doy mi consentimiento expreso para recibir comunicaciones en los términos anteriormente descritos.'), default=True,blank=True)
 	
 	
 	def send_confirmation_email(self):

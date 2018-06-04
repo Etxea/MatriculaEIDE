@@ -92,7 +92,7 @@ class Registration(models.Model):
     nivel_ingles = models.DecimalField(_('Nivel Ingles Actual'),help_text="",max_digits=1, decimal_places=0,choices=NIVELES_IDIOMAS,blank=True,null=True)
     curso = models.DecimalField('Nivel del curso',max_digits=1, decimal_places=0,choices=CURSO)
     intensivos = models.ManyToManyField(Intensivo,help_text="Recuerde que debe elegir todos los horarios a los que le sea posible asistir. Para seleccionar varios horarios use la tecla CTRL y haga click con el ratón en todas las opciones")
-    accept_conditions = models.BooleanField(_('Accept the conditions'), help_text=_('You must accept the conditions to register'),default=True,blank=True)
+    accept_conditions = models.BooleanField(_('Doy mi consentimiento expreso para recibir comunicaciones en los términos anteriormente descritos.'), default=True,blank=True)
     paid = models.BooleanField(_('Paid'),default=False)
     def get_absolute_url(self):
         return '/intensivos/edit/%d/'%self.id
