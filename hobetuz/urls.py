@@ -16,7 +16,7 @@
 #  MA 02110-1301, USA.
 #  
 
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from django.contrib.auth.decorators import login_required, permission_required
 from django.views.generic import TemplateView,DetailView, ListView, CreateView, UpdateView, DeleteView
 
@@ -26,8 +26,10 @@ from models import *
 
 
 urlpatterns = [
-    url(r'^list/$',login_required(RegistrationList.as_view()), name="hobetuz_list"),
+    url(r'^list/$',RegistrationListView.as_view(), name="hobetuz_list"),
+    url(r'^list/2019/$',Registration2019ListView.as_view(), name="hobetuz_list_2019"),
     url(r'^new/$',RegistrationCreateView.as_view(), name="hobetuz_nueva"),
+    url(r'^new/2019$',Registration2019CreateView.as_view(), name="hobetuz_nueva_2019"),
     url(r'^excel/$',RegistrationExcelView, name="hobetuz_excel"),
     url(r'^edit/(?P<pk>\d+)/$',login_required(RegistrationUpdateView.as_view()), name="hobetuz_edit"),
     url(r'^delete/(?P<pk>\d+)/$',

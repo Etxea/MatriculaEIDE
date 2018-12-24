@@ -15,7 +15,7 @@ urlpatterns = [
     url(r"^pasarela/", include("pasarela.urls")),
     url(r"^pagosonline/", include("pagosonline.urls")),
     url(r"^cambridge/", include("cambridge.urls")),
-    url(r"^hobetuz/", include("hobetuz.urls")),
+    #url(r"^hobetuz/", include("hobetuz.urls")),
     url(r"^intensivos/", include("intensivos.urls")),
     url(r"^leveltests/", include("leveltests.urls")),
 ]

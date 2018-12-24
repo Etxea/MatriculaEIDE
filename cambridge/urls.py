@@ -16,7 +16,7 @@
 #  MA 02110-1301, USA.
 #  
 
-from django.conf.urls import patterns, url, include
+from django.conf.urls import url, include
 
 #~ from django.views.generic.simple import direct_to_template
 from django.contrib.auth.decorators import login_required, permission_required

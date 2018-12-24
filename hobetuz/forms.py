@@ -50,6 +50,14 @@ class RegistrationForm(ModelForm):
 		#~ # at the same time, set the input format on the date field like you want it:
 		#~ self.fields['birth_date'].input_formats = ['%d-%m-%Y']	
 
+class Registration2019Form(ModelForm):
+	class Meta:
+		model = Registration2019
+		fields = '__all__'
+	telephone = ESPhoneNumberField(label=_("Teléfono Fijo (*)"))
+	telephone2 = ESPhoneNumberField(label=_("Teléfono Móvil (*)"))
+	curso = forms.MultipleChoiceField(choices=CURSOS_2019, widget=forms.CheckboxSelectMultiple())
+
 #~ class RegistrationEditForm(ModelForm):
 	#~ telephone = ESPhoneNumberField(label=_("Teléfono"))
 	#~ #dni = ESIdentityCardNumberField()
