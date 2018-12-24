@@ -1,8 +1,33 @@
 {% load i18n %}
 {% load account_tags %}
 
+<ul class="nav navbar-nav pull-right">
+    <li>
+       <span class="navbar-text">
+           <a href="http://eide.es/es/component/content/article/19-eide/13-aviso-legal?Itemid=101">Aviso Legal</a>
+       </span>
+    </li>
+</ul>
 
 <ul class="nav navbar-nav pull-right">
+    <li>
+       <span class="navbar-text">
+            <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                <input name="next" type="hidden" value="{{ redirect_to }}">
+                <select name="language">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                        {{ language.code }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            </form>
+        </span>
+    </li>
     {% if request.user.is_authenticated %}
         <p class="navbar-text">
             <i class="fa fa-user"></i> {% user_display request.user %}

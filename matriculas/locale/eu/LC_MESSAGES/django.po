@@ -1,0 +1,193 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-14 15:27+0200\n"
+"PO-Revision-Date: 2018-04-14 16:08+0200\n"
+"Language: eu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.8.11\n"
+
+#: settings.py:41
+msgid "Español"
+msgstr ""
+
+#: settings.py:42
+msgid "Euskara"
+msgstr ""
+
+#: settings.py:43
+msgid "Inglés"
+msgstr ""
+
+#: templates/_account_bar.html:17
+msgid "Settings"
+msgstr ""
+
+#: templates/_account_bar.html:20
+msgid "Log out"
+msgstr "Atera"
+
+#: templates/_account_bar.html:23
+msgid "Log in"
+msgstr ""
+
+#: templates/_account_bar.html:25
+msgid "Sign up"
+msgstr ""
+
+#: templates/homepage.html:4
+msgid "Sistema Online de matrícula en EIDE"
+msgstr "EIDE online matrikula sistema"
+
+#: templates/homepage.html:8
+msgid "Bienvenido al sistema Online de matrícula en EIDE"
+msgstr "Ongietorre EIDE matrikuletara"
+
+#: templates/homepage.html:11
+msgid ""
+"\n"
+"        Bienvenido al sistema Online de matrícula en EIDE. Desde aquí podrás "
+"matricularte en los exámenes de Cambridge y próximamente \n"
+"        podrás matricularte en nuestros cursos intensivos y cursos de "
+"español para extranjeros.\n"
+"        "
+msgstr ""
+"\n"
+"\tOngietorri EIDE-ko online matrikula sistemara. Gune honetan Cambridge "
+"azterketen matrikula egin ahal izango duzu."
+
+#: templates/homepage.html:16
+msgid ""
+"\n"
+"\t\tUtilizamos la plataforma de pago de la CECA (Confederación Española "
+"Cajas de Ahorros), un sistema completamente seguro. \n"
+"\t\tCuando pulséis “Realizar Pago”, el sistema os redireccionará al <a href="
+"\"https://be.ceca.es/BEWeb/2000/2000/inicia_identificacion.action\">sistema "
+"de pago CECA</a>, \n"
+"\t\tintegrado en Cecabank, donde deberéis facilitar todos los datos "
+"necesarios para dicho medio de pago. Este será el único momento en que se os "
+"solicitará esa información.\n"
+"        "
+msgstr ""
+
+#: templates/homepage.html:23
+msgid ""
+"\n"
+"\t\tEIDE nunca tendrá acceso al a informaciónde vuestra tarjeta, siendo una "
+"operación segura con la garantía del CECA.\n"
+"        "
+msgstr ""
+"\n"
+"\n"
+"\t\tEIDE-k ez du inoiz zure txartelaren datuak ikusiko. Operazio guztiz "
+"segurua da CECA-ren babesarekin."
+
+#: templates/homepage.html:28
+msgid ""
+"\n"
+"\t\tEl pago del pedido se produce en tiempo real a través del TPV Virtual "
+"una vez se haya comprobado que los datos proporcionados son correctos.\n"
+"        "
+msgstr ""
+
+#: templates/homepage.html:38
+msgid "Cambridge Exams"
+msgstr "Cambridge Azterketak"
+
+#: templates/homepage.html:39
+msgid ""
+"Aquí te puedes matricular para los Exámenes de Cambridge, tanto en papel "
+"(Paper Based Test) como en ordenador (Computer Based test)."
+msgstr ""
+
+#: templates/homepage.html:40
+msgid "Ir a las matrículas de cambridge"
+msgstr "Cambridge matrikuletara joan"
+
+#: templates/homepage.html:43
+msgid "Cursos de Hobetuz"
+msgstr "Hobetuz Kurtsoak"
+
+#: templates/homepage.html:44
+msgid "Aquí te puedes solicitar un curso de formación continua de Hobetuz."
+msgstr "Hemen Hobetuz antolatzen dituen kurtsoen informazio ikusiko duzu."
+
+#: templates/homepage.html:45
+msgid "Próximamente...."
+msgstr "Gutxi barru.."
+
+#: templates/homepage.html:46
+msgid "Solita un curso"
+msgstr "Kurtso bat ezkatu"
+
+#: templates/homepage.html:50
+msgid "Cursos Intensivos"
+msgstr "Kurtso intentsiboak"
+
+#: templates/homepage.html:52
+msgid "Inscribite en nuestros cursos intensivos"
+msgstr "Izen eman kurtso intentsiboetan"
+
+#: templates/site_base.html:30 templates/site_base.html.py:36
+msgid "Gestionar niveles"
+msgstr "Mailak kudeatu\\"
+
+#: templates/site_base.html:31
+msgid "Lista de examenes"
+msgstr "Azterketa zerrenda"
+
+#: templates/site_base.html:32
+msgid "Nuevo examene"
+msgstr "Azterketa berria"
+
+#: templates/site_base.html:33 templates/site_base.html.py:38
+#: templates/site_base.html:57
+msgid "Lista Matrículas"
+msgstr "Matrikula zerrenda"
+
+#: templates/site_base.html:37
+msgid "Lista de examenes Schools"
+msgstr "Schools azterketen zerrenda"
+
+#: templates/site_base.html:42
+msgid "Gestionar venues"
+msgstr "Lekuak kudeatu"
+
+#: templates/site_base.html:43
+msgid "Lista de examenes Venue"
+msgstr "Lekuko azterketen zerrenda"
+
+#: templates/site_base.html:44
+msgid "Lista Matrículas Venues"
+msgstr "Lekuko matrikula zerrenda"
+
+#: templates/site_base.html:56
+msgid "Lista Intensivos"
+msgstr "Intentsibo zerrenda"
+
+#: templates/site_base.html:68
+msgid "Gestionar Disponibilidad Oraa"
+msgstr "Oraa-k erabilgarritasuna kudeatu"
+
+#: templates/site_base.html:69
+msgid "Lista Reservas"
+msgstr "Erreserba zerrenda"
+
+#: templates/site_base.html:77
+msgid "Lista Pagos manuales"
+msgstr "Eskuko ordainketa zerrenda"
+
+#: templates/site_base.html:78
+msgid "Nuevo pago"
+msgstr "Ordainketa berria"

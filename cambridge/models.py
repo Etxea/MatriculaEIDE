@@ -132,7 +132,7 @@ class VenueExam(Exam):
 
 
 class Registration(models.Model):
-    exam = models.ForeignKey(Exam,limit_choices_to = {'registration_end_date__gt': datetime.date.today()})
+    exam = models.ForeignKey(Exam,limit_choices_to = {'registration_end_date__gte': datetime.date.today()})
     password = models.CharField(_('Password'),max_length=6,blank=True,editable=False)
     name = models.CharField(_('Nombre'),max_length=50)
     surname = models.CharField(_('Apellido(s)'),max_length=100)
@@ -140,7 +140,7 @@ class Registration(models.Model):
     location = models.CharField(_('Localidad'),max_length=100)
     postal_code = models.DecimalField(_('Código Postal'),max_digits=6, decimal_places=0)
     sex = models.DecimalField(_('Sexo'),max_digits=1, decimal_places=0,choices=SEXO)
-    birth_date = models.DateField('Fecha Nacm. DD-MM-AAAA', help_text=_('Formato: DD-MM-AAAA(dia-mes-año)'))
+    birth_date = models.DateField(_('Fecha Nacm. DD-MM-AAAA'), help_text=_('Formato: DD-MM-AAAA(dia-mes-año)'))
     #dni = models.CharField(max_length=9,blank=True,help_text=_('Introduce el DNI completo con la letra sin espacios ni guiones'))
     telephone = models.CharField(_('Teléfono'),max_length=12)
     email = models.EmailField()
@@ -148,15 +148,15 @@ class Registration(models.Model):
     centre_name = models.CharField(_('Nombre del Centro'),max_length=100, blank=True) 
     registration_date = models.DateField(auto_now_add=True)
     paid = models.BooleanField(_('Pagada'),default=False)
-    accept_conditions = models.BooleanField(_('Acceptas las condiciones'), help_text=_('You must accept the conditions to register'),default=True,blank=True)
-    accept_photo_conditions = models.BooleanField(_('Aceptar las conficiones de la foto.'), help_text=_('Debes aceptar las condiciones de la la toma de foto para poder matricularte.'),default=True,blank=True)
+    accept_conditions = models.BooleanField(_('Doy mi consentimiento expreso para recibir comunicaciones en los términos anteriormente descritos.'), help_text=_('Doy mi consentimiento expreso para recibir comunicaciones en los términos anteriormente descritos.'),default=True,blank=True)
+    accept_photo_conditions = models.BooleanField(_('Doy mi consentimiento expreso para que mi imagen pueda ser utilizada en la página Web o en redes sociales del centro así como en todo el material publicitario que pueda utilizar.'), help_text=_('Debes aceptar las condiciones de la la toma de foto para poder matricularte.'),default=True,blank=True)
     minor = models.BooleanField(_('El candidato es menor de edad y yo soy su padre/madre o tutor legal.'),default=False,blank=True)
     tutor_name = models.CharField(_('Nombre de padre/madre o tutor.'),max_length=50,blank=True)
     tutor_surname = models.CharField(_('Apellido(s) del padre/madre o tutor.'),max_length=100,blank=True)
 
     def send_confirmation_email(self):
         ##Para el alumno
-        subject = "Te has matriculado para un examen Cambridge en EIDE"
+        subject = _("Te has matriculado para un examen Cambridge en EIDE")
         
         html_content = u"""
         

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-import os
 
+import os
+from django.utils.translation import gettext_lazy as _
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 PACKAGE_ROOT = os.path.abspath(os.path.dirname(__file__))
@@ -28,7 +29,7 @@ TIME_ZONE = "Europe/Madrid"
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = "es-es"
+LANGUAGE_CODE = "es"
 
 SITE_ID = int(os.environ.get("SITE_ID", 1))
 
@@ -36,12 +37,20 @@ SITE_ID = int(os.environ.get("SITE_ID", 1))
 # to load the internationalization machinery.
 USE_I18N = True
 
+LANGUAGES = [
+  ('es', _(u'Español')),
+  ('eu', _(u'Euskara')),
+  ('en', _(u'Inglés')),
+]
+
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale.
 USE_L10N = True
 
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
+
+LOCALE_PATHS = [ os.path.join(BASE_DIR, "locale")]
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
@@ -104,6 +113,7 @@ TEMPLATES = [
 
 MIDDLEWARE_CLASSES = [
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -138,6 +148,7 @@ INSTALLED_APPS = [
     "sermepa",
     "bootstrap3_datetime",
     "gunicorn",
+    "cookielaw",
 
     # project
     "matriculas",

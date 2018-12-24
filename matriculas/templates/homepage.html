@@ -13,15 +13,21 @@
         podrás matricularte en nuestros cursos intensivos y cursos de español para extranjeros.
         {% endblocktrans %}
     <p>
+        {% blocktrans %}
 		Utilizamos la plataforma de pago de la CECA (Confederación Española Cajas de Ahorros), un sistema completamente seguro. 
 		Cuando pulséis “Realizar Pago”, el sistema os redireccionará al <a href="https://be.ceca.es/BEWeb/2000/2000/inicia_identificacion.action">sistema de pago CECA</a>, 
 		integrado en Cecabank, donde deberéis facilitar todos los datos necesarios para dicho medio de pago. Este será el único momento en que se os solicitará esa información.
+        {% endblocktrans %}
 	</p>
 	<p>
+        {% blocktrans %}
 		EIDE nunca tendrá acceso al a informaciónde vuestra tarjeta, siendo una operación segura con la garantía del CECA.
+        {% endblocktrans %}
 	</p>
 	<p>
+        {% blocktrans %}
 		El pago del pedido se produce en tiempo real a través del TPV Virtual una vez se haya comprobado que los datos proporcionados son correctos.
+        {% endblocktrans %}
 	</p>
 
 
@@ -31,8 +37,7 @@
  <div class="col-md-4">
    <h2>{% trans "Cambridge Exams" %}</h2>
    <p> {% trans "Aquí te puedes matricular para los Exámenes de Cambridge, tanto en papel (Paper Based Test) como en ordenador (Computer Based test)." %}</p>
-   <a class="btn btn-primary" href="{% url 'cambridge' %}">Ir a las
-       matrículas de cambridge</a>
+   <a class="btn btn-primary" href="{% url 'cambridge' %}">{%  trans "Ir a las matrículas de cambridge" %}</a>
  </div>
  <div class="col-md-4">
    <h2>{% trans "Cursos de Hobetuz" %}</h2>
@@ -44,7 +49,7 @@
  <div class="col-md-4">
    <h2>{% trans "Cursos Intensivos" %}</h2>
    <a class="btn btn-primary" href="{% url 'intensivos_nueva' %}">
-       Inscribite en nuestros cursos intensivos</a>
+       {% trans "Inscribite en nuestros cursos intensivos" %}</a>
  </div>
 </div>
 {% endblock %}

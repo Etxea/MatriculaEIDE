@@ -4,6 +4,7 @@
 {% load pinax_webanalytics_tags %}
 {% load i18n %}
 
+{% load cookielaw_tags %}
 
 {% block styles %}
     {% include "_styles.html" %}
@@ -11,6 +12,7 @@
 
 
 {% block extra_head_base %}
+    {% cookielaw_banner %}
     {% block extra_head %}{% endblock %}
 {% endblock %}
 

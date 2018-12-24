@@ -6,11 +6,11 @@
 {% block extra_body %}
 
     <script>
-	/* Funcion que comprueba si el examen es KET y si lo es oculta el texto legal de la foto */
+	/* Funcion que comprueba si el examen es Key y si lo es oculta el texto legal de la foto */
 	function comprobar_foto() {
 		examen = $('#id_exam').find(":selected").text();
-		if (examen.match('KET')) {
-		    console.log("No es obligatoria la foto porque es un examen KET"); 
+		if (examen.match('Key')) {
+		    console.log("No es obligatoria la foto porque es un examen Key"); 
 		    $("#legal_foto").hide();
 		    $("#legal_general").show();
 		}
@@ -65,8 +65,8 @@
 		console.log("Han hecho click en el check de las condiciones");
 		//Comprobamos si es obligatoria la foto
 		examen = $('#id_exam').find(":selected").text();
-		if (examen.match('KET')) {
-		    console.log("No es obligatoria la foto porque es un examen KET"); 
+		if (examen.match('Key')) {
+		    console.log("No es obligatoria la foto porque es un examen Key"); 
 		    no_foto_obligatoria=true;
 		}
 		else if (examen.match('FS')) {
@@ -152,19 +152,22 @@
 
 <div class="alert-message block-message error">
 
-
-<span class="label label-info"> Atención! </span>La única forma de pago aceptada es <b>vía tarjeta de crédito/débito</b>.<br />
-<span class="label label-info"> Atención! </span>Los exámenes serán presenciales y se realizarán en las <a href="http://www.eide.es/esl/EIDE/Donde-esta-EIDE">instalaciones de EIDE</a> (Santurtzi, Bizkaia).
+<span class="label label-info"> {% trans "Atención!" %} </span>{% trans "La única forma de pago aceptada es <b>vía tarjeta de crédito/débito</b>" %}.<br />
+<span class="label label-info"> {% trans "Atención!" %} </span>{% trans "Los exámenes serán presenciales y se realizarán en las <a href='http://www.eide.es/esl/EIDE/Donde-esta-EIDE'>instalaciones de EIDE</a> (Santurtzi, Bizkaia)." %}
 
 </div>
 
 <div class="alert-mesagge block-message alert">
-<p>En cumplimiento con los establecido en la Ley Orgánica 15/99 de Protección de Datos de Carácter Personal, los datos
+<p>
+{% blocktrans %}
+En cumplimiento con los establecido en la Ley Orgánica 15/99 de Protección de Datos de Carácter Personal, los datos
 de carácter personal que nos facilite serán utilizados en la forma y con las limitaciones y derechos que recoge la Ley y
 pasarán a formar parte de un fichero propiedad de EIDE. Estos datos son necesarios para la gestión de los exámenes
 de inglés por parte de Cambridge English Language Assessment y son transferidos a la Universidad de Cambridge con
 el único fin de la prestación de dicho servicio. Al facilitarnos sus datos personales consiente el tratamiento informatizado
-o no de los mismos por EIDE para los fines anteriormente citados.</p>
+o no de los mismos por EIDE para los fines anteriormente citados.
+{% endblocktrans %}
+    </p>
 </div>
 
 <div class="row">
@@ -172,14 +175,14 @@ o no de los mismos por EIDE para los fines anteriormente citados.</p>
 		
 	{% block cambridge_form_action %}{% endblock %}
 
-
+    {% blocktrans %}
 	<p>En el siguiente desplegable, selecciona el nivel, tipo, formato y fecha de examen.</p>
 	<ul>
-	    <li>Niveles de Exámenes: <b>KET</b>: A2 – <b>PET</b>: B1– <b>FCE</b>: First Certificate. B2. – <b>CAE</b>: Advanced. C1. – <b>CPE</b>: Proficiency. C2.</li>
+	    <li>Niveles de Exámenes: <b>Key</b>: A2 – <b>Preliminary</b>: B1– <b>First</b>: First Certificate. B2. – <b>Advanced</b>: Advanced. C1. – <b>Proficiency</b>: Proficiency. C2.</li>
 	    <li>Tipo de examen: Ordinario (no llevan ninguna sigla) - <b>FS</b>: For Schools, exámenes para menores de 18 - <b>YLE</b>: Exámenes Young Learners, para niños/as de primaria.</li>
 	    <li>Formato: <b>CB</b>: Computer Based. Exámenes en ordenador – <b>PB</b>: Paper Based. Exámenes ordinarios en papel.</li>
 	</ul>
-	
+	{% endblocktrans %}
 	{{ form|bootstrap }}
     </div> 
 </div>
@@ -189,7 +192,8 @@ o no de los mismos por EIDE para los fines anteriormente citados.</p>
     <div class="span14">
 	{% include "cambridge/legal.html" %}
 	<div>
-	    ¿Aceptas las condiciones? <input type="checkbox" id="id_accept_conditions" name="accept_conditions">
+        <input type="checkbox" id="id_accept_conditions" name="accept_conditions">
+	    {%  trans "Doy mi consentimiento expreso para recibir comunicaciones en los términos anteriormente descritos." %} 
         </div>
 	
     </div> 
@@ -200,8 +204,8 @@ o no de los mismos por EIDE para los fines anteriormente citados.</p>
 	{% include "cambridge/legal_foto.html" %}
 
 	<div>
-	    ¿Aceptas las condiciones para la toma de la foto?
 	    <input type="checkbox" id="id_accept_photo_conditions" name="accept_photo_conditions">
+	    {%  trans "Doy mi consentimiento expreso para que mi imagen pueda ser utilizada en la página Web o en redes sociales del centro así como en todo el material publicitario que pueda utilizar." %}
         </div>
     </div> 
 </div>

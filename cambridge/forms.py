@@ -94,7 +94,7 @@ class SchoolRegistrationForm(ModelForm):
         #Limitamos los examenes a los de la escuela
         school = School.objects.get(name=school_name)
         #~ print school
-        self.fields['exam'].queryset = SchoolExam.objects.filter(school=school)
+        self.fields['exam'].queryset = SchoolExam.objects.filter(school=school,registration_end_date__gte=datetime.date.today())
         #~ self.fields['minor'].initial = True
         #~ self.fields['eide_alumn'].initial = False
         #~ self.fields['birth_date'].widget.format = '%d-%m-%Y'

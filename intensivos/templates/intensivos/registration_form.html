@@ -50,6 +50,7 @@
     <thead>
         <tr>
             <th>{% trans "Nombre" %}</th>
+            <th>Centro</th>
             <th>Días</th>
             <th>Horario</th>
             <th>Inicio</th>
@@ -63,6 +64,7 @@
         {% for intensivo in lista_intensivos %}
         <tr>
             <td>{{ intensivo.name }}</td>
+            <td>{{ intensivo.venue }}</td>
 			<td>{{ intensivo.dias}}</td>
             <td>{{ intensivo.horario}}</td>
             <td>{{ intensivo.inicio}}</td>
@@ -158,7 +160,7 @@
     <div class="span14">
         {% include "intensivos/legal.html" %}
         <div>
-            ¿Aceptas las condiciones? <input type="checkbox" id="id_accept_conditions" name="accept_conditions">
+            <input type="checkbox" id="id_accept_conditions" name="accept_conditions"> Doy mi consentimiento expreso para recibir comunicaciones en los términos anteriormente descritos.
         </div>        
     </div> 
 </div>
