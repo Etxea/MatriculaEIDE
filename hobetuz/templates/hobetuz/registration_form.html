@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load bootstrap %}
 
-{% block extra_head %}
+{% block extra_body %}
 
 <script>
 	function comprobar_aceptacion() {
@@ -51,14 +51,14 @@
 		}
 	};
 	$(document).ready(function() {
-		$("#id_birth_date").datepicker({format: "dd-mm-yyyy",weekStart: 1});
-	    	$("#normativa_general").hide();
-		//Comprobamos si se puede enviar
-	    	comprobar_aceptacion();
-        	comprobar_desempleado();
-        	//Control de la aceptación de las condiciones:
+		//$("#id_birth_date").datepicker({format: "yyyy-mm-dd",weekStart: 1});
+		$("#normativa_general").hide();
+		//comprobar_desempleado();
+		//$("#id_desempleado").change(comprobar_desempleado);
+		//Control de la aceptación de las condiciones:
+		comprobar_aceptacion();
 		$("#id_accept_conditions").change(comprobar_aceptacion);
-	    	$("#id_desempleado").change(comprobar_desempleado);
+		
             
 	});            
 </script>

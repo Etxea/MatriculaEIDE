@@ -1,9 +1,6 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
+from views import *
 
-urlpatterns = patterns('sermepa.views',
-    url(
-        regex=r'^$',
-        view='sermepa_ipn',
-        name='sermepa_ipn',
-    ),
-)
+urlpatterns = [
+    url(r'^$', sermepa_ipn,name='sermepa_ipn'),
+]

@@ -17,6 +17,7 @@
 #  
 
 from django.contrib.auth.decorators import login_required, permission_required
+from django.utils.decorators import method_decorator
 from django.template.loader import render_to_string
 from django.template import RequestContext
 from django.http import HttpResponse
@@ -63,14 +64,15 @@ def imprimir_hobetuz(request, pk):
 	return imprimir(registration,request)
 
 
-class RegistrationList(ListView):
+@login_required
+class RegistrationListView(ListView):
 	model=Registration
 	template_name='hobetuz/lista.html'
 
-#~ class RegistrationPayment(DetailView):
-	#~ model=Registration
-	#~ template_name='hobetuz/payment.html'
-#~ 
+	@method_decorator(login_required)
+	def dispatch(self, *args, **kwargs):
+		return super().dispatch(*args, **kwargs)
+
 class RegistrationUpdateView(UpdateView):
 	model=Registration
 	success_url = '/hobetuz/list'
@@ -86,15 +88,27 @@ class RegistrationCreateView(CreateView):
 		return '/hobetuz/thanks/'
 
 @login_required	
+class Registration2019ListView(ListView):
+	model=Registration2019
+	template_name='hobetuz/lista.html'
+
+	@method_decorator(login_required)
+	def dispatch(self, *args, **kwargs):
+		return super().dispatch(*args, **kwargs)
+
+
+class Registration2019CreateView(CreateView):
+	model = Registration2019
+	form_class = Registration2019Form
+	template_name='hobetuz/registration_form.html'
+	def get_success_url(self):
+		## FIXME usar un reverse o lazy_reverse
+		return '/hobetuz/thanks/'
+
+@login_required	
 def RegistrationExcelView(request):
     objs = Registration.objects.all()
     return ExcelResponse(objs)
-#~ 
-#~ class RegistrationListView(ListView):
-	#~ #model=ComputerBasedRegistration
-	#~ template_name='hobetuz/lista.html'
-	#~ #Limitamos a las matriculas de examenes posteriores al día de hoy y que estén pagadas
-	#~ queryset=Registration.objects.filter(exam__exam_date__gt=datetime.date.today(),paid=True)
 
 class CursoList(ListView):
     queryset=Curso.objects.all()
