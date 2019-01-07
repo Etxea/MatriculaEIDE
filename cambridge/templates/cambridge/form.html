@@ -4,7 +4,7 @@
 
 
 {% block extra_body %}
-
+<!--
     <script>
 	/* Funcion que comprueba si el examen es Key y si lo es oculta el texto legal de la foto */
 	function comprobar_foto() {
@@ -121,12 +121,12 @@
 
 	    $("#normativa_general").hide();
 	    $("#normativa_foto").hide();
-            //Comprobamos si se puede enviar
+        //Comprobamos si se puede enviar
 	    comprobar_condiciones();
-            $("#id_centre_name").prop('disabled', false);
-            //Control de la aceptación de las condiciones:
+        $("#id_centre_name").prop('disabled', false);
+        //Control de la aceptación de las condiciones:
 	    $("#id_exam").change(comprobar_condiciones);
-            $("#id_accept_conditions").change(comprobar_aceptacion);
+        $("#id_accept_conditions").change(comprobar_aceptacion);
 	    $("#id_accept_photo_conditions").change(comprobar_aceptacion);
 	    $("#id_minor").change(comprobar_menor);
             //Control del Centre Name 
@@ -143,6 +143,7 @@
             });            
         });
     </script>
+    -->
     {{ form.media }}
 {% endblock %}
 
