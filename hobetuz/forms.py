@@ -55,8 +55,7 @@ class Registration2019Form(ModelForm):
 		model = Registration2019
 		fields = '__all__'
 	telephone = ESPhoneNumberField(label=_("Teléfono Fijo (*)"))
-	telephone2 = ESPhoneNumberField(label=_("Teléfono Móvil (*)"))
-	curso = forms.MultipleChoiceField(choices=CURSOS_2019, widget=forms.CheckboxSelectMultiple())
+	#curso = forms.MultipleChoiceField(choices=CURSOS_2019, widget=forms.CheckboxSelectMultiple())
 
 #~ class RegistrationEditForm(ModelForm):
 	#~ telephone = ESPhoneNumberField(label=_("Teléfono"))

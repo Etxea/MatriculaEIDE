@@ -155,7 +155,7 @@ INSTALLED_APPS = [
     "pasarela",
     "pagosonline",
     "cambridge",
-    #"hobetuz",
+    "hobetuz",
     "intensivos",
     "leveltests",
 ]

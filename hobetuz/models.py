@@ -80,23 +80,40 @@ class Curso(models.Model):
 	
 
 #Asbtract model to inherit from him
-class RegistrationBase(models.Model):
+class Registration2019(models.Model):
 	password = models.CharField(_('Password'),max_length=6,blank=True,editable=False)
+	registration_date = models.DateField(auto_now_add=True)
+	curso = models.CharField(_('Elige un curso (*)'),max_length=25, choices=CURSOS_2019)
 	name = models.CharField(_('Nombre (*)'),max_length=50)
 	surname = models.CharField(_('Apellido(s) (*)'),max_length=100)
 	#~ address = models.CharField(_('Address'),max_length=100)
 	#~ location = models.CharField(_('Location'),max_length=100)
 	#~ postal_code = models.DecimalField(_('Postal Code'),max_digits=6, decimal_places=0)
 	#~ sex = models.DecimalField(_('Sex'),max_digits=1, decimal_places=0,choices=SEXO)
-	birth_date = models.DateField(_('Birth Date'),help_text=_('Formato: AAAA-MM-DD(año-mes-día)'))
+	birth_date = models.DateField(_('Fecha Nacimiento'),help_text=_('Formato: AAAA-MM-DD(año-mes-día)'))
 	#dni = models.CharField(max_length=9,blank=True,help_text=_('Introduce el DNI completo con la letra sin espacios ni guiones'))
-	telephone = models.CharField('Tel. Fijo (*)',max_length=12)
-	telephone2 = models.CharField('Tel. Móvil (*)',max_length=12)
+	telephone = models.CharField('Teléfono (*)',max_length=12)
+	#telephone2 = models.CharField('Tel. Móvil (*)',max_length=12)
 	email = models.EmailField('Email (*)')
-	registration_date = models.DateField(auto_now_add=True)
-
-	accept_conditions = models.BooleanField(_('Accept the conditions'), help_text=_('You must accept the conditions to register'),default=True,blank=True)
+	nivel_ingles = models.CharField("En caso de elegir ingles indicar el nivel",max_length=150)
+	accept_conditions = models.BooleanField(_('Accept the conditions'), help_text=_('You must accept the conditions to register'),default=False,blank=True)
+	
+	def texto_curso(self):
+		return self.get_curso_display
+	
+	def send_secretaria_mail(self):
+		##Para el secretaria
+		subject = "[HOBETUZ] nueva solicitud desde la Web"
+		payload = {'registration': self}
 		
+		html_content = render_to_string('hobetuz/detalle2019.html', context=payload, request=None)
+		
+		message_body = html_content
+		##send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
+		msg = EmailMultiAlternatives(subject, message_body, settings.DEFAULT_FROM_EMAIL, ["moebius1984@gmail.com","secretaria@eide.es"])
+		msg.attach_alternative(html_content, "text/html")
+		msg.send()
+
 	def send_confirmation_email(self):
 		##Para el alumno
 		subject = "Has solicitado un curso de HOBETUZ en EIDE"
@@ -138,31 +155,24 @@ class RegistrationBase(models.Model):
 
 	def __unicode__(self):
 		return u"%s-%s"%(self.id,self.email)
+	
 	#def get_detail_url(self):
 		#return reverse('hobetuz_view',args=[self.id])
 		#return "/hobetuz/view/%d/"%self.id
+	
 	def registration_name(self):
-		#return "%s - %s, %s"%(self.exam,self.surname,self.name)
-		#~ return "%s"%(self.exam)
-		return self.__unicode__()
+				return self.__unicode__()
 	
 	#Antes de guardar ahaceos algunas cosas, como generar password y enviar un mail
 	def save(self, *args, **kwargs):
 		##We generate a random password
 		if self.id is None:
-			#We set de password, not used roght now
+			#We set de password, not used right now
 			self.password = ''.join([choice(letters) for i in xrange(6)])
 			#We send a confirmation mail to te registrant and a advise mail to the admins
+			self.send_secretaria_mail()
 			self.send_confirmation_email()
 		super(RegistrationBase, self).save(*args, **kwargs)
-
-class Registration2019(RegistrationBase):
-	situacion_laboral = models.DecimalField(_('Situación Laboral (*)'),max_digits=1, decimal_places=0,choices=SITUACION_LABORAL)
-	disponibilidad_manana_inicio = models.TimeField()
-	disponibilidad_manana_fin = models.TimeField()
-	disponibilidad_tarde_inicio = models.TimeField()
-	disponibilidad_tarde_fin = models.TimeField()
-	cursos = models.CharField(_('Cursos, puede elegir uno o varios (*)'),max_length=25, choices=CURSOS_2019)
 
 class Registration(models.Model):
 	curso = models.ForeignKey(Curso,verbose_name="Primera Opción (*)",limit_choices_to = {'matricula_abierta': True})

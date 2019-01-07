@@ -12,3 +12,4 @@ django_xhtml2pdf
 pycrypto
 MySQL-python
 python-dateutil
+django-cookie-law
