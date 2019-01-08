@@ -87,14 +87,10 @@ class RegistrationCreateView(CreateView):
 		## FIXME usar un reverse o lazy_reverse
 		return '/hobetuz/thanks/'
 
-@login_required	
+
 class Registration2019ListView(ListView):
 	model=Registration2019
-	template_name='hobetuz/lista.html'
-
-	@method_decorator(login_required)
-	def dispatch(self, *args, **kwargs):
-		return super().dispatch(*args, **kwargs)
+	template_name='hobetuz/lista2019.html'
 
 class Registration2019DetailView(DetailView):
 	model=Registration2019
