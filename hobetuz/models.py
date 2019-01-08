@@ -95,6 +95,7 @@ class Registration2019(models.Model):
 	telephone = models.CharField('Teléfono (*)',max_length=12)
 	#telephone2 = models.CharField('Tel. Móvil (*)',max_length=12)
 	email = models.EmailField('Email (*)')
+	titulacion = models.DecimalField(_('Titulación (*)'),max_digits=1, decimal_places=0,choices=TITULACION)
 	nivel_ingles = models.CharField("En caso de elegir ingles indicar el nivel",max_length=150,default="",blank=True)
 	desempleado = models.BooleanField(_('Estás desempleado/a'), default=False,blank=True)
 	funcionario = models.BooleanField(_('Eres funcionario/a'),  default=False,blank=True)
