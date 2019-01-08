@@ -95,7 +95,9 @@ class Registration2019(models.Model):
 	telephone = models.CharField('Teléfono (*)',max_length=12)
 	#telephone2 = models.CharField('Tel. Móvil (*)',max_length=12)
 	email = models.EmailField('Email (*)')
-	nivel_ingles = models.CharField("En caso de elegir ingles indicar el nivel",max_length=150)
+	nivel_ingles = models.CharField("En caso de elegir ingles indicar el nivel",max_length=150,default="",blank=True)
+	desempleado = models.BooleanField(_('Estás desempleado/a'), default=False,blank=True)
+	funcionario = models.BooleanField(_('Eres funcionario/a'),  default=False,blank=True)
 	accept_conditions = models.BooleanField(_('Accept the conditions'), help_text=_('You must accept the conditions to register'),default=False,blank=True)
 	
 	def texto_curso(self):
@@ -122,15 +124,14 @@ class Registration2019(models.Model):
 <html>
 <body>
 <div class="well">
-    Acaba de realizar una solicitud de curso para: <br />
-    %s 
+    Acaba de realizar una solicitud de curso para: %s 
 </div>
 <div class="well">
 <p>En caso de que convoquemos un curso de los que solicita y cumpla los requisitos, no pondremos en contacto con usted para realizar un proceso de selección.</p>
 </div>
 </body>
 </html>
-"""%(self.texto_curso)
+"""%(self.get_curso_display)
 		
 		message_body = html_content
 		##send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
@@ -144,7 +145,7 @@ class Registration2019(models.Model):
 		subject = "[HOBETUZ] nueva solicitud desde la Web"
 		payload = {'registration': self}
 		
-		html_content = render_to_string('hobetuz/detalle.html', payload)
+		html_content = render_to_string('hobetuz/detalle2019.html', payload)
 		
 		message_body = html_content
 		##send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
@@ -172,7 +173,7 @@ class Registration2019(models.Model):
 			#We send a confirmation mail to te registrant and a advise mail to the admins
 			self.send_secretaria_mail()
 			self.send_confirmation_email()
-		super(RegistrationBase, self).save(*args, **kwargs)
+		super(Registration2019, self).save(*args, **kwargs)
 
 class Registration(models.Model):
 	curso = models.ForeignKey(Curso,verbose_name="Primera Opción (*)",limit_choices_to = {'matricula_abierta': True})

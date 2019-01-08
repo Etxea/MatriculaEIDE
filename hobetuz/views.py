@@ -96,6 +96,10 @@ class Registration2019ListView(ListView):
 	def dispatch(self, *args, **kwargs):
 		return super().dispatch(*args, **kwargs)
 
+class Registration2019DetailView(DetailView):
+	model=Registration2019
+	template_name='hobetuz/detalle2019.html'
+        context_object_name = "registration"
 
 class Registration2019CreateView(CreateView):
 	model = Registration2019

@@ -30,13 +30,14 @@ urlpatterns = [
     #url(r'^list/2019/$',Registration2019ListView.as_view(), name="hobetuz_list_2019"),
     #url(r'^new/$',RegistrationCreateView.as_view(), name="hobetuz_nueva"),
     url(r'^new/2019/$',Registration2019CreateView.as_view(), name="hobetuz_nueva_2019"),
+    url(r'^view/2019/(?P<pk>\d+)/$', login_required(Registration2019DetailView.as_view()), name="hobetuz_2019_view"),
     #url(r'^excel/$',RegistrationExcelView, name="hobetuz_excel"),
     #url(r'^edit/(?P<pk>\d+)/$',login_required(RegistrationUpdateView.as_view()), name="hobetuz_edit"),
     #url(r'^delete/(?P<pk>\d+)/$',
     #    login_required(DeleteView.as_view(
     #        model=Registration,
     #        success_url="/hobetuz/list/")), name="hobetuz_delete"),
-    url(r'^view/(?P<pk>\d+)/$', ver, name="hobetuz_view"),
+    #url(r'^view/(?P<pk>\d+)/$', ver, name="hobetuz_view"),
     #url(r'^print/(?P<pk>\d+)/$', imprimir_hobetuz, name="hobetuz_imprimir"),
     
     ## Genericas

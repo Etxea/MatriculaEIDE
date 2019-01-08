@@ -21,11 +21,11 @@ from models import *
 from django.contrib import admin
 
 class RegistrationAdmin(admin.ModelAdmin):
-    search_fields = (['dni'])
-
+    pass
 class CursoAdmin(admin.ModelAdmin):
     pass
 
 admin.site.register(Registration, RegistrationAdmin)
+admin.site.register(Registration2019, RegistrationAdmin)
 admin.site.register(Curso, CursoAdmin)
 
