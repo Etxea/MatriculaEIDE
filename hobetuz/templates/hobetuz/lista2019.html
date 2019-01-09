@@ -24,7 +24,7 @@
     <tbody>
         {% for matricula in object_list %}
         <tr>
-            <td> <a href="{% url hobetuz_2019_view matricula.id %}">{{ matricula.id }}</a> </td>
+            <td> <a href="{% url 'hobetuz_2019_view' matricula.id %}">{{ matricula.id }}</a> </td>
             <td>{{ matricula.get_curso_display }} </td>
             <td>{{ matricula.surname }},{{ matricula.name }}</td>
 	        <td>{{ matricula.desempleado}}</td>
@@ -32,7 +32,7 @@
             <td>{{ matricula.nivel_ingles}}</td>
             
             <td>
-		        <a class="btn primary" href="{% url hobetuz_view matricula.id %}">Detalles</a>
+		        <a class="btn primary" href="{% url 'hobetuz_view' matricula.id %}">Detalles</a>
             </td>
         </tr>
     {% endfor %}

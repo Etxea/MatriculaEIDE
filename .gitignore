@@ -28,3 +28,4 @@ server.log
 local_settings.py
 logfile
 .idea
+cambridge.json
