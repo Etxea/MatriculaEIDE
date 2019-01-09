@@ -54,7 +54,7 @@ class Registration2019Form(ModelForm):
 	class Meta:
 		model = Registration2019
 		fields = '__all__'
-	telephone = ESPhoneNumberField(label=_("Teléfono Fijo (*)"))
+	telephone = ESPhoneNumberField(label=_("Teléfono (*)"))
 	#curso = forms.MultipleChoiceField(choices=CURSOS_2019, widget=forms.CheckboxSelectMultiple())
 
 #~ class RegistrationEditForm(ModelForm):
