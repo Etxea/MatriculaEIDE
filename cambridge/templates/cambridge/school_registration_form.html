@@ -3,7 +3,8 @@
 {% load bootstrap %}
 
 
-{% block body %}
+{% block extra_body %}
+
 <script>
 function comprobar_condiciones() {
     console.log("Han hecho click en el check de las condiciones");        
@@ -22,9 +23,9 @@ function comprobar_condiciones() {
         $("#aviso_condiciones").show();
     }
 }
-/*
+
 $(document).ready(function() {
-    $("#id_birth_date").datepicker({format: "dd-mm-yyyy",weekStart: 1});
+/*    $("#id_birth_date").datepicker({format: "dd-mm-yyyy",weekStart: 1}); */
     $("#normativa_general").hide();
     //Comprobamos si se puede enviar
     comprobar_condiciones();
@@ -32,9 +33,12 @@ $(document).ready(function() {
     $("#id_accept_conditions").change(comprobar_condiciones);
                 
 });
-*/
+
 </script>
 
+{% endblock %}
+
+{% block body %}
 <h1>{% trans "Matricúlate para un Exámen Cambridge" %} en {{school.description}}</h1>
 
 <div class="alert-message block-message error">
