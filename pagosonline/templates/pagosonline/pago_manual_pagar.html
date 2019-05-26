@@ -5,7 +5,7 @@
     <h1>Realizar pago Online</h1>
 
 <div id="normativa_pago" class="well well-small" style="text-align: justify; text-justify: newspape" > 
-Vamos aproceder a un pago ONLINE por un concepto  <b>{{pago.descripcion}}</b> y un importe de <b>{{ pago.importe }}</b>.
+    Vamos aproceder a un pago ONLINE por un concepto: <b>{{ pago.descripcion }} </b> y con importe de <b>{{ pago.importe }}</b>.
 </div> 
 <p class="well well-big"> 
 	Utilizamos la plataforma de pago <b>seguro</b> de Kutxabank, un sistema <b>completamente seguro</b>.Cuando pulse “Realizar Pago”,
@@ -26,7 +26,6 @@ Vamos aproceder a un pago ONLINE por un concepto  <b>{{pago.descripcion}}</b> y 
 	    {{ form.sandbox }}
 	{% else %}
 	    {{ form.render }}
-        <h3>Form final </h3>
 	{% endif %}
 </div>
 <div class="well">

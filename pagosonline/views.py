@@ -6,6 +6,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response, redirect
 
+from django.views.generic.detail import DetailView
 
 from django.contrib.sites.models import Site
 
@@ -30,6 +31,7 @@ class editar_pago_manual(UpdateView):
     model = Pago
     #form_class = PagoForm
     template_name="pago_manual_editar.html"
+    fields = '__all__'
 
 class borrar_pago_manual(DeleteView):
     model = Pago
@@ -67,8 +69,48 @@ def pagar_manual(request,pago_id):
     form = SermepaPaymentForm(merchant_parameters=merchant_parameters)
     print "Tenemos el form"
     print form.render()
-    return HttpResponse(
-        render_to_response('pagosonline/pago_manual_pagar.html', {'form': form, 'debug': settings.DEBUG, 'pago': pago}))
+    return render_to_response('pagosonline/pago_manual_pagar.html', context={'form': form, 'debug': settings.DEBUG, 'pago': pago})
+
+class PagoManual(DetailView):
+    template_name = "pagosonline/pago_manual_pagar.html"
+    model = Pago
+
+    def get_context_data(self, **kwargs):
+        context = super(PagoManual, self).get_context_data(**kwargs)
+        context['pago']=self.object
+        site = Site.objects.get_current()
+        site_domain = site.domain
+        pago = self.object
+        merchant_parameters = {
+            "Ds_Merchant_Titular": 'John Doe',
+            "Ds_Merchant_MerchantData": 'man-%s' % pago.id,   # id del Pedido o Carrito, para identificarlo en el mensaje de vuelta
+            "Ds_Merchant_MerchantName": settings.SERMEPA_COMERCIO,
+            "Ds_Merchant_ProductDescription": 'eide-onlinepayment-%s' % pago.id,
+            "Ds_Merchant_Amount": int(pago.importe * 100),
+            "Ds_Merchant_Terminal": settings.SERMEPA_TERMINAL,
+            "Ds_Merchant_MerchantCode": settings.SERMEPA_MERCHANT_CODE,
+            "Ds_Merchant_Currency": settings.SERMEPA_CURRENCY,
+            "Ds_Merchant_MerchantURL": settings.SERMEPA_URL_DATA,
+            "Ds_Merchant_UrlOK": "http://%s%s" % (site_domain, reverse('pago_ok')),
+            "Ds_Merchant_UrlKO": "http://%s%s" % (site_domain, reverse('pago_ko')),
+            # "Ds_Merchant_Order": SermepaIdTPV.objects.new_idtpv(),
+            "Ds_Merchant_TransactionType": '0',
+        }
+
+        order = SermepaIdTPV.objects.new_idtpv()  # Tiene que ser un número único cada vez
+        print "Tenemos la order ", order
+        merchant_parameters.update({
+            "Ds_Merchant_Order": order,
+            "Ds_Merchant_TransactionType": '0',
+        })
+
+        form = SermepaPaymentForm(merchant_parameters=merchant_parameters)
+        print "Tenemos el form"
+        print form.render()
+        context['form']=form
+        return context
+
+
 
 def make_payment(request, reference, order_id):
     """ Recibimos un texto de referencia, el ID de la orden y una cantidad en euros (sin decimales)"""

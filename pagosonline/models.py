@@ -21,7 +21,7 @@ class Pago(models.Model):
     fecha_creacion = models.DateField(auto_now_add=True)
     fecha_pago = models.DateField(null=True,blank=True)
     def get_absolute_url(self):
-        return reverse('pago_manual_pagar', kwargs={'pago_id': self.id})
+        return reverse('pagosonline_manual_pagar', kwargs={'pk': self.id})
     def set_as_paid(self):
         log.debug("Vamos a marcar como pagado el pago: %s con la descripcion %s"%(self.id,self.descripcion))
         self.fecha_pago = datetime.date.today()

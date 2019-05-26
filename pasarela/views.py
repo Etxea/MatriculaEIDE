@@ -32,7 +32,7 @@ from sermepa.models import SermepaIdTPV
 import datetime
 import sys
 
-from models import *
+from pagosonline.models import Pago
 from forms import *
 from cambridge.models import Registration
 
@@ -124,16 +124,21 @@ def payment_ok(sender, **kwargs):
     if registration_type=="cam":
         log.debug("Es cambridge la buscamos en BBDD")
         r = Registration.objects.get(id=registration_id)
-    elif registration_type=="man":
-        log.debug("Vamos a confirmar un pago manual. Lo buscamos en BBDD...")
-        r = Pago.objects.get(id=registration_id)
         log.debug("Hemos encontrado el pago manual %s"%r.id)
-    else:
-        log.debug( "No sabemos que tipo de matricula es!" )
-    #Comprobamos si tenemos una matricula
-    if r:
         log.debug( "Tenemos la matricula/pago, vamos a marcalo como pagado")
         r.set_as_paid()
+    elif registration_type=="man":
+        log.debug("Vamos a confirmar un pago manual. Lo buscamos en BBDD...")
+        print Pago.objects.all()
+        r = Pago.objects.filter(id=registration_id)
+        if len(r)>0:
+            log.debug("Hemos encontrado el pago manual %s"%r[0].id)
+            log.debug( "Tenemos la matricula/pago, vamos a marcalo como pagado")
+            r.set_as_paid()
+        else:
+            log.debug("Problemas encontrando el pago manual con ID: %s"%registration_id)
+    else:
+        log.debug( "No sabemos que tipo de matricula es!" )
     
 
 @receiver(payment_was_error)
