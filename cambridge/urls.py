@@ -64,6 +64,11 @@ urlpatterns = [
     url(r'venue/registrations/list/$', login_required(VenueRegistrationListView.as_view()),name="cambridge_venues_registration_list"),
     url(r'venue/new/(?P<venue_name>\w+)/$', VenueRegistrationCreateView.as_view(),name="cambridge_venues_new_registration"),
     
+    #Linguaskill
+    url(r'linguaskill/new/$', LinguaskillRegistrationCreateView.as_view(),name="cambridge_linguaskill_new_registration"),
+    url(r'linguaskill/list/$', LinguaskillRegistrationListView.as_view(),name="cambridge_linguaskill_registration_list"),
+    
+
     ## Genericas
     url(r'thanks/$', TemplateView.as_view( template_name = 'cambridge/gracias.html' ),name="cambridge_gracias"),
     url(r'error/$', TemplateView.as_view( template_name = 'cambridge/error.html' ),name="cambridge_error"),

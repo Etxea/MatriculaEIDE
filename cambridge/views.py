@@ -289,3 +289,32 @@ class VenueRegistrationCreateView(RegistrationCreateView):
         context['venue_name'] = self.kwargs['venue_name']
         context['venue'] = Venue.objects.get(name=self.kwargs['venue_name'])
         return context
+
+class LinguaskillRegistrationCreateView(RegistrationCreateView):
+    model = LinguaskillRegistration
+    form_class = LinguaskillRegistrationForm
+    template_name='cambridge/linguaskill_registration_form.html'
+    
+    #def get_form_kwargs(self):
+    #    kwargs = super(VenueRegistrationCreateView, self).get_form_kwargs()
+    #    #recogemos y añadimos kwargs a la form
+    #    kwargs['venue_name'] = self.kwargs['venue_name']
+    #    return kwargs
+    #Añadimos el school_name al contexto
+    #def get_context_data(self, **kwargs):
+    #    context = super(VenueRegistrationCreateView, self).get_context_data(**kwargs)
+    #    context['venue_name'] = self.kwargs['venue_name']
+    #    context['venue'] = Venue.objects.get(name=self.kwargs['venue_name'])
+    #    return context
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.postal_code = '48980'
+        self.object.sex = 0
+        self.object.save()
+        return super(LinguaskillRegistrationCreateView, self).form_valid(form)
+        #return HttpResponseRedirect(self.get_success_url())
+
+class LinguaskillRegistrationListView(ListView):
+    template_name='cambridge/linguaskill_registration_list.html'
+    #Limitamos a las matriculas de examenes linguaskill y que estén pagadas 
+    queryset=Registration.objects.filter(exam__exam_type=5,paid=True)

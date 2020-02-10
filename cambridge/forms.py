@@ -76,6 +76,24 @@ class RegistrationForm(ModelForm):
         super(ModelForm, self).__init__(*args, **kwargs)
         self.fields['exam'].queryset = Exam.objects.filter(registration_end_date__gte=date.today(),schoolexam__isnull=True,venueexam__isnull=True)
 
+class LinguaskillRegistrationForm(ModelForm):
+    telephone = ESPhoneNumberField(label=_("Teléfono"))
+    #dni = ESIdentityCardNumberField()
+    birth_date = DateField(label="Fecha Nac. (DD-MM-AAAA)", input_formats=['%d-%m-%Y'])
+    proposed_date = DateField(label="Fecha Examen (DD-MM-AAAA)", input_formats=['%d-%m-%Y'])
+    class Meta:
+        model = LinguaskillRegistration
+        #~ exclude = ('paid')
+        fields = ['exam','name','surname','birth_date','address','location','telephone','email','eide_alumn','centre_name','proposed_date']
+        widgets = {
+            'birth_date' : DateTimePicker(options={"format": "DD-MM-YYYY", "pickTime": False}),
+            'proposed_date' : DateTimePicker(options={"format": "DD-MM-YYYY", "pickTime": False}),
+        }
+    def __init__(self, *args, **kwargs):
+        super(ModelForm, self).__init__(*args, **kwargs)
+        self.fields['exam'].queryset = Exam.objects.filter(exam_type=5)
+
+
 class SchoolRegistrationForm(ModelForm):
     telephone = ESPhoneNumberField(label=_("Teléfono"))
     #dni = ESIdentityCardNumberField()

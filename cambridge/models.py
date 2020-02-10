@@ -48,6 +48,7 @@ EXAM_TYPE = (
     (2, _('CB')),
     (3, _('FS PB')),
     (4, _('FS CB')),
+    (5, _('Linguaskill'))
 )
 
 
@@ -257,3 +258,6 @@ Puedes ver más detalles e imprimirla en la siguente url http://matricula-eide.e
     
     def generate_payment_url(self):
         return '/pagos/cambridge/%s/'%(self.id)
+
+class LinguaskillRegistration(Registration):
+    proposed_date  = models.DateField(_('Fecha propuesta DD-MM-AAAA'), help_text=_('Formato: DD-MM-AAAA(dia-mes-año)'))
