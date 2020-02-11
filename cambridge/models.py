@@ -82,6 +82,8 @@ class Exam(models.Model):
     def __str__(self):
         return self.__unicode__()
     def __unicode__(self):
+        if self.exam_type == 5:
+            return "%s"%self.level.name
         try:
             return "[%s] %s %s"%(self.schoollevel,self.get_exam_type_display(),self.exam_date.strftime('%d-%m-%Y'))	
         except:

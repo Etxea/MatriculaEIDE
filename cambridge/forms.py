@@ -74,7 +74,7 @@ class RegistrationForm(ModelForm):
         }
     def __init__(self, *args, **kwargs):
         super(ModelForm, self).__init__(*args, **kwargs)
-        self.fields['exam'].queryset = Exam.objects.filter(registration_end_date__gte=date.today(),schoolexam__isnull=True,venueexam__isnull=True)
+        self.fields['exam'].queryset = Exam.objects.filter(registration_end_date__gte=date.today(),schoolexam__isnull=True,venueexam__isnull=True).exclude(exam_type=5)
 
 class LinguaskillRegistrationForm(ModelForm):
     telephone = ESPhoneNumberField(label=_("Teléfono"))
