@@ -52,7 +52,7 @@ urlpatterns = [
     url(r'schools/exam/(?P<school_name>\w+)/new/$', login_required(SchoolExamCreate.as_view()),name="cambridge_schools_exam_new"),
     url(r'schools/list/$', login_required(SchoolListView.as_view()),name="cambridge_schools_list"),
     url(r'schools/registrations/list/$', login_required(SchoolRegistrationListView.as_view()),name="cambridge_schools_registration_list"),
-    url(r'schools/new/(?P<school_name>\w+)/(?P<school_password>\w+)/$', SchoolRegistrationCreateView.as_view(),name="cambridge_schools_new_registration"),
+    url(r'schools/registrations/new/(?P<school_name>\w+)/(?P<school_password>\w+)/$', SchoolRegistrationCreateView.as_view(),name="cambridge_schools_new_registration"),
     url(r'schools/new/$', SchoolCreateView.as_view(),name="cambridge_schools_new"),
     url(r'berriotxoa/$', TemplateView.as_view( template_name = 'cambridge/berriotxoa.html' ),name="cambridge_berriotxoa"),
     url(r'schools/fuentefresnedo/$', TemplateView.as_view( template_name =  'cambridge/fuentefresnedo.html' ),name="cambridge_fuentefresnedo"),
