@@ -192,10 +192,15 @@ Los datos son del alumno son:
 """%(self.exam,self.name,self.surname,self.telephone,self.email)
         mail_admins(subject, message_body)
     def send_paiment_confirmation_email(self):
+        try:
+            ls = LinguaskillRegistration.objects.get(id=self.id)
+            exam_date=ls.proposed_date
+        except:
+            exam_date=self.exam.exam_date
         subject = "Se ha confirmado el pago de la matricula para el examen %s"%self.exam
         html_content=u"""<html><body>
         <h2>CONFIRMACIÓN DE MATRÍCULA</h2>
-<p>Se ha matriculado para el examen <b> %s </b> en la fecha <b> %s </b>. Tras el cierre del periodo de matriculación se le enviará el COE (Confirmation of Entry) 
+<p>Se ha matriculado para el examen <b> %s </b>. Tras el cierre del periodo de matriculación se le enviará el COE (Confirmation of Entry) 
 con las fechas y horas del examen escrito y oral a la dirección de e-mail que ha proporcionado el candidato en la 
 hoja de matrícula. Si dos semanas antes de la fecha del examen el candidato no ha recibido el COE, es su responsabilidad 
 el ponerse en contacto con EIDE y solicitar el COE. EIDE no se responsabiliza del extravío o no recepción del mismo y no 
@@ -204,7 +209,7 @@ y se reserva el derecho de no admitir a candidatos que lleguen tarde.</p>
 
 <p>Es responsabilidad del candidato llegar al lugar del examen con 15 minutos de antelación. Los candidatos deben traer un 
 DNI o pasaporte que atestigüe su identidad en cada examen (escrito y oral).</p>
-        """%(self.exam,self.exam.exam_date)
+        """%(self.exam)
 	#html_content= html_content+render_to_string('cambridge/legal.html')
         html_content= html_content+u"""</body></html>"""
         message_body = html_content

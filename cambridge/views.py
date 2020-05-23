@@ -50,11 +50,10 @@ def ver(request, pk):
     return HttpResponse( file_data )
 
 def imprimir(registration,request):
-    payload = {'registration': registration}
-    response_pdf = render_to_pdf_response('cambridge/matricula_imprimir.html', 
-        payload, pdfname='cambridge-%s.pdf'%registration.id)
-    response_html = render_to_response('cambridge/matricula_imprimir.html', 
-        payload)
+    payload = {}
+    payload["registration"] = registration
+    response_pdf = render_to_pdf_response('cambridge/matricula_imprimir.html', payload, pdfname='cambridge-%s.pdf'%registration.id)
+    #response_html = render_to_response('cambridge/matricula_imprimir.html', payload)
     #return response_html
     return response_pdf
 
@@ -166,6 +165,7 @@ class ExamList(ListView):
 class SchoolCreateView(CreateView):
     model = School
     fields = "__all__"
+    success_url="/cambridge/schools/list/"
 
 class SchoolExamList(ListView):
     queryset=SchoolExam.objects.filter(exam_date__gt=datetime.date.today())

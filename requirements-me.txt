@@ -13,3 +13,5 @@ pycrypto
 mysqlclient
 python-dateutil
 django-cookie-law
+Django-appconf==1.0.2
+jsonfield==2.1.1

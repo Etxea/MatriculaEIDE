@@ -23,6 +23,10 @@ from django.contrib import admin
 class RegistrationAdmin(admin.ModelAdmin):
     search_fields = (['dni'])
 
+class LinguaskillRegistrationAdmin(admin.ModelAdmin):
+    search_fields = (['dni'])
+
+
 class LevelAdmin(admin.ModelAdmin):
     pass
 
@@ -39,6 +43,7 @@ class SchoolLevelAdmin(admin.ModelAdmin):
     pass
 
 
+admin.site.register(LinguaskillRegistration, LinguaskillRegistrationAdmin)
 admin.site.register(Registration, RegistrationAdmin)
 admin.site.register(Level, LevelAdmin)
 admin.site.register(Exam, ExamAdmin)
