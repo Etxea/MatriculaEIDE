@@ -92,9 +92,5 @@ urlpatterns = [
             fields = '__all__',
             success_url = '/cambridge/exam/list',
             template_name='cambridge/exam_edit.html')), name="cambridge_exam_edit"),
-    url(r'^exam/view/(?P<pk>\d+)/$',
-        login_required(DetailView.as_view(
-            model=Exam,
-            template_name='cambridge/exam_view.html')), name="cambridge_exam_view"),            
     url(r'^/?$', IndexExamList.as_view(),name="cambridge"),
 ]
