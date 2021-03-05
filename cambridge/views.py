@@ -70,7 +70,7 @@ def RegistrationPayment(request, pk, trans_type='0'):
     amount = int(5.50 * 100) #El precio es en céntimos de euro
 
     merchant_parameters = {
-        "Ds_Merchant_Titular": 'John Doe',
+        "Ds_Merchant_Titular": 'EIDE',
         "Ds_Merchant_MerchantData": 'cam-%s'%reg.id, # id del Pedido o Carrito, para identificarlo en el mensaje de vuelta
         "Ds_Merchant_MerchantName": settings.SERMEPA_COMERCIO,
         "Ds_Merchant_ProductDescription": 'matricula-cambridge-%s'%reg.id,
@@ -142,7 +142,25 @@ class RegistrationCreateView(CreateView):
     template_name='cambridge/registration_form.html'
     def get_success_url(self):
         return '/cambridge/pay/%d'%self.object.id
+
+#Matricula directa a un examen
+class RegistrationExamCreateView(RegistrationCreateView):
     
+    def get_form_kwargs(self):
+        kwargs = super(RegistrationExamCreateView, self).get_form_kwargs()
+        #recogemos y añadimos kwargs a la form
+        kwargs['exam_id'] = self.kwargs['exam_id']
+        return kwargs
+    
+    def get_context_data(self, **kwargs):
+        context = super(RegistrationExamCreateView, self).get_context_data(**kwargs)
+        context['exam_id'] = self.kwargs['exam_id']
+        context['exam'] = Exam.objects.get(id=self.kwargs['exam_id'])
+        return context
+        
+    def get_initial(self):
+        return { 'exam': Exam.objects.get(id=self.kwargs['exam_id']) }
+
 @login_required 
 def RegistrationExcelView(request):
     objs = Registration.objects.filter(paid=True)

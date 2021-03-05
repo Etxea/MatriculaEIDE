@@ -13,6 +13,7 @@
         <td>{% trans "Date" %}</td>
         <td>{% trans "Cierre de la matrícula" %}</td>
         <td>{% trans "Price" %}</td>
+        <td>{% trans "Registration URL" %}</td>
         <td>{%trans "Matrículas" %}</td>
         <td>{%trans "Paid Registrations" %}</td>
         <td>{%trans "Delete" %}</td>
@@ -26,6 +27,7 @@
     <td>{{ exam.exam_date }}</td>
     <td>{{ exam.registration_end_date }}</td>
     <td>{{ exam.level.price }}</td>
+    <td><a href="{% url 'cambridge_nueva_directa' exam.id %}">Url Matrícula</a></td>
     <td>{{ exam.registrations }}</td>
     <td>{{ exam.paid_registrations }}</td>
     <td><a href="{% url 'cambridge_exam_delete' exam.id %}">Eliminar</a></td>

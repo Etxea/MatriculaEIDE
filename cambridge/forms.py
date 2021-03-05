@@ -73,8 +73,19 @@ class RegistrationForm(ModelForm):
             'birth_date' : DateTimePicker(options={"format": "DD-MM-YYYY", "pickTime": False}),
         }
     def __init__(self, *args, **kwargs):
+        
+        try:
+            exam_id = kwargs.pop('exam_id')
+        except:
+            exam_id = None
+            
         super(ModelForm, self).__init__(*args, **kwargs)
-        self.fields['exam'].queryset = Exam.objects.filter(registration_end_date__gte=date.today(),schoolexam__isnull=True,venueexam__isnull=True).exclude(exam_type=5)
+        if exam_id == None:
+            print "No tenemos examen fijado"
+            self.fields['exam'].queryset = Exam.objects.filter(registration_end_date__gte=date.today(),schoolexam__isnull=True,venueexam__isnull=True).exclude(exam_type=5)
+        else:
+            self.fields['exam'].queryset = Exam.objects.filter(id=exam_id)
+        
 
 class LinguaskillRegistrationForm(ModelForm):
     telephone = ESPhoneNumberField(label=_("Teléfono"))
@@ -107,7 +118,7 @@ class SchoolRegistrationForm(ModelForm):
             'birth_date' : DateTimePicker(options={"format": "DD-MM-YYYY", "pickTime": False}),
         }
     def __init__(self, school_name, *args, **kwargs):
-        super(ModelForm, self).__init__(*args, **kwargs)
+        super(SchoolRegistrationForm, self).__init__(*args, **kwargs)
         self.school_name = school_name
         #Limitamos los examenes a los de la escuela
         school = School.objects.get(name=school_name)
