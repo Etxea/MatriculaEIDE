@@ -234,7 +234,7 @@ Puedes ver más detalles e imprimirla en la siguente url http://matricula-eide.e
         self.send_paiment_confirmation_email()
         
     def __unicode__(self):
-        return "%s-%s"%(self.id,self.exam)
+        return "%s-%s-%s-%s"%(self.id,self.exam,self.name,self.surname)
     def registration_name(self):
         #return "%s - %s, %s"%(self.exam,self.surname,self.name)
 	try:
