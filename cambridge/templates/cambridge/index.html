@@ -42,7 +42,7 @@
 			<tbody>
 				{% for exam in examenes_pb %}
 				<tr>
-					<td>{{ exam.level }}</td><td> {{ exam.exam_date }}</td><td><a href="{% url 'cambridge_nueva_examen' exam.id %}">Matriculate</a></td>
+					<td>{{ exam.level }}</td><td> {{ exam.exam_date }}</td><td><a class="btn btn-primary" href="{% url 'cambridge_nueva_examen' exam.id %}">Matriculate</a></td>
 				</tr>
 				{% endfor %}
 				</tbody>
@@ -55,7 +55,7 @@
 			<tbody>
 				{% for exam in examenes_cb %}
 				<tr>
-					<td>{{ exam.level }}</td><td> {{ exam.exam_date }}</td><td><a href="{% url 'cambridge_nueva_examen' exam.id %}">Matriculate</a></td></li>
+					<td>{{ exam.level }}</td><td> {{ exam.exam_date }}</td><td><a class="btn btn-primary" href="{% url 'cambridge_nueva_examen' exam.id %}">Matriculate</a></td></li>
 				</tr>
 				{% endfor %}
 				</tbody>
@@ -68,7 +68,7 @@
 			<tbody>
 				{% for exam in examenes_fs_pb %}
 				<tr>
-					<td>{{ exam.level }}</td><td> {{ exam.exam_date }}</td><td><a href="{% url 'cambridge_nueva_examen' exam.id %}">Matriculate</a></td></li>
+					<td>{{ exam.level }}</td><td> {{ exam.exam_date }}</td><td><a class="btn btn-primary" href="{% url 'cambridge_nueva_examen' exam.id %}">Matriculate</a></td></li>
 				</tr>
 				{% endfor %}
 				</tbody>
@@ -81,7 +81,7 @@
 			<tbody>
 				{% for exam in examenes_fs_cb %}
 				<tr>
-					<td>{{ exam.level }}</td><td> {{ exam.exam_date }}</td><td><a href="{% url 'cambridge_nueva_examen' exam.id %}">Matriculate</a></td></li>
+					<td>{{ exam.level }}</td><td> {{ exam.exam_date }}</td><td><a class="btn btn-primary" href="{% url 'cambridge_nueva_examen' exam.id %}">Matriculate</a></td></li>
 				</tr>
 				{% endfor %}
 				</tbody>
