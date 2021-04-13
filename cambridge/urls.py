@@ -44,7 +44,7 @@ urlpatterns = [
             success_url="/cambridge/list/")), name="cambridge_delete"),
     url(r'^view/(?P<pk>\d+)/$', ver, name="cambridge_view"),
     url(r'^print/(?P<pk>\d+)/$', imprimir_cambridge, name="cambridge_imprimir"),
-    url(r'^new/(?P<exam_id>\d+)/$',RegistrationExamCreateView.as_view(), name="cambridge_nueva_examen"),
+    url(r'^new/(?P<exam_id>\d+)/$',RegistrationExamCreateView.as_view(), name="ambridge_nueva_examen"),
     url(r'^new/$',RegistrationCreateView.as_view(), name="cambridge_nueva"),
     
     #Colegios
@@ -92,9 +92,5 @@ urlpatterns = [
             fields = '__all__',
             success_url = '/cambridge/exam/list',
             template_name='cambridge/exam_edit.html')), name="cambridge_exam_edit"),
-    url(r'^exam/view/(?P<pk>\d+)/$',
-        login_required(DetailView.as_view(
-            model=Exam,
-            template_name='cambridge/exam_view.html')), name="cambridge_exam_view"),            
     url(r'^/?$', IndexExamList.as_view(),name="cambridge"),
 ]

@@ -150,7 +150,7 @@ class Registration2019(models.Model):
 		
 		message_body = html_content
 		##send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
-		msg = EmailMultiAlternatives(subject, message_body, settings.DEFAULT_FROM_EMAIL, ["moebius1984@gmail.com","secretaria@eide.es"])
+		msg = EmailMultiAlternatives(subject, message_body, settings.DEFAULT_FROM_EMAIL, ["moebius1984@gmail.com","secretaria@eide.es","ruth.farpon@eide.es","eide@eide.es"])
 		msg.attach_alternative(html_content, "text/html")
 		##msg.content_subtype = "html"
 		msg.send()
