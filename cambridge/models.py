@@ -51,7 +51,6 @@ EXAM_TYPE = (
     (5, _('Linguaskill'))
 )
 
-
 class Level(models.Model):
     name = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=5, decimal_places=2)
@@ -60,8 +59,7 @@ class Level(models.Model):
             return "[%s] %s-%s"%(self.schoollevel.school,self.name.split(" ")[0],self.price)
 	
         except:
-            return "%s-%s"%(self.name,self.price)
-    
+            return "%s-%s"%(self.name,self.price)   
 
 class Exam(models.Model):
     exam_type =  models.DecimalField(_('Tipo Examen'),max_digits=1, decimal_places=0,choices=EXAM_TYPE)
@@ -72,8 +70,7 @@ class Exam(models.Model):
         try:
             return self.registration_set.count()
         except:
-            return 0
-    
+            return 0   
     def paid_registrations(self):
         try:
             return self.registration_set.filter(paid=True).count()
@@ -133,7 +130,6 @@ class VenueExam(Exam):
     def __unicode__(self):
         return "[%s]%s %s %s"%(self.venue,self.level.__unicode__(),self.get_exam_type_display(),self.exam_date.strftime('%d-%m-%Y'))
 
-
 class Registration(models.Model):
     exam = models.ForeignKey(Exam,limit_choices_to = {'registration_end_date__gte': datetime.date.today()})
     password = models.CharField(_('Password'),max_length=6,blank=True,editable=False)
@@ -156,15 +152,10 @@ class Registration(models.Model):
     minor = models.BooleanField(_('El candidato es menor de edad y yo soy su padre/madre o tutor legal.'),default=False,blank=True)
     tutor_name = models.CharField(_('Nombre de padre/madre o tutor.'),max_length=50,blank=True)
     tutor_surname = models.CharField(_('Apellido(s) del padre/madre o tutor.'),max_length=100,blank=True)
-
     def send_confirmation_email(self):
         ##Para el alumno
-        subject = _("Te has matriculado para un examen Cambridge en EIDE")
-        
+        subject = _("Te has matriculado para un examen Cambridge en EIDE")        
         html_content = u"""
-        
-
-
 <div class="well">
     Acaba de realizar una solicitud de matrícula para: <br />
     %s 
@@ -172,15 +163,13 @@ class Registration(models.Model):
 <div class="well">
     <h1>Pago de la matrícula</h1>
     La matrícula se hará efectiva una vez se haya recibido el pago. Puede hacer el pago en la siguiente dirección: <a href="http://matricula-eide.es/%s">http://matricula-eide.es/%s</a>
-</div>"""%(self.exam,self.generate_payment_url(),self.generate_payment_url())
-        
+</div>"""%(self.exam,self.generate_payment_url(),self.generate_payment_url())      
         message_body = html_content
         ##send_mail(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
         msg = EmailMultiAlternatives(subject, message_body, settings.DEFAULT_FROM_EMAIL, [self.email])
         msg.attach_alternative(html_content, "text/html")
         ##msg.content_subtype = "html"
-        #msg.send()
-         
+        #msg.send()         
         ### Para los admins
         subject = "Hay una nueva matricula (sin pagar) para cambridge %s"%self.exam
         message_body = u"""Se ha dado de alta una nueva matricula para el examen %s. 
@@ -259,10 +248,7 @@ Puedes ver más detalles e imprimirla en la siguente url http://matricula-eide.e
                 pass
             #We send a confirmation mail to te registrant and a advise mail to the admins
             self.send_confirmation_email()
-        super(Registration, self).save(*args, **kwargs)
-        
-    
-    
+        super(Registration, self).save(*args, **kwargs)    
     def generate_payment_url(self):
         return '/pagos/cambridge/%s/'%(self.id)
 
