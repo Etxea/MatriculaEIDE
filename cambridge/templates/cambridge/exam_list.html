@@ -27,7 +27,7 @@
     <td>{{ exam.exam_date }}</td>
     <td>{{ exam.registration_end_date }}</td>
     <td>{{ exam.level.price }}</td>
-    <td><a href="{% url 'cambridge_nueva_directa' exam.id %}">Url Matrícula</a></td>
+    <td><a href="{% url 'cambridge_nueva_examen' exam.id %}">Url Matrícula</a></td>
     <td>{{ exam.registrations }}</td>
     <td>{{ exam.paid_registrations }}</td>
     <td><a href="{% url 'cambridge_exam_delete' exam.id %}">Eliminar</a></td>
