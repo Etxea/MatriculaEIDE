@@ -29,3 +29,4 @@ local_settings.py
 logfile
 .idea
 cambridge.json
+cambridge_data.json
