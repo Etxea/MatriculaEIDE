@@ -152,7 +152,7 @@ class Registration(models.Model):
     centre_name = models.CharField(_('Nombre del Centro'),max_length=100, blank=True) 
     registration_date = models.DateField(auto_now_add=True)
     paid = models.BooleanField(_('Pagada'),default=False)
-    accept_conditions = models.BooleanField(_('Doy mi consentimiento expreso para recibir comunicaciones en los términos anteriormente descritos.'), help_text=_('Doy mi consentimiento expreso para recibir comunicaciones en los términos anteriormente descritos.'),default=True,blank=True)
+    accept_conditions = models.BooleanField(_('He leído y acepto las condiciones generales.'),default=True,blank=True)
     accept_photo_conditions = models.BooleanField(_('Doy mi consentimiento expreso para que mi imagen pueda ser utilizada en la página Web o en redes sociales del centro así como en todo el material publicitario que pueda utilizar.'), help_text=_('Debes aceptar las condiciones de la la toma de foto para poder matricularte.'),default=True,blank=True)
     minor = models.BooleanField(_('El candidato es menor de edad y yo soy su padre/madre o tutor legal.'),default=False,blank=True)
     tutor_name = models.CharField(_('Nombre de padre/madre o tutor.'),max_length=50,blank=True)
