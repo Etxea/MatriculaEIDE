@@ -84,7 +84,7 @@ class LinguaskillRegistrationForm(ModelForm):
     class Meta:
         model = LinguaskillRegistration
         #~ exclude = ('paid')
-        fields = ['exam','name','surname','birth_date','address','location','telephone','email','eide_alumn','centre_name','proposed_date']
+        fields = ['name','surname','birth_date','address','location','telephone','email','proposed_date']
         widgets = {
             'birth_date' : DateTimePicker(options={"format": "DD-MM-YYYY", "pickTime": False}),
             'proposed_date' : DateTimePicker(options={"format": "DD-MM-YYYY", "pickTime": False}),

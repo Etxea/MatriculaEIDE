@@ -44,7 +44,7 @@ urlpatterns = [
             success_url="/cambridge/list/")), name="cambridge_delete"),
     url(r'^view/(?P<pk>\d+)/$', ver, name="cambridge_view"),
     url(r'^print/(?P<pk>\d+)/$', imprimir_cambridge, name="cambridge_imprimir"),
-    url(r'^new/(?P<pk>\d+)/$',RegistrationCreateView.as_view()),
+    url(r'^new/(?P<exam_id>\d+)/$',RegistrationExamCreateView.as_view(), name="cambridge_nueva_examen"),
     url(r'^new/$',RegistrationCreateView.as_view(), name="cambridge_nueva"),
     
     #Colegios

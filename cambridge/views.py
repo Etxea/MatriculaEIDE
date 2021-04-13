@@ -142,7 +142,23 @@ class RegistrationCreateView(CreateView):
     template_name='cambridge/registration_form.html'
     def get_success_url(self):
         return '/cambridge/pay/%d'%self.object.id
-    
+
+class RegistrationExamCreateView(CreateView):
+    model = Registration
+    form_class = RegistrationForm
+    template_name='cambridge/registration_form.html'
+    def get_success_url(self):
+        return '/cambridge/pay/%d'%self.object.id
+    def get_initial(self):
+        # Get the initial dictionary from the superclass method
+        initial = super(RegistrationExamCreateView, self).get_initial()
+        # Copy the dictionary so we don't accidentally change a mutable dict
+        initial = initial.copy()
+        initial['exam'] = self.request.GET["exam_id"]
+        # etc...
+        return initial
+
+
 @login_required 
 def RegistrationExcelView(request):
     objs = Registration.objects.filter(paid=True)

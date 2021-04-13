@@ -30,45 +30,62 @@
 		<p>
 			El pago del pedido se produce en tiempo real a través del TPV Virtual una vez se haya comprobado que los datos proporcionados son correctos.
 		</p>
-
-	
 </div>
 <hr />
 <div class="row">
-    <div class="col-md-3">
-	<p> ... si quieres realizar el <b>examen en papel</b>, matricúlate para un Paper Based Exam. </p>
-	<p>Tenemos las siguientes convocatorias: </p> 
-	<ul>
-	{% for exam in examenes_pb %}
-		   <li>{{ exam.level }} - {{ exam.exam_date }}</li>
-	{% endfor %}
-	</ul>
-    </div>
-    <div class="col-md-3">
-	<p>... si quieres realizar el <b>examen en un ordenador</b>, matricúlate para un Computer Based Exam. </p>
-	<p>Tenemos las siguientes convocatorias:</p>
-	<ul>
-	{% for exam in examenes_cb %}
-		   <li>{{ exam.level }} - {{ exam.exam_date }}</li>
-	{% endfor %}
-	</ul>
-    </div>
-    <div class="col-md-3">
-	<p>... si quieres realizar el <b>examen en papel y eres menor de edad</b> matrículate para un For Schools. </p><p>Tenemos las siguientes convocatorias:</p>
-	<ul>
-	{% for exam in examenes_fs_pb %}
-		   <li>{{ exam.level }} - {{ exam.exam_date }}</li>
-	{% endfor %}
-	</ul>
-    </div>
-    <div class="col-md-3">
-	<p>... si quieres realizar el <b>examen en ordenador y eres menor</b> matrículate para un For Schools.</p>
-	<p>Tenemos las siguientes convocatorias:</p>
-	<ul>
-	{% for exam in examenes_fs_cb %}
-		   <li>{{ exam.level }} - {{ exam.exam_date }}</li>
-	{% endfor %}
-	</ul>
+    <div class="col-md-12">
+		<h3>Paper Based Exam </h3>
+		<table class="table">
+			<th>
+				<td>Nivel</td><td>Fecha</td><td></td>
+			</th>
+			<tbody>
+				{% for exam in examenes_pb %}
+				<tr>
+					<td>{{ exam.level }}</td><td> {{ exam.exam_date }}</td><td>Matriculate</td><a href="{% url 'cambridge_nueva_examen' exam.id %}">>>></a></li>
+				</tr>
+				{% endfor %}
+				</tbody>
+		</table>
+		<h3>Computer Based Exam </h3>
+		<table class="table">
+			<th>
+				<td>Nivel</td><td>Fecha</td><td></td>
+			</th>
+			<tbody>
+				{% for exam in examenes_cb %}
+				<tr>
+					<td>{{ exam.level }}</td><td> {{ exam.exam_date }}</td><td>Matriculate</td></li>
+				</tr>
+				{% endfor %}
+				</tbody>
+		</table>
+		<h3>For Schools </h3>
+		<table class="table">
+			<th>
+				<td>Nivel</td><td>Fecha</td><td></td>
+			</th>
+			<tbody>
+				{% for exam in examenes_fs_pb %}
+				<tr>
+					<td>{{ exam.level }}</td><td> {{ exam.exam_date }}</td><td>Matriculate</td></li>
+				</tr>
+				{% endfor %}
+				</tbody>
+		</table>
+		<h3>For Schools Computer Based </h3>
+		<table class="table">
+			<th>
+				<td>Nivel</td><td>Fecha</td><td></td>
+			</th>
+			<tbody>
+				{% for exam in examenes_fs_cb %}
+				<tr>
+					<td>{{ exam.level }}</td><td> {{ exam.exam_date }}</td><td>Matriculate</td></li>
+				</tr>
+				{% endfor %}
+				</tbody>
+		</table>
     </div>
 </div>
 {% endblock %}
