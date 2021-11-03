@@ -22,15 +22,13 @@ from django.template import RequestContext
 from django.http import HttpResponse
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, render_to_response, redirect
-from django.views.generic import DetailView, ListView, CreateView, UpdateView, View
-from django.views.generic.edit import ModelFormMixin
+from django.views.generic import ListView, CreateView
+
 from django.contrib.sites.models import Site
 
 from django.conf import settings
 from sermepa.forms import SermepaPaymentForm
-from sermepa.signals import payment_was_successful, payment_was_error, signature_error
 from sermepa.models import SermepaIdTPV
-
 
 import StringIO
 import ho.pisa as pisa
@@ -135,7 +133,6 @@ def RegistrationPayment(request, pk, trans_type='0'):
     print form.render()
     return HttpResponse(render_to_response('cambridge/payment.html', {'form': form, 'debug': settings.DEBUG, 'registration': reg}))
     
-    
 class RegistrationCreateView(CreateView):
     model = Registration
     form_class = RegistrationForm
@@ -163,9 +160,26 @@ class RegistrationExamCreateView(RegistrationCreateView):
 
 class RegistrationExcelView(ExcelView):
     def get_queryset(self):
-        try:
-            return Registration.objects.filter(paid=True, exam_id=self.kwargs['exam_id'])
-        except:
+        if 'exam_id' in self.kwargs:
+            data = [[
+            'Candidate number','First name', 'Last name',	
+            'AIC required(Yes/No)','Gender','Candidate type','Preparation centre',
+            'Packing code',	'Date of birth', 'Country code', 'Area code','Contact number',
+            'Mobile number','Email address','ID number','Campaign code','Address line1','Address line2',
+            'City','Post/Area code','Country',
+            'Candidate category P1','Candidate category O1','Candidate category R1','Resit code']]
+
+            for registration in Registration.objects.filter(paid=True, exam_id=self.kwargs['exam_id']):
+                data.append([
+                    '',registration.name,registration.surname,
+                    '',registration.sex,'',registration.centre_name,
+                    '',	registration.birth_date, 'ES', '',registration.telephone,
+                    registration.telephone,registration.email,'','',registration.address,'',
+                    registration.location,registration.postal_code,'Spain',
+                    '','','',''
+                ])
+            return data
+        else:
             return Registration.objects.filter(paid=True)
 
 class RegistrationListView(ListView):
@@ -188,11 +202,26 @@ class RegistrationListViewExam(ListView):
         context['exam'] = Exam.objects.get(id=self.kwargs['exam_id'])
         return context
 
-
 class ExamList(ListView):
     queryset=Exam.objects.filter(exam_date__gt=datetime.date.today())
     template_name='cambridge/exam_list.html'
 
+class IndexExamList(ListView):
+    model=Exam
+    template_name='cambridge/index.html'
+    def get_context_data(self, **kwargs):
+        context = super(IndexExamList, self).get_context_data(**kwargs)
+        context.update({
+        'examenes_pb' : Exam.objects.filter(registration_end_date__gte=datetime.date.today()).filter(exam_type=1).filter(schoolexam__isnull=True),
+        'examenes_cb' : Exam.objects.filter(registration_end_date__gte=datetime.date.today()).filter(exam_type=2).filter(schoolexam__isnull=True),
+        'examenes_fs_pb' : Exam.objects.filter(registration_end_date__gte=datetime.date.today()).filter(exam_type=3).filter(schoolexam__isnull=True),
+        'examenes_fs_cb' : Exam.objects.filter(registration_end_date__gte=datetime.date.today()).filter(exam_type=4).filter(schoolexam__isnull=True)
+        })
+        return context
+             
+        #return render_to_response('cambridge/index.html',{'examenes_pb': examenes_pb, 'examenes_cb': examenes_cb,'examenes_fs': examenes_fs})
+
+## SCHOOLS ##
 class SchoolCreateView(CreateView):
     model = School
     fields = "__all__"
@@ -259,24 +288,8 @@ class SchoolRegistrationCreateView(RegistrationCreateView):
         context['school_name'] = self.kwargs['school_name']
         context['school'] = School.objects.get(name=self.kwargs['school_name'])
         return context
-
-
-class IndexExamList(ListView):
-    model=Exam
-    template_name='cambridge/index.html'
-    def get_context_data(self, **kwargs):
-        context = super(IndexExamList, self).get_context_data(**kwargs)
-        context.update({
-        'examenes_pb' : Exam.objects.filter(registration_end_date__gte=datetime.date.today()).filter(exam_type=1).filter(schoolexam__isnull=True),
-        'examenes_cb' : Exam.objects.filter(registration_end_date__gte=datetime.date.today()).filter(exam_type=2).filter(schoolexam__isnull=True),
-        'examenes_fs_pb' : Exam.objects.filter(registration_end_date__gte=datetime.date.today()).filter(exam_type=3).filter(schoolexam__isnull=True),
-        'examenes_fs_cb' : Exam.objects.filter(registration_end_date__gte=datetime.date.today()).filter(exam_type=4).filter(schoolexam__isnull=True)
-        })
-        return context
-             
-        #return render_to_response('cambridge/index.html',{'examenes_pb': examenes_pb, 'examenes_cb': examenes_cb,'examenes_fs': examenes_fs})
     
-##Venues
+## Venues ##
 class VenueExamList(ListView):
     queryset=VenueExam.objects.filter(exam_date__gt=datetime.date.today())
     template_name='cambridge/venue_exam_list.html'
