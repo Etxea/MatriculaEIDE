@@ -39,5 +39,5 @@ urlpatterns = [
     url(r'^view/(?P<pk>\d+)/$', login_required(RegistrationDetailView.as_view()), name="intensivos_detalle"),
     url(r'thanks/$', TemplateView.as_view(template_name = 'intensivos/gracias.html' ),name="intensivos_gracias"),
     #url(r'^/?$', direct_to_template,{'template': 'portada.html' },name="intensivos"),
-    url(r'^/?$', RedirectView.as_view(url='/intensivos/new/'),name="intensivos"),
+    url(r'^$', RedirectView.as_view(url='/intensivos/new/'),name="intensivos"),
 ]

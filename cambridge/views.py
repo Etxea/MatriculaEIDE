@@ -34,7 +34,7 @@ from sermepa.models import SermepaIdTPV
 
 import StringIO
 import ho.pisa as pisa
-from excel_response3 import ExcelResponse
+from excel_response import ExcelView
 from django_xhtml2pdf.utils import render_to_pdf_response
 from models import *
 from forms import *
@@ -161,10 +161,12 @@ class RegistrationExamCreateView(RegistrationCreateView):
     def get_initial(self):
         return { 'exam': Exam.objects.get(id=self.kwargs['exam_id']) }
 
-@login_required 
-def RegistrationExcelView(request):
-    objs = Registration.objects.filter(paid=True)
-    return ExcelResponse(objs)
+class RegistrationExcelView(ExcelView):
+    def get_queryset(self):
+        try:
+            return Registration.objects.filter(paid=True, exam_id=self.kwargs['exam_id'])
+        except:
+            return Registration.objects.filter(paid=True)
 
 class RegistrationListView(ListView):
     template_name='cambridge/lista.html'
@@ -175,6 +177,17 @@ class RegistrationListViewAll(ListView):
     template_name='cambridge/lista.html'
     #Limitamos a las matriculas de examenes posteriores al día de hoy y que estén pagadas
     queryset=Registration.objects.filter().order_by('-registration_date')
+
+class RegistrationListViewExam(ListView):
+    template_name='cambridge/lista.html'
+    #Limitamos a las matriculas de examenes posteriores al día de hoy y que estén pagadas y del examen concreto
+    def get_queryset(self):
+        return Registration.objects.filter(exam=self.kwargs['exam_id'],exam__exam_date__gt=datetime.date.today(),paid=True).order_by('-registration_date')
+    def get_context_data(self, **kwargs):
+        context = super(RegistrationListViewExam, self).get_context_data(**kwargs)
+        context['exam'] = Exam.objects.get(id=self.kwargs['exam_id'])
+        return context
+
 
 class ExamList(ListView):
     queryset=Exam.objects.filter(exam_date__gt=datetime.date.today())

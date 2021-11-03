@@ -3,6 +3,7 @@
 {% load i18n %}
 
 {% block body %}
+
 <h1>{% trans "Cambridge Exam List" %}</h1>
 
 <table class="table">
@@ -29,7 +30,7 @@
     <td>{{ exam.level.price }}</td>
     <td><a href="{% url 'cambridge_nueva_examen' exam.id %}">Url Matrícula</a></td>
     <td>{{ exam.registrations }}</td>
-    <td>{{ exam.paid_registrations }}</td>
+    <td> <a href="{% url 'cambridge_list_exam' exam.id %}"><i class="fa fa-list" aria-hidden="true"></i> {{ exam.paid_registrations }}</a></td>
     <td><a href="{% url 'cambridge_exam_delete' exam.id %}">Eliminar</a></td>
     </tr>
     {% endfor %}

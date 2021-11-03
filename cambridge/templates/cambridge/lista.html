@@ -3,9 +3,17 @@
 {% load i18n %}
 
 {% block body %}
-<p>
+{% if exam %}
+<h1> Matriculas del examen {{ exam }} </h1>
+{% else %}
+<h1>Matriculas</h1>
+{% endif %}
+<div class="float-right" >
+<a class="btn btn-success" href="{% url 'cambridge_excel_exam' exam.id %}">Bajar como fichero excel</a></li>{% if exam %}
+{% else %}
 <a class="btn btn-success" href="{% url 'cambridge_excel' %}">Bajar como fichero excel</a></li>
-</p>
+{% endif %}
+</div>
 <hr />
 <table class="table">
     <thead>

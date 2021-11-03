@@ -1,7 +1,7 @@
 gunicorn
 pinax-theme-bootstrap==7.8.0
 xlwt
-django-excel-response3
+django-excel-response
 django-countries==1.1.1
 django-localflavor==1.2
 pisa==3.0.33

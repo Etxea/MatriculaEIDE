@@ -20,7 +20,7 @@ from django.conf.urls import url, include
 
 #~ from django.views.generic.simple import direct_to_template
 from django.contrib.auth.decorators import login_required, permission_required
-from django.views.generic import TemplateView, DetailView, ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 
 from views import *
 from forms import *
@@ -30,7 +30,9 @@ from models import *
 urlpatterns = [
     url(r'^list/$',login_required(RegistrationListView.as_view()), name="cambridge_list"),
     url(r'^list/all$',login_required(RegistrationListViewAll.as_view()), name="cambridge_list_all"),
-    url(r'^excel/$',RegistrationExcelView, name="cambridge_excel"),
+    url(r'^list/exam/(?P<exam_id>\d+)/$',login_required(RegistrationListViewExam.as_view()), name="cambridge_list_exam"),
+    url(r'^excel/$',login_required(RegistrationExcelView.as_view()), name="cambridge_excel"),
+    url(r'^excel/exam/(?P<exam_id>\d+)/$',login_required(RegistrationExcelView.as_view()), name="cambridge_excel_exam"),
     url(r'^pay/(?P<pk>\d+)/$',RegistrationPayment,name="cambridge_pay"),
     url(r'^edit/(?P<pk>\d+)/$',
         login_required(UpdateView.as_view(
@@ -92,5 +94,5 @@ urlpatterns = [
             fields = '__all__',
             success_url = '/cambridge/exam/list',
             template_name='cambridge/exam_edit.html')), name="cambridge_exam_edit"),
-    url(r'^/?$', IndexExamList.as_view(),name="cambridge"),
+    url(r'^$', IndexExamList.as_view(),name="cambridge"),
 ]
