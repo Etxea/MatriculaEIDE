@@ -30,3 +30,6 @@ logfile
 .idea
 cambridge.json
 cambridge_data.json
+*.sql
+Pipfile
+pyvenv.cfg
