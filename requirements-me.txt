@@ -6,7 +6,7 @@ django-countries==1.1.1
 django-localflavor==1.2
 pisa==3.0.33
 html5lib==0.9999
-reportlab==2.7
+reportlab==3.5.55
 xhtml2pdf==0.0.6
 django_xhtml2pdf==0.0.3
 pycrypto
